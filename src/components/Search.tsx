@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useDebounce } from "../hooks/useDebounce";
 import { ICity, getCities } from '../services/api';
+import { SearchItem } from './SearchItem';
 
 export interface ICitiesList {
   cities: Array<ICity>;
@@ -37,6 +38,10 @@ export const Search: FC = () => {
     }
   }, [debouncedSearch]);
 
+  function selectItemHandler(item: string) {
+    console.log('item from parent', item);
+  }
+
   return (
     <form>
       <label
@@ -70,25 +75,11 @@ export const Search: FC = () => {
             ) : (
               citiesList.cities.map((city: ICity) => {
                 return (
-                  <div key={city.name} className="flex items-center p-2">
-                    <div className="flex items-center">
-                      <svg
-                        className="w-5 h-5 text-gray-900"
-                        fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M12 6v6m0 0v6m0-6h6m-6 0H6">
-                        </path>
-                      </svg>
-                      <span className="ml-2">
-                        {city.name}, {city.country}
-                      </span>
-                    </div>
-                  </div>
+                  <SearchItem
+                    key={`${city.name}${city.country}`}
+                    title={`${city.name}, ${city.country}`}
+                    onSelectItem={() => selectItemHandler(city.name)}
+                  />
                 )
               }))
           }
