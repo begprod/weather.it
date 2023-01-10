@@ -1,5 +1,3 @@
-import {promises} from "dns";
-
 const GEO_DB_API_OPTIONS = {
 	method: 'GET',
 	headers: {

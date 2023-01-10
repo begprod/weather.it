@@ -1,11 +1,13 @@
 import { FC, useEffect, useState } from 'react';
 import { useDebounce } from "../hooks/useDebounce";
 import { ICity, getCities } from '../services/api';
+import { Input } from './Input';
 import { SearchItem } from './SearchItem';
 
 export interface ICitiesList {
   cities: Array<ICity>;
 }
+
 export const Search: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [citiesList, setCitiesList] = useState<ICitiesList>({ cities: [] });
@@ -44,25 +46,15 @@ export const Search: FC = () => {
 
   return (
     <form>
-      <label
-        htmlFor="city-search"
-        className="mb-2 text-sm sr-only dark:text-white"
-      >
-        Search
-      </label>
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          🔍
-        </div>
-        <input
-          id="city-search"
+        <Input
+          id="city_search"
           type="text"
-          className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
+          label="Search"
+          icon="🔍"
           placeholder="City name"
-          onChange={(event) => setSearchQuery(event.target.value)}
           value={searchQuery}
-          required
-          autoComplete="off"
+          onChange={(value) => setSearchQuery(value)}
         />
         <div className="absolute left-0 top-full w-full bg-gray-300 rounded-lg">
           {
