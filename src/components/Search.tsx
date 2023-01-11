@@ -1,8 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useContext } from 'react';
 import { useDebounce } from "../hooks/useDebounce";
 import { ICity, getCities } from '../services/api';
 import { Input } from './Input';
 import { SearchItem } from './SearchItem';
+import { CitiesContext } from '../store/cities-context';
 
 export interface ICitiesList {
   cities: Array<ICity>;
@@ -13,6 +14,7 @@ export const Search: FC = () => {
   const [citiesList, setCitiesList] = useState<ICitiesList>({ cities: [] });
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const citiesCtx = useContext(CitiesContext);
 
   const debouncedSearch = useDebounce(searchQuery, 1100);
 
@@ -55,6 +57,7 @@ export const Search: FC = () => {
           placeholder="City name"
           value={searchQuery}
           onChange={(value) => setSearchQuery(value)}
+          autoComplete="off"
         />
         <div className="absolute left-0 top-full w-full bg-gray-300 rounded-lg">
           {
@@ -65,12 +68,12 @@ export const Search: FC = () => {
                 </div>
               </div>
             ) : (
-              citiesList.cities.map((city: ICity) => {
+              citiesList.cities.map((city: ICity, index: number) => {
                 return (
                   <SearchItem
-                    key={`${city.name}${city.country}`}
+                    key={`${city.name}${city.country}_${index}`}
                     title={`${city.name}, ${city.country}`}
-                    onSelectItem={() => selectItemHandler(city.name)}
+                    onSelectItem={() => citiesCtx.addCity(city.name)}
                   />
                 )
               }))
