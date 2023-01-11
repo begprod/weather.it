@@ -1,38 +1,49 @@
 import { FC, createContext, useState } from 'react';
+import { ICity } from '../interfaces/ICity';
 
 interface ICitiesContextProps {
   children: React.ReactNode;
 }
 
-export const CitiesContext = createContext({
+interface ICitiesContext {
+  cities: Array<ICity>;
+  getCitiesList: () => Array<ICity>;
+  addCity: (city: ICity) => void;
+  removeCity: (city: ICity) => void;
+}
+
+export const CitiesContext = createContext<ICitiesContext>({
   cities: [],
-  addCity: (city: string) => {},
-  removeCity: (city: string) => {},
+  addCity: () => {},
+  removeCity: () => {},
   getCitiesList: () => [],
 });
 
 export const CitiesContextProvider: FC<ICitiesContextProps> = (props) => {
-  const [cities, setCities] = useState([]);
+  const [cities, setCities] = useState<Array<ICity>>([]);
 
-  function addCityHandler(city: string) {
+  function addCityHandler(city: ICity) {
+    console.log('addCityHandler', city);
+
     setCities((prevCities) => {
-      // @ts-ignore
       return prevCities.concat(city);
     });
   }
 
-  function removeCityHandler(city: string) {
+  function removeCityHandler(city: ICity) {
+    console.log('removeCityHandler', city);
+
     setCities((prevCities) => {
       return prevCities.filter((c) => c !== city);
     });
   }
 
-  function getCitiesListHandler() {
-    return cities;
+  function getCitiesListHandler(): ICity[] {
+    return cities as ICity[];
   }
 
   const context = {
-    cities: cities,
+    cities,
     addCity: addCityHandler,
     removeCity: removeCityHandler,
     getCitiesList: getCitiesListHandler,

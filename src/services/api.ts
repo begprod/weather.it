@@ -1,4 +1,4 @@
-import exp from "constants";
+import { ICity } from '../interfaces/ICity';
 
 const GEO_DB_API_OPTIONS = {
   method: 'GET',
@@ -7,13 +7,6 @@ const GEO_DB_API_OPTIONS = {
     'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
   }
 };
-
-export interface ICity {
-  name: string;
-  country: string;
-  latitude: number;
-  longitude: number;
-}
 
 export async function getCities(name: string): Promise<any> {
   return await fetch(

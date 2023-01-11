@@ -1,13 +1,11 @@
 import { FC, useEffect, useState, useContext } from 'react';
 import { useDebounce } from "../hooks/useDebounce";
-import { ICity, getCities } from '../services/api';
 import { Input } from './Input';
 import { SearchItem } from './SearchItem';
+import { getCities } from '../services/api';
+import { ICity } from '../interfaces/ICity';
+import { ICitiesList} from '../interfaces/ICitiesList';
 import { CitiesContext } from '../store/cities-context';
-
-export interface ICitiesList {
-  cities: Array<ICity>;
-}
 
 export const Search: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -42,8 +40,9 @@ export const Search: FC = () => {
     }
   }, [debouncedSearch]);
 
-  function selectItemHandler(item: string) {
-    console.log('item from parent', item);
+  function selectItemHandler(item: ICity) {
+    citiesCtx.addCity(item);
+    setSearchQuery('');
   }
 
   return (
@@ -72,8 +71,8 @@ export const Search: FC = () => {
                 return (
                   <SearchItem
                     key={`${city.name}${city.country}_${index}`}
-                    title={`${city.name}, ${city.country}`}
-                    onSelectItem={() => citiesCtx.addCity(city.name)}
+                    city={city}
+                    onSelectItem={selectItemHandler}
                   />
                 )
               }))
