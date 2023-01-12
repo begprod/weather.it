@@ -1,4 +1,5 @@
 import { FC, createContext, useState } from 'react';
+import { getWeather } from '../services/api';
 import { ICity } from '../interfaces/ICity';
 
 interface ICitiesContextProps {
@@ -22,12 +23,15 @@ export const CitiesContext = createContext<ICitiesContext>({
 export const CitiesContextProvider: FC<ICitiesContextProps> = (props) => {
   const [cities, setCities] = useState<Array<ICity>>([]);
 
-  function addCityHandler(city: ICity) {
+  async function addCityHandler(city: ICity) {
     console.log('addCityHandler', city);
 
-    setCities((prevCities) => {
-      return prevCities.concat(city);
-    });
+    await getWeather(city.name)
+      .then((response) => {
+        setCities((prevCities) => {
+          return prevCities.concat(response.weather as any);
+        });
+      });
   }
 
   function removeCityHandler(city: ICity) {

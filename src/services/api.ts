@@ -29,8 +29,8 @@ export async function getCities(name: string): Promise<any> {
     });
 }
 
-export async function getWeather(city: string) {
-  return await fetch(``)
+export async function getWeather(cityName: string) {
+  return await fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
     .then(async (response) => {
       const weatherData = await response.json();
 

@@ -20,7 +20,7 @@ export const App: FC = () => {
         selected cities:
         {cities().map((city: ICity, index: number) => (
           <div key={`${city.name}_${index}`}>
-            {city.name}, {city.country}
+            {city.name}
             <button
               className="ml-2"
               onClick={() => removeCity(city)}
