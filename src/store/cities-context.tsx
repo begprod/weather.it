@@ -1,53 +1,54 @@
 import { FC, createContext, useState } from 'react';
 import { getWeather } from '../services/api';
-import { ICity } from '../interfaces/ICity';
+import { IFoundCity } from "../interfaces/IFoundCity";
+import { ICityWeather } from '../interfaces/ICityWeather';
 
 interface ICitiesContextProps {
   children: React.ReactNode;
 }
 
 interface ICitiesContext {
-  cities: Array<ICity>;
-  getCitiesList: () => Array<ICity>;
-  addCity: (city: ICity) => void;
-  removeCity: (city: ICity) => void;
+  citiesWeatherList: Array<ICityWeather>;
+  getCitiesList: () => Array<ICityWeather>;
+  addCity: (city: IFoundCity) => void;
+  removeCity: (city: ICityWeather) => void;
 }
 
 export const CitiesContext = createContext<ICitiesContext>({
-  cities: [],
+  citiesWeatherList: [],
   addCity: () => {},
   removeCity: () => {},
   getCitiesList: () => [],
 });
 
 export const CitiesContextProvider: FC<ICitiesContextProps> = (props) => {
-  const [cities, setCities] = useState<Array<ICity>>([]);
+  const [citiesWeatherList, setCitiesWeatherList] = useState<Array<ICityWeather>>([]);
 
-  async function addCityHandler(city: ICity) {
+  async function addCityHandler(city: IFoundCity) {
     console.log('addCityHandler', city);
 
     await getWeather(city.name)
-      .then((response) => {
-        setCities((prevCities) => {
-          return prevCities.concat(response.weather as any);
+      .then((response: ICityWeather) => {
+        setCitiesWeatherList((prevCities) => {
+          return prevCities.concat(response);
         });
       });
   }
 
-  function removeCityHandler(city: ICity) {
+  function removeCityHandler(city: ICityWeather) {
     console.log('removeCityHandler', city);
 
-    setCities((prevCities) => {
-      return prevCities.filter((c) => c !== city);
+    setCitiesWeatherList((prevCities) => {
+      return prevCities.filter((item) => item !== city);
     });
   }
 
-  function getCitiesListHandler(): ICity[] {
-    return cities as ICity[];
+  function getCitiesListHandler(): ICityWeather[] {
+    return citiesWeatherList;
   }
 
   const context = {
-    cities,
+    citiesWeatherList,
     addCity: addCityHandler,
     removeCity: removeCityHandler,
     getCitiesList: getCitiesListHandler,

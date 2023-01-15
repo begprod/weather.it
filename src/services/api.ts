@@ -1,4 +1,4 @@
-import { ICity } from '../interfaces/ICity';
+import { IFoundCity } from '../interfaces/IFoundCity';
 
 const GEO_DB_API_OPTIONS = {
   method: 'GET',
@@ -17,7 +17,7 @@ export async function getCities(name: string): Promise<any> {
       const citiesData = await response.json();
 
       return {
-        cities: citiesData.data.map((city: ICity) => {
+        cities: citiesData.data.map((city: IFoundCity) => {
           return {
             name: city.name,
             country: city.country,
@@ -35,7 +35,12 @@ export async function getWeather(cityName: string) {
       const weatherData = await response.json();
 
       return {
-        weather: weatherData
+        name: weatherData.name,
+        weather: {
+          current: weatherData.main.temp.toFixed(0),
+          feels_like: weatherData.main.feels_like.toFixed(0),
+          description: weatherData.weather[0].description,
+        }
       }
     });
 }

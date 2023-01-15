@@ -1,15 +1,15 @@
 import { FC, useEffect, useState, useContext } from 'react';
 import { useDebounce } from "../hooks/useDebounce";
-import { Input } from './Input';
-import { SearchItem } from './SearchItem';
+import { SearchInput } from './SearchInput';
+import { SearchListItem } from './SearchListItem';
 import { getCities } from '../services/api';
-import { ICity } from '../interfaces/ICity';
-import { ICitiesList} from '../interfaces/ICitiesList';
+import { IFoundCity } from '../interfaces/IFoundCity';
+import { ICitiesList } from '../interfaces/ICitiesList';
 import { CitiesContext } from '../store/cities-context';
 
-export const Search: FC = () => {
+export const SearchLayout: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [citiesList, setCitiesList] = useState<ICitiesList>({ cities: [] });
+  const [foundCitiesList, setFoundCitiesList] = useState<ICitiesList>({ cities: [] });
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const citiesCtx = useContext(CitiesContext);
@@ -20,7 +20,7 @@ export const Search: FC = () => {
     setIsLoading(true);
 
     if (searchQuery === '') {
-      setCitiesList({ cities: [] });
+      setFoundCitiesList({ cities: [] });
       setIsLoading(false);
       return;
     }
@@ -30,7 +30,7 @@ export const Search: FC = () => {
     if (debouncedSearch) {
       getCities(searchQuery)
         .then((data: ICitiesList) => {
-          setCitiesList(data);
+          setFoundCitiesList(data);
           setError(null);
           setIsLoading(false);
         })
@@ -40,7 +40,7 @@ export const Search: FC = () => {
     }
   }, [debouncedSearch]);
 
-  function selectItemHandler(item: ICity) {
+  function selectItemHandler(item: IFoundCity) {
     citiesCtx.addCity(item);
     setSearchQuery('');
   }
@@ -48,7 +48,7 @@ export const Search: FC = () => {
   return (
     <form>
       <div className="relative">
-        <Input
+        <SearchInput
           id="city_search"
           type="text"
           label="Search"
@@ -67,9 +67,9 @@ export const Search: FC = () => {
                 </div>
               </div>
             ) : (
-              citiesList.cities.map((city: ICity, index: number) => {
+              foundCitiesList.cities.map((city: IFoundCity, index: number) => {
                 return (
-                  <SearchItem
+                  <SearchListItem
                     key={`${city.name}${city.country}_${index}`}
                     city={city}
                     onSelectItem={selectItemHandler}

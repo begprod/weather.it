@@ -1,5 +1,5 @@
-import { ICity } from './ICity';
+import { IFoundCity } from './IFoundCity';
 
 export interface ICitiesList {
-  cities: Array<ICity>;
+  cities: Array<IFoundCity>;
 }

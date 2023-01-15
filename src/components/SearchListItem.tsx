@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import { ICity } from '../interfaces/ICity';
+import { IFoundCity } from '../interfaces/IFoundCity';
 
 interface IItemListProps {
-  city: ICity;
-  onSelectItem: (item: ICity) => void;
+  city: IFoundCity;
+  onSelectItem: (item: IFoundCity) => void;
 }
 
-export const SearchItem: FC<IItemListProps> = (props) => {
-  function selectItem(item: ICity) {
+export const SearchListItem: FC<IItemListProps> = (props) => {
+  function selectItem(item: IFoundCity) {
     props.onSelectItem(item);
   }
 

@@ -1,4 +1,4 @@
-export interface ICity {
+export interface IFoundCity {
   name: string;
   country: string;
   latitude: number;

@@ -12,7 +12,7 @@ interface IInputProps {
   onChange: (event: string) => void;
 }
 
-export const Input: FC<IInputProps> = (props) => {
+export const SearchInput: FC<IInputProps> = (props) => {
   return (
     <>
       <label

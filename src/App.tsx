@@ -1,12 +1,12 @@
 import { FC, useContext, useCallback } from 'react';
-import {Search} from './components/Search';
-import {CitiesContext} from './store/cities-context';
-import { ICity } from './interfaces/ICity';
+import { SearchLayout } from './components/SearchLayout';
+import { CitiesContext } from './store/cities-context';
+import { ICityWeather } from './interfaces/ICityWeather';
 
 export const App: FC = () => {
   const citiesCtx = useContext(CitiesContext);
   const cities = useCallback(() => citiesCtx.getCitiesList(), [citiesCtx]);
-  const removeCity = useCallback((city: ICity) => citiesCtx.removeCity(city), [citiesCtx]);
+  const removeCity = useCallback((city: ICityWeather) => citiesCtx.removeCity(city), [citiesCtx]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
@@ -14,15 +14,20 @@ export const App: FC = () => {
         <div className="mb-5 text-center text-5xl">
           🌤 🌥 🌦 🌧 🌨 🌩
         </div>
-        <Search/>
+        <SearchLayout/>
       </div>
-      <div>
-        selected cities:
-        {cities().map((city: ICity, index: number) => (
-          <div key={`${city.name}_${index}`}>
-            {city.name}
+      <div className="grid grid-cols-3 gap-16 mt-28">
+        {cities().map((city: ICityWeather, index: number) => (
+          <div
+            className="drop-shadow-md rounded-lg bg-amber-50 p-10 hover:bg-amber-300 transition-colors group"
+            key={`${city.name}_${index}`}
+          >
+            <p className="text-xl">{city.name}</p>
+            <p className="text-3xl">{city.weather.current}</p>
+            <p className="text-sm">feels like: {city.weather.feels_like}</p>
+            <p className="text-sm">{city.weather.description}</p>
             <button
-              className="ml-2"
+              className="absolute top-3 right-3 hidden group-hover:block"
               onClick={() => removeCity(city)}
             >
               ❌
