@@ -9,7 +9,7 @@ interface ICitiesContextProps {
 
 interface ICitiesContext {
   citiesWeatherList: Array<ICityWeather>;
-  getCitiesList: () => Array<ICityWeather>;
+  getWeatherCitiesList: () => Array<ICityWeather>;
   addCity: (city: IFoundCity) => void;
   removeCity: (city: ICityWeather) => void;
 }
@@ -18,7 +18,7 @@ export const CitiesContext = createContext<ICitiesContext>({
   citiesWeatherList: [],
   addCity: () => {},
   removeCity: () => {},
-  getCitiesList: () => [],
+  getWeatherCitiesList: () => [],
 });
 
 export const CitiesContextProvider: FC<ICitiesContextProps> = (props) => {
@@ -51,7 +51,7 @@ export const CitiesContextProvider: FC<ICitiesContextProps> = (props) => {
     citiesWeatherList,
     addCity: addCityHandler,
     removeCity: removeCityHandler,
-    getCitiesList: getCitiesListHandler,
+    getWeatherCitiesList: getCitiesListHandler,
   };
 
   return (

@@ -32,6 +32,10 @@ export async function getCities(name: string): Promise<any> {
 export async function getWeather(cityName: string) {
   return await fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
     .then(async (response) => {
+      if (response.status === 404) {
+        throw new Error('City not found');
+      }
+
       const weatherData = await response.json();
 
       return {

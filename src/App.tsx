@@ -5,7 +5,7 @@ import { ICityWeather } from './interfaces/ICityWeather';
 
 export const App: FC = () => {
   const citiesCtx = useContext(CitiesContext);
-  const cities = useCallback(() => citiesCtx.getCitiesList(), [citiesCtx]);
+  const cities = useCallback(() => citiesCtx.getWeatherCitiesList(), [citiesCtx]);
   const removeCity = useCallback((city: ICityWeather) => citiesCtx.removeCity(city), [citiesCtx]);
 
   return (
