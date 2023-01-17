@@ -1,4 +1,5 @@
 import { IFoundCity } from '../interfaces/IFoundCity';
+import { ICityForecast } from '../interfaces/ICityForecast';
 
 const GEO_DB_API_OPTIONS = {
   method: 'GET',
@@ -29,7 +30,7 @@ export async function getCities(name: string): Promise<any> {
     });
 }
 
-export async function getForecast(cityName: string) {
+export async function getForecast(cityName: string): Promise<any> {
   return await fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
     .then(async (response) => {
       if (response.status === 404) {
@@ -43,18 +44,15 @@ export async function getForecast(cityName: string) {
         weather: {
           current: weatherData.main.temp.toFixed(0),
           feels_like: weatherData.main.feels_like.toFixed(0),
+          main: weatherData.weather[0].main,
           description: weatherData.weather[0].description,
-        }
-      }
+        } as ICityForecast['weather'],
+      };
     });
 }
 
-export async function getCityImage(query: string) {
-  return await fetch(`${process.env.REACT_APP_UNSPLASH_API_URL}/?query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`, {
-    headers: {
-      'Authorization': `Client-ID ${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`
-    }
-  })
+export async function getCityImage(query: string): Promise<object> {
+  return await fetch(`${process.env.REACT_APP_UNSPLASH_API_URL}/?query=${query}-city&client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`)
     .then(async (response) => {
       const photosData = await response.json();
 
