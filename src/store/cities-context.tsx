@@ -1,5 +1,5 @@
 import { FC, createContext, useState } from 'react';
-import { getWeather } from '../services/api';
+import { getForecast, getCityImage } from '../services/api';
 import { IFoundCity } from "../interfaces/IFoundCity";
 import { ICityWeather } from '../interfaces/ICityWeather';
 
@@ -26,18 +26,24 @@ export const CitiesContextProvider: FC<ICitiesContextProps> = (props) => {
 
   async function addCityHandler(city: IFoundCity) {
     console.log('addCityHandler', city);
+    await Promise.all([
+      getForecast(city.name),
+      getCityImage(city.name),
+    ])
+      .then((data) => {
+        const cityWeather = {
+          name: city.name,
+          weather: data[0].weather,
+          image: data[1].urls.regular,
+        };
 
-    await getWeather(city.name)
-      .then((response: ICityWeather) => {
-        setCitiesWeatherList((prevCities) => {
-          return prevCities.concat(response);
+        setCitiesWeatherList((prevState) => {
+          return [...prevState, cityWeather];
         });
       });
   }
 
   function removeCityHandler(city: ICityWeather) {
-    console.log('removeCityHandler', city);
-
     setCitiesWeatherList((prevCities) => {
       return prevCities.filter((item) => item !== city);
     });

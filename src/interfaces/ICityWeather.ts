@@ -4,5 +4,6 @@ export interface ICityWeather {
     current: number;
     feels_like: number;
     description: string;
-  }
+  };
+  image: string;
 }

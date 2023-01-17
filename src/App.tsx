@@ -16,11 +16,12 @@ export const App: FC = () => {
         </div>
         <SearchLayout/>
       </div>
-      <div className="grid grid-cols-3 gap-16 mt-28">
+      <div className="grid grid-cols-3 w-full pl-24 pr-24 gap-16 mt-28">
         {cities().map((city: ICityWeather, index: number) => (
           <div
-            className="drop-shadow-md rounded-lg bg-amber-50 p-10 hover:bg-amber-300 transition-colors group"
+            className="h-[300px] drop-shadow-md rounded-lg text-white p-10 hover:bg-amber-300 transition-colors bg-cover bg-center group bg-blend-darken"
             key={`${city.name}_${index}`}
+            style={{ backgroundImage: `url(${city.image})` }}
           >
             <p className="text-xl">{city.name}</p>
             <p className="text-3xl">{city.weather.current}</p>

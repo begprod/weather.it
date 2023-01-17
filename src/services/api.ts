@@ -29,7 +29,7 @@ export async function getCities(name: string): Promise<any> {
     });
 }
 
-export async function getWeather(cityName: string) {
+export async function getForecast(cityName: string) {
   return await fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
     .then(async (response) => {
       if (response.status === 404) {
@@ -45,6 +45,21 @@ export async function getWeather(cityName: string) {
           feels_like: weatherData.main.feels_like.toFixed(0),
           description: weatherData.weather[0].description,
         }
+      }
+    });
+}
+
+export async function getCityImage(query: string) {
+  return await fetch(`${process.env.REACT_APP_UNSPLASH_API_URL}/?query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`, {
+    headers: {
+      'Authorization': `Client-ID ${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`
+    }
+  })
+    .then(async (response) => {
+      const photosData = await response.json();
+
+      return {
+        urls: photosData.urls
       }
     });
 }
