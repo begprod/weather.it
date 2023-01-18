@@ -5,13 +5,13 @@ import {
   useContext,
   useCallback
 } from 'react';
-import { useDebounce } from "../hooks/useDebounce";
-import { SearchInput } from './SearchInput';
-import { SearchListItem } from './SearchListItem';
-import { getCities } from '../services/api';
 import { IFoundCity } from '../interfaces/IFoundCity';
 import { ICitiesList } from '../interfaces/ICitiesList';
 import { CitiesContext } from '../store/cities-context';
+import { SearchInput } from './SearchInput';
+import { SearchListItem } from './SearchListItem';
+import { useDebounce } from "../hooks/useDebounce";
+import { getCities } from '../services/api';
 
 export const SearchLayout: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -69,7 +69,7 @@ export const SearchLayout: FC = () => {
           onChange={(value) => setSearchQuery(value)}
           autoComplete="off"
         />
-        <div className="absolute left-0 top-full w-full bg-gray-300 rounded-lg drop-shadow-2xl z-10">
+        <div className="absolute left-0 top-full w-full bg-gray-300 rounded-lg drop-shadow-2xl z-50">
           {isLoading && searchQuery.length !== 0
             ? (
               <div className="flex items-center justify-center h-10">
