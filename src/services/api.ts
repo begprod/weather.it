@@ -1,5 +1,4 @@
-import { IFoundCity } from '../interfaces/IFoundCity';
-import { ICityForecast } from '../interfaces/ICityForecast';
+import { IFoundCity, ICityForecast } from '../interfaces';
 
 const GEO_DB_API_OPTIONS = {
   method: 'GET',

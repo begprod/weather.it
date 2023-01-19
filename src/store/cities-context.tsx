@@ -1,7 +1,6 @@
 import { FC, createContext, useState } from 'react';
 import { getForecast, getCityImage } from '../services/api';
-import { IFoundCity } from "../interfaces/IFoundCity";
-import { ICityForecast } from '../interfaces/ICityForecast';
+import { IFoundCity, ICityForecast } from "../interfaces";
 
 interface ICitiesContextProps {
   children: React.ReactNode;

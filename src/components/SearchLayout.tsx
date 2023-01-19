@@ -5,8 +5,7 @@ import {
   useContext,
   useCallback
 } from 'react';
-import { IFoundCity } from '../interfaces/IFoundCity';
-import { ICitiesList } from '../interfaces/ICitiesList';
+import { IFoundCity, ICitiesList } from '../interfaces';
 import { CitiesContext } from '../store/cities-context';
 import { SearchInput } from './SearchInput';
 import { SearchListItem } from './SearchListItem';
@@ -17,7 +16,6 @@ export const SearchLayout: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [foundCitiesList, setFoundCitiesList] = useState<Array<IFoundCity>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const citiesCtx = useContext(CitiesContext);
   const weatherCitiesList = useCallback(() => citiesCtx.getWeatherCitiesList(), [citiesCtx]);
 
@@ -42,11 +40,10 @@ export const SearchLayout: FC = () => {
           });
 
           setFoundCitiesList(result);
-          setError(null);
           setIsLoading(false);
         })
         .catch((error) => {
-          setError(error);
+          console.log(error);
         });
     }
   }, [debouncedSearch]);

@@ -1,3 +1,10 @@
+export interface IFoundCity {
+  name: string;
+  country: string;
+  latitude: number;
+  longitude: number;
+}
+
 export interface ICityForecast {
   name: string;
   weather: {
@@ -7,4 +14,9 @@ export interface ICityForecast {
     description: string;
   };
   image: string;
+}
+
+
+export interface ICitiesList {
+  cities: Array<IFoundCity>;
 }

@@ -1,10 +1,8 @@
 import { FC, useCallback, useContext } from 'react';
-import { ICityForecast } from '../interfaces/ICityForecast';
+import { ICityForecast } from '../interfaces';
 import { CitiesContext } from "../store/cities-context";
 
 const particlesNumber = 10;
-// TODO: Сделать анимацию погоды в зависимости от main
-// smoke emoji 🌫
 const forecastTypes = {
   'Clear': 'clear',
   'Clouds': 'cloud',
@@ -44,7 +42,6 @@ export const CityForecastItem: FC<ICityForecastItemProps> = (props) => {
         <p className="text-3xl">{props.city.weather.current}</p>
         <p className="text-sm">feels like: {props.city.weather.feels_like}</p>
         <p className="text-sm">{props.city.weather.description}</p>
-        {/*<p className="text-[60px]">{forecastTypes[props.city.weather.main as keyof typeof forecastTypes]}</p>*/}
         <div className={`forecast forecast_${forecastTypes[props.city.weather.main as keyof typeof forecastTypes]}`}>
           {particles}
         </div>

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IFoundCity } from '../interfaces/IFoundCity';
+import { IFoundCity } from '../interfaces';
 
 interface IItemListProps {
   city: IFoundCity;
