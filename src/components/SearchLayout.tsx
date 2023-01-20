@@ -60,8 +60,7 @@ export const SearchLayout: FC = () => {
           id="city_search"
           type="text"
           label="Search"
-          icon="🔍"
-          placeholder="City name"
+          placeholder="Start typing city name..."
           value={searchQuery}
           onChange={(value) => setSearchQuery(value)}
           autoComplete="off"
