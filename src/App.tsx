@@ -9,8 +9,8 @@ export const App: FC = () => {
   const cities = useCallback(() => citiesCtx.getWeatherCitiesList(), [citiesCtx]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="w-1/3">
+    <div className="flex flex-col items-center justify-center pt-32 pr-12 pb-32 pl-12 min-h-screen">
+      <div className="w-full md:w-[500px]">
         <div className="flex justify-between mb-10 text-center text-5xl">
           <div className="forecast forecast_clear"></div>
           <div className="forecast forecast_cloud"></div>
@@ -26,7 +26,7 @@ export const App: FC = () => {
             <div></div>
             <div></div>
           </div>
-          <div className="forecast forecast_rain">
+          <div className="forecast forecast_dust">
             <div></div>
             <div></div>
             <div></div>

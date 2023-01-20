@@ -1,10 +1,108 @@
+$white: #ffffff;
+$dimWhite: #bfbfbf;
+$lightYellow: #ffeb3b;
+$darkYellow: #e5c43b;
+$brown: #b2830e;
+$lightOrange: #fb8c00;
+$orange: #ff6f00;
+$darkOrange: #ff5722;
+$lightBlue: #7bd2f9;
+$blue: #65a9e9;
+$darkBlue: #53adfc;
+$lightGray: #8e8e8e;
+$gray: #5c5c5c;
+$darkGray: #3f3f3f;
+
+$iconBase: (
+  "position": relative,
+  "width": 75px,
+  "height": 75px,
+  "border-radius": 20px,
+);
+
+$clear: (
+  "background": linear-gradient( to top right, $darkOrange 0%, #fb8c00 100%),
+  "box-shadow": 1px 1px 30px $orange
+);
+
+$cloud: (
+  "background": linear-gradient( to top right, $lightBlue 0%, $blue 100%),
+  "box-shadow": 1px 1px 30px $darkBlue
+);
+
+$drizzle: (
+  "background": linear-gradient( to top right, $dimWhite 0%, $lightGray 100%),
+  "box-shadow": 1px 1px 30px $lightGray
+);
+
+$rain: (
+  "background": linear-gradient( to top right, $lightGray 0%, $gray 100%),
+  "box-shadow": 1px 1px 30px $darkGray
+);
+
+$thunder: (
+  "background": linear-gradient( to top right, $lightGray 0%, $gray 100%),
+  "box-shadow": 1px 1px 30px $darkGray
+);
+
+$snow: (
+  "background": linear-gradient( to top right, $lightGray 0%, $dimWhite 100%),
+  "box-shadow": 1px 1px 30px $dimWhite
+);
+
+$mist: (
+  "background": linear-gradient( to top right, $gray 0%, $dimWhite 100%),
+  "box-shadow": 1px 1px 30px $darkGray
+);
+
+$smoke: (
+  "background": linear-gradient( to top right, $lightGray 0%, $gray 100%),
+  "box-shadow": 1px 1px 30px $darkGray
+);
+
+$dust: (
+  "background": linear-gradient( to top right, $darkYellow 0%, $brown 100%),
+  "box-shadow": 1px 1px 30px $brown
+);
+
+@mixin forecastElement($top, $right, $width, $height, $borderRadius, $background, $boxShadow, $opacity, $animation) {
+  top: $top;
+  right: $right;
+  width: $width;
+  height: $height;
+  border-radius: $borderRadius;
+  background: $background;
+  box-shadow: $boxShadow;
+  opacity: $opacity;
+  animation: $animation;
+}
+
+@mixin forecastParticle($width, $height, $background, $borderRadius, $boxShadow, $opacity, $animation) {
+  display: none;
+  width: $width;
+  height: $height;
+  border-radius: $borderRadius;
+  background: $background;
+  box-shadow: $boxShadow;
+  opacity: $opacity;
+  animation: $animation;
+}
+
+@mixin particlesAnimation($particlesNumber, $top: 30, $right: 30) {
+  @for $i from 1 through $particlesNumber {
+    div:nth-child(#{$i}) {
+      display: block;
+      top: random($top) + px;
+      right: random($right) + px;
+      animation-delay: random(3) + s;
+    }
+  }
+}
+
 .forecast {
-  position: relative;
-  width: 75px;
-  height: 75px;
-  border-radius: 20px;
-  background: linear-gradient( to top right, rgb(102, 159, 104) 0%, rgb(237, 237, 237) 100%);
-  box-shadow: 1px 1px 30px rgb(123, 190, 123);
+  @each $name, $value in $iconBase {
+    #{$name}: $value;
+  }
 
   &::after {
     content: "";
@@ -20,297 +118,140 @@
     position: absolute;
   }
 
-  &_clear {
-    background: linear-gradient( to top right, rgba(255,87,34,1) 0%, rgba(251,140,0 ,1) 100%);
-    box-shadow: 1px 1px 30px rgb(255 111 0);
+  @include particlesAnimation(10);
 
-    &::after {
-      content: "";
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      width: 25px;
-      height: 25px;
-      border-radius: 100%;
-      background: linear-gradient( to bottom left, rgba(255,235,59,1) 0%, rgba(249,168,37 ,1) 90%);
-      box-shadow: 1px 1px 30px rgb(255 160 0);
-      animation: floating 5s infinite;
+  &_clear {
+    @each $name, $value in $clear {
+      #{$name}: $value;
     }
 
+
     &::before {
-      content: "";
-      position: absolute;
-      top: 30%;
-      left: 45%;
-      width: 10px;
-      height: 10px;
-      border-radius: 100%;
-      background-color: #fff;
-      opacity: 0.2;
-      animation: floating-around 7s infinite;
+      @include forecastElement(-5%, -5%, 25px, 25px, 100%, linear-gradient( to bottom left, $lightYellow 0%, $lightOrange 90%), 1px 1px 30px $darkOrange, 1, floating 5s infinite
+      )
+    }
+
+    &::after {
+      @include forecastElement(30%, 40%, 10px, 10px, 100%, $white, 1px 1px 30px $white, .2, floating-around 7s infinite)
     }
   }
 
   &_cloud {
-    background: linear-gradient( to top right, #74d9fe 0%, #0389fd 100%);
-    box-shadow: 1px 1px 30px #399cf5;
+    @each $name, $value in $cloud {
+      #{$name}: $value;
+    }
 
     &::before {
-      top: 5px;
-      right: -5px;
-      width: 30px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: rgb(255, 255, 255);
-      box-shadow: 1px 1px 30px rgb(184, 184, 184);
-      animation: move 6s infinite linear;
+      @include forecastElement(5px, -5px, 30px, 10px, 10px, $white, 1px 1px 30px $lightGray, 1, move 6s infinite linear);
     }
 
     &::after {
-      top: 10px;
-      right: 10px;
-      width: 30px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: rgb(255, 255, 255);
-      box-shadow: 1px 1px 30px rgb(184, 184, 184);
-      animation: move 4s infinite linear;
-    }
-  }
-
-  &_snow {
-    background: linear-gradient( to top right, rgb(142, 142, 142) 0%, rgb(191, 191, 191) 100%);
-    box-shadow: 1px 1px 30px rgb(192, 192, 192);
-
-    &::before {
-      top: 5px;
-      right: -5px;
-      width: 30px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: rgb(220, 220, 220);
-      box-shadow: 1px 1px 30px rgb(184, 184, 184);
-      animation: move 6s infinite linear;
-    }
-
-    &::after {
-      top: 10px;
-      right: 10px;
-      width: 30px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: rgb(208, 208, 208);
-      box-shadow: 1px 1px 30px rgb(184, 184, 184);
-      animation: move 4s infinite linear;
-    }
-
-    div {
-      width: 5px;
-      height: 5px;
-      border-radius: 100%;
-      background-color: #ffffff;
-      box-shadow: 1px 1px 30px #ffffff;
-      animation: fall 3s infinite linear;
-      opacity: 0;
-    }
-
-    @for $i from 1 through 10 {
-      div:nth-child(#{$i}) {
-        top: random(30) + px;
-        right: random(30) + px;
-        animation-delay: random(2) + s;
-      }
-    }
-  }
-
-  &_rain {
-    background: linear-gradient( to top right, rgb(142, 142, 142) 0%, rgb(92, 92, 92) 100%);
-    box-shadow: 1px 1px 30px rgb(63, 63, 63);
-
-    &::before {
-      top: 5px;
-      right: -5px;
-      width: 30px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: rgb(220, 220, 220);
-      box-shadow: 1px 1px 30px rgb(184, 184, 184);
-      animation: move 6s infinite linear;
-    }
-
-    &::after {
-      top: 10px;
-      right: 10px;
-      width: 30px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: rgb(174, 174, 174);
-      box-shadow: 1px 1px 30px rgb(184, 184, 184);
-      animation: move 4s infinite linear;
-    }
-
-    div {
-      width: 2px;
-      height: 7px;
-      background-color: #a4a4a4;
-      box-shadow: 1px 1px 30px #b2b1b1;
-      animation: fall 3s infinite linear;
-      opacity: 0;
-    }
-
-    @for $i from 1 through 10 {
-      div:nth-child(#{$i}) {
-        top: random(30) + px;
-        right: random(30) + px;
-        animation-delay: random(2) + s;
-      }
-    }
-  }
-
-  &_thunder {
-    background: linear-gradient( to top right, rgb(142, 142, 142) 0%, rgb(92, 92, 92) 100%);
-    box-shadow: 1px 1px 30px rgb(63, 63, 63);
-
-    &::before {
-      top: 5px;
-      right: -5px;
-      width: 30px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: rgb(220, 220, 220);
-      box-shadow: 1px 1px 30px rgb(184, 184, 184);
-      animation: move 6s infinite linear, flash 2s infinite;
-    }
-
-    &::after {
-      top: 10px;
-      right: 10px;
-      width: 30px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: rgb(174, 174, 174);
-      box-shadow: 1px 1px 30px rgb(184, 184, 184);
-      animation: move 4s infinite linear, flash 3s infinite;
-    }
-
-    div {
-      width: 2px;
-      height: 7px;
-      background-color: #a4a4a4;
-      box-shadow: 1px 1px 30px #b2b1b1;
-      animation: fall 3s infinite linear;
-      opacity: 0;
-    }
-
-    @for $i from 1 through 10 {
-      div:nth-child(#{$i}) {
-        top: random(30) + px;
-        right: random(30) + px;
-        animation-delay: random(2) + s;
-      }
+      @include forecastElement(10px, 10px, 30px, 10px, 10px, $white, 1px 1px 30px $lightGray, 1, move 4s infinite linear);
     }
   }
 
   &_drizzle {
-    background: linear-gradient( to top right, rgb(142, 142, 142) 0%, rgb(92, 92, 92) 100%);
-    box-shadow: 1px 1px 30px rgb(63, 63, 63);
+    @each $name, $value in $drizzle {
+      #{$name}: $value;
+    }
 
     &::after {
-      top: 10px;
-      right: 10px;
-      width: 30px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: rgb(174, 174, 174);
-      box-shadow: 1px 1px 30px rgb(184, 184, 184);
-      animation: move 4s infinite linear;
+      @include forecastElement(10px, 10px, 30px, 10px, 10px, $dimWhite, 1px 1px 30px $gray, 1, move 4s infinite linear);
     }
 
     div {
-      width: 2px;
-      height: 7px;
-      background-color: #a4a4a4;
-      box-shadow: 1px 1px 30px #b2b1b1;
-      animation: fall 3s infinite linear;
-      opacity: 0;
+      @include forecastParticle(2px, 5px, $dimWhite, 0px, 1px 1px 30px $dimWhite, 0, fall 3s infinite linear);
+    }
+  }
+
+  &_rain {
+    @each $name, $value in $rain {
+      #{$name}: $value;
     }
 
-    @for $i from 1 through 3 {
-      div:nth-child(#{$i}) {
-        top: random(30) + px;
-        right: random(30) + px;
-        animation-delay: random(2) + s;
-      }
+    &::before {
+      @include forecastElement(5px, -5px, 30px, 10px, 10px, $dimWhite, 1px 1px 30px $dimWhite, 1, move 6s infinite linear);
+    }
+
+    &::after {
+      @include forecastElement(10px, 10px, 30px, 10px, 10px, $lightGray, 1px 1px 30px $gray, 1, move 4s infinite linear);
+    }
+
+    div {
+      @include forecastParticle(2px, 7px, $dimWhite, 0px, 1px 1px 30px $dimWhite, 0, fall 3s infinite linear);
+    }
+  }
+
+  &_thunder {
+    @each$name, $value in $thunder {
+      #{$name}: $value;
+    }
+
+    &::before {
+      @include forecastElement(5px, -5px, 30px, 10px, 10px, $lightGray, 1px 1px 30px $lightGray, 1, (move 6s infinite linear, flash 2s infinite));
+    }
+
+    &::after {
+      @include forecastElement(10px, 10px, 30px, 10px, 10px, $lightGray, 1px 1px 30px $lightGray, 1, (move 4s infinite linear, flash 1s infinite linear));
+    }
+
+    div {
+      @include forecastParticle(2px, 7px, $dimWhite, 0px, 1px 1px 30px $dimWhite, 0, fall 3s infinite linear);
+    }
+  }
+
+  &_snow {
+    @each $name, $value in $snow {
+      #{$name}: $value;
+    }
+
+    &::before {
+      @include forecastElement(5px, -5px, 30px, 10px, 10px, $white, 1px 1px 30px $dimWhite, 1, move 6s infinite linear);
+    }
+
+    &::after {
+      @include forecastElement(10px, 10px, 30px, 10px, 10px, $white, 1px 1px 30px $dimWhite, 1, move 4s infinite linear);
+    }
+
+    div {
+      @include forecastParticle(5px, 5px, $white, 100%, 1px 1px 30px $dimWhite, 0, fall 4s infinite linear);
     }
   }
 
   &_smoke {
-    background: linear-gradient( to top right, rgb(142, 142, 142) 0%, rgb(92, 92, 92) 100%);
-    box-shadow: 1px 1px 30px rgb(63, 63, 63);
+    @each $name, $value in $smoke {
+      #{$name}: $value;
+    }
 
     div {
-      width: 20px;
-      height: 5px;
-      border-radius: 5px;
-      background-color: rgb(138, 138, 138);
-      box-shadow: 1px 1px 30px rgb(184, 184, 184);
-      animation: slide 3s infinite linear;
+      @include forecastParticle(20px, 5px, $lightGray, 0px, 1px 1px 30px $dimWhite, 0, slide 3s infinite linear);
     }
 
-    @for $i from 1 through 5 {
-      div:nth-child(#{$i}) {
-        bottom: random(85) + px;
-        right: random(85) + px;
-        animation-delay: random(2) + s;
-      }
-    }
+    @include particlesAnimation(10, 80%, 80%);
   }
 
   &_dust {
-    background: linear-gradient( to top right, rgb(229, 196, 59) 0%, rgb(178, 131, 14) 100%);
-    box-shadow: 1px 1px 30px rgb(63, 63, 63);
+    @each$name, $value in $dust {
+      #{$name}: $value;
+    }
 
     div {
-      width: 5px;
-      height: 5px;
-      border-radius: 100%;
-      background-color: rgb(215, 167, 38);
-      box-shadow: 1px 1px 30px rgb(174, 130, 16);
-      animation: slide 3s infinite linear;
+      @include forecastParticle(5px, 5px, $brown, 100%, 1px 1px 30px $darkYellow, 0, slide 3s infinite linear);
     }
 
-    @for $i from 1 through 10 {
-      div:nth-child(#{$i}) {
-        bottom: random(85) + px;
-        right: random(85) + px;
-        animation-delay: random(2) + s;
-      }
-    }
+    @include particlesAnimation(10, 80%, 80%);
   }
 
-  &_type_mist {
-    background: linear-gradient( to top right, rgb(93, 93, 93) 0%, rgb(195, 195, 195) 100%);
-    box-shadow: 1px 1px 30px rgb(63, 63, 63);
+  &_mist {
+    @each $name, $value in $mist {
+      #{$name}: $value;
+    }
 
     div {
-      width: 30px;
-      height: 10px;
-      border-radius: 10px;
-      background-color: rgb(173, 173, 173);
-      box-shadow: 1px 1px 30px rgb(111, 111, 111);
-      animation: slide 3s infinite linear;
-      opacity: 0;
-      display: none;
+      @include forecastParticle(30px, 10px, $dimWhite, 10px, 1px 1px 30px $dimWhite, 0, slide 3s infinite linear);
     }
 
-    @for $i from 1 through 5 {
-      div:nth-child(#{$i}) {
-        display: block;
-        bottom: random(35) + px;
-        right: random(85) + px;
-        animation-delay: random(2) + s;
-      }
-    }
+    @include particlesAnimation(10, 80%, 80%);
   }
 }
 

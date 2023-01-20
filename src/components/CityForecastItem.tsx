@@ -14,7 +14,7 @@ const forecastTypes = {
   'Smoke': 'smoke',
   'Haze': 'smoke',
   'Squall': 'smoke',
-  'Mist': 'smoke',
+  'Mist': 'mist',
   'Fog': 'smoke',
   'Dust': 'dust',
   'Sand': 'dust',

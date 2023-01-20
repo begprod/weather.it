@@ -14,13 +14,13 @@ export const SearchListItem: FC<IItemListProps> = (props) => {
   return (
     <div key={props.city.name} className="flex items-center p-2">
       <div
-        className="flex items-center hover:bg-gray-100 cursor-pointer"
+        className="flex items-center hover:bg-gray-100 overflow-hidden cursor-pointer"
         onClick={() => selectItem(props.city)}
       >
         ➕
-        <span className="ml-2">
+        <div className="ml-2 truncate">
           {props.city.name}, {props.city.country}
-        </span>
+        </div>
       </div>
     </div>
   );
