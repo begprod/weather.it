@@ -5,10 +5,12 @@ import {
   useContext,
   useCallback
 } from 'react';
+import { MdOutlineLocationOff } from 'react-icons/md';
+import { RiLoaderLine } from 'react-icons/ri';
 import { IFoundCity, ICitiesList } from '../interfaces';
 import { CitiesContext } from '../store/cities-context';
 import { SearchInput } from './SearchInput';
-import { SearchListItem } from './SearchListItem';
+import { SearchResultItem } from './SearchResultItem';
 import { useDebounce } from "../hooks/useDebounce";
 import { getCities } from '../services/api';
 
@@ -65,26 +67,27 @@ export const SearchLayout: FC = () => {
           onChange={(value) => setSearchQuery(value)}
           autoComplete="off"
         />
-        <div className="absolute left-0 top-full w-full bg-gray-300 rounded-lg drop-shadow-2xl z-50">
+        <div className="absolute left-0 top-full w-full bg-gray-200 rounded-lg drop-shadow-2xl z-50 shadow-lg shadow-gray-300 overflow-hidden">
           {isLoading && searchQuery.length !== 0
             ? (
-              <div className="flex items-center justify-center h-10">
+              <div className="flex items-center justify-center p-3">
                 <div className="animate-spin">
-                  🌀
+                  <RiLoaderLine className="w-6 h-6 opacity-30" />
                 </div>
               </div>
             )
             : (
               (foundCitiesList.length === 0 && searchQuery.length !== 0)
               ? (
-                <div className="flex items-center justify-center h-10">
-                  <p className="text-sm">City not found</p>
+                <div className="flex items-center justify-center p-3 select-none">
+                  <MdOutlineLocationOff className="w-6 h-6 mr-3 opacity-30" />
+                  <p className="text-xl">City not found</p>
                 </div>
               )
               : (
               foundCitiesList.map((city: IFoundCity, index: number) => {
                 return (
-                  <SearchListItem
+                  <SearchResultItem
                     key={`${city.name}${city.country}_${index}`}
                     city={city}
                     onSelectItem={selectItemHandler}

@@ -17,7 +17,7 @@ $iconBase: (
   "position": relative,
   "width": 75px,
   "height": 75px,
-  "border-radius": 20px,
+  "border-radius": 20px
 );
 
 $clear: (
@@ -95,6 +95,15 @@ $dust: (
       top: random($top) + px;
       right: random($right) + px;
       animation-delay: random(3) + s;
+    }
+  }
+}
+
+.forecast-doodle {
+  @for $i from 1 through 4 {
+    div:nth-child(#{$i}) {
+      animation: floating 3s ease-in-out infinite;
+      animation-delay: random(5) + s;
     }
   }
 }
@@ -224,7 +233,7 @@ $dust: (
     }
 
     div {
-      @include forecastParticle(20px, 5px, $lightGray, 0px, 1px 1px 30px $dimWhite, 0, slide 3s infinite linear);
+      @include forecastParticle(20px, 5px, $lightGray, 30px, 1px 1px 30px $dimWhite, 0, slide 3s infinite linear);
     }
 
     @include particlesAnimation(10, 80%, 80%);
@@ -248,7 +257,7 @@ $dust: (
     }
 
     div {
-      @include forecastParticle(30px, 10px, $dimWhite, 10px, 1px 1px 30px $dimWhite, 0, slide 3s infinite linear);
+      @include forecastParticle(30px, 10px, $dimWhite, 30px, 1px 1px 30px $dimWhite, 0, slide 3s infinite linear);
     }
 
     @include particlesAnimation(10, 80%, 80%);
