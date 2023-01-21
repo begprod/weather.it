@@ -15,7 +15,7 @@ export const App: FC = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center pt-32 pr-12 pb-32 pl-12 min-h-screen">
+    <div className="font-body flex flex-col items-center justify-center pt-32 pr-12 pb-32 pl-12 min-h-screen">
       <div className="w-full md:w-[500px]">
         <div className="forecast-doodle flex justify-between mb-10 text-center text-5xl">
           <div className="forecast forecast_clear"></div>

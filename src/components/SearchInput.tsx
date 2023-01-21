@@ -23,7 +23,7 @@ export const SearchInput: FC<IInputProps> = (props) => {
       </label>
       <div className="relative">
         <input
-          className="block w-full pt-3 pr-5 pb-3 pl-5 text-xl text-gray-900 border border-gray-300 rounded-lg bg-gray-50 shadow-md shadow-gray-300 transition-shadow duration-300 hover:shadow-lg focus:shadow-2xl focus:outline-none"
+          className="block w-full pt-3 pr-5 pb-3 pl-5 text-xl text-gray-900 border-none shadow-sm shadow-gray-200 rounded-xl bg-white transition-shadow duration-300 hover:shadow-lg focus:shadow-2xl focus:outline-none"
           id={props.id}
           type={props.type}
           placeholder={props.placeholder}
@@ -31,6 +31,7 @@ export const SearchInput: FC<IInputProps> = (props) => {
           required={props.required}
           autoComplete={props.autoComplete}
           onChange={(e) => props.onChange(e.target.value)}
+          autoFocus
         />
         <div className="absolute inset-y-0 right-0 flex items-center pr-5 pointer-events-none">
           <HiOutlineSearch className="w-8 h-8 opacity-30" />

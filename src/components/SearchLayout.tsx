@@ -67,7 +67,7 @@ export const SearchLayout: FC = () => {
           onChange={(value) => setSearchQuery(value)}
           autoComplete="off"
         />
-        <div className="absolute left-0 top-full w-full bg-gray-200 rounded-lg drop-shadow-2xl z-50 shadow-lg shadow-gray-300 overflow-hidden">
+        <div className="absolute left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden">
           {isLoading && searchQuery.length !== 0
             ? (
               <div className="flex items-center justify-center p-3">
