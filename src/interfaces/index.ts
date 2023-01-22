@@ -5,7 +5,7 @@ export interface IFoundCity {
   longitude: number;
 }
 
-export interface ICityForecast {
+export interface ICityWeather {
   name: string;
   weather: {
     current: number;

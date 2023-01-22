@@ -1,4 +1,4 @@
-import { IFoundCity, ICityForecast } from '../interfaces';
+import { IFoundCity, ICityWeather } from '../interfaces';
 
 const GEO_DB_API_OPTIONS = {
   method: 'GET',
@@ -45,7 +45,7 @@ export async function getForecast(cityName: string): Promise<any> {
           feels_like: weatherData.main.feels_like.toFixed(0),
           main: weatherData.weather[0].main,
           description: weatherData.weather[0].description,
-        } as ICityForecast['weather'],
+        } as ICityWeather['weather'],
       };
     });
 }

@@ -1,8 +1,8 @@
 import { FC, useContext, useCallback } from 'react';
-import { ICityForecast } from './interfaces';
+import { ICityWeather } from './interfaces';
 import { CitiesContext } from './store/cities-context';
 import { SearchLayout } from './components/SearchLayout';
-import { CityForecastItem } from './components/CityForecastItem';
+import { CityWeatherCard } from './components/CityWeatherCard';
 
 export const App: FC = () => {
   const citiesCtx = useContext(CitiesContext);
@@ -30,8 +30,8 @@ export const App: FC = () => {
         <SearchLayout/>
       </div>
       <div className="grid grid-cols-3 w-full pl-24 pr-24 pb-24 gap-16 mt-28">
-        {cities().map((city: ICityForecast, index: number) => (
-          <CityForecastItem
+        {cities().map((city: ICityWeather, index: number) => (
+          <CityWeatherCard
             key={`${city.name}_${index}`}
             city={city}
           />

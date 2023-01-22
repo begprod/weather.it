@@ -1,16 +1,16 @@
 import { FC, createContext, useState } from 'react';
 import { getForecast, getCityImage } from '../services/api';
-import { IFoundCity, ICityForecast } from "../interfaces";
+import { IFoundCity, ICityWeather } from "../interfaces";
 
 interface ICitiesContextProps {
   children: React.ReactNode;
 }
 
 interface ICitiesContext {
-  citiesWeatherList: Array<ICityForecast>;
-  getWeatherCitiesList: () => Array<ICityForecast>;
+  citiesWeatherList: Array<ICityWeather>;
+  getWeatherCitiesList: () => Array<ICityWeather>;
   addCity: (city: IFoundCity) => void;
-  removeCity: (city: ICityForecast) => void;
+  removeCity: (city: ICityWeather) => void;
 }
 
 export const CitiesContext = createContext<ICitiesContext>({
@@ -21,7 +21,7 @@ export const CitiesContext = createContext<ICitiesContext>({
 });
 
 export const CitiesContextProvider: FC<ICitiesContextProps> = (props) => {
-  const [citiesWeatherList, setCitiesWeatherList] = useState<Array<ICityForecast>>([]);
+  const [citiesWeatherList, setCitiesWeatherList] = useState<Array<ICityWeather>>([]);
 
   async function addCityHandler(city: IFoundCity) {
     await Promise.all([
@@ -33,7 +33,7 @@ export const CitiesContextProvider: FC<ICitiesContextProps> = (props) => {
           name: city.name,
           weather: data[0].weather,
           image: data[1].urls.regular,
-        } as ICityForecast;
+        } as ICityWeather;
 
         setCitiesWeatherList((prevState) => {
           return [...prevState, cityWeather];
@@ -41,13 +41,13 @@ export const CitiesContextProvider: FC<ICitiesContextProps> = (props) => {
       });
   }
 
-  function removeCityHandler(city: ICityForecast) {
+  function removeCityHandler(city: ICityWeather) {
     setCitiesWeatherList((prevCities) => {
       return prevCities.filter((item) => item !== city);
     });
   }
 
-  function getCitiesListHandler(): ICityForecast[] {
+  function getCitiesListHandler(): ICityWeather[] {
     return citiesWeatherList;
   }
 

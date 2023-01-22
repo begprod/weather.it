@@ -2,7 +2,7 @@ import { FC, useCallback, useContext } from 'react';
 import { IoIosPin } from 'react-icons/io';
 import { MdOutlineClose } from 'react-icons/md';
 import { VscCircleOutline } from 'react-icons/vsc';
-import { ICityForecast } from '../interfaces';
+import { ICityWeather } from '../interfaces';
 import { CitiesContext } from "../store/cities-context";
 
 const particlesNumber = 10;
@@ -25,11 +25,11 @@ const forecastTypes = {
 }
 
 interface ICityForecastItemProps {
-  city: ICityForecast;
+  city: ICityWeather;
 }
-export const CityForecastItem: FC<ICityForecastItemProps> = (props) => {
+export const CityWeatherCard: FC<ICityForecastItemProps> = (props) => {
   const citiesCtx = useContext(CitiesContext);
-  const removeCity = useCallback((city: ICityForecast) => citiesCtx.removeCity(city), [citiesCtx]);
+  const removeCity = useCallback((city: ICityWeather) => citiesCtx.removeCity(city), [citiesCtx]);
 
   let particles = [];
   for (let i = 0; i < particlesNumber; i++) {
