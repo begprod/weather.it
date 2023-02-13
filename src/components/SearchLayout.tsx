@@ -8,11 +8,10 @@ import {
 import { MdOutlineLocationOff } from 'react-icons/md';
 import { RiLoaderLine } from 'react-icons/ri';
 import { IFoundCity, ICitiesList } from '../interfaces';
-import { CitiesContext } from '../store/cities-context';
-import { SearchInput } from './SearchInput';
-import { SearchResultItem } from './SearchResultItem';
-import { useDebounce } from "../hooks/useDebounce";
 import { getCities } from '../services/api';
+import { CitiesContext } from '../store/cities-context';
+import { useDebounce } from "../hooks";
+import { SearchInput, SearchResultItem } from './';
 
 export const SearchLayout: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
