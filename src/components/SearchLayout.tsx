@@ -55,6 +55,37 @@ export const SearchLayout: FC = () => {
     setSearchQuery('');
   }
 
+  function renderSearchResults() {
+    if (isLoading && searchQuery.length !== 0) {
+      return (
+        <div className="flex items-center justify-center p-3">
+          <div className="animate-spin">
+            <RiLoaderLine className="w-6 h-6 opacity-30" />
+          </div>
+        </div>
+      );
+    }
+
+    if (foundCitiesList.length === 0 && searchQuery.length !== 0) {
+      return (
+        <div className="flex items-center justify-center p-3 select-none">
+          <MdOutlineLocationOff className="w-6 h-6 mr-3 opacity-30" />
+          <p className="text-xl">City not found</p>
+        </div>
+      );
+    }
+
+    return foundCitiesList.map((city: IFoundCity, index: number) => {
+      return (
+        <SearchResultItem
+          key={`${city.name}${city.country}_${index}`}
+          city={city}
+          onSelectItem={selectItemHandler}
+        />
+      );
+    });
+  }
+
   return (
     <>
       <div className="relative">
@@ -68,34 +99,7 @@ export const SearchLayout: FC = () => {
           autoComplete="off"
         />
         <div className="absolute left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden">
-          {isLoading && searchQuery.length !== 0
-            ? (
-              <div className="flex items-center justify-center p-3">
-                <div className="animate-spin">
-                  <RiLoaderLine className="w-6 h-6 opacity-30" />
-                </div>
-              </div>
-            )
-            : (
-              (foundCitiesList.length === 0 && searchQuery.length !== 0)
-              ? (
-                <div className="flex items-center justify-center p-3 select-none">
-                  <MdOutlineLocationOff className="w-6 h-6 mr-3 opacity-30" />
-                  <p className="text-xl">City not found</p>
-                </div>
-              )
-              : (
-              foundCitiesList.map((city: IFoundCity, index: number) => {
-                return (
-                  <SearchResultItem
-                    key={`${city.name}${city.country}_${index}`}
-                    city={city}
-                    onSelectItem={selectItemHandler}
-                  />
-                )
-              }))
-            )
-          }
+          {renderSearchResults()}
         </div>
       </div>
     </>
