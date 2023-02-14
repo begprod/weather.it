@@ -30,7 +30,6 @@ export async function getSearchCitiesList(name: string): Promise<ISearchItemList
 export async function getCityWeather(cityName: string): Promise<Omit<ICityWeather, 'image'>> {
   return await fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
     .then(async (response) => {
-      console.log(response.status);
       if (response.status === 404) {
         throw new Error('City not found');
       }

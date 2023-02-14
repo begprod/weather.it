@@ -4,3 +4,4 @@ export { SearchInput } from './SearchInput';
 export { SearchResultItem } from './SearchResultItem';
 export { CityWeatherCardLayout } from './CityWeatherCardLayout';
 export { CityWeatherCard } from './CityWeatherCard';
+export { CityWeatherCardSkeleton } from './CityWeatherCardSkeleton';

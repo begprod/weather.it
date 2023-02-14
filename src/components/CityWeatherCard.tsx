@@ -33,12 +33,10 @@ export const CityWeatherCard: FC<ICityWeatherItemProps> = (props) => {
   }
 
   return (
-    <div
-      className="group relative h-[350px] p-10 text-white overflow-hidden rounded-[20px]"
-    >
+    <div className="group relative min-h-[350px] p-10 text-white overflow-hidden rounded-[20px] shadow-md">
       <div className="relative z-30 select-none">
         <div className="flex items-start text-2xl">
-          <IoIosPin className="w-7 h-8 mr-1"/>
+          <IoIosPin className="w-7 h-8 shrink-0 mr-1"/>
           {props.city.name}
         </div>
         <p className="flex items-start mt-2 mb-2 text-7xl font-bold">
@@ -52,7 +50,7 @@ export const CityWeatherCard: FC<ICityWeatherItemProps> = (props) => {
           </span>
         </p>
         <p className="text-sm">{props.city.weather.description}</p>
-        <div className={`mt-5 forecast forecast_${weatherTypes[props.city.weather.main as keyof typeof weatherTypes]}`}>
+        <div className={`mt-5 weather-icon weather-icon_${weatherTypes[props.city.weather.main as keyof typeof weatherTypes]}`}>
           {particles}
         </div>
       </div>

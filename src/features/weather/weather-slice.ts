@@ -44,17 +44,13 @@ export const weatherSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCityData.pending, (state, action) => {
-        console.log('getCityData.pending', action.payload);
         state.status = 'loading';
       })
       .addCase(getCityData.rejected, (state, action) => {
-        console.log('getCityData.rejected', action);
         state.errorMessage = action.error.message || '';
-
         state.status = 'error';
       })
       .addCase(getCityData.fulfilled, (state, action) => {
-        console.log('getCityData.fulfilled', action);
         state.status = 'success';
       })
   }
