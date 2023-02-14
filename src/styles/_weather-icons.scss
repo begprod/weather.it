@@ -67,7 +67,7 @@ $dust: (
   "box-shadow": 1px 1px 30px $brown
 );
 
-@mixin forecastElement($top, $right, $width, $height, $borderRadius, $background, $boxShadow, $opacity, $animation) {
+@mixin weatherElement($top, $right, $width, $height, $borderRadius, $background, $boxShadow, $opacity, $animation) {
   top: $top;
   right: $right;
   width: $width;
@@ -79,7 +79,7 @@ $dust: (
   animation: $animation;
 }
 
-@mixin forecastParticle($width, $height, $background, $borderRadius, $boxShadow, $opacity, $animation) {
+@mixin weatherParticle($width, $height, $background, $borderRadius, $boxShadow, $opacity, $animation) {
   display: none;
   width: $width;
   height: $height;
@@ -101,7 +101,7 @@ $dust: (
   }
 }
 
-.forecast-doodle {
+.weather-doodle {
   @for $i from 1 through 4 {
     div:nth-child(#{$i}) {
       animation: floating 3s ease-in-out infinite;
@@ -110,7 +110,7 @@ $dust: (
   }
 }
 
-.forecast {
+.weather-icon {
   @each $name, $value in $iconBase {
     #{$name}: $value;
   }
@@ -138,12 +138,12 @@ $dust: (
 
 
     &::before {
-      @include forecastElement(-5%, -5%, 25px, 25px, 100%, linear-gradient( to bottom left, $lightYellow 0%, $lightOrange 90%), 1px 1px 30px $darkOrange, 1, floating 5s infinite
+      @include weatherElement(-5%, -5%, 25px, 25px, 100%, linear-gradient( to bottom left, $lightYellow 0%, $lightOrange 90%), 1px 1px 30px $darkOrange, 1, floating 5s infinite
       )
     }
 
     &::after {
-      @include forecastElement(30%, 40%, 10px, 10px, 100%, $white, 1px 1px 30px $white, .2, floating-around 7s infinite)
+      @include weatherElement(30%, 40%, 10px, 10px, 100%, $white, 1px 1px 30px $white, .2, floating-around 7s infinite)
     }
   }
 
@@ -153,11 +153,11 @@ $dust: (
     }
 
     &::before {
-      @include forecastElement(5px, -5px, 30px, 10px, 10px, $white, 1px 1px 30px $lightGray, 1, move 6s infinite linear);
+      @include weatherElement(5px, -5px, 30px, 10px, 10px, $white, 1px 1px 30px $lightGray, 1, move 6s infinite linear);
     }
 
     &::after {
-      @include forecastElement(10px, 10px, 30px, 10px, 10px, $white, 1px 1px 30px $lightGray, 1, move 4s infinite linear);
+      @include weatherElement(10px, 10px, 30px, 10px, 10px, $white, 1px 1px 30px $lightGray, 1, move 4s infinite linear);
     }
   }
 
@@ -167,11 +167,11 @@ $dust: (
     }
 
     &::after {
-      @include forecastElement(10px, 10px, 30px, 10px, 10px, $dimWhite, 1px 1px 30px $gray, 1, move 4s infinite linear);
+      @include weatherElement(10px, 10px, 30px, 10px, 10px, $dimWhite, 1px 1px 30px $gray, 1, move 4s infinite linear);
     }
 
     div {
-      @include forecastParticle(2px, 5px, $dimWhite, 0px, 1px 1px 30px $dimWhite, 0, fall 3s infinite linear);
+      @include weatherParticle(2px, 5px, $dimWhite, 0px, 1px 1px 30px $dimWhite, 0, fall 3s infinite linear);
     }
   }
 
@@ -181,15 +181,15 @@ $dust: (
     }
 
     &::before {
-      @include forecastElement(5px, -5px, 30px, 10px, 10px, $dimWhite, 1px 1px 30px $dimWhite, 1, move 6s infinite linear);
+      @include weatherElement(5px, -5px, 30px, 10px, 10px, $dimWhite, 1px 1px 30px $dimWhite, 1, move 6s infinite linear);
     }
 
     &::after {
-      @include forecastElement(10px, 10px, 30px, 10px, 10px, $lightGray, 1px 1px 30px $gray, 1, move 4s infinite linear);
+      @include weatherElement(10px, 10px, 30px, 10px, 10px, $lightGray, 1px 1px 30px $gray, 1, move 4s infinite linear);
     }
 
     div {
-      @include forecastParticle(2px, 7px, $dimWhite, 0px, 1px 1px 30px $dimWhite, 0, fall 3s infinite linear);
+      @include weatherParticle(2px, 7px, $dimWhite, 0px, 1px 1px 30px $dimWhite, 0, fall 3s infinite linear);
     }
   }
 
@@ -199,15 +199,15 @@ $dust: (
     }
 
     &::before {
-      @include forecastElement(5px, -5px, 30px, 10px, 10px, $lightGray, 1px 1px 30px $lightGray, 1, (move 6s infinite linear, flash 2s infinite));
+      @include weatherElement(5px, -5px, 30px, 10px, 10px, $lightGray, 1px 1px 30px $lightGray, 1, (move 6s infinite linear, flash 2s infinite));
     }
 
     &::after {
-      @include forecastElement(10px, 10px, 30px, 10px, 10px, $lightGray, 1px 1px 30px $lightGray, 1, (move 4s infinite linear, flash 1s infinite linear));
+      @include weatherElement(10px, 10px, 30px, 10px, 10px, $lightGray, 1px 1px 30px $lightGray, 1, (move 4s infinite linear, flash 1s infinite linear));
     }
 
     div {
-      @include forecastParticle(2px, 7px, $dimWhite, 0px, 1px 1px 30px $dimWhite, 0, fall 3s infinite linear);
+      @include weatherParticle(2px, 7px, $dimWhite, 0px, 1px 1px 30px $dimWhite, 0, fall 3s infinite linear);
     }
   }
 
@@ -217,15 +217,15 @@ $dust: (
     }
 
     &::before {
-      @include forecastElement(5px, -5px, 30px, 10px, 10px, $white, 1px 1px 30px $dimWhite, 1, move 6s infinite linear);
+      @include weatherElement(5px, -5px, 30px, 10px, 10px, $white, 1px 1px 30px $dimWhite, 1, move 6s infinite linear);
     }
 
     &::after {
-      @include forecastElement(10px, 10px, 30px, 10px, 10px, $white, 1px 1px 30px $dimWhite, 1, move 4s infinite linear);
+      @include weatherElement(10px, 10px, 30px, 10px, 10px, $white, 1px 1px 30px $dimWhite, 1, move 4s infinite linear);
     }
 
     div {
-      @include forecastParticle(5px, 5px, $white, 100%, 1px 1px 30px $dimWhite, 0, fall 4s infinite linear);
+      @include weatherParticle(5px, 5px, $white, 100%, 1px 1px 30px $dimWhite, 0, fall 4s infinite linear);
     }
   }
 
@@ -235,7 +235,7 @@ $dust: (
     }
 
     div {
-      @include forecastParticle(20px, 5px, $lightGray, 30px, 1px 1px 30px $dimWhite, 0, slide 3s infinite linear);
+      @include weatherParticle(20px, 5px, $lightGray, 30px, 1px 1px 30px $dimWhite, 0, slide 3s infinite linear);
     }
 
     @include particlesAnimation(10, 80, 80);
@@ -247,7 +247,7 @@ $dust: (
     }
 
     div {
-      @include forecastParticle(5px, 5px, $brown, 100%, 1px 1px 30px $darkYellow, 0, slide 3s infinite linear);
+      @include weatherParticle(5px, 5px, $brown, 100%, 1px 1px 30px $darkYellow, 0, slide 3s infinite linear);
     }
 
     @include particlesAnimation(10, 80, 80);
@@ -259,7 +259,7 @@ $dust: (
     }
 
     div {
-      @include forecastParticle(30px, 10px, $dimWhite, 30px, 1px 1px 30px $dimWhite, 0, slide 3s infinite linear);
+      @include weatherParticle(30px, 10px, $dimWhite, 30px, 1px 1px 30px $dimWhite, 0, slide 3s infinite linear);
     }
 
     @include particlesAnimation(10, 80, 80);
