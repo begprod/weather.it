@@ -1,8 +1,21 @@
-export interface IFoundCity {
+export interface IRootState {
+  weather: IWeatherState;
+}
+
+export interface IWeatherState {
+  status: 'init' | 'loading' | 'success' | 'error';
+  entities: Array<ICityWeather>;
+  errorMessage: string;
+}
+
+
+export interface ISearchItem {
   name: string;
   country: string;
-  latitude: number;
-  longitude: number;
+}
+
+export interface ISearchItemList {
+  cities: Array<ISearchItem>;
 }
 
 export interface ICityWeather {
@@ -16,7 +29,8 @@ export interface ICityWeather {
   image: string;
 }
 
-
-export interface ICitiesList {
-  cities: Array<IFoundCity>;
+export interface IGetCityImageResponse {
+  urls: {
+    regular: string;
+  }
 }
