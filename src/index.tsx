@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux'
 import './styles/style.scss';
 import { App } from './App';
-import { CitiesContextProvider } from "./store/cities-context";
+import { store } from './store';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -10,9 +11,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <CitiesContextProvider>
+    <Provider store={store}>
       <App />
-    </CitiesContextProvider>
+    </Provider>
   </React.StrictMode>
 );
 
