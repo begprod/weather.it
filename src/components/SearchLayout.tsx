@@ -1,24 +1,20 @@
-import {
-  FC,
-  useEffect,
-  useState,
-  useContext,
-  useCallback
-} from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineLocationOff } from 'react-icons/md';
 import { RiLoaderLine } from 'react-icons/ri';
-import { IFoundCity, ICitiesList } from '../interfaces';
-import { getCities } from '../services/api';
-import { CitiesContext } from '../store/cities-context';
+import { getSearchCitiesList } from '../services/api';
+import { ISearchItem, ISearchItemList } from '../interfaces';
+import { AppDispatch } from '../store';
 import { useDebounce } from "../hooks";
+import { getCityData, selectWeatherList } from '../features/weather/weather-slice'
 import { SearchInput, SearchResultItem } from './';
 
 export const SearchLayout: FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [foundCitiesList, setFoundCitiesList] = useState<Array<IFoundCity>>([]);
+  const [foundCitiesList, setFoundCitiesList] = useState<Array<ISearchItem>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const citiesCtx = useContext(CitiesContext);
-  const weatherCitiesList = useCallback(() => citiesCtx.getWeatherCitiesList(), [citiesCtx]);
+  const weatherCitiesList = useSelector(selectWeatherList);
 
   const debouncedSearch = useDebounce(searchQuery, 1100);
 
@@ -34,10 +30,10 @@ export const SearchLayout: FC = () => {
 
   useEffect(() => {
     if (debouncedSearch) {
-      getCities(searchQuery)
-        .then((data: ICitiesList) => {
+      getSearchCitiesList(searchQuery)
+        .then((data: ISearchItemList) => {
           const result = data.cities.filter((city) => {
-            return !weatherCitiesList().some((item) => item.name === city.name);
+            return !weatherCitiesList.some((item) => item.name === city.name);
           });
 
           setFoundCitiesList(result);
@@ -49,12 +45,12 @@ export const SearchLayout: FC = () => {
     }
   }, [debouncedSearch]);
 
-  function selectItemHandler(item: IFoundCity) {
-    citiesCtx.addCity(item);
+  function selectItemHandler(item: ISearchItem) {
+    dispatch(getCityData(item));
     setSearchQuery('');
   }
 
-  function renderSearchResults() {
+  function render() {
     if (isLoading && searchQuery.length !== 0) {
       return (
         <div className="flex items-center justify-center p-3">
@@ -74,7 +70,7 @@ export const SearchLayout: FC = () => {
       );
     }
 
-    return foundCitiesList.map((city: IFoundCity, index: number) => {
+    return foundCitiesList.map((city: ISearchItem, index: number) => {
       return (
         <SearchResultItem
           key={`${city.name}${city.country}_${index}`}
@@ -98,7 +94,7 @@ export const SearchLayout: FC = () => {
           autoComplete="off"
         />
         <div className="absolute left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden">
-          {renderSearchResults()}
+          {render()}
         </div>
       </div>
     </>
