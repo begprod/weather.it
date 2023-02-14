@@ -1,12 +1,11 @@
-import { FC, useCallback, useContext } from 'react';
+import { FC } from 'react';
 import { IoIosPin } from 'react-icons/io';
 import { MdOutlineClose } from 'react-icons/md';
 import { VscCircleOutline } from 'react-icons/vsc';
 import { ICityWeather } from '../interfaces';
-import { CitiesContext } from "../store/cities-context";
 
 const particlesNumber = 10;
-const forecastTypes = {
+const weatherTypes = {
   'Clear': 'clear',
   'Clouds': 'cloud',
   'Thunderstorm': 'thunder',
@@ -24,13 +23,10 @@ const forecastTypes = {
   'Ash': 'dust',
 }
 
-interface ICityForecastItemProps {
+interface ICityWeatherItemProps {
   city: ICityWeather;
 }
-export const CityWeatherCard: FC<ICityForecastItemProps> = (props) => {
-  const citiesCtx = useContext(CitiesContext);
-  const removeCity = useCallback((city: ICityWeather) => citiesCtx.removeCity(city), [citiesCtx]);
-
+export const CityWeatherCard: FC<ICityWeatherItemProps> = (props) => {
   let particles = [];
   for (let i = 0; i < particlesNumber; i++) {
     particles.push(<div key={i}></div>);
@@ -56,13 +52,13 @@ export const CityWeatherCard: FC<ICityForecastItemProps> = (props) => {
           </span>
         </p>
         <p className="text-sm">{props.city.weather.description}</p>
-        <div className={`mt-5 forecast forecast_${forecastTypes[props.city.weather.main as keyof typeof forecastTypes]}`}>
+        <div className={`mt-5 forecast forecast_${weatherTypes[props.city.weather.main as keyof typeof weatherTypes]}`}>
           {particles}
         </div>
       </div>
       <button
         className="absolute top-3 right-3 z-30 hidden group-hover:block"
-        onClick={() => removeCity(props.city)}
+        // onClick={() => removeCity(props.city)}
       >
         <MdOutlineClose className="w-7 h-7"/>
       </button>
