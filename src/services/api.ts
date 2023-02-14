@@ -1,4 +1,4 @@
-import { IFoundCity, ICityWeather } from '../interfaces';
+import { ISearchItem, ICityWeather, IGetCityImageResponse, ISearchItemList } from '../interfaces';
 
 const GEO_DB_API_OPTIONS = {
   method: 'GET',
@@ -8,7 +8,7 @@ const GEO_DB_API_OPTIONS = {
   }
 };
 
-export async function getCities(name: string): Promise<any> {
+export async function getSearchCitiesList(name: string): Promise<ISearchItemList> {
   return await fetch(
     `${process.env.REACT_APP_GEO_DB_API_URL}/cities?limit=10&languageCode=en&minPopulation=500000&namePrefix=${name}`,
     GEO_DB_API_OPTIONS
@@ -17,21 +17,20 @@ export async function getCities(name: string): Promise<any> {
       const citiesData = await response.json();
 
       return {
-        cities: citiesData.data.map((city: IFoundCity) => {
+        cities: citiesData.data.map((city: ISearchItem) => {
           return {
             name: city.name,
-            country: city.country,
-            latitude: city.latitude,
-            longitude: city.longitude,
+            country: city.country
           }
         })
       }
     });
 }
 
-export async function getForecast(cityName: string): Promise<any> {
+export async function getCityWeather(cityName: string): Promise<Omit<ICityWeather, 'image'>> {
   return await fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
     .then(async (response) => {
+      console.log(response.status);
       if (response.status === 404) {
         throw new Error('City not found');
       }
@@ -45,12 +44,12 @@ export async function getForecast(cityName: string): Promise<any> {
           feels_like: weatherData.main.feels_like.toFixed(0),
           main: weatherData.weather[0].main,
           description: weatherData.weather[0].description,
-        } as ICityWeather['weather'],
+        }
       };
     });
 }
 
-export async function getCityImage(query: string): Promise<object> {
+export async function getCityImage(query: string): Promise<IGetCityImageResponse> {
   return await fetch(`${process.env.REACT_APP_UNSPLASH_API_URL}/?query=${query}-city&client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`)
     .then(async (response) => {
       const photosData = await response.json();
