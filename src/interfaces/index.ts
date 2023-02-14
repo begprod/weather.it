@@ -1,10 +1,6 @@
 export interface IRootState {
-  weather: IWeatherState;
-}
-
-export interface IWeatherState {
-  status: 'init' | 'loading' | 'success' | 'error';
   entities: Array<ICityWeather>;
+  status: 'init' | 'loading' | 'success' | 'error';
   errorMessage: string;
 }
 
@@ -20,6 +16,7 @@ export interface ISearchItemList {
 
 export interface ICityWeather {
   name: string;
+  country: string;
   weather: {
     current: number;
     feels_like: number;

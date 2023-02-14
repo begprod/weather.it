@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getCityWeather, getCityImage } from '../../services/api';
-import { IRootState, IWeatherState, ISearchItem, ICityWeather } from '../../interfaces';
+import { IRootState, ISearchItem, ICityWeather } from '../../interfaces';
 
-const initialState: IWeatherState = {
+const initialState: IRootState = {
   status: 'init',
   entities: [],
   errorMessage: '',
@@ -16,6 +16,7 @@ export const getCityData = createAsyncThunk(
 
     const cityItem: ICityWeather = {
       name: weatherData.name,
+      country: cityData.country,
       weather: {
         current: weatherData.weather.current,
         feels_like: weatherData.weather.feels_like,
@@ -25,7 +26,7 @@ export const getCityData = createAsyncThunk(
       image: imageData.urls.regular
     }
 
-    await dispatch(weatherActions.addCity(cityItem));
+    await dispatch(weatherActions.setCity(cityItem));
   }
 );
 
@@ -33,9 +34,12 @@ export const weatherSlice = createSlice({
   name: '@@weather',
   initialState,
   reducers: {
-    addCity: (state, action) => {
+    setCity: (state, action) => {
       const cityItem: ICityWeather = action.payload;
       state.entities.push(cityItem);
+    },
+    removeCity: (state, action) => {
+      //
     },
     setStatus: (state, action) => {
       state.status = action.payload;
@@ -57,9 +61,9 @@ export const weatherSlice = createSlice({
 });
 
 
-export const selectWeatherList = (state: IRootState) => state.weather.entities;
-export const selectWeatherStatus = (state: IRootState) => state.weather.status;
+export const selectWeatherList = (state: IRootState) => state.entities;
+export const selectWeatherStatus = (state: IRootState) => state.status;
 
-export const selectWeatherErrorMessage = (state: IRootState) => state.weather.errorMessage;
+export const selectWeatherErrorMessage = (state: IRootState) => state.errorMessage;
 
 export const { reducer: weatherReducer, actions: weatherActions } = weatherSlice;

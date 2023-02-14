@@ -27,7 +27,7 @@ export async function getSearchCitiesList(name: string): Promise<ISearchItemList
     });
 }
 
-export async function getCityWeather(cityName: string): Promise<Omit<ICityWeather, 'image'>> {
+export async function getCityWeather(cityName: string): Promise<Omit<ICityWeather, 'image' | 'country'>> {
   return await fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
     .then(async (response) => {
       if (response.status === 404) {
