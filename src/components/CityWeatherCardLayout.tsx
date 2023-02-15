@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { RiLoaderLine } from 'react-icons/ri';
 import { ICityWeather } from '../interfaces';
 import { selectWeatherList, selectWeatherStatus, selectWeatherErrorMessage } from '../features/weather/weather-slice';
 import { CityWeatherCard, CityWeatherCardSkeleton } from './';

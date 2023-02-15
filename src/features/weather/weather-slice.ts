@@ -39,7 +39,7 @@ export const weatherSlice = createSlice({
       state.entities.push(cityItem);
     },
     removeCity: (state, action) => {
-      //
+      state.entities = state.entities.filter((city) => city.name !== action.payload.name);
     },
     setStatus: (state, action) => {
       state.status = action.payload;

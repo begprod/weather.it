@@ -1,7 +1,10 @@
 import { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import { IoIosPin } from 'react-icons/io';
 import { MdOutlineClose } from 'react-icons/md';
 import { VscCircleOutline } from 'react-icons/vsc';
+import { AppDispatch } from '../store';
+import { weatherActions } from '../features/weather/weather-slice'
 import { ICityWeather } from '../interfaces';
 
 const particlesNumber = 10;
@@ -27,6 +30,8 @@ interface ICityWeatherItemProps {
   city: ICityWeather;
 }
 export const CityWeatherCard: FC<ICityWeatherItemProps> = (props) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   let particles = [];
   for (let i = 0; i < particlesNumber; i++) {
     particles.push(<div key={i}></div>);
@@ -55,8 +60,8 @@ export const CityWeatherCard: FC<ICityWeatherItemProps> = (props) => {
         </div>
       </div>
       <button
-        className="absolute top-3 right-3 z-30 hidden group-hover:block"
-        // onClick={() => removeCity(props.city)}
+        className="group-hover:block absolute top-3 right-3 z-30 hidden"
+        onClick={() => dispatch(weatherActions.removeCity(props.city))}
       >
         <MdOutlineClose className="w-7 h-7"/>
       </button>
