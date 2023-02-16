@@ -8,7 +8,12 @@ import { AppDispatch } from '../store';
 import { weatherActions } from '../features/weather/weather-slice'
 
 const particlesNumber = 10;
-const weatherTypes = {
+
+type weatherTypes = {
+  [key: string]: string;
+}
+
+const weatherTypes: weatherTypes = {
   'Clear': 'clear',
   'Clouds': 'cloud',
   'Thunderstorm': 'thunder',
@@ -37,6 +42,11 @@ const CityWeatherCardItem: FC<ICityWeatherItemProps> = (props) => {
     particles.push(<div key={i}></div>);
   }
 
+  function setWeatherType(type: string) {
+    const weatherType = weatherTypes[type];
+    return weatherType;
+  };
+
   return (
     <div className="group relative min-h-[350px] p-10 text-white overflow-hidden rounded-[20px] shadow-md">
       <div className="relative z-30 select-none">
@@ -55,7 +65,7 @@ const CityWeatherCardItem: FC<ICityWeatherItemProps> = (props) => {
           </span>
         </p>
         <p className="text-sm">{props.city.weather.description}</p>
-        <div className={`mt-5 weather-icon weather-icon_${weatherTypes[props.city.weather.main as keyof typeof weatherTypes]}`}>
+        <div className={`mt-5 weather-icon weather-icon_${setWeatherType(props.city.weather.main)}`}>
           {particles}
         </div>
       </div>
