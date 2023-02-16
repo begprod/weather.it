@@ -6,8 +6,7 @@ import { VscCircleOutline } from 'react-icons/vsc';
 import { ICityWeather } from '../interfaces';
 import { AppDispatch } from '../store';
 import { weatherActions } from '../features/weather/weather-slice'
-
-const particlesNumber = 10;
+import { generateParticles } from '../helpers';
 
 type weatherTypes = {
   [key: string]: string;
@@ -36,12 +35,6 @@ interface ICityWeatherItemProps {
 }
 const CityWeatherCardItem: FC<ICityWeatherItemProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
-
-  let particles = [];
-  for (let i = 0; i < particlesNumber; i++) {
-    particles.push(<div key={i}></div>);
-  }
-
   function setWeatherType(type: string) {
     const weatherType = weatherTypes[type];
     return weatherType;
@@ -66,7 +59,7 @@ const CityWeatherCardItem: FC<ICityWeatherItemProps> = (props) => {
         </p>
         <p className="text-sm">{props.city.weather.description}</p>
         <div className={`mt-5 weather-icon weather-icon_${setWeatherType(props.city.weather.main)}`}>
-          {particles}
+          {generateParticles()}
         </div>
       </div>
       <button

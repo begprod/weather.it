@@ -1,0 +1,1 @@
+export { generateParticles } from './generateParticles'
