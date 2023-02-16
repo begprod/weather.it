@@ -9,12 +9,13 @@ const initialState: IRootState = {
 };
 
 export const getCityData = createAsyncThunk(
-  '@@weather/getCityWeather',
+  '@@weather/getCityData',
   async (cityData: ISearchItem, { dispatch }) => {
-    const weatherData = await getCityWeather(cityData.name);
-    const imageData = await getCityImage(`${cityData.name} ${cityData.country}`);
+    const weatherData = await getCityWeather(cityData.name, cityData.id);
+    const imageData = await getCityImage(`${cityData.name} city ${cityData.country}`);
 
     const cityItem: ICityWeather = {
+      id: weatherData.id,
       name: weatherData.name,
       country: cityData.country,
       weather: {
@@ -30,12 +31,39 @@ export const getCityData = createAsyncThunk(
   }
 );
 
+export const updatedWeatherData = createAsyncThunk(
+  '@@weather/updatedWeatherData',
+  (_, { dispatch, getState }) => {
+    const state = getState() as IRootState;
+
+    if (state.entities.length === 0) {
+      return;
+    };
+
+    state.entities.forEach(async (item) => {
+      const city: ISearchItem = {
+        id: item.id,
+        name: item.name,
+        country: item.country
+      }
+
+      dispatch(getCityData(city));
+    });
+  });
+
 export const weatherSlice = createSlice({
   name: '@@weather',
   initialState,
   reducers: {
     setCity: (state, action) => {
       const cityItem: ICityWeather = action.payload;
+      const cityIndex = state.entities.findIndex((city) => city.name === cityItem.name);
+
+      if (cityIndex !== -1) {
+        state.entities[cityIndex] = cityItem;
+        return;
+      }
+
       state.entities.push(cityItem);
     },
     removeCity: (state, action) => {
@@ -47,14 +75,14 @@ export const weatherSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getCityData.pending, (state, action) => {
+      .addCase(getCityData.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(getCityData.rejected, (state, action) => {
         state.errorMessage = action.error.message || '';
         state.status = 'error';
       })
-      .addCase(getCityData.fulfilled, (state, action) => {
+      .addCase(getCityData.fulfilled, (state) => {
         state.status = 'success';
       })
   }
@@ -63,7 +91,6 @@ export const weatherSlice = createSlice({
 
 export const selectWeatherList = (state: IRootState) => state.entities;
 export const selectWeatherStatus = (state: IRootState) => state.status;
-
 export const selectWeatherErrorMessage = (state: IRootState) => state.errorMessage;
 
 export const { reducer: weatherReducer, actions: weatherActions } = weatherSlice;

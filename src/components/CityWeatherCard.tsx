@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { IoIosPin } from 'react-icons/io';
 import { MdOutlineClose } from 'react-icons/md';
 import { VscCircleOutline } from 'react-icons/vsc';
+import { ICityWeather } from '../interfaces';
 import { AppDispatch } from '../store';
 import { weatherActions } from '../features/weather/weather-slice'
-import { ICityWeather } from '../interfaces';
 
 const particlesNumber = 10;
 const weatherTypes = {
@@ -29,7 +29,7 @@ const weatherTypes = {
 interface ICityWeatherItemProps {
   city: ICityWeather;
 }
-export const CityWeatherCard: FC<ICityWeatherItemProps> = (props) => {
+const CityWeatherCardItem: FC<ICityWeatherItemProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
 
   let particles = [];
@@ -73,3 +73,5 @@ export const CityWeatherCard: FC<ICityWeatherItemProps> = (props) => {
     </div>
   );
 }
+
+export const CityWeatherCard = memo(CityWeatherCardItem);

@@ -6,6 +6,7 @@ export interface IRootState {
 
 
 export interface ISearchItem {
+  id: number;
   name: string;
   country: string;
 }
@@ -15,6 +16,7 @@ export interface ISearchItemList {
 }
 
 export interface ICityWeather {
+  id: number;
   name: string;
   country: string;
   weather: {

@@ -14,7 +14,7 @@ export const SearchResultItem: FC<IItemListProps> = (props) => {
   }
 
   return (
-    <div key={props.city.name} className="flex items-center">
+    <div className="flex items-center">
       <div
         className="group flex items-center w-full p-2 hover:bg-gray-200 transition-all duration-300 overflow-hidden cursor-pointer"
         onClick={() => selectItem(props.city)}

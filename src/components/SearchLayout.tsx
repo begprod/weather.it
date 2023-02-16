@@ -24,7 +24,6 @@ export const SearchLayout: FC = () => {
     if (searchQuery === '') {
       setFoundCitiesList([]);
       setIsLoading(false);
-      return;
     }
   }, [searchQuery]);
 
@@ -33,7 +32,7 @@ export const SearchLayout: FC = () => {
       getSearchCitiesList(searchQuery)
         .then((data: ISearchItemList) => {
           const result = data.cities.filter((city) => {
-            return !weatherCitiesList.some((item) => item.name === city.name);
+            return !weatherCitiesList.some((item) => item.id === city.id);
           });
 
           setFoundCitiesList(result);
@@ -73,7 +72,7 @@ export const SearchLayout: FC = () => {
     return foundCitiesList.map((city: ISearchItem, index: number) => {
       return (
         <SearchResultItem
-          key={`${city.name}${city.country}_${index}`}
+          key={city.id}
           city={city}
           onSelectItem={selectItemHandler}
         />

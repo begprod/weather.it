@@ -19,6 +19,7 @@ export async function getSearchCitiesList(name: string): Promise<ISearchItemList
       return {
         cities: citiesData.data.map((city: ISearchItem) => {
           return {
+            id: city.id,
             name: city.name,
             country: city.country
           }
@@ -27,7 +28,7 @@ export async function getSearchCitiesList(name: string): Promise<ISearchItemList
     });
 }
 
-export async function getCityWeather(cityName: string): Promise<Omit<ICityWeather, 'image' | 'country'>> {
+export async function getCityWeather(cityName: string, id: number): Promise<Omit<ICityWeather, 'image' | 'country'>> {
   return await fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
     .then(async (response) => {
       if (response.status === 404) {
@@ -37,6 +38,7 @@ export async function getCityWeather(cityName: string): Promise<Omit<ICityWeathe
       const weatherData = await response.json();
 
       return {
+        id,
         name: weatherData.name,
         weather: {
           current: weatherData.main.temp.toFixed(0),
@@ -49,7 +51,7 @@ export async function getCityWeather(cityName: string): Promise<Omit<ICityWeathe
 }
 
 export async function getCityImage(query: string): Promise<IGetCityImageResponse> {
-  return await fetch(`${process.env.REACT_APP_UNSPLASH_API_URL}/?query=${query}-city&client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`)
+  return await fetch(`${process.env.REACT_APP_UNSPLASH_API_URL}/?query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`)
     .then(async (response) => {
       const photosData = await response.json();
 
