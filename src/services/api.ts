@@ -1,4 +1,4 @@
-import { ISearchItem, ICityWeather, IGetCityImageResponse, ISearchItemList } from '../interfaces';
+import { ISearchItem, ICityWeather, IGetCityImageResponse, ISearchItemList } from '../types';
 
 const GEO_DB_API_OPTIONS = {
   method: 'GET',
@@ -28,7 +28,7 @@ export async function getSearchCitiesList(name: string): Promise<ISearchItemList
     });
 }
 
-export async function getCityWeather(cityName: string, id: number): Promise<Omit<ICityWeather, 'image' | 'country'>> {
+export async function getCityWeather(cityName: string, id: number): Promise<ICityWeather> {
   return await fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
     .then(async (response) => {
       if (response.status === 404) {

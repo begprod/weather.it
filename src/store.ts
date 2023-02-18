@@ -3,7 +3,7 @@ import { ThunkDispatch } from "redux-thunk";
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { IRootState } from './interfaces';
+import { IRootState } from './types';
 import { weatherReducer } from './features/weather/weather-slice';
 
 export type AppDispatch = ThunkDispatch<IRootState, any, AnyAction>;
