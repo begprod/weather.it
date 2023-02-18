@@ -1,12 +1,10 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
 import { getCityWeather, getCityImage } from '../../services/api';
-import { IRootState, ISearchItem, ICityWeather } from '../../interfaces';
+import { IRootState, ISearchItem, ICityWeather } from '../../types';
 
-const initialState: IRootState = {
-  status: 'init',
-  entities: [],
-  errorMessage: '',
-};
+const cityWeatherListAdapter = createEntityAdapter<ICityWeather>({
+  selectId: (city) => city.id,
+});
 
 export const getCityData = createAsyncThunk(
   '@@weather/getCityData',
@@ -14,60 +12,50 @@ export const getCityData = createAsyncThunk(
     const weatherData = await getCityWeather(cityData.name, cityData.id);
     const imageData = await getCityImage(`${cityData.name} city ${cityData.country}`);
 
-    const cityItem: ICityWeather = {
-      id: weatherData.id,
-      name: weatherData.name,
-      country: cityData.country,
-      weather: {
-        current: weatherData.weather.current,
-        feels_like: weatherData.weather.feels_like,
-        main: weatherData.weather.main,
-        description: weatherData.weather.description,
-      },
-      image: imageData.urls.regular
-    }
-
-    await dispatch(weatherActions.setCity(cityItem));
+    dispatch(weatherActions.addImage(
+      {[cityData.id]:imageData}
+    ));
+    dispatch(weatherActions.addCity(weatherData));
   }
 );
 
-export const updatedWeatherData = createAsyncThunk(
+export const updateWeatherData = createAsyncThunk(
   '@@weather/updatedWeatherData',
-  (_, { dispatch, getState }) => {
+  async (_, { dispatch, getState }) => {
     const state = getState() as IRootState;
+    const cities = selectWeatherList(state as any);
+    dispatch(weatherActions.setStatus('updating'));
 
-    if (state.entities.length === 0) {
-      return;
-    };
-
-    state.entities.forEach(async (item) => {
-      const city: ISearchItem = {
-        id: item.id,
-        name: item.name,
-        country: item.country
-      }
-
-      dispatch(getCityData(city));
-    });
+    for (const city of cities) {
+      getCityWeather(city.name, city.id)
+        .then((weatherData) => {
+          dispatch(weatherActions.addCity(weatherData));
+          dispatch(weatherActions.setStatus('success'));
+        })
+    }
   });
+
+
+
+const initialState: IRootState = {
+  images: {},
+  status: 'init',
+  errorMessage: '',
+};
 
 export const weatherSlice = createSlice({
   name: '@@weather',
-  initialState,
+  initialState: cityWeatherListAdapter.getInitialState(initialState),
   reducers: {
-    setCity: (state, action) => {
-      const cityItem: ICityWeather = action.payload;
-      const cityIndex = state.entities.findIndex((city) => city.name === cityItem.name);
-
-      if (cityIndex !== -1) {
-        state.entities[cityIndex] = cityItem;
-        return;
-      }
-
-      state.entities.push(cityItem);
+    addCity: (state, action: PayloadAction<ICityWeather>) => {
+      cityWeatherListAdapter.addOne(state, action.payload);
     },
-    removeCity: (state, action) => {
-      state.entities = state.entities.filter((city) => city.name !== action.payload.name);
+    removeCity: (state, action: PayloadAction<number>) => {
+      cityWeatherListAdapter.removeOne(state, action.payload);
+      delete state.images[action.payload];
+    },
+    addImage: (state, action) => {
+      state.images = {...state.images, ...action.payload};
     },
     setStatus: (state, action) => {
       state.status = action.payload;
@@ -88,8 +76,8 @@ export const weatherSlice = createSlice({
   }
 });
 
-
-export const selectWeatherList = (state: IRootState) => state.entities;
+export const selectWeatherList = cityWeatherListAdapter.getSelectors().selectAll;
+export const selectCityImages = (state: IRootState) => state.images;
 export const selectWeatherStatus = (state: IRootState) => state.status;
 export const selectWeatherErrorMessage = (state: IRootState) => state.errorMessage;
 
