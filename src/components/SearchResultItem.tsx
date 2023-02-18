@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { TfiPin } from 'react-icons/tfi';
 import { HiOutlineGlobe } from 'react-icons/hi';
-import { ISearchItem } from '../interfaces';
+import { ISearchItem } from '../types';
 
 interface IItemListProps {
   city: ISearchItem;

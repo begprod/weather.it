@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineLocationOff } from 'react-icons/md';
 import { RiLoaderLine } from 'react-icons/ri';
 import { getSearchCitiesList } from '../services/api';
-import { ISearchItem, ISearchItemList } from '../interfaces';
+import { ISearchItem, ISearchItemList } from '../types';
 import { AppDispatch } from '../store';
 import { useDebounce } from "../hooks";
 import { getCityData, selectWeatherList } from '../features/weather/weather-slice'

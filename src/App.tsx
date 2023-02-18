@@ -5,16 +5,12 @@ import { AppDispatch } from './store';
 import { WeatherIconsDoodle } from './components';
 import { SearchLayout } from './components';
 import { CityWeatherCardLayout } from './components';
-import { updatedWeatherData, selectWeatherList, selectWeatherStatus } from './features/weather/weather-slice';
+import { selectWeatherList, selectWeatherStatus, updateWeatherData } from './features/weather/weather-slice';
 
 export const App: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const weatherCitiesList = useSelector(selectWeatherList);
   const status = useSelector(selectWeatherStatus);
-
-  function updateWeatherDataHandler() {
-    dispatch(updatedWeatherData());
-  }
 
   return (
     <div className="font-body flex flex-col items-center justify-center pt-32 pr-12 pb-32 pl-12 min-h-screen">
@@ -26,9 +22,9 @@ export const App: FC = () => {
       {weatherCitiesList.length > 0 && (
         <button
           className="fixed rounded-full right-6 bottom-6 border p-5 hover:rotate-45 transition-transform duration-300"
-          onClick={updateWeatherDataHandler}
+          onClick={() => dispatch(updateWeatherData())}
         >
-          {status === 'loading' ? <div className="animate-spin"><GrUpdate /></div> : <GrUpdate />}
+          {status === 'updating' ? <div className="animate-spin"><GrUpdate /></div> : <GrUpdate />}
         </button>
       )}
     </div>
