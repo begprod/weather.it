@@ -1,13 +1,14 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { ICityWeather } from '../types';
-import { selectWeatherList, selectWeatherStatus, selectCityImages } from '../features/weather/weather-slice';
+import { selectWeatherList, selectWeatherStatus, selectCityImages, selectWeatherErrorMessage } from '../features/weather/weather-slice';
 import { CityWeatherCard, CityWeatherCardSkeleton } from './';
 
 export const CityWeatherCardLayout: FC = () => {
   const citiesList = useSelector(selectWeatherList);
   const status = useSelector(selectWeatherStatus);
   const images = useSelector(selectCityImages);
+  const errorMessage = useSelector(selectWeatherErrorMessage);
 
   return (
     <div className="grid grid-cols-3 w-full pl-24 pr-24 pb-24 gap-16 mt-28">
@@ -20,6 +21,7 @@ export const CityWeatherCardLayout: FC = () => {
           />
         );
       })}
+      {status === 'error' && <div>{errorMessage}</div>}
       {status === 'loading' && <CityWeatherCardSkeleton />}
     </div>
   );

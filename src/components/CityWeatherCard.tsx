@@ -9,12 +9,12 @@ import { weatherActions } from '../features/weather/weather-slice'
 import { generateParticles } from '../helpers';
 import { CityWeatherCardSkeleton } from './CityWeatherCardSkeleton';
 
-interface ICityWeatherItemProps {
+interface ICityWeatherCardProps {
   city: ICityWeather;
   image: string;
 }
 
-const CityWeatherCardItem: FC<ICityWeatherItemProps> = (props) => {
+const CityWeatherCardItem: FC<ICityWeatherCardProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
   const status = useSelector((state: IRootState) => state.status);
 
@@ -25,7 +25,9 @@ const CityWeatherCardItem: FC<ICityWeatherItemProps> = (props) => {
   function render() {
     if (status === 'updating') {
       return (
-        <CityWeatherCardSkeleton />
+        <CityWeatherCardSkeleton
+          image={props.image}
+        />
       )
     }
 
@@ -73,4 +75,4 @@ const CityWeatherCardItem: FC<ICityWeatherItemProps> = (props) => {
   );
 }
 
-export const CityWeatherCard = memo((props: ICityWeatherItemProps) => (CityWeatherCardItem(props)));
+export const CityWeatherCard = memo((props: ICityWeatherCardProps) => (CityWeatherCardItem(props)));

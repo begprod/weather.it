@@ -24,14 +24,19 @@ export const updateWeatherData = createAsyncThunk(
   async (_, { dispatch, getState }) => {
     const state = getState() as IRootState;
     const cities = selectWeatherList(state as any);
+    const promises = cities.map((city) => getCityWeather(city.name, city.id));
+
     dispatch(weatherActions.setStatus('updating'));
 
-    for (const city of cities) {
-      getCityWeather(city.name, city.id)
-        .then((weatherData) => {
-          dispatch(weatherActions.addCity(weatherData));
-          dispatch(weatherActions.setStatus('success'));
-        })
+    for (const promise of promises) {
+      try {
+        const weatherData = await promise;
+        console.log('weatherData', weatherData);
+        dispatch(weatherActions.addCity(weatherData));
+        dispatch(weatherActions.setStatus('success'));
+      } catch (error) {
+        console.log('error', error);
+      }
     }
   });
 
@@ -48,7 +53,7 @@ export const weatherSlice = createSlice({
   initialState: cityWeatherListAdapter.getInitialState(initialState),
   reducers: {
     addCity: (state, action: PayloadAction<ICityWeather>) => {
-      cityWeatherListAdapter.addOne(state, action.payload);
+      cityWeatherListAdapter.setOne(state, action.payload);
     },
     removeCity: (state, action: PayloadAction<number>) => {
       cityWeatherListAdapter.removeOne(state, action.payload);
@@ -59,6 +64,9 @@ export const weatherSlice = createSlice({
     },
     setStatus: (state, action) => {
       state.status = action.payload;
+    },
+    setErrorMessage: (state, action) => {
+      state.errorMessage = action.payload;
     }
   },
   extraReducers: (builder) => {
