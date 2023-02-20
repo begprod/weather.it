@@ -1,10 +1,7 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GrUpdate } from 'react-icons/gr';
 import { AppDispatch } from './store';
-import { WeatherIconsDoodle } from './components';
-import { SearchLayout } from './components';
-import { CityWeatherCardLayout } from './components';
+import { WeatherIconsDoodle, SearchLayout, CityWeatherCardLayout, UpdateButton } from './components';
 import { selectWeatherList, selectWeatherStatus, updateWeatherData } from './features/weather/weather-slice';
 
 export const App: FC = () => {
@@ -20,12 +17,10 @@ export const App: FC = () => {
       </div>
       <CityWeatherCardLayout />
       {weatherCitiesList.length > 0 && (
-        <button
-          className="fixed rounded-full right-6 bottom-6 border p-5 hover:rotate-45 transition-transform duration-300"
-          onClick={() => dispatch(updateWeatherData())}
-        >
-          {status === 'updating' ? <div className="animate-spin"><GrUpdate /></div> : <GrUpdate />}
-        </button>
+        <UpdateButton
+          isLoading={status === 'updating'}
+          onclick={() => dispatch(updateWeatherData())}
+        />
       )}
     </div>
   );
