@@ -22,8 +22,13 @@ export const getCityData = createAsyncThunk(
 export const updateWeatherData = createAsyncThunk(
   '@@weather/updatedWeatherData',
   async (_, { dispatch, getState }) => {
-    const state = getState() as IRootState;
-    const cities = selectWeatherList(state as any);
+    const state = getState() as IRootState['entities'];
+
+    if (!state) {
+      throw new Error('No state found');
+    }
+
+    const cities = selectWeatherList(state);
     const promises = cities.map((city) => getCityWeather(city.name, city.id));
 
     dispatch(weatherActions.setStatus('updating'));

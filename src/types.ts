@@ -1,4 +1,8 @@
+import { EntityId, EntityState } from '@reduxjs/toolkit';
+
 export interface IRootState {
+  ids?: EntityId[];
+  entities?: EntityState<ICityWeather>;
   images: IImages;
   status: 'init' | 'loading' | 'updating' | 'success' | 'error';
   errorMessage: string;
