@@ -36,7 +36,7 @@ export const updateWeatherData = createAsyncThunk(
     for (const promise of promises) {
       try {
         const weatherData = await promise;
-        console.log('weatherData', weatherData);
+
         dispatch(weatherActions.addCity(weatherData));
         dispatch(weatherActions.setStatus('success'));
       } catch (error) {

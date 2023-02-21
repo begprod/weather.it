@@ -1,1 +1,2 @@
-export { generateParticles } from './generateParticles'
+export { generateParticles } from './generateParticles';
+export { generateRandomNumber } from './generateRandomNumber';
