@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from './store';
 import { WeatherIconsDoodle, SearchLayout, CityWeatherCardLayout, UpdateButton } from './components';
@@ -8,6 +8,10 @@ export const App: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const weatherCitiesList = useSelector(selectWeatherList);
   const status = useSelector(selectWeatherStatus);
+
+  useEffect(() => {
+    dispatch(updateWeatherData());
+  }, [])
 
   return (
     <div className="font-body flex flex-col items-center justify-center pt-32 pr-12 pb-32 pl-12 min-h-screen">
