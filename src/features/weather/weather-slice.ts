@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
-import { getCityWeather, getCityImage } from '../../services/api';
-import { IRootState, ISearchItem, ICityWeather } from '../../types';
+import { createAsyncThunk, createEntityAdapter, createSlice, EntityState, PayloadAction } from '@reduxjs/toolkit';
+import { getCityImage, getCityWeather } from '../../services/api';
+import { ICityWeather, IRootState, ISearchItem } from '../../types';
 import { createDate } from '../../helpers';
 
 const cityWeatherListAdapter = createEntityAdapter<ICityWeather>({
@@ -9,12 +9,12 @@ const cityWeatherListAdapter = createEntityAdapter<ICityWeather>({
 
 export const getCityData = createAsyncThunk(
   '@@weather/getCityData',
-  async (cityData: ISearchItem, { dispatch }) => {
+  async (cityData: ISearchItem, {dispatch}) => {
     const weatherData = await getCityWeather(cityData.name, cityData.id);
     const imageData = await getCityImage(`${cityData.name} city ${cityData.country}`);
 
     dispatch(weatherActions.addImage(
-      {[cityData.id]:imageData}
+      {[cityData.id]: imageData}
     ));
     dispatch(weatherActions.addCity(weatherData));
   }
@@ -22,7 +22,7 @@ export const getCityData = createAsyncThunk(
 
 export const updateWeatherData = createAsyncThunk(
   '@@weather/updatedWeatherData',
-  async (_, { dispatch, getState }) => {
+  async (_, {dispatch, getState}) => {
     const state = getState() as IRootState['entities'];
 
     if (!state) {
@@ -48,7 +48,6 @@ export const updateWeatherData = createAsyncThunk(
   });
 
 
-
 const initialState: IRootState = {
   images: {},
   lastUpdateDate: null,
@@ -66,6 +65,10 @@ export const weatherSlice = createSlice({
     removeCity: (state, action: PayloadAction<number>) => {
       cityWeatherListAdapter.removeOne(state, action.payload);
       delete state.images[action.payload];
+
+      if (cityWeatherListAdapter.getSelectors().selectAll(state).length === 0) {
+        state.lastUpdateDate = null;
+      }
     },
     addImage: (state, action) => {
       state.images = {...state.images, ...action.payload};
@@ -91,6 +94,7 @@ export const weatherSlice = createSlice({
       })
       .addCase(getCityData.fulfilled, (state) => {
         state.status = 'success';
+        state.errorMessage = '';
       })
   }
 });
