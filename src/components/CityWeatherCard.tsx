@@ -35,7 +35,7 @@ const CityWeatherCardItem: FC<ICityWeatherCardProps> = (props) => {
       <div className="group relative min-h-[350px] p-10 text-white overflow-hidden rounded-[20px] shadow-md">
         <div className="relative z-30 select-none">
           <div className="flex items-start text-2xl">
-            <IoIosPin className="w-7 h-8 shrink-0 mr-1"/>
+            <IoIosPin className="w-6 h-7 shrink-0 mr-1"/>
             {props.city.name}
           </div>
           <p className="flex items-start mt-2 mb-2 text-7xl font-bold">

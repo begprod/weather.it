@@ -30,7 +30,7 @@ export const SearchInput: FC<IInputProps> = (props) => {
           value={props.value}
           required={props.required}
           autoComplete={props.autoComplete}
-          onChange={(e) => props.onChange(e.target.value)}
+          onChange={(event) => props.onChange(event.target.value)}
           autoFocus
         />
         <div className="absolute inset-y-0 right-0 flex items-center pr-5 pointer-events-none">

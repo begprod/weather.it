@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
 import { getCityWeather, getCityImage } from '../../services/api';
 import { IRootState, ISearchItem, ICityWeather } from '../../types';
+import { createDate } from '../../helpers';
 
 const cityWeatherListAdapter = createEntityAdapter<ICityWeather>({
   selectId: (city) => city.id,
@@ -39,6 +40,7 @@ export const updateWeatherData = createAsyncThunk(
 
         dispatch(weatherActions.addCity(weatherData));
         dispatch(weatherActions.setStatus('success'));
+        dispatch(weatherActions.setLastUpdateDate(createDate()));
       } catch (error) {
         console.log('error', error);
       }
@@ -49,6 +51,7 @@ export const updateWeatherData = createAsyncThunk(
 
 const initialState: IRootState = {
   images: {},
+  lastUpdateDate: null,
   status: 'init',
   errorMessage: '',
 };
@@ -66,6 +69,9 @@ export const weatherSlice = createSlice({
     },
     addImage: (state, action) => {
       state.images = {...state.images, ...action.payload};
+    },
+    setLastUpdateDate: (state, action) => {
+      state.lastUpdateDate = action.payload;
     },
     setStatus: (state, action) => {
       state.status = action.payload;
@@ -91,6 +97,7 @@ export const weatherSlice = createSlice({
 
 export const selectWeatherList = cityWeatherListAdapter.getSelectors().selectAll;
 export const selectCityImages = (state: IRootState) => state.images;
+export const selectLastUpdateDate = (state: IRootState) => state.lastUpdateDate;
 export const selectWeatherStatus = (state: IRootState) => state.status;
 export const selectWeatherErrorMessage = (state: IRootState) => state.errorMessage;
 

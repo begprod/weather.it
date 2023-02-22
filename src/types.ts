@@ -4,6 +4,7 @@ export interface IRootState {
   ids?: EntityId[];
   entities?: EntityState<ICityWeather>;
   images: IImages;
+  lastUpdateDate: string | null;
   status: 'init' | 'loading' | 'updating' | 'success' | 'error';
   errorMessage: string;
 }

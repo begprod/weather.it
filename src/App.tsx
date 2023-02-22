@@ -2,11 +2,12 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from './store';
 import { WeatherIconsDoodle, SearchLayout, CityWeatherCardLayout, UpdateButton } from './components';
-import { selectWeatherList, selectWeatherStatus, updateWeatherData } from './features/weather/weather-slice';
+import { updateWeatherData, selectWeatherList, selectWeatherStatus, selectLastUpdateDate } from './features/weather/weather-slice';
 
 export const App: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const weatherCitiesList = useSelector(selectWeatherList);
+  const lastUpdate = useSelector(selectLastUpdateDate);
   const status = useSelector(selectWeatherStatus);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ export const App: FC = () => {
       {weatherCitiesList.length > 0 && (
         <UpdateButton
           isLoading={status === 'updating'}
+          subText={lastUpdate ? `${lastUpdate}` : ''}
           onclick={() => dispatch(updateWeatherData())}
         />
       )}
