@@ -7,9 +7,9 @@ import { ISearchItem, ISearchItemList } from '../types';
 import { AppDispatch } from '../store';
 import { useDebounce } from "../hooks";
 import { getCityData, selectWeatherList } from '../features/weather/weather-slice'
-import { SearchInput, SearchResultItem } from './';
+import { SearchInput, SearchItem } from './';
 
-export const SearchLayout: FC = () => {
+export const SearchBar: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [foundCitiesList, setFoundCitiesList] = useState<Array<ISearchItem>>([]);
@@ -71,7 +71,7 @@ export const SearchLayout: FC = () => {
 
     return foundCitiesList.map((city: ISearchItem, index: number) => {
       return (
-        <SearchResultItem
+        <SearchItem
           key={city.id}
           city={city}
           onSelectItem={selectItemHandler}

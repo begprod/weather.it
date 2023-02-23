@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { generateParticles } from '../helpers';
 
-export const WeatherIconsDoodle: FC = () => {
+export const IconsDoodle: FC = () => {
   return (
     <div className="weather-doodle flex justify-between mb-10 text-center text-5xl">
       <div className="weather-icon weather-icon_clear"></div>

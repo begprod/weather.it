@@ -4,7 +4,7 @@ interface ICityWeatherCardSkeletonProps {
   image?: string;
 }
 
-export const CityWeatherCardSkeleton: FC<ICityWeatherCardSkeletonProps> = (props) => {
+export const CardCitySkeleton: FC<ICityWeatherCardSkeletonProps> = (props) => {
   return (
     <div className="relative flex flex-col w-full h-[350px] p-10 bg-white rounded-[20px] shadow-md overflow-hidden">
       <div className="relative z-30">

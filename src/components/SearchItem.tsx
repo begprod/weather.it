@@ -8,7 +8,7 @@ interface IItemListProps {
   onSelectItem: (item: ISearchItem) => void;
 }
 
-export const SearchResultItem: FC<IItemListProps> = (props) => {
+export const SearchItem: FC<IItemListProps> = (props) => {
   function selectItem(item: ISearchItem) {
     props.onSelectItem(item);
   }

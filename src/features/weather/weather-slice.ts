@@ -1,6 +1,6 @@
-import { createAsyncThunk, createEntityAdapter, createSlice, EntityState, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getCityImage, getCityWeather } from '../../services/api';
-import { ICityWeather, IRootState, ISearchItem } from '../../types';
+import { IRootState, ICityWeather, ISearchItem } from '../../types';
 import { createDate } from '../../helpers';
 
 const cityWeatherListAdapter = createEntityAdapter<ICityWeather>({

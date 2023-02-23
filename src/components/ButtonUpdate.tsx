@@ -7,7 +7,7 @@ interface IUpdateButtonProps {
   onclick: () => void;
 }
 
-export const UpdateButton: FC<IUpdateButtonProps> = (props) => {
+export const ButtonUpdate: FC<IUpdateButtonProps> = (props) => {
   return (
     <div className="fixed right-6 bottom-6 flex flex-col items-center z-50">
       <button

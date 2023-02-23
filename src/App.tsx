@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from './store';
-import { WeatherIconsDoodle, SearchLayout, CityWeatherCardLayout, UpdateButton } from './components';
+import { IconsDoodle, SearchBar, CardGrid, ButtonUpdate } from './components';
 import { updateWeatherData, selectWeatherList, selectWeatherStatus, selectLastUpdateDate } from './features/weather/weather-slice';
 
 export const App: FC = () => {
@@ -17,12 +17,12 @@ export const App: FC = () => {
   return (
     <div className="font-body flex flex-col items-center justify-center pt-32 pr-12 pb-32 pl-12 min-h-screen">
       <div className="w-full md:w-[500px]">
-        <WeatherIconsDoodle />
-        <SearchLayout />
+        <IconsDoodle />
+        <SearchBar />
       </div>
-      <CityWeatherCardLayout />
+      <CardGrid />
       {weatherCitiesList.length > 0 && (
-        <UpdateButton
+        <ButtonUpdate
           isLoading={status === 'updating'}
           subText={lastUpdate ? `${lastUpdate}` : ''}
           onclick={() => dispatch(updateWeatherData())}
