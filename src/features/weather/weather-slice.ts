@@ -23,6 +23,7 @@ export const getCityData = createAsyncThunk(
 export const updateWeatherData = createAsyncThunk(
   '@@weather/updatedWeatherData',
   async (_, {dispatch, getState}) => {
+    const date = createDate();
     const state = getState() as IRootState['entities'];
 
     if (!state) {
@@ -33,6 +34,7 @@ export const updateWeatherData = createAsyncThunk(
     const promises = cities.map((city) => getCityWeather(city.name, city.id));
 
     dispatch(weatherActions.setStatus('updating'));
+    dispatch(weatherActions.setLastUpdateDate(date));
 
     for (const promise of promises) {
       try {
@@ -40,7 +42,6 @@ export const updateWeatherData = createAsyncThunk(
 
         dispatch(weatherActions.addCity(weatherData));
         dispatch(weatherActions.setStatus('success'));
-        dispatch(weatherActions.setLastUpdateDate(createDate()));
       } catch (error) {
         console.log('error', error);
       }
