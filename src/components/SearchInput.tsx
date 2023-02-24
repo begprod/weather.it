@@ -33,7 +33,7 @@ export const SearchInput: FC<IInputProps> = (props) => {
           onChange={(event) => props.onChange(event.target.value)}
           autoFocus
         />
-        <div className="absolute hidden sm:block inset-y-0 right-0 flex items-center pr-5 pointer-events-none z-20">
+        <div className="absolute hidden sm:flex inset-y-0 right-0 flex items-center pr-5 pointer-events-none z-20">
           <HiOutlineSearch className="w-8 h-8 opacity-30" />
         </div>
       </div>
