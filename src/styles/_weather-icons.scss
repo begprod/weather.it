@@ -115,6 +115,11 @@ $dust: (
     #{$name}: $value;
   }
 
+  @media (max-width: 375px) {
+    width: 60px;
+    height: 60px;
+  }
+
   &::after {
     content: "";
     position: absolute;

@@ -15,7 +15,7 @@ export const App: FC = () => {
   }, [])
 
   return (
-    <div className="font-body flex flex-col items-center justify-center pt-32 pr-12 pb-32 pl-12 min-h-screen">
+    <div className="font-body min-h-screen flex flex-col items-center justify-center pt-32 pr-6 pb-32 pl-6">
       <div className="w-full md:w-[500px]">
         <IconsDoodle />
         <SearchBar />

@@ -11,7 +11,7 @@ export const CardGrid: FC = () => {
   const errorMessage = useSelector(selectWeatherErrorMessage);
 
   return (
-    <div className="grid grid-cols-3 w-full pl-24 pr-24 pb-24 gap-16 mt-28">
+    <div className="w-full max-w-screen-2xl m-auto grid grid-cols-1 gap-4 mt-20 lg:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-8">
       {citiesList.map((city: ICityWeather) => {
         return (
           <CardCity
