@@ -21,7 +21,6 @@ export const CardGrid: FC = () => {
           />
         );
       })}
-      {status === 'error' && <div>{errorMessage}</div>}
       {status === 'loading' && <CardCitySkeleton />}
     </div>
   );

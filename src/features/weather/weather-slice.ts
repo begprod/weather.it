@@ -43,7 +43,8 @@ export const updateWeatherData = createAsyncThunk(
         dispatch(weatherActions.addCity(weatherData));
         dispatch(weatherActions.setStatus('success'));
       } catch (error) {
-        console.log('error', error);
+        dispatch(weatherActions.setStatus('error'));
+        // dispatch(weatherActions.setErrorMessage(error.message));
       }
     }
   });

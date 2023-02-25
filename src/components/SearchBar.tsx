@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { MdOutlineLocationOff } from 'react-icons/md';
 import { RiLoaderLine } from 'react-icons/ri';
 import { getSearchCitiesList } from '../services/api';
@@ -14,6 +15,7 @@ export const SearchBar: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [foundCitiesList, setFoundCitiesList] = useState<Array<ISearchItem>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
   const weatherCitiesList = useSelector(selectWeatherList);
 
   const debouncedSearch = useDebounce(searchQuery, 1100);
@@ -39,13 +41,33 @@ export const SearchBar: FC = () => {
           setIsLoading(false);
         })
         .catch((error) => {
-          console.log(error);
+          setIsLoading(false);
+          setIsError(true);
+          toast.error('Something went wrong. Please try again later.', {
+            position: 'bottom-center',
+            theme: 'colored',
+            toastId: 'search_error',
+            draggableDirection: 'y',
+            draggablePercent: 60,
+            autoClose: 3000,
+          });
         });
     }
   }, [debouncedSearch]);
 
   function selectItemHandler(item: ISearchItem) {
-    dispatch(getCityData(item));
+    dispatch(getCityData(item))
+      .unwrap()
+      .catch((error) => {
+        toast.error('Something went wrong. Please try again later.', {
+          position: 'bottom-center',
+          theme: 'colored',
+          toastId: 'search_error',
+          draggableDirection: 'y',
+          draggablePercent: 60,
+          autoClose: 3000,
+        });
+      });
     setSearchQuery('');
   }
 
@@ -60,7 +82,7 @@ export const SearchBar: FC = () => {
       );
     }
 
-    if (foundCitiesList.length === 0 && searchQuery.length !== 0) {
+    if (foundCitiesList.length === 0 && searchQuery.length !== 0 && !isError) {
       return (
         <div className="flex items-center justify-center p-3 select-none">
           <MdOutlineLocationOff className="w-6 h-6 mr-3 opacity-30" />
