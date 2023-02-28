@@ -33,6 +33,10 @@ export const updateWeatherData = createAsyncThunk(
     const cities = selectWeatherList(state);
     const promises = cities.map((city) => getCityWeather(city.name, city.id));
 
+    if (promises.length === 0) {
+      return;
+    }
+
     dispatch(weatherActions.setStatus('updating'));
     dispatch(weatherActions.setLastUpdateDate(date));
 
@@ -44,7 +48,6 @@ export const updateWeatherData = createAsyncThunk(
         dispatch(weatherActions.setStatus('success'));
       } catch (error) {
         dispatch(weatherActions.setStatus('error'));
-        // dispatch(weatherActions.setErrorMessage(error.message));
       }
     }
   });
