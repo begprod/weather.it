@@ -1,13 +1,16 @@
 import { FC } from 'react';
 import { GrUpdate } from 'react-icons/gr';
+import { useSelector } from 'react-redux';
+import { selectLastUpdateDate } from '../features/weather/weather-slice';
 
 interface IUpdateButtonProps {
   isLoading: boolean;
-  subText?: string;
   onclick: () => void;
 }
 
 export const ButtonUpdate: FC<IUpdateButtonProps> = (props) => {
+  const lastUpdate = useSelector(selectLastUpdateDate);
+
   return (
     <div className="fixed right-6 bottom-6 flex flex-col items-center z-50">
       <button
@@ -16,7 +19,9 @@ export const ButtonUpdate: FC<IUpdateButtonProps> = (props) => {
       >
         {props.isLoading ? <div className="animate-spin"><GrUpdate /></div> : <GrUpdate />}
       </button>
-      <span className="mt-1 md:mt-3 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white">{props.subText}</span>
+      {lastUpdate && (
+        <span className="mt-1 md:mt-3 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white">{lastUpdate}</span>
+      )}
     </div>
   )
 };

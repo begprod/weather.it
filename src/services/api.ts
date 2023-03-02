@@ -14,6 +14,11 @@ export async function getSearchCitiesList(name: string): Promise<ISearchItemList
     `${process.env.REACT_APP_GEO_DB_API_URL}/cities?limit=10&languageCode=en&minPopulation=500000&namePrefix=${name}`,
     GEO_DB_API_OPTIONS
   )
+
+  if (response.status !== 200) {
+    throw new Error('Something went wrong with getting cities list. Please try again later.');
+  }
+
   const citiesData = await response.json();
 
   return {
@@ -29,11 +34,16 @@ export async function getSearchCitiesList(name: string): Promise<ISearchItemList
 
 export async function getCityWeather(cityName: string, id: number): Promise<ICityWeather> {
   const response = await fetch(`${process.env.REACT_APP_WEATHER_API_URL}/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
-  const weatherData = await response.json();
 
   if (response.status === 404) {
-    throw new Error('City not found');
+    throw new Error('Weather data for this city is not found.');
   }
+
+  if (response.status !== 200 && response.status !== 404) {
+    throw new Error('Something went wrong with getting weather data. Please try again later.');
+  }
+
+  const weatherData = await response.json();
 
   return {
     id,
@@ -48,7 +58,7 @@ export async function getCityWeather(cityName: string, id: number): Promise<ICit
 }
 
 export async function getCityImage(query: string): Promise<IGetCityImageResponse> {
-  const response = await fetch(`${process.env.REACT_APP_UNSPLASH_API_URL}/?query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`)
+  const response = await fetch(`${process.env.REACT_APP_UNSPLASH_API_URL}/?query=${query}&client_id=${process.env.REACT_APP_UNSPLASH_API_ACCESS_KEY}`);
 
   if (response.status === 403 || response.status === 401 || response.status === 404) {
     return {

@@ -43,13 +43,8 @@ export const SearchBar: FC = () => {
         .catch((error) => {
           setIsLoading(false);
           setIsError(true);
-          toast.error('Something went wrong. Please try again later.', {
-            position: 'bottom-center',
-            theme: 'colored',
-            toastId: 'search_error',
-            draggableDirection: 'y',
-            draggablePercent: 60,
-            autoClose: 3000,
+          toast.error(error.message, {
+            toastId: 'getSearchCitiesListError'
           });
         });
     }
@@ -59,13 +54,8 @@ export const SearchBar: FC = () => {
     dispatch(getCityData(item))
       .unwrap()
       .catch((error) => {
-        toast.error('Something went wrong. Please try again later.', {
-          position: 'bottom-center',
-          theme: 'colored',
-          toastId: 'search_error',
-          draggableDirection: 'y',
-          draggablePercent: 60,
-          autoClose: 3000,
+        toast.error(error.message, {
+          toastId: 'getCityDataError'
         });
       });
     setSearchQuery('');

@@ -48,6 +48,7 @@ export const updateWeatherData = createAsyncThunk(
         dispatch(weatherActions.setStatus('success'));
       } catch (error) {
         dispatch(weatherActions.setStatus('error'));
+        throw new Error('Something went wrong with updating weather data. Please try again later.');
       }
     }
   });
