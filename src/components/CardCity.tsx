@@ -54,7 +54,7 @@ const CityWeatherCardItem: FC<ICityWeatherCardProps> = (props) => {
           </div>
         </div>
         <button
-          className="group-hover:block absolute top-3 right-3 z-30 hidden"
+          className="group-hover:visible group-hover:opacity-100 absolute top-3 right-3 z-30 invisible opacity-0 transition-all duration-300 ease-in-out"
           onClick={() => dispatch(weatherActions.removeCity(props.city.id))}
         >
           <MdOutlineClose className="w-7 h-7"/>
