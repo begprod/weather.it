@@ -4,12 +4,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { AppDispatch } from './store';
 import { IconsDoodle, SearchBar, CardGrid, ButtonUpdate } from './components';
-import { updateWeatherData, selectWeatherList, selectWeatherStatus } from './features/weather/weather-slice';
+import { updateWeatherData, selectWeatherList, selectStatus } from './features/weather/weather-slice';
 
 export const App: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const weatherCitiesList = useSelector(selectWeatherList);
-  const status = useSelector(selectWeatherStatus);
+  const status = useSelector(selectStatus);
 
   useEffect(() => {
     dispatch(updateWeatherData())

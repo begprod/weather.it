@@ -1,50 +1,42 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { MdOutlineLocationOff } from 'react-icons/md';
 import { RiLoaderLine } from 'react-icons/ri';
-import { getSearchCitiesList } from '../services/api';
-import { ISearchItem, ISearchItemList } from '../types';
+import { toast } from 'react-toastify';
+import { ISearchItem } from '../types';
 import { AppDispatch } from '../store';
 import { useDebounce } from "../hooks";
-import { getCityData, selectWeatherList } from '../features/weather/weather-slice'
+import {
+  getSearchCities,
+  getCityData,
+  selectSearchCitiesResult,
+  selectStatus,
+  weatherActions
+} from '../features/weather/weather-slice'
 import { SearchInput, SearchItem } from './';
 
 export const SearchBar: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [foundCitiesList, setFoundCitiesList] = useState<Array<ISearchItem>>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
-  const weatherCitiesList = useSelector(selectWeatherList);
-
+  const searchCitiesList = useSelector(selectSearchCitiesResult);
+  const status = useSelector(selectStatus);
   const debouncedSearch = useDebounce(searchQuery, 1100);
 
   useEffect(() => {
-    setIsLoading(true);
-
-    if (searchQuery === '') {
-      setFoundCitiesList([]);
-      setIsLoading(false);
+    if (searchQuery.length === 0) {
+      dispatch(weatherActions.setSearchCitiesResult([]));
     }
   }, [searchQuery]);
 
   useEffect(() => {
-    if (debouncedSearch) {
-      getSearchCitiesList(searchQuery)
-        .then((data: ISearchItemList) => {
-          const result = data.cities.filter((city) => {
-            return !weatherCitiesList.some((item) => item.id === city.id);
-          });
+    dispatch(weatherActions.setStatus('searching'));
 
-          setFoundCitiesList(result);
-          setIsLoading(false);
-        })
+    if (debouncedSearch) {
+      dispatch(getSearchCities(searchQuery))
+        .unwrap()
         .catch((error) => {
-          setIsLoading(false);
-          setIsError(true);
           toast.error(error.message, {
-            toastId: 'getSearchCitiesListError'
+            toastId: 'getSearchCitiesError'
           });
         });
     }
@@ -62,7 +54,7 @@ export const SearchBar: FC = () => {
   }
 
   function render() {
-    if (isLoading && searchQuery.length !== 0) {
+    if (status === 'searching' && searchQuery.length !== 0) {
       return (
         <div className="flex items-center justify-center p-3">
           <div className="animate-spin">
@@ -72,7 +64,7 @@ export const SearchBar: FC = () => {
       );
     }
 
-    if (foundCitiesList.length === 0 && searchQuery.length !== 0 && !isError) {
+    if (searchCitiesList.length === 0 && searchQuery.length !== 0 && status !== 'searching' && status !== 'error') {
       return (
         <div className="flex items-center justify-center p-3 select-none">
           <MdOutlineLocationOff className="w-6 h-6 mr-3 opacity-30" />
@@ -81,7 +73,7 @@ export const SearchBar: FC = () => {
       );
     }
 
-    return foundCitiesList.map((city: ISearchItem, index: number) => {
+    return searchCitiesList.map((city: ISearchItem) => {
       return (
         <SearchItem
           key={city.id}

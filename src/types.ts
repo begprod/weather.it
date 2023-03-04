@@ -3,9 +3,10 @@ import { EntityId, EntityState } from '@reduxjs/toolkit';
 export interface IRootState {
   ids?: EntityId[];
   entities?: EntityState<ICityWeather>;
+  searchCitiesResult: Array<ISearchItem>;
   images: IImages;
   lastUpdateDate: string | null;
-  status: 'init' | 'loading' | 'updating' | 'success' | 'error';
+  status: 'init' | 'loading' | 'updating' | 'searching' |  'success' | 'error';
   errorMessage: string;
 }
 
