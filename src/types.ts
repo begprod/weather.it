@@ -4,14 +4,10 @@ export interface IRootState {
   ids?: EntityId[];
   entities?: EntityState<ICityWeather>;
   searchCitiesResult: Array<ISearchItem>;
-  images: IImages;
+  images: Record<number, string>;
   lastUpdateDate: string | null;
   status: 'init' | 'loading' | 'updating' | 'searching' |  'success' | 'error';
   errorMessage: string;
-}
-
-export interface IImages {
-  [key: string]: IGetCityImageResponse;
 }
 
 
@@ -19,10 +15,6 @@ export interface ISearchItem {
   id: number;
   name: string;
   country: string;
-}
-
-export interface ISearchItemList {
-  cities: Array<ISearchItem>;
 }
 
 export interface ICityWeather {
@@ -34,12 +26,6 @@ export interface ICityWeather {
     main: string;
     description: string;
   };
-}
-
-export interface IGetCityImageResponse {
-  urls: {
-    regular: string;
-  }
 }
 
 export enum WeatherType {

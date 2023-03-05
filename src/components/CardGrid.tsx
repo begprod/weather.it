@@ -16,7 +16,7 @@ export const CardGrid: FC = () => {
           <CardCity
             key={city.id}
             city={city}
-            image={images[city.id].urls.regular}
+            image={images[city.id]}
           />
         );
       })}

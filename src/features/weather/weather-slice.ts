@@ -1,5 +1,5 @@
 import { createAsyncThunk, createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getSearchCitiesList, getCityImage, getCityWeather } from '../../services/api';
+import { getSearchCitiesList, getCityImage, getCityWeather } from '../../services';
 import { IRootState, ICityWeather, ISearchItem } from '../../types';
 import { createDate } from '../../helpers';
 
@@ -18,7 +18,7 @@ export const getSearchCities = createAsyncThunk(
 
     const cities = selectWeatherList(state);
     const citiesList = await getSearchCitiesList(cityName);
-    const result = citiesList.cities.filter((city) => {
+    const result = citiesList.filter((city) => {
       return !cities.some((item) => item.id === city.id);
     });
 

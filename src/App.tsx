@@ -15,7 +15,6 @@ export const App: FC = () => {
     dispatch(updateWeatherData())
       .unwrap()
       .catch((error) => {
-        console.log('error', error);
         toast.error(error.message, {
           toastId: 'updateWeatherDataError'
         });
