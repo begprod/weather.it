@@ -23,14 +23,15 @@ export const SearchBar: FC = () => {
   const debouncedSearch = useDebounce(searchQuery, 1100);
 
   useEffect(() => {
+    dispatch(weatherActions.setStatus('searching'));
+
     if (searchQuery.length === 0) {
       dispatch(weatherActions.setSearchCitiesResult([]));
+      dispatch(weatherActions.setStatus('init'));
     }
   }, [searchQuery]);
 
   useEffect(() => {
-    dispatch(weatherActions.setStatus('searching'));
-
     if (debouncedSearch) {
       dispatch(getSearchCities(searchQuery))
         .unwrap()
