@@ -38,5 +38,5 @@ export const SearchInput: FC<IInputProps> = (props) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};

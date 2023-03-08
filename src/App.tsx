@@ -1,15 +1,13 @@
 import { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { AppDispatch } from './store';
 import { IconsDoodle, SearchBar, CardGrid, ButtonUpdate } from './components';
-import { updateWeatherData, selectWeatherList, selectStatus } from './features/weather/weather-slice';
+import { updateWeatherData } from './features/weather/weather-slice';
 
 export const App: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const weatherCitiesList = useSelector(selectWeatherList);
-  const status = useSelector(selectStatus);
 
   useEffect(() => {
     dispatch(updateWeatherData())
@@ -30,12 +28,7 @@ export const App: FC = () => {
 
       <CardGrid />
 
-      {weatherCitiesList.length > 0 && (
-        <ButtonUpdate
-          isLoading={status === 'updating'}
-          onclick={() => dispatch(updateWeatherData())}
-        />
-      )}
+      <ButtonUpdate />
 
       <ToastContainer
         position="bottom-center"

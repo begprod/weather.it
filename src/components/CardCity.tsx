@@ -1,11 +1,11 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoIosPin } from 'react-icons/io';
 import { MdOutlineClose } from 'react-icons/md';
 import { VscCircleOutline } from 'react-icons/vsc';
-import { ICityWeather, IRootState, WeatherType } from '../types';
+import { ICityWeather, WeatherType } from '../types';
 import { AppDispatch } from '../store';
-import { weatherActions } from '../features/weather/weather-slice'
+import { selectStatus, weatherActions } from '../features/weather/weather-slice'
 import { generateParticles } from '../helpers';
 import { CardCitySkeleton } from './CardCitySkeleton';
 
@@ -14,9 +14,13 @@ interface ICityWeatherCardProps {
   image: string;
 }
 
-const CityWeatherCardItem: FC<ICityWeatherCardProps> = (props) => {
+const CardCityMemo: FC<ICityWeatherCardProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const status = useSelector((state: IRootState) => state.status);
+  const status = useSelector(selectStatus);
+
+  const particles = useCallback(() => {
+    return generateParticles();
+  }, []);
 
   function setWeatherTypeIcon(type: string): WeatherType {
     return WeatherType[type as keyof typeof WeatherType];
@@ -28,7 +32,7 @@ const CityWeatherCardItem: FC<ICityWeatherCardProps> = (props) => {
         <CardCitySkeleton
           image={props.image}
         />
-      )
+      );
     }
 
     return (
@@ -50,7 +54,7 @@ const CityWeatherCardItem: FC<ICityWeatherCardProps> = (props) => {
           </p>
           <p className="text-sm">{props.city.weather.description}</p>
           <div className={`mt-5 weather-icon weather-icon_${setWeatherTypeIcon(props.city.weather.main)}`}>
-            {generateParticles()}
+            {particles()}
           </div>
         </div>
         <button
@@ -65,7 +69,7 @@ const CityWeatherCardItem: FC<ICityWeatherCardProps> = (props) => {
           style={{ backgroundImage: `url(${props.image})` }}
         />
       </div>
-    )
+    );
   }
 
   return (
@@ -73,6 +77,8 @@ const CityWeatherCardItem: FC<ICityWeatherCardProps> = (props) => {
       {render()}
     </>
   );
-}
+};
 
-export const CardCity = memo((props: ICityWeatherCardProps) => (CityWeatherCardItem(props)));
+export const CardCity = memo(CardCityMemo, (prevProps, nextProps) => {
+  return JSON.stringify(prevProps) === JSON.stringify(nextProps);
+});

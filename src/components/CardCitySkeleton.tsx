@@ -27,4 +27,4 @@ export const CardCitySkeleton: FC<ICityWeatherCardSkeletonProps> = (props) => {
       />
     </div>
   );
-}
+};
