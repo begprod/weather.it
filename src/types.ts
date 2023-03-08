@@ -6,7 +6,7 @@ export interface IRootState {
   searchCitiesResult: Array<ISearchItem>;
   images: Record<number, string>;
   lastUpdateDate: string | null;
-  status: 'init' | 'loading' | 'updating' | 'searching' |  'success' | 'error';
+  status: 'init' | 'loading' | 'updating' | 'success' | 'error';
   errorMessage: string;
 }
 

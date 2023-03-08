@@ -10,7 +10,7 @@ import {
   getSearchCities,
   getCityData,
   selectSearchCitiesResult,
-  selectStatus,
+  selectWeatherList,
   weatherActions
 } from '../features/weather/weather-slice'
 import { SearchInput, SearchItem } from './';
@@ -18,16 +18,17 @@ import { SearchInput, SearchItem } from './';
 export const SearchBar: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const citiesList = useSelector(selectWeatherList);
   const searchCitiesList = useSelector(selectSearchCitiesResult);
-  const status = useSelector(selectStatus);
   const debouncedSearch = useDebounce(searchQuery, 1100);
 
   useEffect(() => {
-    dispatch(weatherActions.setStatus('searching'));
+    setIsSearching(true);
 
     if (searchQuery.length === 0) {
       dispatch(weatherActions.setSearchCitiesResult([]));
-      dispatch(weatherActions.setStatus('init'));
+      setIsSearching(false);
     }
   }, [searchQuery]);
 
@@ -35,6 +36,9 @@ export const SearchBar: FC = () => {
     if (debouncedSearch) {
       dispatch(getSearchCities(searchQuery))
         .unwrap()
+        .then(() => {
+          setIsSearching(false);
+        })
         .catch((error) => {
           toast.error(error.message, {
             toastId: 'getSearchCitiesError'
@@ -46,6 +50,13 @@ export const SearchBar: FC = () => {
   function selectItemHandler(item: ISearchItem) {
     dispatch(getCityData(item))
       .unwrap()
+      .then(() => {
+        if (citiesList.length >= 6) {
+          toast.success(`${item.name} city added`, {
+            toastId: 'getCityDataSuccess'
+          });
+        }
+      })
       .catch((error) => {
         toast.error(error.message, {
           toastId: 'getCityDataError'
@@ -55,7 +66,7 @@ export const SearchBar: FC = () => {
   }
 
   function render() {
-    if (status === 'searching' && searchQuery.length !== 0) {
+    if (isSearching && searchQuery.length !== 0) {
       return (
         <div className="flex items-center justify-center p-3">
           <div className="animate-spin">
@@ -65,7 +76,7 @@ export const SearchBar: FC = () => {
       );
     }
 
-    if (searchCitiesList.length === 0 && searchQuery.length !== 0 && status !== 'searching' && status !== 'error') {
+    if (!isSearching && searchCitiesList.length === 0 && searchQuery.length !== 0) {
       return (
         <div className="flex items-center justify-center p-3 select-none">
           <MdOutlineLocationOff className="w-6 h-6 mr-3 opacity-30" />
