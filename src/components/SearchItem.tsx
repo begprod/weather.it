@@ -31,3 +31,5 @@ export const SearchItem: FC<IItemListProps> = (props) => {
     </div>
   );
 };
+
+SearchItem.displayName = 'SearchItem';

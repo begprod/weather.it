@@ -18,3 +18,5 @@ const IconsDoodleMemo: FC = () => {
 
 export const IconsDoodle = memo(IconsDoodleMemo);
 
+IconsDoodle.displayName = 'IconsDoodle';
+

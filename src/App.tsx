@@ -17,7 +17,7 @@ export const App: FC = () => {
           toastId: 'updateWeatherDataError'
         });
       });
-  }, [])
+  }, []);
 
   return (
     <div className="font-body min-h-screen flex flex-col items-center justify-center pt-32 pr-6 pb-32 pl-6">
@@ -40,4 +40,4 @@ export const App: FC = () => {
       />
     </div>
   );
-}
+};

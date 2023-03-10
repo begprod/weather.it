@@ -24,3 +24,5 @@ export const CardGrid: FC = () => {
     </div>
   );
 };
+
+CardGrid.displayName = 'CardGrid';

@@ -1,4 +1,4 @@
-export function generateParticles(): JSX.Element[] {
+export function generateParticles(): Array<JSX.Element> {
   const particlesNumber: number = 10;
   let particles: Array<JSX.Element> = [];
 

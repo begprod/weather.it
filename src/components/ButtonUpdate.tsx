@@ -23,6 +23,7 @@ export const ButtonUpdate: FC = () => {
           <button
             className="rounded-full bg-white border p-3 md:p-5 shadow-sm shadow-gray-200 hover:rotate-45 hover:shadow-lg transition-all duration-300"
             onClick={() => dispatch(updateWeatherData())}
+            type="button"
           >
             {status === 'updating' ? <div className="animate-spin"><GrUpdate /></div> : <GrUpdate />}
           </button>
@@ -34,3 +35,5 @@ export const ButtonUpdate: FC = () => {
     </>
   );
 };
+
+ButtonUpdate.displayName = 'ButtonUpdate';

@@ -1,4 +1,4 @@
-export { IconsDoodle } from './IconsDoodle'
+export { IconsDoodle } from './IconsDoodle';
 export { SearchBar } from './SearchBar';
 export { SearchInput } from './SearchInput';
 export { SearchItem } from './SearchItem';

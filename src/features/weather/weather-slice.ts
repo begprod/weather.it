@@ -130,7 +130,7 @@ export const weatherSlice = createSlice({
       .addCase(getCityData.fulfilled, (state) => {
         state.status = 'success';
         state.errorMessage = '';
-      })
+      });
   }
 });
 

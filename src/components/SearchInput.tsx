@@ -40,3 +40,5 @@ export const SearchInput: FC<IInputProps> = (props) => {
     </>
   );
 };
+
+SearchInput.displayName = 'SearchInput';

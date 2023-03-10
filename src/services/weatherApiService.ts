@@ -3,7 +3,7 @@ import { ICityWeather } from '../types';
 
 export async function getCityWeather(cityName: string, id: number): Promise<ICityWeather> {
   try {
-    const { data } = await weatherApi.get(`/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`)
+    const { data } = await weatherApi.get(`/weather?q=${cityName}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`);
 
     return {
       id,

@@ -5,7 +5,7 @@ import { MdOutlineClose } from 'react-icons/md';
 import { VscCircleOutline } from 'react-icons/vsc';
 import { ICityWeather, WeatherType } from '../types';
 import { AppDispatch } from '../store';
-import { selectStatus, weatherActions } from '../features/weather/weather-slice'
+import { selectStatus, weatherActions } from '../features/weather/weather-slice';
 import { generateParticles } from '../helpers';
 import { CardCitySkeleton } from './CardCitySkeleton';
 
@@ -60,6 +60,7 @@ const CardCityMemo: FC<ICityWeatherCardProps> = (props) => {
         <button
           className="group-hover:visible group-hover:opacity-100 absolute top-3 right-3 z-30 invisible opacity-0 transition-all duration-300 ease-in-out"
           onClick={() => dispatch(weatherActions.removeCity(props.city.id))}
+          type="button"
         >
           <MdOutlineClose className="w-7 h-7"/>
         </button>
@@ -82,3 +83,5 @@ const CardCityMemo: FC<ICityWeatherCardProps> = (props) => {
 export const CardCity = memo(CardCityMemo, (prevProps, nextProps) => {
   return JSON.stringify(prevProps) === JSON.stringify(nextProps);
 });
+
+CardCityMemo.displayName = 'CardCityMemo';

@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { ThunkDispatch } from "redux-thunk";
+import { ThunkDispatch } from 'redux-thunk';
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -11,8 +11,8 @@ export type AppDispatch = ThunkDispatch<IRootState, any, AnyAction>;
 const persistConfig = {
   key: 'weather.it',
   storage,
-}
-const persistedReducer = persistReducer(persistConfig, weatherReducer)
+};
+const persistedReducer = persistReducer(persistConfig, weatherReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,

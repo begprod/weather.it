@@ -5,14 +5,14 @@ import { RiLoaderLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import { ISearchItem } from '../types';
 import { AppDispatch } from '../store';
-import { useDebounce } from "../hooks";
+import { useDebounce } from '../hooks';
 import {
   getSearchCities,
   getCityData,
   selectSearchCitiesResult,
   selectWeatherList,
   weatherActions
-} from '../features/weather/weather-slice'
+} from '../features/weather/weather-slice';
 import { SearchInput, SearchItem } from './';
 
 export const SearchBar: FC = () => {
@@ -115,3 +115,5 @@ export const SearchBar: FC = () => {
     </>
   );
 };
+
+SearchBar.displayName = 'SearchBar';

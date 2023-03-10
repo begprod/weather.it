@@ -28,3 +28,5 @@ export const CardCitySkeleton: FC<ICityWeatherCardSkeletonProps> = (props) => {
     </div>
   );
 };
+
+CardCitySkeleton.displayName = 'CardCitySkeleton';

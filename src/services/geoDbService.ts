@@ -10,8 +10,8 @@ export async function getSearchCitiesList(name: string): Promise<Array<ISearchIt
         id: city.id,
         name: city.name,
         country: city.country
-      }
-    })
+      };
+    });
   } catch (error) {
     throw new Error('Something went wrong with getting cities list. Please try again later.');
   }
