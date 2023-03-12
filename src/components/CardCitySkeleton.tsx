@@ -6,7 +6,7 @@ interface ICityWeatherCardSkeletonProps {
 
 export const CardCitySkeleton: FC<ICityWeatherCardSkeletonProps> = (props) => {
   return (
-    <div className="relative flex flex-col w-full h-[350px] p-10 bg-white rounded-[20px] shadow-md overflow-hidden">
+    <div className="relative flex flex-col w-full h-[350px] p-10 bg-white rounded-[20px] shadow-md overflow-hidden isolate">
       <div className="relative z-30">
         <div className="animate-pulse flex flex-col w-full mt-4">
           <div className="w-5/6 h-4 bg-gray-300 rounded" />

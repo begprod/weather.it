@@ -23,7 +23,7 @@ export const SearchInput: FC<IInputProps> = (props) => {
       </label>
       <div className="relative">
         <input
-          className="block w-full pt-3 pr-5 pb-3 pl-5 text-xl text-gray-900 border-none shadow-sm shadow-gray-200 rounded-xl bg-white transition-shadow duration-300 hover:shadow-lg focus:shadow-2xl focus:outline-none"
+          className="block w-full pt-3 pr-5 pb-3 pl-5 text-xl text-gray-900 border-none shadow-sm shadow-gray-200 rounded-xl bg-white transition-shadow duration-300 hover:shadow-lg focus:shadow-2xl focus:outline-none appearance-none"
           id={props.id}
           type={props.type}
           placeholder={props.placeholder}
