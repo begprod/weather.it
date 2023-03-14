@@ -3,7 +3,7 @@ import { ISearchItem } from '../types';
 
 export async function getSearchCitiesList(name: string): Promise<Array<ISearchItem>> {
   try {
-    const { data } = await geoDbApi.get(`/cities?limit=10&languageCode=en&minPopulation=500000&namePrefix=${name}`);
+    const { data } = await geoDbApi.get(`/cities?limit=7&languageCode=en&minPopulation=100000&sort=-population,-elevation&namePrefix=${name}`);
 
     return data.data.map((city: ISearchItem) => {
       return {
