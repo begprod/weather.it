@@ -1,24 +1,33 @@
 import { EntityId, EntityState } from '@reduxjs/toolkit';
 
 export interface IRootState {
-  ids?: EntityId[];
+  ids?: Array<EntityId>;
   entities?: EntityState<ICityWeather>;
-  searchCitiesResult: Array<ISearchItem>;
-  images: Record<number, string>;
+  citiesSuggestions: Array<ISearchSuggestItem>;
+  images: Record<string, string>;
   lastUpdateDate: string | null;
   status: 'init' | 'loading' | 'updating' | 'success' | 'error';
   errorMessage: string;
 }
 
+export interface ICitiesSuggestionsResponse {
+  properties: {
+    place_id: string;
+    address_line1: string;
+    address_line2: string;
+    result_type: string;
+    category: string;
+  }
+}
 
-export interface ISearchItem {
-  id: number;
+export interface ISearchSuggestItem {
+  id: string;
   name: string;
   country: string;
 }
 
 export interface ICityWeather {
-  id: number;
+  id: string;
   name: string;
   weather: {
     current: number;

@@ -1,15 +1,15 @@
 import { FC } from 'react';
 import { TfiPin } from 'react-icons/tfi';
 import { HiOutlineGlobe } from 'react-icons/hi';
-import { ISearchItem } from '../types';
+import { ISearchSuggestItem } from '../types';
 
 interface IItemListProps {
-  city: ISearchItem;
-  onSelectItem: (item: ISearchItem) => void;
+  city: ISearchSuggestItem;
+  onSelectItem: (item: ISearchSuggestItem) => void;
 }
 
 export const SearchItem: FC<IItemListProps> = (props) => {
-  function selectItem(item: ISearchItem) {
+  function selectItem(item: ISearchSuggestItem) {
     props.onSelectItem(item);
   }
 

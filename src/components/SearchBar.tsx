@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineLocationOff } from 'react-icons/md';
 import { RiLoaderLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
-import { ISearchItem } from '../types';
+import { ISearchSuggestItem } from '../types';
 import { AppDispatch } from '../store';
 import { useDebounce } from '../hooks';
 import {
   getSearchCities,
   getCityData,
-  selectSearchCitiesResult,
+  selectCitiesSuggestions,
   selectWeatherList,
   weatherActions
 } from '../features/weather/weather-slice';
@@ -20,14 +20,14 @@ export const SearchBar: FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const citiesList = useSelector(selectWeatherList);
-  const searchCitiesList = useSelector(selectSearchCitiesResult);
+  const searchCitiesList = useSelector(selectCitiesSuggestions);
   const debouncedSearch = useDebounce(searchQuery, 1100);
 
   useEffect(() => {
     setIsSearching(true);
 
     if (searchQuery.length === 0) {
-      dispatch(weatherActions.setSearchCitiesResult([]));
+      dispatch(weatherActions.setCitiesSuggestions([]));
       setIsSearching(false);
     }
   }, [searchQuery]);
@@ -47,7 +47,7 @@ export const SearchBar: FC = () => {
     }
   }, [debouncedSearch]);
 
-  function selectItemHandler(item: ISearchItem) {
+  function selectItemHandler(item: ISearchSuggestItem) {
     dispatch(getCityData(item))
       .unwrap()
       .then(() => {
@@ -85,7 +85,7 @@ export const SearchBar: FC = () => {
       );
     }
 
-    return searchCitiesList.map((city: ISearchItem) => {
+    return searchCitiesList.map((city: ISearchSuggestItem) => {
       return (
         <SearchItem
           key={city.id}

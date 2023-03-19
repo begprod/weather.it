@@ -1,6 +1,6 @@
 import { createAsyncThunk, createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getSearchCitiesList, getCityImage, getCityWeather } from '../../services';
-import { IRootState, ICityWeather, ISearchItem } from '../../types';
+import { getCitiesSuggestions, getCityImage, getCityWeather } from '../../services';
+import { IRootState, ICityWeather, ISearchSuggestItem } from '../../types';
 import { createDate } from '../../helpers';
 
 const cityWeatherListAdapter = createEntityAdapter<ICityWeather>({
@@ -17,17 +17,17 @@ export const getSearchCities = createAsyncThunk(
     }
 
     const cities = selectWeatherList(state);
-    const citiesList = await getSearchCitiesList(cityName);
+    const citiesList = await getCitiesSuggestions(cityName);
     const result = citiesList.filter((city) => {
       return !cities.some((item) => item.id === city.id);
     });
 
-    dispatch(weatherActions.setSearchCitiesResult(result));
+    dispatch(weatherActions.setCitiesSuggestions(result));
   });
 
 export const getCityData = createAsyncThunk(
   '@@weather/getCityData',
-  async (cityData: ISearchItem, {dispatch}) => {
+  async (cityData: ISearchSuggestItem, {dispatch}) => {
     const weatherData = await getCityWeather(cityData.name, cityData.id);
     const imageData = await getCityImage(`${cityData.name} city ${cityData.country}`);
 
@@ -72,7 +72,7 @@ export const updateWeatherData = createAsyncThunk(
 
 
 const initialState: IRootState = {
-  searchCitiesResult: [],
+  citiesSuggestions: [],
   images: {},
   lastUpdateDate: null,
   status: 'init',
@@ -83,13 +83,13 @@ export const weatherSlice = createSlice({
   name: '@@weather',
   initialState: cityWeatherListAdapter.getInitialState(initialState),
   reducers: {
-    setSearchCitiesResult: (state, action: PayloadAction<ISearchItem[]>) => {
-      state.searchCitiesResult = action.payload;
+    setCitiesSuggestions: (state, action: PayloadAction<Array<ISearchSuggestItem>>) => {
+      state.citiesSuggestions = action.payload;
     },
     setCity: (state, action: PayloadAction<ICityWeather>) => {
       cityWeatherListAdapter.setOne(state, action.payload);
     },
-    removeCity: (state, action: PayloadAction<number>) => {
+    removeCity: (state, action: PayloadAction<string>) => {
       cityWeatherListAdapter.removeOne(state, action.payload);
       delete state.images[action.payload];
 
@@ -134,7 +134,7 @@ export const weatherSlice = createSlice({
   }
 });
 
-export const selectSearchCitiesResult = (state: IRootState) => state.searchCitiesResult;
+export const selectCitiesSuggestions = (state: IRootState) => state.citiesSuggestions;
 export const selectWeatherList = cityWeatherListAdapter.getSelectors().selectAll;
 export const selectCityImages = (state: IRootState) => state.images;
 export const selectLastUpdateDate = (state: IRootState) => state.lastUpdateDate;

@@ -1,15 +1,11 @@
 import axios, { AxiosInstance } from 'axios';
 
-export const geoDbApi: AxiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_GEO_DB_API_URL,
-  headers: {
-    'X-RapidAPI-Key': process.env.REACT_APP_GEO_DB_API_KEY,
-    'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
-  }
+export const citySuggestionsApi: AxiosInstance = axios.create({
+  baseURL: process.env.REACT_APP_GEOAPIFY_URL,
 });
 
 export const weatherApi: AxiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_WEATHER_API_URL,
+  baseURL: process.env.REACT_APP_OPEN_WEATHER_API_URL,
   headers: {
     'Content-Type': 'application/json',
   }
