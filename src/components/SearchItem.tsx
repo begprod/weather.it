@@ -23,9 +23,9 @@ export const SearchItem: FC<IItemListProps> = (props) => {
           <TfiPin className="w-6 h-6 group-hover:translate-y-1 transition-transform duration-300" />
           <HiOutlineGlobe className="w-5 h-5 translate-y-5 group-hover:-translate-y-2 group-hover:opacity-100 transition-transform duration-300" />
         </div>
-        <div className="truncate text-xl">
-          <p>{props.city.name}</p>
-          <p className="text-sm">{props.city.country}</p>
+        <div className="text-xl overflow-hidden">
+          <p className="truncate">{props.city.name}</p>
+          <p className="text-sm truncate">{props.city.country}</p>
         </div>
       </div>
     </div>
