@@ -13,8 +13,8 @@ export interface IRootState {
 export interface ICitiesSuggestionsResponse {
   properties: {
     place_id: string;
-    address_line1: string;
-    address_line2: string;
+    city: string;
+    country: string;
     result_type: string;
     category: string;
   }
