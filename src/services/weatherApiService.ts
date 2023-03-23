@@ -1,12 +1,13 @@
 import { weatherApi } from './apiSettings';
 import { ICityWeather } from '../types';
 
-export async function getCityWeather(cityName: string, id: string): Promise<ICityWeather> {
+export async function getCityWeather(id: string, cityName: string, country: string): Promise<ICityWeather> {
   try {
     const { data } = await weatherApi.get(`/weather?q=${cityName}&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}&units=metric`);
 
     return {
       id,
+      country,
       name: data.name,
       weather: {
         current: data.main.temp.toFixed(0),

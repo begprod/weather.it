@@ -29,6 +29,7 @@ export interface ISearchSuggestItem {
 export interface ICityWeather {
   id: string;
   name: string;
+  country: string;
   weather: {
     current: number;
     feels_like: number;

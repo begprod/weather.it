@@ -28,7 +28,7 @@ export const getSearchCities = createAsyncThunk(
 export const getCityData = createAsyncThunk(
   '@@weather/getCityData',
   async (cityData: ISearchSuggestItem, {dispatch}) => {
-    const weatherData = await getCityWeather(cityData.name, cityData.id);
+    const weatherData = await getCityWeather(cityData.id, cityData.name, cityData.country);
     const imageData = await getCityImage(`${cityData.name} city ${cityData.country}`);
 
     dispatch(weatherActions.setImage(
@@ -48,7 +48,7 @@ export const updateWeatherData = createAsyncThunk(
     }
 
     const cities = selectWeatherList(state);
-    const promises = cities.map((city) => getCityWeather(city.name, city.id));
+    const promises = cities.map((city) => getCityWeather(city.id, city.name, city.country));
 
     if (promises.length === 0) {
       return;

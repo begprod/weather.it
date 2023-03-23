@@ -38,11 +38,14 @@ const CardCityMemo: FC<ICityWeatherCardProps> = (props) => {
     return (
       <div className="group relative min-h-[350px] p-10 text-white overflow-hidden rounded-[20px] shadow-md isolate">
         <div className="relative z-30 select-none">
-          <div className="flex items-start text-2xl">
+          <div className="flex items-start">
             <IoIosPin className="w-6 h-7 shrink-0 mr-1"/>
-            {props.city.name}
+            <div className="flex flex-col">
+              <span className="text-2xl">{props.city.name}</span>
+              <span className="text-xs">{props.city.country}</span>
+            </div>
           </div>
-          <p className="flex items-start mt-2 mb-2 text-7xl font-bold">
+          <p className="flex items-start mt-5 mb-2 text-7xl font-bold">
             {props.city.weather.current}
             <VscCircleOutline className="w-7 h-7"/>
           </p>
