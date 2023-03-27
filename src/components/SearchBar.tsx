@@ -51,11 +51,10 @@ export const SearchBar: FC = () => {
     dispatch(getCityData(item))
       .unwrap()
       .then(() => {
-        if (citiesList.length >= 6) {
-          toast.success(`${item.name} city added`, {
-            toastId: 'getCityDataSuccess'
-          });
-        }
+        toast.success(`${item.name} city successfully added`, {
+          theme: 'light',
+          toastId: 'getCityDataSuccess'
+        });
       })
       .catch((error) => {
         toast.error(error.message, {
