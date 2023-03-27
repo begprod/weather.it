@@ -6,20 +6,13 @@ import { toast } from 'react-toastify';
 import { ISearchSuggestItem } from '../types';
 import { AppDispatch } from '../store';
 import { useDebounce } from '../hooks';
-import {
-  getSearchCities,
-  getCityData,
-  selectCitiesSuggestions,
-  selectWeatherList,
-  weatherActions
-} from '../features/weather/weather-slice';
+import { getSearchCities, getCityData, selectCitiesSuggestions, weatherActions } from '../features/weather/weather-slice';
 import { SearchInput, SearchItem } from './';
 
 export const SearchBar: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isSearching, setIsSearching] = useState<boolean>(false);
-  const citiesList = useSelector(selectWeatherList);
   const searchCitiesList = useSelector(selectCitiesSuggestions);
   const debouncedSearch = useDebounce(searchQuery, 1100);
 
