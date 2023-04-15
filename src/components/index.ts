@@ -6,3 +6,4 @@ export { CardGrid } from './CardGrid';
 export { CardCity } from './CardCity';
 export { CardCitySkeleton } from './CardCitySkeleton';
 export { ButtonUpdate } from './ButtonUpdate';
+export { GithubCorner } from './GithubCorner';
