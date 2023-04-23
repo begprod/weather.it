@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import { GrUpdate } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
-import { AppDispatch } from '../store';
+import { GrUpdate } from 'react-icons/gr';
+import { AppDispatch } from '../../store';
 import {
   selectWeatherList,
   selectLastUpdateDate,
   selectStatus,
   updateWeatherData
-} from '../features/weather/weather-slice';
+} from '../../features/weather/weather-slice';
 
 export const ButtonUpdate: FC = () => {
   const dispatch = useDispatch<AppDispatch>();

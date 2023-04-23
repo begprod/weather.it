@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineLocationOff } from 'react-icons/md';
 import { RiLoaderLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
-import { ISearchSuggestItem } from '../types';
-import { AppDispatch } from '../store';
-import { useDebounce } from '../hooks';
-import { getSearchCities, getCityData, selectCitiesSuggestions, weatherActions } from '../features/weather/weather-slice';
+import { ISearchSuggestItem } from '../../types';
+import { AppDispatch } from '../../store';
+import { useDebounce } from '../../hooks';
+import { getSearchCities, getCityData, selectCitiesSuggestions, weatherActions } from '../../features/weather/weather-slice';
 import { SearchInput, SearchItem } from './';
 
 export const SearchBar: FC = () => {

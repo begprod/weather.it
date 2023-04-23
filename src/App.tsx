@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { AppDispatch } from './store';
-import { IconsDoodle, SearchBar, CardGrid, ButtonUpdate, GithubCorner } from './components';
+import { IconsDoodle, SearchBar, CardGrid, ButtonUpdate, GithubCorner } from './components/ui';
 import { updateWeatherData } from './features/weather/weather-slice';
 
 export const App: FC = () => {
@@ -20,8 +20,8 @@ export const App: FC = () => {
   }, []);
 
   return (
-    <>
-      <div className="font-body min-h-screen flex flex-col items-center justify-center pt-32 pr-6 pb-32 pl-6">
+    <div className="font-body">
+      <div className="min-h-screen flex flex-col items-center justify-center pt-32 pr-6 pb-32 pl-6">
         <div className="w-full md:w-[500px]">
           <IconsDoodle />
           <SearchBar />
@@ -29,9 +29,12 @@ export const App: FC = () => {
 
         <CardGrid />
 
-        <ButtonUpdate />
 
-        <ToastContainer
+      </div>
+
+      <ButtonUpdate />
+
+      <ToastContainer
           position="bottom-center"
           theme="colored"
           draggableDirection="y"
@@ -39,11 +42,10 @@ export const App: FC = () => {
           draggablePercent={60}
           limit={3}
         />
-      </div>
 
       <GithubCorner
         url="https://github.com/begprod/weather.it"
       />
-    </>
+    </div>
   );
 };

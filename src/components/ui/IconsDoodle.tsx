@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { generateParticles } from '../helpers';
+import { generateParticles } from '../../helpers';
 
 const IconsDoodleMemo: FC = () => {
   return (

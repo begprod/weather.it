@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { ICityWeather } from '../types';
-import { selectWeatherList, selectCityImages, selectStatus } from '../features/weather/weather-slice';
+import { ICityWeather } from '../../types';
+import { selectWeatherList, selectCityImages, selectStatus } from '../../features/weather/weather-slice';
 import { CardCity, CardCitySkeleton } from './';
 
 export const CardGrid: FC = () => {

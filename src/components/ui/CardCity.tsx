@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IoIosPin } from 'react-icons/io';
 import { MdOutlineClose } from 'react-icons/md';
 import { VscCircleOutline } from 'react-icons/vsc';
-import { ICityWeather, WeatherType } from '../types';
-import { AppDispatch } from '../store';
-import { selectStatus, weatherActions } from '../features/weather/weather-slice';
-import { generateParticles } from '../helpers';
+import { ICityWeather, WeatherType } from '../../types';
+import { AppDispatch } from '../../store';
+import { selectStatus, weatherActions } from '../../features/weather/weather-slice';
+import { generateParticles } from '../../helpers';
 import { CardCitySkeleton } from './CardCitySkeleton';
 
 interface ICityWeatherCardProps {
