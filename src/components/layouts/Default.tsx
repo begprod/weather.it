@@ -1,9 +1,10 @@
 import { FC, ReactNode, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
-import { ButtonUpdate, GithubCorner } from '../ui';
 import { updateWeatherData } from '../../features/weather/weather-slice';
 import { AppDispatch } from '../../store';
+import { ButtonUpdate, GithubCorner } from '../ui';
+import { Footer } from './partials/Footer';
 
 interface IDefaultLayoutProps {
   children: ReactNode;
@@ -24,8 +25,10 @@ export const DefaultLayout: FC<IDefaultLayoutProps> = (props) => {
 
   return (
     <div className="font-body">
-      <div className="min-h-screen flex flex-col items-center justify-center pt-32 pr-6 pb-32 pl-6">
+      <div className="min-h-screen flex flex-col items-center justify-center pt-32 pr-6 pl-6">
         {props.children}
+
+        <Footer />
       </div>
 
       <ButtonUpdate />
