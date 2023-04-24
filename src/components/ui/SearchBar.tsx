@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineLocationOff } from 'react-icons/md';
 import { RiLoaderLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
+import { motion } from 'framer-motion';
 import { ISearchSuggestItem } from '../../types';
 import { AppDispatch } from '../../store';
 import { useDebounce } from '../../hooks';
@@ -100,9 +101,21 @@ export const SearchBar: FC = () => {
           onChange={(value) => setSearchQuery(value)}
           autoComplete="off"
         />
-        <div className="absolute left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden">
-          {render()}
-        </div>
+        <motion.div
+          layout
+          className="absolute left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden"
+        >
+          <motion.div
+            variants={{
+              visible: { opacity: 1, x: 0, y: 0 },
+              hidden: { opacity: 0, x: -20, y: -20 },
+            }}
+            initial="hidden"
+            animate="visible"
+          >
+            {render()}
+          </motion.div>
+        </motion.div>
       </div>
     </>
   );

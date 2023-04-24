@@ -104,8 +104,10 @@ $dust: (
 .weather-doodle {
   @for $i from 1 through 4 {
     div:nth-child(#{$i}) {
-      animation: floating 3s ease-in-out infinite;
-      animation-delay: math.random(math.div(10, 1)) * 1s;
+      .weather-icon {
+        animation: floating 3s ease-in-out infinite;
+        animation-delay: math.random(math.div(10, 1)) * 1s;
+      }
     }
   }
 }
