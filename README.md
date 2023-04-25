@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# weather.it
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://img.shields.io/github/package-json/v/begprod/weather.it?style=for-the-badge" alt="GitHub package.json version" />
+<img src="https://img.shields.io/github/last-commit/begprod/weather.it?style=for-the-badge" alt="GitHub last commit" />
+<img src="https://img.shields.io/github/issues/begprod/weather.it?style=for-the-badge" alt="GitHub issues" />
+<img src="https://img.shields.io/github/languages/top/begprod/weather.it?style=for-the-badge" alt="GitHub top language" />
 
-## Available Scripts
+<br/>
+<br/>
+<br/>
 
-In the project directory, you can run:
+## One more weather app with fancy design
 
-### `npm start`
+[https://begprod.github.io/weather.it/](https://begprod.github.io/weather.it/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+App includes the ability to search for cities, save selected cities, display current weather for each of them, and loads photos of the cities.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br/>
 
-### `npm test`
+<img src="./public/screenshots/desktop.png" alt="weather.it" />
+<img src="./public/screenshots/mobile.png" alt="weather.it" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br/>
+<br/>
+<br/>
 
-### `npm run build`
+## Install application on your device
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### iOS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open the following link on your iPhone or iPad: [https://begprod.github.io/weather.it/](https://begprod.github.io/weather.it/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Follow the steps below to install the app on your device:
 
-### `npm run eject`
+<img src="./public/screenshots/ios_1.png" alt="weather.it" />
+<img src="./public/screenshots/ios_2.png" alt="weather.it" />
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br/>
+<br/>
+<br/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Android
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Open the following link on your Android device: [https://begprod.github.io/weather.it/](https://begprod.github.io/weather.it/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Follow the steps below to install the app on your device:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="./public/screenshots/android.png" alt="weather.it" />
