@@ -8,6 +8,17 @@ export const Footer: FC = () => {
         made with <span className="text-red-500">❤</span> by <a href="https://github.com/begprod" className="text-blue-500">begprod</a>
       </p>
       <p>v.{version}</p>
+      <p>
+        <a
+          className="text-blue-500"
+          href="https://github.com/begprod/weather.it#install-application-on-your-device"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Install app on your device
+          <span className="inline-block ml-2 -rotate-12 origin-center">→</span>
+        </a>
+      </p>
     </footer>
   );
 };
