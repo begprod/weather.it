@@ -24,7 +24,7 @@ export const DefaultLayout: FC<IDefaultLayoutProps> = (props) => {
   }, []);
 
   return (
-    <div className="font-body">
+    <div className="font-body overflow-hidden">
       <div className="min-h-screen flex flex-col items-center justify-center pt-32 pr-6 pl-6">
         {props.children}
 
