@@ -24,6 +24,7 @@ export const ButtonUpdate: FC = () => {
             className="rounded-full bg-white border p-3 md:p-5 shadow-sm shadow-gray-200 hover:rotate-45 hover:shadow-lg transition-all duration-300"
             onClick={() => dispatch(updateWeatherData())}
             type="button"
+            title="Update weather data"
           >
             {status === 'updating' ? <div className="animate-spin"><GrUpdate /></div> : <GrUpdate />}
           </button>
