@@ -11,7 +11,7 @@
 
 ## One more weather app with fancy design
 
-[https://begprod.github.io/weather.it/](https://begprod.github.io/weather.it/)
+[https://weatherit.site/](https://weatherit.site/)
 
 App includes the ability to search for cities, save selected cities, display current weather for each of them, and loads photos of the cities.
 
@@ -28,7 +28,7 @@ App includes the ability to search for cities, save selected cities, display cur
 
 ### iOS
 
-Open the following link on your iPhone or iPad: [https://begprod.github.io/weather.it/](https://begprod.github.io/weather.it/)
+Open the following link on your iPhone or iPad: [https://weatherit.site/](https://weatherit.site/)
 
 Follow the steps below to install the app on your device:
 
@@ -41,7 +41,7 @@ Follow the steps below to install the app on your device:
 
 ### Android
 
-Open the following link on your Android device: [https://begprod.github.io/weather.it/](https://begprod.github.io/weather.it/)
+Open the following link on your Android device: [https://weatherit.site/](https://weatherit.site/)
 
 Follow the steps below to install the app on your device:
 

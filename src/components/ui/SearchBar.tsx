@@ -55,6 +55,7 @@ export const SearchBar: FC = () => {
           toastId: 'getCityDataError'
         });
       });
+
     setSearchQuery('');
   }
 

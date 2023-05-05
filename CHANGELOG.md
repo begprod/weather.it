@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0
+
+### Features
+
+- v1.0.0 release
+
 ## 0.1.0-beta
 
 ### Features
