@@ -1,9 +1,11 @@
-<script setup lang="ts">
-import DefaultLayout from "@/components/layouts/DefaultLayout.vue";
-</script>
-
 <template>
-  <DefaultLayout>
-    <h1>Home</h1>
-  </DefaultLayout>
+  <LayoutDefault>
+    <h1>searchbar</h1>
+    <CardGrid />
+  </LayoutDefault>
 </template>
+
+<script setup lang="ts">
+import LayoutDefault from "@/components/layouts/LayoutDefault.vue";
+import CardGrid from "@/components/ui/CardGrid.vue";
+</script>
