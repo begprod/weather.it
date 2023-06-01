@@ -1,8 +1,8 @@
 <template>
-  <div class="font-body">
+  <main class="font-body">
     <slot />
     <DefaultFooter />
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
