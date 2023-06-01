@@ -1,11 +1,14 @@
 <template>
   <LayoutDefault>
-    <h1>searchbar</h1>
+    <div class="w-full md:w-[500px]">
+      <SearchBar />
+    </div>
     <CardGrid />
   </LayoutDefault>
 </template>
 
 <script setup lang="ts">
-import LayoutDefault from "@/components/layouts/LayoutDefault.vue";
-import CardGrid from "@/components/ui/CardGrid.vue";
+import LayoutDefault from '@/components/layouts/LayoutDefault.vue';
+import SearchBar from '@/components/ui/SearchBar.vue';
+import CardGrid from '@/components/ui/CardGrid.vue';
 </script>

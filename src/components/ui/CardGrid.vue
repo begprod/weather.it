@@ -5,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import CardCity from "@/components/ui/CardCity.vue";
+import CardCity from '@/components/ui/CardCity.vue';
 </script>

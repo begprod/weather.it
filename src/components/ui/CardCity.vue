@@ -10,13 +10,13 @@
       </div>
       <p class="flex items-start mt-5 mb-2 text-7xl font-bold">
         30
-        <v-icon name="fa-regular-circle" class="w-7 h-7"/>
+        <v-icon name="ri-celsius-line" class="w-7 h-7"/>
       </p>
       <p class="flex text-lg">
         feels like:
         <span class="flex items-start ml-1">
           35
-          <v-icon name="fa-regular-circle" class="w-3 h-3"/>
+          <v-icon name="ri-celsius-line" class="w-3 h-3"/>
         </span>
       </p>
       <p class="text-sm">Clouds</p>

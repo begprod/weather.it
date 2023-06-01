@@ -17,6 +17,6 @@ module.exports = {
     'no-debugger': 'error',
     'no-unused-vars': 'error',
     'no-undef': 'error',
-    "quotes": ['error', 'single']
+    'quotes': ['error', 'single']
   }
 }
