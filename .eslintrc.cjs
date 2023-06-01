@@ -11,5 +11,12 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  rules: {
+    'no-console': 'error',
+    'no-debugger': 'error',
+    'no-unused-vars': 'error',
+    'no-undef': 'error',
+    "quotes": ['error', 'single']
   }
 }
