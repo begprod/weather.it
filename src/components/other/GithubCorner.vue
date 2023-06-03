@@ -42,7 +42,8 @@ const props = defineProps<Props>()
     border: 0;
 
     &:hover .octo-arm {
-      animation: octocat-wave 560ms ease-in-out;
+      transform-origin: center;
+      animation: octocat-wave 1s ease-in-out;
     }
 
     svg {
@@ -62,7 +63,7 @@ const props = defineProps<Props>()
     }
     20%,
     60% {
-      transform: rotate(-25deg);
+      transform: rotate(-15deg);
     }
     40%,
     80% {
