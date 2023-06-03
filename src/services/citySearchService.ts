@@ -2,6 +2,10 @@ import { citySuggestionsApi } from './apiSettings';
 import { type ISearchSuggestItem, type ICitiesSuggestionsItem, type ISearchDataResponse } from '@/types';
 
 export function getCitiesSuggestions(name: string = ''): Promise<Array<ISearchSuggestItem>> {
+  if (name.length < 3) {
+    return Promise.resolve([]);
+  }
+
   const url = `/autocomplete?text=${name}&type=city&limit=5&lang=en&apiKey=${import.meta.env.VITE_GEOAPIFY_API_KEY}`;
 
   return citySuggestionsApi.get(url)

@@ -1,14 +1,3 @@
-export interface ICommonState {
-  status: 'init' | 'loading' | 'updating' | 'success' | 'error';
-  errorMessage: string;
-}
-
-export interface IWeatherState {
-  cities: Array<ICityWeather>;
-  images: Record<string, string>;
-  lastUpdateDate: string | null;
-}
-
 export interface ICityWeather {
   id: string;
   name: string;

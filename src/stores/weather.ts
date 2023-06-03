@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import { type IWeatherState } from '@/types';
+import { type ICityWeather } from '@/types';
 
-export const useWeatherStore = defineStore<string, IWeatherState>('weather', {
+export const useWeatherStore = defineStore('weather', {
   state: () => ({
     cities: [],
     images: {},
@@ -9,13 +9,13 @@ export const useWeatherStore = defineStore<string, IWeatherState>('weather', {
   }),
 
   getters: {
-    getCities() {
+    getCities(): Array<ICityWeather> {
       return this.cities;
     },
-    getImages() {
+    getImages(): Record<string, string> {
       return this.images;
     },
-    getLastUpdateDate() {
+    getLastUpdateDate(): string | null {
       return this.lastUpdateDate;
     }
   },

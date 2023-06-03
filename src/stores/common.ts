@@ -1,24 +1,38 @@
 import { defineStore } from 'pinia';
-import { type ICommonState } from '@/types';
+// import { type ICommonState } from '@/types';
 
-export const useCommonStore = defineStore<string, ICommonState>('common', {
+export const useCommonStore = defineStore('common', {
   state: () => ({
-    status: 'init',
+    isLoading: false,
+    isSuccess: false,
+    isError: false,
     errorMessage: ''
   }),
 
   getters: {
-    getStatus() {
-      return this.status;
+    getIsLoading(): boolean {
+      return this.isLoading;
     },
-    getErrorMessage() {
+    getIsSuccess(): boolean {
+      return this.isSuccess;
+    },
+    getIsError(): boolean {
+      return this.isError;
+    },
+    getErrorMessage(): string {
       return this.errorMessage;
     }
   },
 
   actions: {
-    setStatus(status: ICommonState['status']) {
-      this.status = status;
+    setIsLoading(value: boolean) {
+      this.isLoading = value;
+    },
+    setIsSuccess(value: boolean) {
+      this.isSuccess = value;
+    },
+    setIsError(value: boolean) {
+      this.isError = value;
     },
     setErrorMessage(message: string) {
       this.errorMessage = message;

@@ -4,19 +4,31 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
 import {
-  HiRefresh,
   FaMapMarkerAlt,
   FaMapPin,
+  HiRefresh,
   RiCelsiusLine,
   IoClose,
   LaGlobeAsiaSolid,
-  IoSearch
+  IoSearch,
+  MdLocationoffTwotone,
+  RiLoaderLine
 } from 'oh-vue-icons/icons';
 
 import App from './App.vue';
 import { router } from './router';
 
-addIcons(HiRefresh, FaMapMarkerAlt, FaMapPin, RiCelsiusLine, IoClose, LaGlobeAsiaSolid, IoSearch);
+addIcons(
+  FaMapMarkerAlt,
+  FaMapPin,
+  HiRefresh,
+  RiCelsiusLine,
+  IoClose,
+  LaGlobeAsiaSolid,
+  IoSearch,
+  MdLocationoffTwotone,
+  RiLoaderLine
+);
 
 const app = createApp(App);
 

@@ -1,6 +1,6 @@
 <template>
   <label
-    for="search"
+    :for="id"
     class="mb-2 text-sm sr-only dark:text-white"
   >
     {{label}}
