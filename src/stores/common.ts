@@ -1,9 +1,5 @@
 import { defineStore } from 'pinia';
-
-interface ICommonState {
-  status: 'init' | 'loading' | 'updating' | 'success' | 'error';
-  errorMessage: string;
-}
+import { type ICommonState } from '@/types';
 
 export const useCommonStore = defineStore<string, ICommonState>('common', {
   state: () => ({

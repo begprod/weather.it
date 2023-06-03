@@ -6,11 +6,18 @@
         <v-icon name="la-globe-asia-solid" class="w-5 h-5 translate-y-5 group-hover:-translate-y-2 group-hover:opacity-100 transition-transform duration-300" />
       </div>
       <div class="text-xl overflow-hidden">
-        <p class="truncate">{props.city.name}</p>
-        <p class="text-sm truncate">{props.city.country}</p>
+        <p class="truncate">{{name}}</p>
+        <p class="text-sm truncate">{{country}}</p>
       </div>
     </div>
   </li>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface IProps {
+  name: string;
+  country: string;
+}
+
+defineProps<IProps>();
+</script>

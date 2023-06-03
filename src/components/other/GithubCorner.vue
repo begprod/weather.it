@@ -1,6 +1,6 @@
 <template>
   <a
-    :href="props.url"
+    :href="url"
     class="github-corner"
     target="_blank"
     rel="noreferrer"
@@ -31,7 +31,7 @@ interface IProps {
   url: string
 }
 
-const props = defineProps<IProps>();
+defineProps<IProps>();
 </script>
 
 <style scoped lang="scss">
