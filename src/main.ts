@@ -1,7 +1,7 @@
-import './assets/css/main.scss'
+import './assets/css/main.scss';
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
 import {
   HiRefresh,
@@ -13,16 +13,16 @@ import {
   IoSearch
 } from 'oh-vue-icons/icons';
 
-import App from './App.vue'
-import router from './router'
+import App from './App.vue';
+import { router } from './router';
 
 addIcons(HiRefresh, FaMapMarkerAlt, FaMapPin, RiCelsiusLine, IoClose, LaGlobeAsiaSolid, IoSearch);
 
-const app = createApp(App)
+const app = createApp(App);
 
 app.component('v-icon', OhVueIcon);
 
-app.use(createPinia())
-app.use(router)
+app.use(createPinia());
+app.use(router);
 
-app.mount('#app')
+app.mount('#app');

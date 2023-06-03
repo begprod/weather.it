@@ -27,11 +27,11 @@
 </template>
 
 <script setup lang="ts">
-interface Props {
+interface IProps {
   url: string
 }
 
-const props = defineProps<Props>()
+const props = defineProps<IProps>();
 </script>
 
 <style scoped lang="scss">

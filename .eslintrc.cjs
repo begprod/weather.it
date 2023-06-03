@@ -1,5 +1,5 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
+require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
   root: true,
@@ -17,6 +17,8 @@ module.exports = {
     'no-debugger': 'error',
     'no-unused-vars': 'error',
     'no-undef': 'error',
-    'quotes': ['error', 'single']
+    'quotes': ['error', 'single'],
+    'no-multiple-empty-lines': 'error',
+    'semi': ['error', 'always'],
   }
-}
+};

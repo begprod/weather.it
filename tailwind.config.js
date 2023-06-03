@@ -6,15 +6,15 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'body': ['Comfortaa', 'sans-serif'],
+        'body': ['Comfortaa', 'sans-serif']
       }
-    },
+    }
   },
   variants: {
     extend: {
-      display: ['group-hover'],
-    },
+      display: ['group-hover']
+    }
   },
-  plugins: [],
-}
+  plugins: []
+};
 
