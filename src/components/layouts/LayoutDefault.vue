@@ -7,7 +7,7 @@
 
     <ButtonUpdate />
 
-    // TODO: Toast component
+<!-- TODO: Toast component -->
 
     <GithubCorner url="https://github.com/begprod/weather.it" />
   </main>

@@ -91,15 +91,18 @@ watchDebounced(searchQuery, async () => {
     });
 }, { debounce: 1100, maxWait: 5000 });
 
-async function getCityWeather(suggestionItem: ISearchSuggestItem) {
+function getCityWeather(suggestionItem: ISearchSuggestItem) {
   isSearching.value = false;
   searchQuery.value = '';
   citiesSuggestions.value = [];
   commonStore.setStatus('loading');
 
-  await Promise.all([
+  Promise.allSettled([
     weatherStore.getCityWeather(suggestionItem),
     weatherStore.getCityImage(suggestionItem.id, `${suggestionItem.name} city ${suggestionItem.country}`)
-  ]);
+  ])
+    .then(() => {
+      commonStore.setStatus('success');
+    });
 }
 </script>

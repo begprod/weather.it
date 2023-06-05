@@ -3,6 +3,7 @@ import { type IWeatherState, type ICityWeather, type ISearchSuggestItem } from '
 import { useCommonStore } from '@/stores/common';
 import { weatherService, imagesService } from '@/services';
 
+
 export const useWeatherStore = defineStore('weather', {
   state: (): IWeatherState => ({
     ids: [],
@@ -41,8 +42,6 @@ export const useWeatherStore = defineStore('weather', {
 
       await weatherService(city)
         .then((city) => {
-          commonStore.setStatus('success');
-
           this.setId(city.id);
           this.setCity(city);
         })
@@ -56,8 +55,6 @@ export const useWeatherStore = defineStore('weather', {
 
       await imagesService(query)
         .then((image) => {
-          commonStore.setStatus('success');
-
           this.setImage(id, image);
         })
         .catch((error) => {
