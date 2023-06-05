@@ -44,11 +44,11 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { ISearchSuggestItem } from '@/types';
 import { watchDebounced } from '@vueuse/core';
 import { useCommonStore } from '@/stores/common';
 import { useWeatherStore } from '@/stores/weather';
-import { ISearchSuggestItem } from '@/types';
-import { suggestionsCitiesService, weatherService } from '@/services';
+import { suggestionsCitiesService } from '@/services';
 import SearchInput from '@/components/ui/SearchInput.vue';
 import SearchSuggestionItem from '@/components/ui/SearchSuggestionItem.vue';
 
@@ -91,22 +91,15 @@ watchDebounced(searchQuery, async () => {
     });
 }, { debounce: 1100, maxWait: 5000 });
 
-
 async function getCityWeather(suggestionItem: ISearchSuggestItem) {
   isSearching.value = false;
   searchQuery.value = '';
   citiesSuggestions.value = [];
   commonStore.setStatus('loading');
 
-  await weatherService(suggestionItem)
-    .then((city) => {
-      commonStore.setStatus('success');
-      weatherStore.setId(city.id);
-      weatherStore.setCity(city);
-    })
-    .catch((error) => {
-      commonStore.setStatus('error');
-      commonStore.setErrorMessage(error.message);
-    });
+  await Promise.all([
+    weatherStore.getCityWeather(suggestionItem),
+    weatherStore.getCityImage(suggestionItem.id, `${suggestionItem.name} city ${suggestionItem.country}`)
+  ]);
 }
 </script>

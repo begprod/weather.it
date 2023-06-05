@@ -1,7 +1,7 @@
 import axios, { type AxiosInstance } from 'axios';
 
 export const suggestionsCitiesApi: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_GEOAPIFY_URL,
+  baseURL: import.meta.env.VITE_GEOAPIFY_API_URL,
 });
 
 export const weatherApi: AxiosInstance = axios.create({

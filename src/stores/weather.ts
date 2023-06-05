@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
-import { type IWeatherState, type ICityWeather } from '@/types';
+import { type IWeatherState, type ICityWeather, type ISearchSuggestItem } from '@/types';
+import { useCommonStore } from '@/stores/common';
+import { weatherService, imagesService } from '@/services';
 
 export const useWeatherStore = defineStore('weather', {
   state: (): IWeatherState => ({
@@ -30,6 +32,38 @@ export const useWeatherStore = defineStore('weather', {
     },
     setCity(city: ICityWeather) {
       this.cities.push(city);
+    },
+    setImage(id: string, image: string) {
+      this.images[id] = image;
+    },
+    async getCityWeather(city: ISearchSuggestItem) {
+      const commonStore = useCommonStore();
+
+      await weatherService(city)
+        .then((city) => {
+          commonStore.setStatus('success');
+
+          this.setId(city.id);
+          this.setCity(city);
+        })
+        .catch((error) => {
+          commonStore.setStatus('error');
+          commonStore.setErrorMessage(error.message);
+        });
+    },
+    async getCityImage(id: string, query: string) {
+      const commonStore = useCommonStore();
+
+      await imagesService(query)
+        .then((image) => {
+          commonStore.setStatus('success');
+
+          this.setImage(id, image);
+        })
+        .catch((error) => {
+          commonStore.setStatus('error');
+          commonStore.setErrorMessage(error.message);
+        });
     },
   }
 });
