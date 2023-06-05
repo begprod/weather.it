@@ -1,14 +1,14 @@
-import { citySuggestionsApi } from './apiSettings';
+import { suggestionsCitiesApi } from './apiSettings';
 import { type ISearchSuggestItem, type ICitiesSuggestionsItem, type ISearchDataResponse } from '@/types';
 
-export function getCitiesSuggestions(name: string = ''): Promise<Array<ISearchSuggestItem>> {
+export function suggestionsCitiesService(name: string = ''): Promise<Array<ISearchSuggestItem>> {
   if (name.length < 3) {
     return Promise.resolve([]);
   }
 
   const url = `/autocomplete?text=${name}&type=city&limit=5&lang=en&apiKey=${import.meta.env.VITE_GEOAPIFY_API_KEY}`;
 
-  return citySuggestionsApi.get(url)
+  return suggestionsCitiesApi.get(url)
     .then((data: ISearchDataResponse) => {
       const filteredCities: Array<ICitiesSuggestionsItem> = data.data.features.filter((city: ICitiesSuggestionsItem) => {
         return (city.properties.category === 'populated_place' || city.properties.category === 'administrative') && (city.properties.result_type === 'city' || city.properties.result_type === 'postcode');

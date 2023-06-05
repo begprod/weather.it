@@ -1,11 +1,11 @@
 import axios, { type AxiosInstance } from 'axios';
 
-export const citySuggestionsApi: AxiosInstance = axios.create({
+export const suggestionsCitiesApi: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_GEOAPIFY_URL,
 });
 
 export const weatherApi: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_OPEN_WEATHER_API_URL,
+  baseURL: import.meta.env.VITE_WEATHER_API_URL,
   headers: {
     'Content-Type': 'application/json'
   }
