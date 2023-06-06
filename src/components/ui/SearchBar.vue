@@ -93,11 +93,7 @@ function getCityWeather(suggestionItem: ISearchSuggestItem) {
   isSearching.value = false;
   searchQuery.value = '';
   citiesSuggestions.value = [];
-  commonStore.setStatus('loading');
 
-  Promise.allSettled([
-    weatherStore.getCityWeather(suggestionItem),
-    weatherStore.getCityImage(suggestionItem.id, `${suggestionItem.name} city ${suggestionItem.country}`)
-  ]);
+  weatherStore.getCityData(suggestionItem);
 }
 </script>

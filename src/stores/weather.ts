@@ -1,16 +1,17 @@
 import { defineStore } from 'pinia';
+import { useLocalStorage } from '@vueuse/core';
 import { type IWeatherState, type ICityWeather, type ISearchSuggestItem } from '@/types';
 import { useCommonStore } from '@/stores';
 import { weatherService, imagesService } from '@/services';
 
 
 export const useWeatherStore = defineStore('weather', {
-  state: (): IWeatherState => ({
+  state: () => useLocalStorage('weather:storage', {
     ids: [],
     cities: [],
     images: {},
     lastUpdateDate: null
-  }),
+  } as IWeatherState),
 
   getters: {
     getIds(): Array<string> {
@@ -28,43 +29,20 @@ export const useWeatherStore = defineStore('weather', {
   },
 
   actions: {
-    setId(id: string) {
-      this.ids.push(id);
-    },
-    setCity(city: ICityWeather) {
-      this.cities.push(city);
-    },
-    setImage(id: string, image: string) {
-      this.images[id] = image;
-    },
-    async getCityWeather(city: ISearchSuggestItem) {
+    async getCityData(city: ISearchSuggestItem) {
       const commonStore = useCommonStore();
-
       commonStore.setStatus('loading');
 
-      await weatherService(city)
-        .then((city) => {
-          commonStore.setStatus('success');
+      const weatherData = await weatherService(city);
+      const imageData = await imagesService(`${city.name} city ${city.country}`);
 
-          this.setId(city.id);
-          this.setCity(city);
-        })
-        .catch((error) => {
-          commonStore.setStatus('error');
-          commonStore.setErrorMessage(error.message);
-        });
-    },
-    async getCityImage(id: string, query: string) {
-      const commonStore = useCommonStore();
+      // console.log(weatherData);
+      // console.log(imageData);
+      this.ids.push(weatherData.id);
+      this.cities.push(weatherData);
+      this.images[weatherData.id] = imageData;
 
-      await imagesService(query)
-        .then((image) => {
-          this.setImage(id, image);
-        })
-        .catch((error) => {
-          commonStore.setStatus('error');
-          commonStore.setErrorMessage(error.message);
-        });
-    },
+      commonStore.setStatus('success');
+    }
   }
 });
