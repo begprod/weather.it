@@ -26,6 +26,7 @@
     </div>
 
     <button
+      @click="weatherStore.removeCity(city.id)"
       class="group-hover:visible group-hover:opacity-100 absolute top-3 right-3 z-30 invisible opacity-0 transition-all duration-300 ease-in-out"
       type="button"
     >
@@ -47,6 +48,7 @@
 
 <script setup lang="ts">
 import type { ICityWeather } from '@/types';
+import { useWeatherStore } from '@/stores';
 import CardCitySkeleton from '@/components/ui/CardCitySkeleton.vue';
 
 interface IProps {
@@ -56,4 +58,6 @@ interface IProps {
 }
 
 defineProps<IProps>();
+
+const weatherStore = useWeatherStore();
 </script>

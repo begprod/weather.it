@@ -7,9 +7,16 @@
     >
       <v-icon name="hi-refresh" />
     </button>
-    <span class="mt-1 md:mt-3 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white">lastUpdate</span>
+    <span
+      v-if="weatherStore.getLastUpdateDate"
+      class="mt-1 md:mt-3 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white">
+      {{ weatherStore.getLastUpdateDate }}
+    </span>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useWeatherStore } from '@/stores';
+
+const weatherStore = useWeatherStore();
 </script>

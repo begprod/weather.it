@@ -1,17 +1,18 @@
 import { defineStore } from 'pinia';
-import { useLocalStorage } from '@vueuse/core';
+import { useLocalStorage, type RemovableRef } from '@vueuse/core';
 import { type IWeatherState, type ICityWeather, type ISearchSuggestItem } from '@/types';
 import { useCommonStore } from '@/stores';
 import { weatherService, imagesService } from '@/services';
 
 
 export const useWeatherStore = defineStore('weather', {
-  state: () => useLocalStorage('weather:storage', {
-    ids: [],
-    cities: [],
-    images: {},
-    lastUpdateDate: null
-  } as IWeatherState),
+  // TODO: do type for this
+  state: () => ({
+    ids: useLocalStorage('weather:ids', [] as IWeatherState['ids']),
+    cities: useLocalStorage('weather:cities', [] as IWeatherState['cities']),
+    images: useLocalStorage('weather:images', {} as IWeatherState['images']),
+    lastUpdateDate: useLocalStorage('weather:last_updated_date', null as IWeatherState['lastUpdateDate'])
+  }),
 
   getters: {
     getIds(): Array<string> {
@@ -36,13 +37,20 @@ export const useWeatherStore = defineStore('weather', {
       const weatherData = await weatherService(city);
       const imageData = await imagesService(`${city.name} city ${city.country}`);
 
-      // console.log(weatherData);
-      // console.log(imageData);
       this.ids.push(weatherData.id);
       this.cities.push(weatherData);
       this.images[weatherData.id] = imageData;
 
       commonStore.setStatus('success');
+    },
+    removeCity(id: string) {
+      this.ids = this.ids.filter(cityId => cityId !== id);
+      this.cities = this.cities.filter(city => city.id !== id);
+      delete this.images[id];
+
+      if (this.cities.length === 0) {
+        this.lastUpdateDate = null;
+      }
     }
   }
 });
