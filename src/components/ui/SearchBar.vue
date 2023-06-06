@@ -10,18 +10,8 @@
     />
 
     <div class="absolute left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden">
-      <template v-if="citiesSuggestions.length !== 0 && commonStore.getStatus === 'success'">
-        <SearchSuggestionItem
-          v-for="item in citiesSuggestions"
-          :key="item.id"
-          :name="item.name"
-          :country="item.country"
-          @click="getCityWeather(item)"
-        />
-      </template>
-
       <div
-        v-if="citiesSuggestions.length === 0 && searchQuery.length !== 0 && !isSearching"
+        v-if="!isSearching && citiesSuggestions.length === 0 && searchQuery.length !== 0"
         class="flex items-center justify-center w-full p-3 select-none"
       >
         <v-icon name="md-locationoff-twotone" class="w-6 h-6 mr-3 opacity-30"/>
@@ -31,13 +21,23 @@
       </div>
 
       <div
-        v-if="commonStore.status === 'loading' && searchQuery.length !== 0"
+        v-else-if="isSearching && searchQuery.length !== 0"
         class="flex items-center justify-center w-full p-3"
       >
         <div class="animate-spin">
           <v-icon name="ri-loader-line" class="w-6 h-6 opacity-30" />
         </div>
       </div>
+
+      <template v-else>
+        <SearchSuggestionItem
+          v-for="item in citiesSuggestions"
+          :key="item.id"
+          :name="item.name"
+          :country="item.country"
+          @click="getCityWeather(item)"
+        />
+      </template>
     </div>
   </div>
 </template>
@@ -46,8 +46,7 @@
 import { ref, watch } from 'vue';
 import { ISearchSuggestItem } from '@/types';
 import { watchDebounced } from '@vueuse/core';
-import { useCommonStore } from '@/stores/common';
-import { useWeatherStore } from '@/stores/weather';
+import { useCommonStore, useWeatherStore } from '@/stores';
 import { suggestionsCitiesService } from '@/services';
 import SearchInput from '@/components/ui/SearchInput.vue';
 import SearchSuggestionItem from '@/components/ui/SearchSuggestionItem.vue';
@@ -66,7 +65,6 @@ watch(searchQuery, () => {
     return;
   }
 
-  commonStore.setStatus('loading');
   isSearching.value = true;
 });
 
@@ -100,9 +98,6 @@ function getCityWeather(suggestionItem: ISearchSuggestItem) {
   Promise.allSettled([
     weatherStore.getCityWeather(suggestionItem),
     weatherStore.getCityImage(suggestionItem.id, `${suggestionItem.name} city ${suggestionItem.country}`)
-  ])
-    .then(() => {
-      commonStore.setStatus('success');
-    });
+  ]);
 }
 </script>

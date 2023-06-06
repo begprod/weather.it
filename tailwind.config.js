@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       fontFamily: {
         'body': ['Comfortaa', 'sans-serif']
+      },
+      gridAutoRows: {
+        'cards': '370px'
       }
     }
   },

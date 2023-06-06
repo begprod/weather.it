@@ -1,5 +1,5 @@
 <template>
-  <div class="group relative min-h-[350px] p-10 text-white overflow-hidden rounded-[20px] shadow-md isolate">
+  <div class="group relative p-10 text-white overflow-hidden rounded-[20px] shadow-md isolate">
     <div class="relative z-30 select-none">
       <div class="flex items-start">
         <v-icon name="fa-map-marker-alt" class="w-6 h-7 shrink-0 mr-1"/>
@@ -36,15 +36,23 @@
       class="absolute top-0 left-0 right-0 z-10 w-full h-full bg-cover bg-center"
       :style="{ backgroundImage: `url(${image})` }"
     />
+    <div
+      v-if="isLoading"
+      class="absolute top-0 left-0 right-0 z-30 w-full h-full bg-cover bg-center"
+    >
+      <CardCitySkeleton />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { ICityWeather } from '@/types';
+import CardCitySkeleton from '@/components/ui/CardCitySkeleton.vue';
 
 interface IProps {
-  city: ICityWeather,
-  image: string,
+  city: ICityWeather;
+  image: string;
+  isLoading?: boolean;
 }
 
 defineProps<IProps>();

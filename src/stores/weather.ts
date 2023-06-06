@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { type IWeatherState, type ICityWeather, type ISearchSuggestItem } from '@/types';
-import { useCommonStore } from '@/stores/common';
+import { useCommonStore } from '@/stores';
 import { weatherService, imagesService } from '@/services';
 
 
@@ -40,8 +40,12 @@ export const useWeatherStore = defineStore('weather', {
     async getCityWeather(city: ISearchSuggestItem) {
       const commonStore = useCommonStore();
 
+      commonStore.setStatus('loading');
+
       await weatherService(city)
         .then((city) => {
+          commonStore.setStatus('success');
+
           this.setId(city.id);
           this.setCity(city);
         })

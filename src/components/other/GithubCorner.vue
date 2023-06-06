@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 interface IProps {
-  url: string
+  url: string;
 }
 
 defineProps<IProps>();
