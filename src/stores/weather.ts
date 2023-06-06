@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { useLocalStorage, type RemovableRef } from '@vueuse/core';
+import { useLocalStorage } from '@vueuse/core';
 import { type IWeatherState, type ICityWeather, type ISearchSuggestItem } from '@/types';
 import { useCommonStore } from '@/stores';
 import { weatherService, imagesService } from '@/services';
