@@ -4,6 +4,7 @@
       class="rounded-full bg-white border p-3 md:p-5 shadow-sm shadow-gray-200 hover:rotate-45 hover:shadow-lg transition-all duration-300"
       type="button"
       title="Update weather data"
+      @click="weatherStore.updateCityData()"
     >
       <v-icon name="hi-refresh" />
     </button>

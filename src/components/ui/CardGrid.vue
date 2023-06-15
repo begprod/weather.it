@@ -5,6 +5,7 @@
       :key="city.id"
       :city="city"
       :image="weatherStore.getImages[city.id] ? weatherStore.getImages[city.id] : ''"
+      :is-loading="commonStore.getStatus === 'updating'"
     />
 
     <CardCitySkeleton v-if="commonStore.getStatus === 'loading'" />

@@ -3,10 +3,10 @@ import { useLocalStorage } from '@vueuse/core';
 import { type IWeatherState, type ICityWeather, type ISearchSuggestItem } from '@/types';
 import { useCommonStore } from '@/stores';
 import { weatherService, imagesService } from '@/services';
+import { getDate } from '@/helpers';
 
 
 export const useWeatherStore = defineStore('weather', {
-  // TODO: do type for this
   state: () => ({
     ids: useLocalStorage('weather:ids', [] as IWeatherState['ids']),
     cities: useLocalStorage('weather:cities', [] as IWeatherState['cities']),
@@ -42,6 +42,39 @@ export const useWeatherStore = defineStore('weather', {
       this.images[weatherData.id] = imageData;
 
       commonStore.setStatus('success');
+    },
+    async updateCityData() {
+      const commonStore = useCommonStore();
+      const updateDate = getDate();
+      const promises = this.cities.map(async (city: ISearchSuggestItem) => await weatherService(city));
+
+      if (promises.length === 0) {
+        return;
+      }
+
+      for (const promise of promises) {
+        try {
+          commonStore.setStatus('updating');
+
+          const weatherData = await promise;
+
+          this.lastUpdateDate = updateDate;
+
+          this.cities = this.cities.map((city: ICityWeather) => {
+            if (city.id === weatherData.id) {
+              commonStore.setStatus('success');
+
+              return weatherData;
+            }
+
+            return city;
+          });
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.log(error);
+          commonStore.setStatus('error');
+        }
+      }
     },
     removeCity(id: string) {
       this.ids = this.ids.filter(cityId => cityId !== id);
