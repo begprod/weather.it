@@ -20,9 +20,10 @@
         </span>
       </p>
       <p class="text-sm">{{city.weather.description}}</p>
-<!--      <div class={`mt-5 weather-icon weather-icon_${setWeatherTypeIcon(props.city.weather.main)}`}>-->
-<!--        {particles()}-->
-<!--      </div>-->
+      <BaseWeatherIcon
+        class="mt-5"
+        :type="city.weather.main.toLowerCase()"
+      />
     </div>
 
     <button
@@ -50,6 +51,7 @@
 import type { ICityWeather } from '@/types';
 import { useWeatherStore } from '@/stores';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton.vue';
+import BaseWeatherIcon from '@/components/icons/BaseWeatherIcon.vue';
 
 interface IProps {
   city: ICityWeather;

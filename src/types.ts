@@ -43,3 +43,23 @@ export interface ISearchSuggestItem {
   name: string;
   country: string;
 }
+
+/* eslint-disable */
+export enum WeatherType {
+  Clear = 'clear',
+  Clouds = 'clouds',
+  Thunderstorm = 'thunder',
+  Tornado = 'thunder',
+  Drizzle = 'drizzle',
+  Rain = 'rain',
+  Snow = 'snow',
+  Smoke = 'smoke',
+  Haze = 'smoke',
+  Squall = 'smoke',
+  Fog = 'smoke',
+  Mist = 'mist',
+  Dust = 'dust',
+  Sand = 'dust',
+  Ash = 'dust',
+}
+/* eslint-enable */

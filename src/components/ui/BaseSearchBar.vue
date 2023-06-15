@@ -1,5 +1,7 @@
 <template>
   <div class="relative">
+    <BaseWeatherIconDoodle />
+
     <BaseSearchInput
       id="city_search"
       type="text"
@@ -50,6 +52,7 @@ import { useCommonStore, useWeatherStore } from '@/stores';
 import { suggestionsCitiesService } from '@/services';
 import BaseSearchInput from '@/components/ui/BaseSearchInput.vue';
 import BaseSearchSuggestionItem from '@/components/ui/BaseSearchSuggestionItem.vue';
+import BaseWeatherIconDoodle from '@/components/icons/BaseWeatherIconDoodle.vue';
 
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
