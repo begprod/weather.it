@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <SearchInput
+    <BaseSearchInput
       id="city_search"
       type="text"
       label="Search"
@@ -30,7 +30,7 @@
       </div>
 
       <template v-else>
-        <SearchSuggestionItem
+        <BaseSearchSuggestionItem
           v-for="item in citiesSuggestions"
           :key="item.id"
           :name="item.name"
@@ -48,8 +48,8 @@ import { ISearchSuggestItem } from '@/types';
 import { watchDebounced } from '@vueuse/core';
 import { useCommonStore, useWeatherStore } from '@/stores';
 import { suggestionsCitiesService } from '@/services';
-import SearchInput from '@/components/ui/SearchInput.vue';
-import SearchSuggestionItem from '@/components/ui/SearchSuggestionItem.vue';
+import BaseSearchInput from '@/components/ui/BaseSearchInput.vue';
+import BaseSearchSuggestionItem from '@/components/ui/BaseSearchSuggestionItem.vue';
 
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();

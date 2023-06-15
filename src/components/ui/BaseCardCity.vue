@@ -41,7 +41,7 @@
       v-if="isLoading"
       class="absolute top-0 left-0 right-0 z-30 w-full h-full bg-cover bg-center"
     >
-      <CardCitySkeleton />
+      <BaseCardCitySkeleton />
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@
 <script setup lang="ts">
 import type { ICityWeather } from '@/types';
 import { useWeatherStore } from '@/stores';
-import CardCitySkeleton from '@/components/ui/CardCitySkeleton.vue';
+import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton.vue';
 
 interface IProps {
   city: ICityWeather;

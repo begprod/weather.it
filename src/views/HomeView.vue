@@ -1,14 +1,14 @@
 <template>
-  <LayoutDefault>
+  <BaseLayoutDefault>
     <div class="w-full md:w-[500px]">
-      <SearchBar />
+      <BaseSearchBar />
     </div>
-    <CardGrid />
-  </LayoutDefault>
+    <BaseCardGrid />
+  </BaseLayoutDefault>
 </template>
 
 <script setup lang="ts">
-import LayoutDefault from '@/components/layouts/LayoutDefault.vue';
-import SearchBar from '@/components/ui/SearchBar.vue';
-import CardGrid from '@/components/ui/CardGrid.vue';
+import BaseLayoutDefault from '@/components/layouts/BaseLayoutDefault.vue';
+import BaseSearchBar from '@/components/ui/BaseSearchBar.vue';
+import BaseCardGrid from '@/components/ui/BaseCardGrid.vue';
 </script>

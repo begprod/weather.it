@@ -3,7 +3,7 @@
     <p class="text-center">
       made with <span class="text-red-500">❤</span> by <a href="https://github.com/begprod" class="text-blue-600">begprod</a>
     </p>
-    <p>v.{{version}}</p>
+    <p>v.{{appVersion}}</p>
     <p>
       <a
         class="text-blue-600"
@@ -20,4 +20,6 @@
 
 <script setup lang="ts">
 import { version } from '../../../../package.json';
+
+const appVersion = version;
 </script>
