@@ -22,6 +22,10 @@ export function weatherService(suggestCityData: ISearchSuggestItem): Promise<ICi
       };
     })
     .catch((error) => {
+      if (error.response.status === 404) {
+        throw new Error('404');
+      }
+
       throw new Error(error);
     });
 }

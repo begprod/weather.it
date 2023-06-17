@@ -43,11 +43,14 @@ export const useWeatherStore = defineStore('weather', {
         this.images[weatherData.id] = imageData;
 
         commonStore.setStatus('success');
-        commonStore.setMessage(`${weatherData.name} city successfully added.`);
+        commonStore.setMessage(`${weatherData.name}, ${weatherData.country} successfully added.`);
         commonStore.showToast();
       } catch (error) {
+        // @ts-ignore
+        const message = error.message === '404' ? `Weather data for ${city.name}, ${city.country} not found.` : 'Something went wrong with the weather service or the image service. Please try again later.';
+
         commonStore.setStatus('error');
-        commonStore.setMessage('Something went wrong with the weather service or the image service. Please try again later.');
+        commonStore.setMessage(message);
         commonStore.showToast();
       }
     },
