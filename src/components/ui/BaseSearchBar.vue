@@ -86,7 +86,6 @@ watch(searchQuery, () => {
 watchDebounced(searchQuery, async () => {
   await suggestionsCitiesService(searchQuery.value)
     .then((suggestionList) => {
-      console.log(suggestionList.length);
       if (suggestionList.length > 0) {
         citiesSuggestions.value = suggestionList.filter((city) => {
           return !weatherStore.getIds.includes(city.id);
@@ -114,30 +113,3 @@ function getCityWeather(suggestionItem: ISearchSuggestItem) {
   weatherStore.getCityData(suggestionItem);
 }
 </script>
-
-<style>
-.slide-up-enter-active,
-.slide-up-leave-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-up-enter-from {
-  opacity: 0;
-  transform: translateY(15px);
-}
-
-.slide-up-leave-to {
-  opacity: 0;
-  transform: translateY(15px);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

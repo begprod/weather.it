@@ -38,12 +38,15 @@
       class="absolute top-0 left-0 right-0 z-10 w-full h-full bg-cover bg-center"
       :style="{ backgroundImage: `url(${image})` }"
     />
-    <div
-      v-if="isLoading"
-      class="absolute top-0 left-0 right-0 z-30 w-full h-full bg-cover bg-center"
-    >
-      <BaseCardCitySkeleton />
-    </div>
+
+    <Transition name="fade">
+      <div
+        v-if="isLoading"
+        class="absolute top-0 left-0 right-0 z-30 w-full h-full bg-cover bg-center"
+      >
+        <BaseCardCitySkeleton />
+      </div>
+    </Transition>
   </div>
 </template>
 
