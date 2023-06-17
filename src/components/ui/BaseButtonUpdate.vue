@@ -6,18 +6,32 @@
       title="Update weather data"
       @click="weatherStore.updateCityData()"
     >
-      <v-icon name="hi-refresh" />
+      <v-icon
+        name="hi-refresh"
+        :class="classObject"
+      />
     </button>
-    <span
-      v-if="weatherStore.getLastUpdateDate"
-      class="mt-1 md:mt-3 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white">
-      {{ weatherStore.getLastUpdateDate }}
-    </span>
+
+    <Transition name="slide-down">
+      <span
+        v-if="weatherStore.getLastUpdateDate"
+        class="mt-1 md:mt-3 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white">
+        {{ weatherStore.getLastUpdateDate }}
+      </span>
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useWeatherStore } from '@/stores';
+import { computed } from 'vue';
+import { useCommonStore, useWeatherStore } from '@/stores';
 
+const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
+
+const classObject = computed(() => {
+  return {
+    'animate-spin': commonStore.getStatus === 'updating',
+  };
+});
 </script>
