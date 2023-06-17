@@ -9,29 +9,41 @@
       placeholder="Start typing city name..."
       autoComplete="off"
       v-model="searchQuery"
+      autofocus
     />
 
-    <div class="absolute left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden">
+    <Transition name="fade">
       <div
         v-if="!isSearching && citiesSuggestions.length === 0 && searchQuery.length !== 0"
-        class="flex items-center justify-center w-full p-3 select-none"
+        class="absolute min-h-[52px] left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden"
       >
-        <v-icon name="md-locationoff-twotone" class="w-6 h-6 mr-3 opacity-30"/>
-        <div class="text-xl overflow-hidden">
-          <p class="text-xl">City not found</p>
-        </div>
+          <div class="absolute top-0 left-0 flex items-center justify-center w-full p-3 select-none">
+            <v-icon name="md-locationoff-twotone" class="w-6 h-6 mr-3 opacity-30"/>
+            <div class="text-xl overflow-hidden">
+              <p class="text-xl">City not found</p>
+            </div>
+          </div>
       </div>
+    </Transition>
 
+    <Transition name="fade">
       <div
-        v-else-if="isSearching && searchQuery.length !== 0"
-        class="flex items-center justify-center w-full p-3"
+        v-if="isSearching && searchQuery.length !== 0"
+        class="absolute min-h-[52px] left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden"
       >
-        <div class="animate-spin">
-          <v-icon name="ri-loader-line" class="w-6 h-6 opacity-30" />
+        <div class="absolute top-0 left-0  flex items-center justify-center w-full p-3">
+          <div class="animate-spin">
+            <v-icon name="ri-loader-line" class="w-6 h-6 opacity-30" />
+          </div>
         </div>
       </div>
+    </Transition>
 
-      <template v-else>
+    <Transition name="slide-up">
+      <div
+        v-if="citiesSuggestions.length > 0 && searchQuery.length !== 0 && !isSearching"
+        class="absolute left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden"
+      >
         <BaseSearchSuggestionItem
           v-for="item in citiesSuggestions"
           :key="item.id"
@@ -39,8 +51,8 @@
           :country="item.country"
           @click="getCityWeather(item)"
         />
-      </template>
-    </div>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -74,6 +86,7 @@ watch(searchQuery, () => {
 watchDebounced(searchQuery, async () => {
   await suggestionsCitiesService(searchQuery.value)
     .then((suggestionList) => {
+      console.log(suggestionList.length);
       if (suggestionList.length > 0) {
         citiesSuggestions.value = suggestionList.filter((city) => {
           return !weatherStore.getIds.includes(city.id);
@@ -81,6 +94,7 @@ watchDebounced(searchQuery, async () => {
 
         isSearching.value = false;
       } else {
+        citiesSuggestions.value = [];
         isSearching.value = false;
       }
     })
@@ -100,3 +114,30 @@ function getCityWeather(suggestionItem: ISearchSuggestItem) {
   weatherStore.getCityData(suggestionItem);
 }
 </script>
+
+<style>
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

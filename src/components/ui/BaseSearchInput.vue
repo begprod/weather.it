@@ -14,6 +14,7 @@
       :required="required"
       :autoComplete="autoComplete"
       :value="modelValue"
+      :autofocus="autofocus"
       @input="onUpdateValue"
     />
     <div class="absolute hidden sm:flex inset-y-0 right-0 items-center pr-5 pointer-events-none z-20">
@@ -31,6 +32,7 @@ interface IProps {
   modelValue: string;
   required?: boolean;
   autoComplete?: string;
+  autofocus?: boolean;
 }
 
 defineProps<IProps>();
