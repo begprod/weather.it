@@ -27,5 +27,8 @@ export function suggestionsCitiesService(name: string = ''): Promise<Array<ISear
           country: city.properties.country
         };
     });
+  })
+  .catch((error) => {
+    throw new Error(error);
   });
 }

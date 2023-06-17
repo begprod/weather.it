@@ -13,6 +13,6 @@ export async function imagesService(query: string): Promise<string> {
         return `https://loremflickr.com/500/500?random=${generateRandomNumber(0, 100)}`;
       }
 
-      throw new Error('Something went wrong with getting image data. Please try again later.');
+      throw new Error(error);
     });
 }

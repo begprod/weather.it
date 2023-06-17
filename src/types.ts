@@ -1,6 +1,7 @@
 export interface ICommonState {
   status: 'init' | 'loading' | 'updating' | 'success' | 'error';
-  errorMessage: string;
+  message: string;
+  toastVisibility: boolean;
 }
 
 export interface IWeatherState {

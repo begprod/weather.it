@@ -7,12 +7,14 @@ import {
   FaMapMarkerAlt,
   FaMapPin,
   HiRefresh,
-  RiCelsiusLine,
   IoClose,
-  LaGlobeAsiaSolid,
   IoSearch,
+  RiCelsiusLine,
+  RiLoaderLine,
+  LaGlobeAsiaSolid,
   MdLocationoffTwotone,
-  RiLoaderLine
+  MdDoneallOutlined,
+  MdNotinterestedOutlined,
 } from 'oh-vue-icons/icons';
 
 import App from './App.vue';
@@ -22,12 +24,14 @@ addIcons(
   FaMapMarkerAlt,
   FaMapPin,
   HiRefresh,
-  RiCelsiusLine,
   IoClose,
-  LaGlobeAsiaSolid,
   IoSearch,
+  RiCelsiusLine,
+  RiLoaderLine,
+  LaGlobeAsiaSolid,
   MdLocationoffTwotone,
-  RiLoaderLine
+  MdDoneallOutlined,
+  MdNotinterestedOutlined,
 );
 
 const app = createApp(App);

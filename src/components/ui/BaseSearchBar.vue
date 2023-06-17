@@ -79,16 +79,16 @@ watchDebounced(searchQuery, async () => {
           return !weatherStore.getIds.includes(city.id);
         });
 
-        commonStore.setStatus('success');
         isSearching.value = false;
       } else {
         isSearching.value = false;
-        commonStore.setStatus('init');
       }
     })
-    .catch((error) => {
+    .catch(() => {
+      isSearching.value = false;
       commonStore.setStatus('error');
-      commonStore.setErrorMessage(error.message);
+      commonStore.setMessage('Something went wrong with the search suggestion. Please try again later.');
+      commonStore.showToast();
     });
 }, { debounce: 1100, maxWait: 5000 });
 

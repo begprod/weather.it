@@ -18,5 +18,8 @@ export function weatherService(suggestCityData: ISearchSuggestItem): Promise<ICi
           description: data.data.weather[0].description,
         }
       };
+    })
+    .catch((error) => {
+      throw new Error(error);
     });
 }

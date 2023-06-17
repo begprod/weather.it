@@ -20,12 +20,6 @@ import BaseWeatherIcon from '@/components/icons/BaseWeatherIcon.vue';
       animation: floating 3s ease-in-out infinite;
       animation-delay: math.random(10) * 1s;
     }
-    //div:nth-child(#{$i}) {
-    //  :deep(.weather-icon) {
-    //    animation: floating 3s ease-in-out infinite;
-    //    animation-delay: math.random(math.div(10, 1)) * 1s;
-    //  }
-    //}
   }
 }
 

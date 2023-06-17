@@ -34,14 +34,22 @@ export const useWeatherStore = defineStore('weather', {
       const commonStore = useCommonStore();
       commonStore.setStatus('loading');
 
-      const weatherData = await weatherService(city);
-      const imageData = await imagesService(`${city.name} city ${city.country}`);
+      try {
+        const weatherData = await weatherService(city);
+        const imageData = await imagesService(`${city.name} city ${city.country}`);
 
-      this.ids.push(weatherData.id);
-      this.cities.push(weatherData);
-      this.images[weatherData.id] = imageData;
+        this.ids.push(weatherData.id);
+        this.cities.push(weatherData);
+        this.images[weatherData.id] = imageData;
 
-      commonStore.setStatus('success');
+        commonStore.setStatus('success');
+        commonStore.setMessage(`${weatherData.name} city successfully added.`);
+        commonStore.showToast();
+      } catch (error) {
+        commonStore.setStatus('error');
+        commonStore.setMessage('Something went wrong with the weather service or the image service. Please try again later.');
+        commonStore.showToast();
+      }
     },
     async updateCityData() {
       const commonStore = useCommonStore();
@@ -58,8 +66,6 @@ export const useWeatherStore = defineStore('weather', {
 
           const weatherData = await promise;
 
-          this.lastUpdateDate = updateDate;
-
           this.cities = this.cities.map((city: ICityWeather) => {
             if (city.id === weatherData.id) {
               commonStore.setStatus('success');
@@ -70,11 +76,15 @@ export const useWeatherStore = defineStore('weather', {
             return city;
           });
         } catch (error) {
-          // eslint-disable-next-line no-console
-          console.log(error);
           commonStore.setStatus('error');
+          commonStore.setMessage('Something went wrong with the weather update. Please try again later.');
+          commonStore.showToast();
+
+          return;
         }
       }
+
+      this.lastUpdateDate = updateDate;
     },
     removeCity(id: string) {
       this.ids = this.ids.filter(cityId => cityId !== id);
