@@ -5,9 +5,11 @@
       <BaseFooterDefault />
     </div>
 
-    <BaseButtonUpdate
-      v-if="weatherStore.getCities.length"
-    />
+    <Transition name="slide-up">
+      <BaseButtonUpdate
+        v-if="weatherStore.getCities.length"
+      />
+    </Transition>
 
     <BaseToast
       :type="commonStore.getStatus"
