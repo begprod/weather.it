@@ -15,6 +15,7 @@ export interface ICityWeather {
   id: string;
   name: string;
   country: string;
+  country_code: string;
   weather: {
     current: number;
     feels_like: number;
@@ -34,15 +35,17 @@ export interface ICitiesSuggestionsItem {
     place_id: string;
     city: string;
     country: string;
+    country_code: string;
     result_type: string;
     category: string;
   }
 }
 
-export interface ISearchSuggestItem {
+export interface  ISearchSuggestItem {
   id: string;
   name: string;
   country: string;
+  country_code: string;
 }
 
 /* eslint-disable */

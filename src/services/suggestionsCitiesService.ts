@@ -24,7 +24,8 @@ export function suggestionsCitiesService(name: string = ''): Promise<Array<ISear
         return {
           id: city.properties.place_id,
           name: city.properties.city,
-          country: city.properties.country
+          country: city.properties.country,
+          country_code: city.properties.country_code,
         };
     });
   })
