@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { ISearchSuggestItem } from '@/types';
+import { type ISearchSuggestItem } from '@/types';
 import { watchDebounced } from '@vueuse/core';
 import { useCommonStore, useWeatherStore } from '@/stores';
 import { suggestionsCitiesService } from '@/services';
