@@ -1,52 +1,48 @@
-# wiv
+# weather.it
 
-This template should help get you started developing with Vue 3 in Vite.
+<img src="https://img.shields.io/github/package-json/v/begprod/weather.it?style=for-the-badge" alt="GitHub package.json version" />
+<img src="https://img.shields.io/github/last-commit/begprod/weather.it?style=for-the-badge" alt="GitHub last commit" />
+<img src="https://img.shields.io/github/issues/begprod/weather.it?style=for-the-badge" alt="GitHub issues" />
+<img src="https://img.shields.io/github/languages/top/begprod/weather.it?style=for-the-badge" alt="GitHub top language" />
 
-## Recommended IDE Setup
+<br/>
+<br/>
+<br/>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## One more weather app with fancy design
 
-## Type Support for `.vue` Imports in TS
+[https://weatherit.site/](https://weatherit.site/)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+App includes the ability to search for cities, save selected cities, display current weather for each of them, and loads photos of the cities.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+<br/>
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+<img src="./public/screenshots/desktop.png" alt="weather.it" />
+<img src="./public/screenshots/mobile.png" alt="weather.it" />
 
-## Customize configuration
+<br/>
+<br/>
+<br/>
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Install application on your device
 
-## Project Setup
+### iOS
 
-```sh
-npm install
-```
+Open the following link on your iPhone or iPad: [https://weatherit.site/](https://weatherit.site/)
 
-### Compile and Hot-Reload for Development
+Follow the steps below to install the app on your device:
 
-```sh
-npm run dev
-```
+<img src="./public/screenshots/ios_1.png" alt="weather.it" />
+<img src="./public/screenshots/ios_2.png" alt="weather.it" />
 
-### Type-Check, Compile and Minify for Production
+<br/>
+<br/>
+<br/>
 
-```sh
-npm run build
-```
+### Android
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+Open the following link on your Android device: [https://weatherit.site/](https://weatherit.site/)
 
-```sh
-npm run test:unit
-```
+Follow the steps below to install the app on your device:
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+<img src="./public/screenshots/android.png" alt="weather.it" />
