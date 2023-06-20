@@ -3,7 +3,7 @@
     <Transition name="slide-up">
       <div
         v-if="isVisible"
-        class="flex items-center w-full sm:w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm shadow-gray-200 duration-300 hover:shadow-lg"
+        class="flex w-full sm:w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm shadow-gray-200 duration-300 hover:shadow-lg"
         :class="classObject"
         @click="clickHandler"
       >
@@ -20,7 +20,10 @@
           <v-icon name="md-notinterested-outlined" />
         </div>
 
-        <div class="ml-3 text-sm font-normal">{{ message }}</div>
+        <div class="flex flex-col items-start ml-3">
+          <div class="text-sm font-normal">{{ message }}</div>
+          <slot />
+        </div>
       </div>
     </Transition>
   </div>

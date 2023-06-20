@@ -16,6 +16,8 @@
       :click-handler="commonStore.closeToast"
     />
 
+    <BaseServiceWorkerUpdate />
+
     <BaseGithubCorner url="https://github.com/begprod/weather.it" />
   </main>
 </template>
@@ -26,6 +28,7 @@ import BaseFooterDefault from '@/components/layouts/partials/BaseFooterDefault.v
 import BaseButtonUpdate from '@/components/ui/BaseButtonUpdate.vue';
 import BaseGithubCorner from '@/components/other/BaseGithubCorner.vue';
 import BaseToast from '@/components/ui/BaseToast.vue';
+import BaseServiceWorkerUpdate from '../ui/BaseServiceWorkerUpdate.vue';
 
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
