@@ -4,13 +4,9 @@
     class="github-corner"
     target="_blank"
     rel="noreferrer"
-    aria-label="View source on Github">
-    <svg
-      width="70"
-      height="70"
-      viewBox="0 0 250 250"
-      aria-hidden="true"
-    >
+    aria-label="View source on Github"
+  >
+    <svg width="70" height="70" viewBox="0 0 250 250" aria-hidden="true">
       <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
       <path
         class="octo-arm"
@@ -35,39 +31,39 @@ defineProps<IProps>();
 </script>
 
 <style scoped lang="scss">
-  .github-corner {
+.github-corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+
+  &:hover .octo-arm {
+    transform-origin: center;
+    animation: octocat-wave 1s ease-in-out;
+  }
+
+  svg {
+    fill: #ff6f00;
+    color: #ffffff;
     position: absolute;
     top: 0;
-    right: 0;
     border: 0;
-
-    &:hover .octo-arm {
-      transform-origin: center;
-      animation: octocat-wave 1s ease-in-out;
-    }
-
-    svg {
-      fill: #ff6f00;
-      color: #ffffff;
-      position: absolute;
-      top: 0;
-      border: 0;
-      right: 0;
-    }
+    right: 0;
   }
+}
 
-  @keyframes octocat-wave {
-    0%,
-    100% {
-      transform: rotate(0);
-    }
-    20%,
-    60% {
-      transform: rotate(-15deg);
-    }
-    40%,
-    80% {
-      transform: rotate(10deg);
-    }
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
   }
+  20%,
+  60% {
+    transform: rotate(-15deg);
+  }
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
 </style>

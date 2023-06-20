@@ -1,9 +1,6 @@
 <template>
-  <label
-    :for="id"
-    class="mb-2 text-sm sr-only dark:text-white"
-  >
-    {{label}}
+  <label :for="id" class="mb-2 text-sm sr-only dark:text-white">
+    {{ label }}
   </label>
   <div class="relative">
     <input
@@ -17,7 +14,9 @@
       :autofocus="autofocus"
       @input="onUpdateValue"
     />
-    <div class="absolute hidden sm:flex inset-y-0 right-0 items-center pr-5 pointer-events-none z-20">
+    <div
+      class="absolute hidden sm:flex inset-y-0 right-0 items-center pr-5 pointer-events-none z-20"
+    >
       <v-icon name="io-search" class="w-8 h-8 opacity-30" />
     </div>
   </div>
@@ -41,6 +40,5 @@ const emits = defineEmits(['update:modelValue']);
 
 const onUpdateValue = (event: Event) => {
   emits('update:modelValue', (event.target as HTMLInputElement).value);
-
 };
 </script>

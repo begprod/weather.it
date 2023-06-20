@@ -17,12 +17,12 @@
         v-if="!isSearching && citiesSuggestions.length === 0 && searchQuery.length !== 0"
         class="absolute min-h-[52px] left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden"
       >
-          <div class="absolute top-0 left-0 flex items-center justify-center w-full p-3 select-none">
-            <v-icon name="md-locationoff-twotone" class="w-6 h-6 mr-3 opacity-30"/>
-            <div class="text-xl overflow-hidden">
-              <p class="text-xl">City not found</p>
-            </div>
+        <div class="absolute top-0 left-0 flex items-center justify-center w-full p-3 select-none">
+          <v-icon name="md-locationoff-twotone" class="w-6 h-6 mr-3 opacity-30" />
+          <div class="text-xl overflow-hidden">
+            <p class="text-xl">City not found</p>
           </div>
+        </div>
       </div>
     </Transition>
 
@@ -31,7 +31,7 @@
         v-if="isSearching && searchQuery.length !== 0"
         class="absolute min-h-[52px] left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden"
       >
-        <div class="absolute top-0 left-0  flex items-center justify-center w-full p-3">
+        <div class="absolute top-0 left-0 flex items-center justify-center w-full p-3">
           <div class="animate-spin">
             <v-icon name="ri-loader-line" class="w-6 h-6 opacity-30" />
           </div>
@@ -83,27 +83,33 @@ watch(searchQuery, () => {
   isSearching.value = true;
 });
 
-watchDebounced(searchQuery, async () => {
-  await suggestionsCitiesService(searchQuery.value)
-    .then((suggestionList) => {
-      if (suggestionList.length > 0) {
-        citiesSuggestions.value = suggestionList.filter((city) => {
-          return !weatherStore.getIds.includes(city.id);
-        });
+watchDebounced(
+  searchQuery,
+  async () => {
+    await suggestionsCitiesService(searchQuery.value)
+      .then((suggestionList) => {
+        if (suggestionList.length > 0) {
+          citiesSuggestions.value = suggestionList.filter((city) => {
+            return !weatherStore.getIds.includes(city.id);
+          });
 
+          isSearching.value = false;
+        } else {
+          citiesSuggestions.value = [];
+          isSearching.value = false;
+        }
+      })
+      .catch(() => {
         isSearching.value = false;
-      } else {
-        citiesSuggestions.value = [];
-        isSearching.value = false;
-      }
-    })
-    .catch(() => {
-      isSearching.value = false;
-      commonStore.setStatus('error');
-      commonStore.setMessage('Something went wrong with the search suggestion. Please try again later.');
-      commonStore.showToast();
-    });
-}, { debounce: 1100, maxWait: 5000 });
+        commonStore.setStatus('error');
+        commonStore.setMessage(
+          'Something went wrong with the search suggestion. Please try again later.',
+        );
+        commonStore.showToast();
+      });
+  },
+  { debounce: 1100, maxWait: 5000 },
+);
 
 function getCityWeather(suggestionItem: ISearchSuggestItem) {
   isSearching.value = false;

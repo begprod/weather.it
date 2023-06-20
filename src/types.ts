@@ -26,8 +26,8 @@ export interface ICityWeather {
 
 export interface ISearchDataResponse {
   data: {
-    features: Array<any>
-  }
+    features: Array<any>;
+  };
 }
 
 export interface ICitiesSuggestionsItem {
@@ -38,10 +38,10 @@ export interface ICitiesSuggestionsItem {
     country_code: string;
     result_type: string;
     category: string;
-  }
+  };
 }
 
-export interface  ISearchSuggestItem {
+export interface ISearchSuggestItem {
   id: string;
   name: string;
   country: string;

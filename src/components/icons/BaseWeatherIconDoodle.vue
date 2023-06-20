@@ -12,7 +12,7 @@ import BaseWeatherIcon from '@/components/icons/BaseWeatherIcon.vue';
 </script>
 
 <style lang="scss">
-@use "sass:math";
+@use 'sass:math';
 
 .weather-doodle {
   @for $i from 1 through 4 {

@@ -6,16 +6,14 @@
       title="Update weather data"
       @click="weatherStore.updateCityData()"
     >
-      <v-icon
-        name="hi-refresh"
-        :class="classObject"
-      />
+      <v-icon name="hi-refresh" :class="classObject" />
     </button>
 
     <Transition name="slide-down">
       <span
         v-if="weatherStore.getLastUpdateDate"
-        class="mt-1 md:mt-3 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white">
+        class="mt-1 md:mt-3 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white"
+      >
         {{ weatherStore.getLastUpdateDate }}
       </span>
     </Transition>

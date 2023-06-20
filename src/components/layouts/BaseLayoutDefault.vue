@@ -6,9 +6,7 @@
     </div>
 
     <Transition name="slide-up">
-      <BaseButtonUpdate
-        v-if="weatherStore.getCities.length"
-      />
+      <BaseButtonUpdate v-if="weatherStore.getCities.length" />
     </Transition>
 
     <BaseToast

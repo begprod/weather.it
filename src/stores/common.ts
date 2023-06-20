@@ -5,7 +5,7 @@ export const useCommonStore = defineStore('common', {
   state: (): ICommonState => ({
     status: 'init',
     message: '',
-    toastVisibility: false
+    toastVisibility: false,
   }),
 
   getters: {
@@ -17,7 +17,7 @@ export const useCommonStore = defineStore('common', {
     },
     getToastVisibility(): boolean {
       return this.toastVisibility;
-    }
+    },
   },
 
   actions: {
@@ -44,6 +44,6 @@ export const useCommonStore = defineStore('common', {
       this.toastVisibility = false;
       this.status = 'init';
       this.message = '';
-    }
-  }
+    },
+  },
 });
