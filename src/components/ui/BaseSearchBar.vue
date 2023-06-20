@@ -69,7 +69,7 @@ import BaseWeatherIconDoodle from '@/components/icons/BaseWeatherIconDoodle.vue'
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
 const searchQuery = ref('');
-const citiesSuggestions = ref([]);
+const citiesSuggestions = ref<Array<ISearchSuggestItem>>([]);
 const isSearching = ref(false);
 
 watch(searchQuery, () => {
