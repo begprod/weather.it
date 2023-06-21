@@ -1,35 +1,21 @@
-import { EntityId, EntityState } from '@reduxjs/toolkit';
+export interface ICommonState {
+  status: 'init' | 'loading' | 'updating' | 'success' | 'error';
+  message: string;
+  toastVisibility: boolean;
+}
 
-export interface IRootState {
-  ids?: Array<EntityId>;
-  entities?: EntityState<ICityWeather>;
-  citiesSuggestions: Array<ISearchSuggestItem>;
+export interface IWeatherState {
+  ids: Array<string>;
+  cities: Array<ICityWeather>;
   images: Record<string, string>;
   lastUpdateDate: string | null;
-  status: 'init' | 'loading' | 'updating' | 'success' | 'error';
-  errorMessage: string;
-}
-
-export interface ICitiesSuggestionsResponse {
-  properties: {
-    place_id: string;
-    city: string;
-    country: string;
-    result_type: string;
-    category: string;
-  }
-}
-
-export interface ISearchSuggestItem {
-  id: string;
-  name: string;
-  country: string;
 }
 
 export interface ICityWeather {
   id: string;
   name: string;
   country: string;
+  country_code: string;
   weather: {
     current: number;
     feels_like: number;
@@ -38,9 +24,34 @@ export interface ICityWeather {
   };
 }
 
+export interface ISearchDataResponse {
+  data: {
+    features: Array<any>;
+  };
+}
+
+export interface ICitiesSuggestionsItem {
+  properties: {
+    place_id: string;
+    city: string;
+    country: string;
+    country_code: string;
+    result_type: string;
+    category: string;
+  };
+}
+
+export interface ISearchSuggestItem {
+  id: string;
+  name: string;
+  country: string;
+  country_code: string;
+}
+
+/* eslint-disable */
 export enum WeatherType {
   Clear = 'clear',
-  Clouds = 'cloud',
+  Clouds = 'clouds',
   Thunderstorm = 'thunder',
   Tornado = 'thunder',
   Drizzle = 'drizzle',
@@ -49,9 +60,10 @@ export enum WeatherType {
   Smoke = 'smoke',
   Haze = 'smoke',
   Squall = 'smoke',
-  Mist = 'mist',
   Fog = 'smoke',
+  Mist = 'mist',
   Dust = 'dust',
   Sand = 'dust',
   Ash = 'dust',
 }
+/* eslint-enable */

@@ -1,3 +1,3 @@
-export { getCitiesSuggestions } from './citySearchService';
-export { getCityWeather } from './weatherApiService';
-export { getCityImage } from './imagesApiService';
+export { suggestionsCitiesService } from './suggestionsCitiesService';
+export { weatherService } from './weatherService';
+export { imagesService } from './imagesService';

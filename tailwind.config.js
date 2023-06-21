@@ -1,20 +1,22 @@
+/** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line no-undef
 module.exports = {
-  mode: 'jit',
-  media: false,
-  content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-  ],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontFamily: {
-        'body': ['Comfortaa', 'sans-serif'],
+        'body': ['Comfortaa', 'sans-serif']
+      },
+      gridAutoRows: {
+        'cards': '370px'
       }
-    },
+    }
   },
   variants: {
     extend: {
-      display: ['group-hover'],
-    },
+      display: ['group-hover']
+    }
   },
-  plugins: [],
+  plugins: []
 };
+
