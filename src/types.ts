@@ -16,9 +16,12 @@ export interface ICityWeather {
   name: string;
   country: string;
   country_code: string;
+  lon: number;
+  lat: number;
   weather: {
     current: number;
     feels_like: number;
+    air_quality: number | null;
     main: string;
     description: string;
   };
@@ -38,6 +41,8 @@ export interface ICitiesSuggestionsItem {
     country_code: string;
     result_type: string;
     category: string;
+    lon: number;
+    lat: number;
   };
 }
 
@@ -46,6 +51,8 @@ export interface ISearchSuggestItem {
   name: string;
   country: string;
   country_code: string;
+  lon: number;
+  lat: number;
 }
 
 /* eslint-disable */

@@ -47,6 +47,8 @@ export function suggestionsCitiesService(name: string = ''): Promise<Array<ISear
           name: city.properties.city,
           country: city.properties.country,
           country_code: city.properties.country_code,
+          lon: city.properties.lon,
+          lat: city.properties.lat,
         };
       });
     })

@@ -8,7 +8,7 @@ module.exports = {
         'body': ['Comfortaa', 'sans-serif']
       },
       gridAutoRows: {
-        'cards': '370px'
+        'cards': '405px'
       }
     }
   },

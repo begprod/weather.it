@@ -1,34 +1,48 @@
 import { weatherApi } from './apiSettings';
 import { type ICityWeather, type ISearchSuggestItem } from '@/types';
 
-export function weatherService(suggestCityData: ISearchSuggestItem): Promise<ICityWeather> {
-  const { id, name, country, country_code } = suggestCityData;
+export function weatherService(
+  suggestCityData: ISearchSuggestItem | ICityWeather,
+): Promise<ICityWeather> {
+  const { id, name, country, country_code, lat, lon } = suggestCityData;
   const countryCode = country_code.toUpperCase();
-  const url = `/weather?q=${name},${countryCode}&appid=${
+  const weatherDataUrl = `/weather?q=${name},${countryCode}&appid=${
     import.meta.env.VITE_WEATHER_API_KEY
   }&units=metric`;
+  const airQualityUrl = `/air_pollution?lat=${suggestCityData.lat}&lon=${
+    suggestCityData.lon
+  }&appid=${import.meta.env.VITE_WEATHER_API_KEY}`;
+  const getWeather = async () => await weatherApi.get(weatherDataUrl);
+  const getAirQuality = async () => await weatherApi.get(airQualityUrl);
+  const requests = [getWeather(), getAirQuality()];
+  let airQuality: number | null = null;
 
-  return weatherApi
-    .get(url)
-    .then((data) => {
-      return {
-        id,
-        country,
-        country_code,
-        name: data.data.name,
-        weather: {
-          current: data.data.main.temp.toFixed(0),
-          feels_like: data.data.main.feels_like.toFixed(0),
-          main: data.data.weather[0].main,
-          description: data.data.weather[0].description,
-        },
-      };
-    })
-    .catch((error) => {
-      if (error.response.status === 404) {
-        throw new Error('404');
-      }
+  return Promise.allSettled(requests).then((results: Array<PromiseSettledResult<any>>) => {
+    if (results[0].status === 'rejected') {
+      throw new Error('404');
+    }
 
-      throw new Error(error);
-    });
+    if (results[1].status === 'fulfilled') {
+      airQuality = results[1].value.data.list[0].main.aqi;
+    }
+
+    // eslint-disable-next-line
+    console.log(results);
+
+    return {
+      id,
+      country,
+      country_code,
+      lat,
+      lon,
+      name: results[0].value.data.name,
+      weather: {
+        current: results[0].value.data.main.temp.toFixed(0),
+        feels_like: results[0].value.data.main.feels_like.toFixed(0),
+        air_quality: airQuality,
+        main: results[0].value.data.weather[0].main,
+        description: results[0].value.data.weather[0].description,
+      },
+    } as ICityWeather;
+  });
 }

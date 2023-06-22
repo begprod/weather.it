@@ -19,8 +19,14 @@
           <v-icon name="ri-celsius-line" class="w-3 h-3" />
         </span>
       </p>
-      <p class="text-sm">{{ city.weather.description }}</p>
-      <BaseWeatherIcon class="mt-5" :type="city.weather.main.toLowerCase()" />
+      <p class="flex text-lg">
+        air:
+        <span class="flex items-center ml-1">
+          <v-icon name="fa-circle" class="w-6 h-6 shrink-0 mr-1" :class="airQuality" />
+        </span>
+      </p>
+      <p class="text-sm mt-3">{{ city.weather.description }}</p>
+      <BaseWeatherIcon class="mt-3" :type="city.weather.main.toLowerCase()" />
     </div>
 
     <button
@@ -30,7 +36,7 @@
     >
       <v-icon name="io-close" class="w-7 h-7" />
     </button>
-    <div class="absolute top-0 left-0 right-0 z-20 w-full h-full bg-gray-600 opacity-50" />
+    <div class="absolute top-0 left-0 right-0 z-20 w-full h-full bg-gray-700 opacity-50" />
     <div
       class="absolute top-0 left-0 right-0 z-10 w-full h-full bg-cover bg-center"
       :style="{ backgroundImage: `url(${image})` }"
@@ -48,6 +54,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { ICityWeather } from '@/types';
 import { useWeatherStore } from '@/stores';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton.vue';
@@ -59,7 +66,24 @@ interface IProps {
   isLoading?: boolean;
 }
 
-defineProps<IProps>();
+const props = defineProps<IProps>();
 
 const weatherStore = useWeatherStore();
+
+const airQuality = computed(() => {
+  switch (props.city.weather.air_quality) {
+    case 1:
+      return 'fill-green-500';
+    case 2:
+      return 'fill-green-300';
+    case 3:
+      return 'fill-yellow-300';
+    case 4:
+      return 'fill-orange-400';
+    case 5:
+      return 'fill-red-500';
+    default:
+      return 'fill-gray-400';
+  }
+});
 </script>

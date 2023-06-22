@@ -62,9 +62,7 @@ export const useWeatherStore = defineStore('weather', {
     async updateCityData() {
       const commonStore = useCommonStore();
       const updateDate = getDate();
-      const promises = this.cities.map(
-        async (city: ISearchSuggestItem) => await weatherService(city),
-      );
+      const promises = this.cities.map(async (city: ICityWeather) => await weatherService(city));
 
       if (promises.length === 0) {
         return;
