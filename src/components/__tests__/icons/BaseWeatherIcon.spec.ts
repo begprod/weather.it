@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { WeatherType } from '@/types';
-import BaseWeatherIcon from '../icons/BaseWeatherIcon.vue';
+import BaseWeatherIcon from '@/components/icons/BaseWeatherIcon.vue';
 
 describe('BaseWeatherIcon', () => {
   it('correct icons class names', async () => {
