@@ -26,9 +26,6 @@ export function weatherService(
       airQuality = results[1].value.data.list[0].main.aqi;
     }
 
-    // eslint-disable-next-line
-    console.log(results);
-
     return {
       id,
       country,
