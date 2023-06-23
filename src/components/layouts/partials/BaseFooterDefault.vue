@@ -6,7 +6,7 @@
       made with <span class="text-red-500">❤</span> by
       <a href="https://github.com/begprod" class="text-blue-600">begprod</a>
     </p>
-    <p>v.{{ appVersion }}</p>
+    <p>v.{{ version }}</p>
     <p>
       <a
         class="text-blue-600"
@@ -22,8 +22,9 @@
 </template>
 
 <script setup lang="ts">
-// @ts-ignore
-import { version } from '../../../../package.json';
+interface IProps {
+  version: string;
+}
 
-const appVersion = version;
+defineProps<IProps>();
 </script>

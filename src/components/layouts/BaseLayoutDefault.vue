@@ -2,7 +2,7 @@
   <main class="font-body overflow-hidden">
     <div class="min-h-screen flex flex-col items-center justify-center pt-32 pr-6 pl-6">
       <slot />
-      <BaseFooterDefault />
+      <BaseFooterDefault :version="appVersion" />
     </div>
 
     <Transition name="slide-up">
@@ -23,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+// @ts-ignore
+import { version } from '../../../package.json';
 import { useCommonStore, useWeatherStore } from '@/stores';
 import BaseFooterDefault from '@/components/layouts/partials/BaseFooterDefault.vue';
 import BaseButtonUpdate from '@/components/ui/BaseButtonUpdate.vue';
@@ -32,4 +34,5 @@ import BaseServiceWorkerUpdate from '../ui/BaseServiceWorkerUpdate.vue';
 
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
+const appVersion: string = version;
 </script>
