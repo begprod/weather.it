@@ -5,13 +5,13 @@ import BaseFooterDefault from '@/components/layouts/partials/BaseFooterDefault.v
 import { version } from '../../../../package.json';
 
 describe('BaseFooterDefault', () => {
-  it('correct app version', async () => {
-    const wrapper = mount(BaseFooterDefault, {
-      props: {
-        version: `v${version}`,
-      },
-    });
+  const wrapper = mount(BaseFooterDefault, {
+    props: {
+      version: `v${version}`,
+    },
+  });
 
+  it('correct app version', async () => {
     expect(wrapper.html()).toContain(`v${version}`);
   });
 });

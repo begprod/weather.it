@@ -3,9 +3,9 @@ import { mount } from '@vue/test-utils';
 import BaseWeatherIconDoodle from '@/components/icons/BaseWeatherIconDoodle.vue';
 
 describe('BaseWeatherIconDoodle', () => {
-  it('correct icons render', async () => {
-    const wrapper = mount(BaseWeatherIconDoodle);
+  const wrapper = mount(BaseWeatherIconDoodle);
 
+  it('correct icons render', async () => {
     expect(wrapper.html()).toContain('weather-icon_clear');
     expect(wrapper.html()).toContain('weather-icon_clouds');
     expect(wrapper.html()).toContain('weather-icon_snow');

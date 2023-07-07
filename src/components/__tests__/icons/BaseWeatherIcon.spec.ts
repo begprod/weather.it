@@ -4,13 +4,13 @@ import { WeatherType } from '@/types';
 import BaseWeatherIcon from '@/components/icons/BaseWeatherIcon.vue';
 
 describe('BaseWeatherIcon', () => {
-  it('correct icons class names', async () => {
-    const wrapper = mount(BaseWeatherIcon, {
-      props: {
-        type: 'clear',
-      },
-    });
+  const wrapper = mount(BaseWeatherIcon, {
+    props: {
+      type: 'clear',
+    },
+  });
 
+  it('correct icons class names', async () => {
     await wrapper.setProps({ type: WeatherType.Clear });
     expect(wrapper.classes()).toContain('weather-icon_clear');
 
