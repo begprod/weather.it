@@ -1,13 +1,10 @@
-// click
-// store change to update
-// added animate-spin
 import { nextTick } from 'vue';
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
 import { describe, it, expect, vi } from 'vitest';
+import { HiRefresh } from 'oh-vue-icons/icons';
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import { useCommonStore, useWeatherStore } from '@/stores';
-import { HiRefresh } from 'oh-vue-icons/icons';
 import BaseButtonUpdate from '@/components/ui/BaseButtonUpdate.vue';
 
 addIcons(HiRefresh);
