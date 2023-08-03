@@ -28,6 +28,7 @@ describe('BaseCardGrid', () => {
 
   const commonStore = useCommonStore();
   const weatherStore = useWeatherStore();
+
   weatherStore.cities = [
     {
       id: 'some-id',

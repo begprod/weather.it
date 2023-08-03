@@ -62,15 +62,15 @@ import { type ISearchSuggestItem } from '@/types';
 import { watchDebounced } from '@vueuse/core';
 import { useCommonStore, useWeatherStore } from '@/stores';
 import { suggestionsCitiesService } from '@/services';
+import BaseWeatherIconDoodle from '@/components/icons/BaseWeatherIconDoodle.vue';
 import BaseSearchInput from '@/components/ui/BaseSearchInput.vue';
 import BaseSearchSuggestionItem from '@/components/ui/BaseSearchSuggestionItem.vue';
-import BaseWeatherIconDoodle from '@/components/icons/BaseWeatherIconDoodle.vue';
 
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
-const searchQuery = ref('');
+const searchQuery = ref<string>('');
+const isSearching = ref<boolean>(false);
 const citiesSuggestions = ref<Array<ISearchSuggestItem>>([]);
-const isSearching = ref(false);
 
 watch(searchQuery, () => {
   if (searchQuery.value.length === 0) {
