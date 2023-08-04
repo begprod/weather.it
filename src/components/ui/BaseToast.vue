@@ -22,7 +22,6 @@
 
         <div class="flex flex-col items-start ml-3">
           <div class="text-sm font-normal">{{ message }}</div>
-          <slot />
         </div>
       </div>
     </Transition>
@@ -40,6 +39,7 @@ interface IProps {
 }
 
 const props = defineProps<IProps>();
+
 const classObject = computed(() => {
   switch (props.type) {
     case 'success':
