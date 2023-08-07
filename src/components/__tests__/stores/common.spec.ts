@@ -27,7 +27,7 @@ describe('common store', () => {
     expect(commonStore.getToastVisibility).toBe(true);
   });
 
-  it('correct close toast', async () => {
+  it('correct set close toast', async () => {
     commonStore.closeToast();
 
     expect(commonStore.getStatus).toBe('init');
