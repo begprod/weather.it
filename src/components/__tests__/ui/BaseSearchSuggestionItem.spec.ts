@@ -8,6 +8,10 @@ addIcons(FaMapPin, LaGlobeAsiaSolid);
 
 describe('BaseSearchSuggestionItem', () => {
   const wrapper = mount(BaseSearchSuggestionItem, {
+    props: {
+      name: 'Moscow',
+      country: 'Russia',
+    },
     global: {
       components: {
         'v-icon': OhVueIcon,
