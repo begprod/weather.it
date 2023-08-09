@@ -1,5 +1,5 @@
 import { weatherApi } from './apiSettings';
-import { type ICityWeather, type ISearchSuggestItem } from '@/types';
+import type { ICityWeather, ISearchSuggestItem } from '@/types';
 
 export function weatherService(
   suggestCityData: ISearchSuggestItem | ICityWeather,

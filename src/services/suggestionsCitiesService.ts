@@ -1,9 +1,5 @@
 import { suggestionsCitiesApi } from './apiSettings';
-import {
-  type ISearchSuggestItem,
-  type ICitiesSuggestionsItem,
-  type ISearchDataResponse,
-} from '@/types';
+import type { ISearchSuggestItem, ICitiesSuggestionsItem, ISearchDataResponse } from '@/types';
 
 export function suggestionsCitiesService(name: string = ''): Promise<Array<ISearchSuggestItem>> {
   if (name.length < 3) {

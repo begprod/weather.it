@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { type ICommonState } from '@/types';
+import type { ICommonState } from '@/types';
 
 export const useCommonStore = defineStore('common', {
   state: (): ICommonState => ({

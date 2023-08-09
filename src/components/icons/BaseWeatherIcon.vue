@@ -52,7 +52,7 @@ const classObject = computed(() => {
 });
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @use 'sass:math';
 
 $white: #ffffff;
