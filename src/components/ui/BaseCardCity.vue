@@ -29,13 +29,21 @@
       <BaseWeatherIcon class="mt-3" :type="city.weather.main.toLowerCase()" />
     </div>
 
-    <button
-      @click="weatherStore.removeCity(city.id)"
-      class="group-hover:visible group-hover:opacity-100 absolute top-3 right-3 z-30 invisible opacity-0 transition-all duration-300 ease-in-out"
-      type="button"
+    <BaseDropdownMenu
+      class="!absolute top-10 right-10 z-30 transition-all duration-300 ease-in-out"
+      :isMenuOpen="isMenuOpen"
+      @toggleMenu="toggleMenu"
+      @closeMenu="closeMenu"
     >
-      <v-icon name="io-close" class="w-7 h-7" />
-    </button>
+      <button
+        class="border w-full flex items-center justify-center p-2 text-red-600 hover:bg-slate-200 transition-all duration-300 ease-in-out"
+        type="button"
+        @click="weatherStore.removeCity(city.id)"
+      >
+        <v-icon name="co-trash" class="w-6 h-6 mr-2"></v-icon>
+        Delete city
+      </button>
+    </BaseDropdownMenu>
     <div class="absolute top-0 left-0 right-0 z-20 w-full h-full bg-gray-700 opacity-50" />
     <div
       class="absolute top-0 left-0 right-0 z-10 w-full h-full bg-cover bg-center"
@@ -54,11 +62,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import type { ICityWeather } from '@/types';
 import { useWeatherStore } from '@/stores';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton.vue';
 import BaseWeatherIcon from '@/components/icons/BaseWeatherIcon.vue';
+import BaseDropdownMenu from '@/components/ui/BaseDropdownMenu.vue';
 
 interface IProps {
   city: ICityWeather;
@@ -69,6 +78,16 @@ interface IProps {
 const props = defineProps<IProps>();
 
 const weatherStore = useWeatherStore();
+
+const isMenuOpen = ref(false);
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+
+const closeMenu = () => {
+  isMenuOpen.value = false;
+};
 
 const airQuality = computed(() => {
   switch (props.city.weather.air_quality) {

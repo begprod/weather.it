@@ -4,11 +4,12 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
 import {
+  CoTrash,
   FaCircle,
   FaMapMarkerAlt,
   FaMapPin,
+  HiDotsVertical,
   HiRefresh,
-  IoClose,
   IoSearch,
   RiCelsiusLine,
   RiLoaderLine,
@@ -20,13 +21,15 @@ import {
 
 import App from './App.vue';
 import { router } from './router';
+import { clickOutside } from '@/directives/clickOutsideDirective';
 
 addIcons(
+  CoTrash,
   FaCircle,
   FaMapMarkerAlt,
   FaMapPin,
+  HiDotsVertical,
   HiRefresh,
-  IoClose,
   IoSearch,
   RiCelsiusLine,
   RiLoaderLine,
@@ -37,6 +40,8 @@ addIcons(
 );
 
 const app = createApp(App);
+
+app.directive('click-outside', clickOutside);
 
 app.component('v-icon', OhVueIcon);
 
