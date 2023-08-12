@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0
+
+### Features
+
+- added dropdown menu with actions for city card instead of delete button
+- updated appearance for cities card on mobile devices
+
 ## 1.1.3
 
 ### Refactor
