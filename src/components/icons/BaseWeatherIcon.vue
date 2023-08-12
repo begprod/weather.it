@@ -179,7 +179,7 @@ $dust: (
     #{$name}: $value;
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 640px) {
     width: 60px;
     height: 60px;
   }

@@ -1,42 +1,48 @@
 <template>
-  <div class="group relative p-10 text-white overflow-hidden rounded-[20px] shadow-md isolate">
+  <div
+    class="group relative p-5 text-white overflow-hidden rounded-[20px] shadow-md isolate md:p-7 lg:p-10"
+  >
     <div class="relative z-30 select-none">
-      <div class="flex items-start">
-        <v-icon name="fa-map-marker-alt" class="w-6 h-7 shrink-0 mr-1" />
+      <div class="flex items-baseline">
+        <v-icon name="fa-map-marker-alt" class="w-4 h-4 shrink-0 mr-1 lg:w-6 lg:h-6" />
         <div class="flex flex-col">
-          <span class="text-2xl">{{ city.name }}</span>
+          <span class="text-xl lg:text-2xl">{{ city.name }}</span>
           <span class="text-xs">{{ city.country }}</span>
         </div>
       </div>
-      <p class="flex items-start mt-5 mb-2 text-7xl font-bold">
+      <div class="flex items-start mt-3 text-5xl font-bold md:mt-5 md:mb-2 md:text-7xl">
         {{ city.weather.current }}
         <v-icon name="ri-celsius-line" class="w-7 h-7" />
-      </p>
-      <p class="flex text-lg">
+      </div>
+      <div class="flex text-base md:text-lg">
         feels like:
-        <span class="flex items-start ml-1">
+        <div class="flex items-start ml-1">
           {{ city.weather.feels_like }}
           <v-icon name="ri-celsius-line" class="w-3 h-3" />
-        </span>
-      </p>
-      <p class="flex text-lg">
+        </div>
+      </div>
+      <div class="flex text-base md:text-lg">
         air:
-        <span class="flex items-center ml-1">
-          <v-icon name="fa-circle" class="w-6 h-6 shrink-0 mr-1" :class="airQuality" />
-        </span>
-      </p>
-      <p class="text-sm mt-3">{{ city.weather.description }}</p>
+        <div class="flex items-center ml-1">
+          <v-icon
+            name="fa-circle"
+            class="w-4 h-4 shrink-0 mr-1 md:w-6 md:h-6"
+            :class="airQuality"
+          />
+        </div>
+      </div>
+      <div class="text-base md:text-lg md:mb-2">{{ city.weather.description }}</div>
       <BaseWeatherIcon class="mt-3" :type="city.weather.main.toLowerCase()" />
     </div>
 
     <BaseDropdownMenu
-      class="!absolute top-10 right-10 z-30 transition-all duration-300 ease-in-out"
+      class="!absolute top-5 right-5 lg:top-10 lg:right-8 z-30 transition-all duration-300 ease-in-out"
       :isMenuOpen="isMenuOpen"
       @toggleMenu="toggleMenu"
       @closeMenu="closeMenu"
     >
       <button
-        class="border w-full flex items-center justify-center p-2 text-red-600 hover:bg-slate-200 transition-all duration-300 ease-in-out"
+        class="w-full flex items-center justify-center p-2 text-red-600 hover:bg-slate-200 transition-all duration-300 ease-in-out"
         type="button"
         @click="weatherStore.removeCity(city.id)"
       >
