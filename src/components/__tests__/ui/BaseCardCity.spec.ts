@@ -1,19 +1,27 @@
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { FaCircle, FaMapMarkerAlt, IoClose, RiCelsiusLine } from 'oh-vue-icons/icons';
+import {
+  CoTrash,
+  FaCircle,
+  FaMapMarkerAlt,
+  HiDotsVertical,
+  RiCelsiusLine,
+} from 'oh-vue-icons/icons';
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import { useWeatherStore } from '@/stores';
+import { clickOutside } from '@/directives/clickOutsideDirective';
 import BaseWeatherIcon from '@/components/icons/BaseWeatherIcon.vue';
 import BaseCardCity from '@/components/ui/BaseCardCity.vue';
+import BaseDropdownMenu from '@/components/ui/BaseDropdownMenu.vue';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton.vue';
 
-addIcons(FaCircle, FaMapMarkerAlt, IoClose, RiCelsiusLine);
+addIcons(CoTrash, FaCircle, FaMapMarkerAlt, HiDotsVertical, RiCelsiusLine);
 
 describe('BaseCardCity', () => {
   const propsData = {
     city: {
-      id: 'some-id',
+      id: 'card-city-test',
       name: 'Tokyo',
       country: 'Japan',
       country_code: 'JP',
@@ -36,10 +44,13 @@ describe('BaseCardCity', () => {
       ...propsData,
     },
     global: {
+      directives: {
+        'click-outside': clickOutside,
+      },
       components: {
         'v-icon': OhVueIcon,
         BaseWeatherIcon,
-        BaseCardCitySkeleton,
+        BaseDropdownMenu,
       },
       plugins: [
         createTestingPinia({
@@ -63,10 +74,11 @@ describe('BaseCardCity', () => {
 
   it('correct call function on delete button click', async () => {
     const deleteCitySpy = vi.spyOn(weatherStore, 'removeCity');
+    const dropdownMenu = wrapper.findComponent(BaseDropdownMenu);
 
-    const button = wrapper.find('button');
+    await dropdownMenu.find('button').trigger('click');
 
-    await button.trigger('click');
+    await dropdownMenu.find('button.border').trigger('click');
 
     expect(deleteCitySpy).toHaveBeenCalled();
   });

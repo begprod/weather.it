@@ -1,18 +1,22 @@
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { FaCircle, FaMapMarkerAlt, IoClose, RiCelsiusLine } from 'oh-vue-icons/icons';
+import { FaCircle, FaMapMarkerAlt, HiDotsVertical, RiCelsiusLine } from 'oh-vue-icons/icons';
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import { useCommonStore, useWeatherStore } from '@/stores';
+import { clickOutside } from '@/directives/clickOutsideDirective';
 import BaseCardGrid from '@/components/ui/BaseCardGrid.vue';
 import BaseCardCity from '@/components/ui/BaseCardCity.vue';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton.vue';
 
-addIcons(FaCircle, FaMapMarkerAlt, IoClose, RiCelsiusLine);
+addIcons(FaCircle, FaMapMarkerAlt, HiDotsVertical, RiCelsiusLine);
 
 describe('BaseCardGrid', () => {
   const wrapper = mount(BaseCardGrid, {
     global: {
+      directives: {
+        'click-outside': clickOutside,
+      },
       components: {
         'v-icon': OhVueIcon,
         BaseCardCity,
@@ -31,7 +35,7 @@ describe('BaseCardGrid', () => {
 
   weatherStore.cities = [
     {
-      id: 'some-id',
+      id: 'cards-grid-test',
       name: 'Tokyo',
       country: 'Japan',
       country_code: 'JP',
