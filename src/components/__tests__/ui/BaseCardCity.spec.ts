@@ -78,7 +78,7 @@ describe('BaseCardCity', () => {
 
     await dropdownMenu.find('button').trigger('click');
 
-    await dropdownMenu.find('button.border').trigger('click');
+    await dropdownMenu.find('button.w-full').trigger('click');
 
     expect(deleteCitySpy).toHaveBeenCalled();
   });
