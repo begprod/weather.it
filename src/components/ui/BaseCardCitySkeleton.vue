@@ -17,7 +17,7 @@
         <div class="w-4/12 h-2 mt-3 bg-gray-300 rounded md:h-4" />
       </div>
       <div class="flex flex-col w-full animate-pulse">
-        <div class="w-[60px] h-[60px] bg-gray-300 rounded-[20px] sm:w-[75px] sm:h-[75px]" />
+        <div class="w-[60px] h-[60px] bg-gray-300 rounded-[20px] md:w-[75px] md:h-[75px]" />
       </div>
     </div>
     <div class="absolute top-0 left-0 right-0 z-20 w-full h-full bg-gray-600 opacity-50" />

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full max-w-screen-2xl m-auto grid grid-cols-1 gap-4 mt-16 lg:mt-20 lg:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-8"
+    class="grid-auto-rows-cards w-full max-w-screen-2xl m-auto grid grid-cols-1 gap-4 mt-16 lg:mt-20 lg:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-8"
   >
     <TransitionGroup name="fade">
       <BaseCardCity

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.1
+
+### Bugfixes
+
+- fixed cards grid layout
+- fixed long city name overflow
+- added custom tailwind class
+
 ## 1.2.0
 
 ### Features

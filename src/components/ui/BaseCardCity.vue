@@ -5,8 +5,11 @@
     <div class="relative z-30 select-none">
       <div class="flex items-baseline">
         <v-icon name="fa-map-marker-alt" class="w-4 h-4 shrink-0 mr-1 lg:w-6 lg:h-6" />
-        <div class="flex flex-col">
-          <span class="text-xl lg:text-2xl">{{ city.name }}</span>
+        <div class="flex flex-col max-w-[80%]">
+          <span
+            class="text-xl lg:text-2xl max-w-full text-ellipsis whitespace-nowrap overflow-hidden"
+            >{{ city.name }}</span
+          >
           <span class="text-xs">{{ city.country }}</span>
         </div>
       </div>

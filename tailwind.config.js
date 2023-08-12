@@ -14,6 +14,22 @@ module.exports = {
       display: ['group-hover']
     }
   },
-  plugins: []
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.grid-auto-rows-cards': {
+          'grid-auto-rows': '285px',
+          '@screen md': {
+            'grid-auto-rows': '370px',
+          },
+          '@screen lg': {
+            'grid-auto-rows': '400px',
+          },
+        },
+      };
+
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    }
+  ]
 };
 
