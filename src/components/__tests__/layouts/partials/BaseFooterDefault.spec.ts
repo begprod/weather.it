@@ -1,8 +1,8 @@
+// @ts-ignore
+import { version } from '../../../../package.json';
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import BaseFooterDefault from '@/components/layouts/partials/BaseFooterDefault.vue';
-// @ts-ignore
-import { version } from '../../../../package.json';
 
 describe('BaseFooterDefault', () => {
   const wrapper = mount(BaseFooterDefault, {

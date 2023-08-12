@@ -12,15 +12,21 @@ describe('BaseDropdownMenu', () => {
     props: {
       isMenuOpen: false,
     },
+    global: {
+      directives: {
+        'click-outside': clickOutside,
+      },
+      components: {
+        'v-icon': OhVueIcon,
+      },
+    },
     slots: {
       default: '<div>Some content</div>',
     },
-    directives: {
-      'click-outside': clickOutside,
-    },
-    components: {
-      'v-icon': OhVueIcon,
-    },
+  });
+
+  it('correct render slot when menu is closed', async () => {
+    expect(wrapper.html()).not.toContain('Some content');
   });
 
   it('correct render slot when menu is open', async () => {
