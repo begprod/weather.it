@@ -1,7 +1,12 @@
 {
   "name": "weather.it.vue",
   "version": "1.2.1",
-  "private": true,
+  "description": "Another weather app with fancy design",
+  "repository": "https://github.com/begprod/weather.it",
+  "homepage": "https://weatherit.site/",
+  "author": "Andrey Aratov",
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "dev": "vite",
     "build": "run-p type:check build-only",
