@@ -2,7 +2,7 @@
   <footer
     class="flex flex-col items-center justify-center pt-16 pb-24 md:pt-32 md:pb-16 text-sm text-gray-500"
   >
-    <p class="text-center">
+    <p>
       made with <span class="text-red-500">❤</span> by
       <a href="https://github.com/begprod" class="text-blue-600">begprod</a>
     </p>
