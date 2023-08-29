@@ -20,7 +20,7 @@ export default defineConfig({
       manifest: {
         short_name: 'weather.it',
         name: 'weather.it - weather application',
-        description: 'One more weather app with fancy design',
+        description: 'Another weather app with fancy design',
         start_url: '.',
         display: 'standalone',
         orientation: 'portrait',
