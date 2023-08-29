@@ -1,3 +1,5 @@
+import type { RemovableRef } from '@vueuse/core';
+
 export interface ICommonState {
   status: 'init' | 'loading' | 'updating' | 'success' | 'error';
   message: string;
@@ -5,10 +7,10 @@ export interface ICommonState {
 }
 
 export interface IWeatherState {
-  ids: Array<string>;
-  cities: Array<ICityWeather>;
-  images: Record<string, string>;
-  lastUpdateDate: string | null;
+  ids: RemovableRef<Array<string>>;
+  cities: RemovableRef<Array<ICityWeather>>;
+  images: RemovableRef<Record<string, string>>;
+  lastUpdateDate: RemovableRef<string | null>;
 }
 
 export interface ICityWeather {

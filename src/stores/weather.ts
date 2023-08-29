@@ -6,14 +6,11 @@ import { weatherService, imagesService } from '@/services';
 import { getDate } from '@/helpers';
 
 export const useWeatherStore = defineStore('weather', {
-  state: () => ({
-    ids: useLocalStorage('weather:ids', [] as IWeatherState['ids']),
-    cities: useLocalStorage('weather:cities', [] as IWeatherState['cities']),
-    images: useLocalStorage('weather:images', {} as IWeatherState['images']),
-    lastUpdateDate: useLocalStorage(
-      'weather:last_updated_date',
-      null as IWeatherState['lastUpdateDate'],
-    ),
+  state: (): IWeatherState => ({
+    ids: useLocalStorage('weather:ids', []),
+    cities: useLocalStorage('weather:cities', []),
+    images: useLocalStorage('weather:images', {}),
+    lastUpdateDate: useLocalStorage('weather:last_updated_date', null),
   }),
 
   getters: {
