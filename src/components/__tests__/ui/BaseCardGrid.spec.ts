@@ -1,3 +1,4 @@
+import { storeToRefs } from 'pinia';
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
 import { FaCircle, FaMapMarkerAlt, HiDotsVertical, RiCelsiusLine } from 'oh-vue-icons/icons';
 import { describe, it, expect, vi } from 'vitest';
@@ -32,8 +33,10 @@ describe('BaseCardGrid', () => {
 
   const commonStore = useCommonStore();
   const weatherStore = useWeatherStore();
+  const { status } = storeToRefs(commonStore);
+  const { cities } = storeToRefs(weatherStore);
 
-  weatherStore.cities = [
+  cities.value = [
     {
       id: 'cards-grid-test',
       name: 'Tokyo',
@@ -56,7 +59,7 @@ describe('BaseCardGrid', () => {
   });
 
   it('correct render BaseCardCitySkeleton data from store', async () => {
-    commonStore.status = 'loading';
+    status.value = 'loading';
     await wrapper.vm.$nextTick();
     expect(wrapper.findComponent(BaseCardCitySkeleton).exists()).toBe(true);
   });

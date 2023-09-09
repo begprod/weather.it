@@ -3,7 +3,7 @@ import type { RemovableRef } from '@vueuse/core';
 export interface ICommonState {
   status: 'init' | 'loading' | 'updating' | 'success' | 'error';
   message: string;
-  toastVisibility: boolean;
+  toastIsVisible: boolean;
 }
 
 export interface IWeatherState {

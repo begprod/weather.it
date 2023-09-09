@@ -8,8 +8,9 @@ import { RouterView } from 'vue-router';
 import { useWeatherStore } from '@/stores';
 
 const weatherStore = useWeatherStore();
+const { updateCityData } = weatherStore;
 
-onMounted(() => {
-  weatherStore.updateCityData();
+onMounted(async () => {
+  await updateCityData();
 });
 </script>

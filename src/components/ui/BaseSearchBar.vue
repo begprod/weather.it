@@ -58,6 +58,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { storeToRefs } from 'pinia';
 import type { ISearchSuggestItem } from '@/types';
 import { watchDebounced } from '@vueuse/core';
 import { useCommonStore, useWeatherStore } from '@/stores';
@@ -71,6 +72,10 @@ const weatherStore = useWeatherStore();
 const searchQuery = ref<string>('');
 const isSearching = ref<boolean>(false);
 const citiesSuggestions = ref<Array<ISearchSuggestItem>>([]);
+
+const { ids } = storeToRefs(weatherStore);
+const { setStatus, setMessage, showToast } = commonStore;
+const { getCityData } = weatherStore;
 
 watch(searchQuery, () => {
   if (searchQuery.value.length === 0) {
@@ -90,7 +95,7 @@ watchDebounced(
       .then((suggestionList) => {
         if (suggestionList.length > 0) {
           citiesSuggestions.value = suggestionList.filter((city) => {
-            return !weatherStore.getIds.includes(city.id);
+            return !ids.value.includes(city.id);
           });
 
           isSearching.value = false;
@@ -101,11 +106,9 @@ watchDebounced(
       })
       .catch(() => {
         isSearching.value = false;
-        commonStore.setStatus('error');
-        commonStore.setMessage(
-          'Something went wrong with the search suggestion. Please try again later.',
-        );
-        commonStore.showToast();
+        setStatus('error');
+        setMessage('Something went wrong with the search suggestion. Please try again later.');
+        showToast();
       });
   },
   { debounce: 1100, maxWait: 5000 },
@@ -116,6 +119,6 @@ function getCityWeather(suggestionItem: ISearchSuggestItem) {
   searchQuery.value = '';
   citiesSuggestions.value = [];
 
-  weatherStore.getCityData(suggestionItem);
+  getCityData(suggestionItem);
 }
 </script>

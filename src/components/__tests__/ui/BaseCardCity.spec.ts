@@ -54,13 +54,14 @@ describe('BaseCardCity', () => {
       },
       plugins: [
         createTestingPinia({
-          createSpy: vi.fn(),
+          createSpy: vi.fn,
         }),
       ],
     },
   });
 
   const weatherStore = useWeatherStore();
+  const { deleteCity } = weatherStore;
 
   it('correct render data from props', async () => {
     await wrapper.setProps({
@@ -73,14 +74,13 @@ describe('BaseCardCity', () => {
   });
 
   it('correct call function on delete button click', async () => {
-    const deleteCitySpy = vi.spyOn(weatherStore, 'removeCity');
     const dropdownMenu = wrapper.findComponent(BaseDropdownMenu);
 
     await dropdownMenu.find('button').trigger('click');
 
     await dropdownMenu.find('button.w-full').trigger('click');
 
-    expect(deleteCitySpy).toHaveBeenCalled();
+    expect(deleteCity).toHaveBeenCalled();
   });
 
   it('correct css class which depends of air quality', async () => {

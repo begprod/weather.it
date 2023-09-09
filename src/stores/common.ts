@@ -5,20 +5,8 @@ export const useCommonStore = defineStore('common', {
   state: (): ICommonState => ({
     status: 'init',
     message: '',
-    toastVisibility: false,
+    toastIsVisible: false,
   }),
-
-  getters: {
-    getStatus(): string {
-      return this.status;
-    },
-    getMessage(): string {
-      return this.message;
-    },
-    getToastVisibility(): boolean {
-      return this.toastVisibility;
-    },
-  },
 
   actions: {
     setStatus(status: ICommonState['status']) {
@@ -28,20 +16,20 @@ export const useCommonStore = defineStore('common', {
       this.message = message;
     },
     showToast(timer: number = 5000) {
-      if (this.toastVisibility) {
+      if (this.toastIsVisible) {
         return;
       }
 
-      this.toastVisibility = true;
+      this.toastIsVisible = true;
 
       setTimeout(() => {
-        this.toastVisibility = false;
+        this.toastIsVisible = false;
         this.status = 'init';
         this.message = '';
       }, timer);
     },
     closeToast() {
-      this.toastVisibility = false;
+      this.toastIsVisible = false;
       this.status = 'init';
       this.message = '';
     },

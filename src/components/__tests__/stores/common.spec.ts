@@ -1,4 +1,4 @@
-import { setActivePinia, createPinia } from 'pinia';
+import { setActivePinia, createPinia, storeToRefs } from 'pinia';
 import { describe, it, expect } from 'vitest';
 import { useCommonStore } from '@/stores';
 
@@ -8,30 +8,32 @@ describe('common store', () => {
   setActivePinia(pinia);
 
   const commonStore = useCommonStore();
+  const { status, message, toastIsVisible } = storeToRefs(commonStore);
+  const { setStatus, setMessage, showToast, closeToast } = commonStore;
 
   it('correct set status', async () => {
-    commonStore.setStatus('loading');
+    setStatus('loading');
 
-    expect(commonStore.getStatus).toBe('loading');
+    expect(status.value).toBe('loading');
   });
 
   it('correct set message', async () => {
-    commonStore.setMessage('message');
+    setMessage('message');
 
-    expect(commonStore.getMessage).toBe('message');
+    expect(message.value).toBe('message');
   });
 
   it('correct set toast visibility', async () => {
-    commonStore.showToast();
+    showToast();
 
-    expect(commonStore.getToastVisibility).toBe(true);
+    expect(toastIsVisible.value).toBe(true);
   });
 
   it('correct set close toast', async () => {
-    commonStore.closeToast();
+    closeToast();
 
-    expect(commonStore.getStatus).toBe('init');
-    expect(commonStore.getMessage).toBe('');
-    expect(commonStore.getToastVisibility).toBe(false);
+    expect(status.value).toBe('init');
+    expect(message.value).toBe('');
+    expect(toastIsVisible.value).toBe(false);
   });
 });

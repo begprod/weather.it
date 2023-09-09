@@ -44,7 +44,7 @@
       <button
         class="w-full flex items-center justify-center p-2 text-red-600 hover:bg-slate-200 transition-all duration-300 ease-in-out"
         type="button"
-        @click="weatherStore.removeCity(city.id)"
+        @click="deleteCity(city.id)"
       >
         <v-icon name="co-trash" class="w-6 h-6 mr-2"></v-icon>
         Delete city
@@ -84,6 +84,7 @@ interface IProps {
 const props = defineProps<IProps>();
 
 const weatherStore = useWeatherStore();
+const { deleteCity } = weatherStore;
 
 const isMenuOpen = ref(false);
 

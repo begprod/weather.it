@@ -1,4 +1,5 @@
 import { nextTick } from 'vue';
+import { storeToRefs } from 'pinia';
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
 import { HiRefresh } from 'oh-vue-icons/icons';
 import { describe, it, expect, vi } from 'vitest';
@@ -14,7 +15,7 @@ describe('BaseButtonUpdate', () => {
     global: {
       plugins: [
         createTestingPinia({
-          createSpy: vi.fn(),
+          createSpy: vi.fn,
         }),
       ],
       components: {
@@ -25,18 +26,20 @@ describe('BaseButtonUpdate', () => {
 
   const commonStore = useCommonStore();
   const weatherStore = useWeatherStore();
+  const { status } = storeToRefs(commonStore);
+  const { lastUpdateDate } = storeToRefs(weatherStore);
+  const { updateCityData } = weatherStore;
 
   it('correct call update function on click', async () => {
-    const updateCityDataSpy = vi.spyOn(weatherStore, 'updateCityData');
     const button = wrapper.find('button');
 
     await button.trigger('click');
 
-    expect(updateCityDataSpy).toHaveBeenCalled();
+    expect(updateCityData).toHaveBeenCalled();
   });
 
   it('correct render updated date, if date set in store', async () => {
-    weatherStore.lastUpdateDate = '07.07.07, 07:07';
+    lastUpdateDate.value = '07.07.07, 07:07';
 
     await nextTick();
 
@@ -44,7 +47,7 @@ describe('BaseButtonUpdate', () => {
   });
 
   it('correct does not render update date, if date not set in store', async () => {
-    weatherStore.lastUpdateDate = '';
+    lastUpdateDate.value = '';
 
     await nextTick();
 
@@ -54,7 +57,7 @@ describe('BaseButtonUpdate', () => {
   });
 
   it('correct set class animate-spin to icon, if update in progress', async () => {
-    commonStore.status = 'updating';
+    status.value = 'updating';
 
     await nextTick();
 

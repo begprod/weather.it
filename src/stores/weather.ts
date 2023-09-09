@@ -13,25 +13,12 @@ export const useWeatherStore = defineStore('weather', {
     lastUpdateDate: useLocalStorage('weather:last_updated_date', null),
   }),
 
-  getters: {
-    getIds(): Array<string> {
-      return this.ids;
-    },
-    getCities(): Array<ICityWeather> {
-      return this.cities;
-    },
-    getImages(): Record<string, string> {
-      return this.images;
-    },
-    getLastUpdateDate(): string | null {
-      return this.lastUpdateDate;
-    },
-  },
-
   actions: {
     async getCityData(city: ISearchSuggestItem) {
       const commonStore = useCommonStore();
-      commonStore.setStatus('loading');
+      const { setStatus, setMessage, showToast } = commonStore;
+
+      setStatus('loading');
 
       try {
         const weatherData = await weatherService(city);
@@ -41,9 +28,9 @@ export const useWeatherStore = defineStore('weather', {
         this.cities.push(weatherData);
         this.images[weatherData.id] = imageData;
 
-        commonStore.setStatus('success');
-        commonStore.setMessage(`${weatherData.name} (${weatherData.country}) successfully added.`);
-        commonStore.showToast();
+        setStatus('success');
+        setMessage(`${weatherData.name} (${weatherData.country}) successfully added.`);
+        showToast();
       } catch (error) {
         const message =
           // @ts-ignore
@@ -51,13 +38,14 @@ export const useWeatherStore = defineStore('weather', {
             ? `Weather data for ${city.name} (${city.country}) not found.`
             : 'Something went wrong with the weather service or the image service. Please try again later.';
 
-        commonStore.setStatus('error');
-        commonStore.setMessage(message);
-        commonStore.showToast();
+        setStatus('error');
+        setMessage(message);
+        showToast();
       }
     },
     async updateCityData() {
       const commonStore = useCommonStore();
+      const { setStatus, setMessage, showToast } = commonStore;
       const updateDate = getDate();
       const promises = this.cities.map(async (city: ICityWeather) => await weatherService(city));
 
@@ -67,13 +55,13 @@ export const useWeatherStore = defineStore('weather', {
 
       for (const promise of promises) {
         try {
-          commonStore.setStatus('updating');
+          setStatus('updating');
 
           const weatherData = await promise;
 
           this.cities = this.cities.map((city: ICityWeather) => {
             if (city.id === weatherData.id) {
-              commonStore.setStatus('success');
+              setStatus('success');
 
               return weatherData;
             }
@@ -81,11 +69,9 @@ export const useWeatherStore = defineStore('weather', {
             return city;
           });
         } catch (error) {
-          commonStore.setStatus('error');
-          commonStore.setMessage(
-            'Something went wrong with the weather update. Please try again later.',
-          );
-          commonStore.showToast();
+          setStatus('error');
+          setMessage('Something went wrong with the weather update. Please try again later.');
+          showToast();
 
           return;
         }
@@ -93,7 +79,7 @@ export const useWeatherStore = defineStore('weather', {
 
       this.lastUpdateDate = updateDate;
     },
-    removeCity(id: string) {
+    deleteCity(id: string) {
       this.ids = this.ids.filter((cityId) => cityId !== id);
       this.cities = this.cities.filter((city) => city.id !== id);
       delete this.images[id];

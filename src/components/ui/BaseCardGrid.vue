@@ -4,23 +4,27 @@
   >
     <TransitionGroup name="fade">
       <BaseCardCity
-        v-for="city in weatherStore.getCities"
+        v-for="city in cities"
         :key="city.id"
         :city="city"
-        :image="weatherStore.getImages[city.id] ? weatherStore.getImages[city.id] : ''"
-        :is-loading="commonStore.getStatus === 'updating'"
+        :image="images[city.id] ? images[city.id] : ''"
+        :is-loading="status === 'updating'"
       />
     </TransitionGroup>
 
-    <BaseCardCitySkeleton v-if="commonStore.getStatus === 'loading'" />
+    <BaseCardCitySkeleton v-if="status === 'loading'" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 import { useCommonStore, useWeatherStore } from '@/stores';
 import BaseCardCity from '@/components/ui/BaseCardCity.vue';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton.vue';
 
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
+
+const { status } = storeToRefs(commonStore);
+const { cities, images } = storeToRefs(weatherStore);
 </script>
