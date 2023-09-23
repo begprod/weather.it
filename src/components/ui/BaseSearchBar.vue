@@ -12,47 +12,19 @@
       autofocus
     />
 
-    <Transition name="fade">
-      <div
-        v-if="!isSearching && citiesSuggestions.length === 0 && searchQuery.length !== 0"
-        class="absolute min-h-[52px] left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden"
-      >
-        <div class="absolute top-0 left-0 flex items-center justify-center w-full p-3 select-none">
-          <v-icon name="md-locationoff-twotone" class="w-6 h-6 mr-3 opacity-30" />
-          <div class="text-xl overflow-hidden">
-            <p class="text-xl">City not found</p>
-          </div>
-        </div>
-      </div>
-    </Transition>
-
-    <Transition name="fade">
-      <div
-        v-if="isSearching && searchQuery.length !== 0"
-        class="absolute min-h-[52px] left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden"
-      >
-        <div class="absolute top-0 left-0 flex items-center justify-center w-full p-3">
-          <div class="animate-spin">
-            <v-icon name="ri-loader-line" class="w-6 h-6 opacity-30" />
-          </div>
-        </div>
-      </div>
-    </Transition>
-
-    <Transition name="slide-up">
-      <div
-        v-if="citiesSuggestions.length > 0 && searchQuery.length !== 0 && !isSearching"
-        class="absolute left-0 top-full w-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-hidden"
-      >
-        <BaseSearchSuggestionItem
-          v-for="item in citiesSuggestions"
-          :key="item.id"
-          :name="item.name"
-          :country="item.country"
-          @click="getCityWeather(item)"
-        />
-      </div>
-    </Transition>
+    <BaseSuggestionsList
+      :isEmpty="!isSearching && citiesSuggestions.length === 0 && searchQuery.length !== 0"
+      :isLoading="isSearching && searchQuery.length !== 0"
+      :isItemsListVisible="citiesSuggestions.length > 0 && searchQuery.length !== 0 && !isSearching"
+    >
+      <BaseSearchSuggestionItem
+        v-for="item in citiesSuggestions"
+        :key="item.id"
+        :name="item.name"
+        :country="item.country"
+        @click="getCityWeather(item)"
+      />
+    </BaseSuggestionsList>
   </div>
 </template>
 
@@ -65,6 +37,7 @@ import { useCommonStore, useWeatherStore } from '@/stores';
 import { suggestionsCitiesService } from '@/services';
 import BaseWeatherIconDoodle from '@/components/icons/BaseWeatherIconDoodle.vue';
 import BaseSearchInput from '@/components/ui/BaseSearchInput.vue';
+import BaseSuggestionsList from '@/components/ui/BaseSuggestionsList.vue';
 import BaseSearchSuggestionItem from '@/components/ui/BaseSearchSuggestionItem.vue';
 
 const commonStore = useCommonStore();
