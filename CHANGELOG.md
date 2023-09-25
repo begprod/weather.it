@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.2.5
+
+### Refactor
+
+- add `BaseSuggestionList` component
+- updated `BaseSearchBar` component
+
+## 1.2.4
+
+### Reafactor
+
+- `BaseToast` component
+- common store
+
+## 1.2.3
+
+### Refactor
+
+- stores
+
+## 1.2.2
+
+### Refactor
+
+- package.json
+- README.md
+- components templates
+- stores types
+
 ## 1.2.1
 
 ### Bugfixes

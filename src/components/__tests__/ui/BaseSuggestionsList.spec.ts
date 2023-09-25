@@ -24,14 +24,11 @@ describe('BaseSuggestionsList', () => {
   });
 
   it('correct showing when isItemVisible is true', async () => {
-    // console.log(wrapper.html());
     await wrapper.setProps({
       isItemsListVisible: true,
       isLoading: false,
       isEmpty: false,
     });
-
-    // console.log(wrapper.html());
 
     expect(wrapper.html()).toContain(
       'absolute left-0 top-full w-full min-h-[48px] bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-y-auto',
