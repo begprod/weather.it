@@ -6,10 +6,10 @@
       id="city_search"
       type="text"
       label="Search"
-      placeholder="Start typing city name..."
+      placeholder="Start typing the name of the city"
       autoComplete="off"
       v-model="searchQuery"
-      autofocus
+      :required="true"
     />
 
     <BaseSuggestionsList

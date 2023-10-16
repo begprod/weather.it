@@ -17,6 +17,7 @@ import {
   MdLocationoffTwotone,
   MdDoneallOutlined,
   MdNotinterestedOutlined,
+  MdKeyboardcommandkeyRound,
 } from 'oh-vue-icons/icons';
 
 import App from './App.vue';
@@ -37,6 +38,7 @@ addIcons(
   MdLocationoffTwotone,
   MdDoneallOutlined,
   MdNotinterestedOutlined,
+  MdKeyboardcommandkeyRound,
 );
 
 const app = createApp(App);

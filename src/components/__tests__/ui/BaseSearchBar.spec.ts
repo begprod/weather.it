@@ -5,6 +5,7 @@ import {
   IoSearch,
   LaGlobeAsiaSolid,
   MdLocationoffTwotone,
+  MdKeyboardcommandkeyRound,
 } from 'oh-vue-icons/icons';
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
@@ -13,7 +14,14 @@ import BaseWeatherIconDoodle from '@/components/icons/BaseWeatherIconDoodle.vue'
 import BaseSearchInput from '@/components/ui/BaseSearchInput.vue';
 import BaseSearchBar from '@/components/ui/BaseSearchBar.vue';
 
-addIcons(FaMapPin, IoSearch, RiLoaderLine, LaGlobeAsiaSolid, MdLocationoffTwotone);
+addIcons(
+  FaMapPin,
+  IoSearch,
+  RiLoaderLine,
+  LaGlobeAsiaSolid,
+  MdLocationoffTwotone,
+  MdKeyboardcommandkeyRound,
+);
 
 describe('BaseSearchBar', () => {
   const wrapper = mount(BaseSearchBar, {

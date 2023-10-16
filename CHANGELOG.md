@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0
+
+### Features
+
+- add a key shortcut to focus on search input
+
 ## 1.2.5
 
 ### Refactor
