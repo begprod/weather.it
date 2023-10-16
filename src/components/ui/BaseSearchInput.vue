@@ -15,9 +15,9 @@
       @input="onUpdateValue"
     />
     <div
-      class="placeholder absolute top-2/4 left-5 -translate-y-2/4 flex items-center text-lg md:text-xl text-gray-900 opacity-40 transition-opacity duration-300 select-none pointer-events-none"
+      class="placeholder absolute top-2/4 left-5 right-5 -translate-y-2/4 flex items-center text-lg md:text-xl text-gray-900 opacity-40 transition-opacity duration-300 select-none pointer-events-none"
     >
-      <span class="whitespace-nowrap overflow-hidden overflow-ellipsis max-w-[320px] sm:max-w-none">
+      <span class="whitespace-nowrap overflow-hidden overflow-ellipsis">
         {{ placeholder }}
       </span>
       <div
