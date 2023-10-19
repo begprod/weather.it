@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.3.2
+
+### Bugfixes
+
+- suggestion list overflow
+
+## 1.31
+
+### Bugfixes
+
+- placeholder text overflow
+
 ## 1.3.0
 
 ### Features
