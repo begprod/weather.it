@@ -6,6 +6,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import { useCommonStore, useWeatherStore } from '@/stores';
+import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseButtonUpdate from '@/components/ui/BaseButtonUpdate.vue';
 
 addIcons(HiRefresh);
@@ -64,5 +65,9 @@ describe('BaseButtonUpdate', () => {
     const svg = wrapper.find('svg');
 
     expect(svg.classes()).toContain('animate-spin');
+  });
+
+  it('should contain BaseButton component', () => {
+    expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
   });
 });

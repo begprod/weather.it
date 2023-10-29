@@ -3,6 +3,7 @@ import { HiDotsVertical } from 'oh-vue-icons/icons';
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { clickOutside } from '@/directives/clickOutsideDirective';
+import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseDropdownMenu from '@/components/ui/BaseDropdownMenu.vue';
 
 addIcons(HiDotsVertical);
@@ -47,5 +48,9 @@ describe('BaseDropdownMenu', () => {
     document.body.click();
 
     expect(wrapper.emitted()).toHaveProperty('closeMenu');
+  });
+
+  it('correct contain BaseButton component', async () => {
+    expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
   });
 });

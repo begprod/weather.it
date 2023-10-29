@@ -11,6 +11,7 @@ import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import { useWeatherStore } from '@/stores';
 import { clickOutside } from '@/directives/clickOutsideDirective';
+import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseWeatherIcon from '@/components/icons/BaseWeatherIcon.vue';
 import BaseCardCity from '@/components/ui/BaseCardCity.vue';
 import BaseDropdownMenu from '@/components/ui/BaseDropdownMenu.vue';
@@ -182,5 +183,9 @@ describe('BaseCardCity', () => {
     });
 
     expect(wrapper.findComponent(BaseCardCitySkeleton).exists()).toBe(false);
+  });
+
+  it('correct contain BaseButton component', () => {
+    expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
   });
 });
