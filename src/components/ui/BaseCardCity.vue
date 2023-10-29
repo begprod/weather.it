@@ -41,14 +41,15 @@
       @toggleMenu="toggleMenu"
       @closeMenu="closeMenu"
     >
-      <button
+      <BaseButton
         class="w-full flex items-center justify-center p-2 text-red-600 hover:bg-slate-200 transition-all duration-300 ease-in-out"
-        type="button"
+        view="transparent"
+        title="Delete city"
         @click="deleteCity(city.id)"
       >
         <v-icon name="co-trash" class="w-6 h-6 mr-2"></v-icon>
         Delete city
-      </button>
+      </BaseButton>
     </BaseDropdownMenu>
     <div class="absolute top-0 left-0 right-0 z-20 w-full h-full bg-gray-700 opacity-50" />
     <div
@@ -68,9 +69,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
 import type { ICityWeather } from '@/types';
+import { ref, computed } from 'vue';
 import { useWeatherStore } from '@/stores';
+import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton.vue';
 import BaseWeatherIcon from '@/components/icons/BaseWeatherIcon.vue';
 import BaseDropdownMenu from '@/components/ui/BaseDropdownMenu.vue';

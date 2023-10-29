@@ -1,8 +1,8 @@
 <template>
   <div class="relative" v-click-outside="closeMenu">
-    <button class="pl-3 pb-3" type="button" @click="toggleMenu">
+    <BaseButton view="transparent" title="Open menu" @click="toggleMenu">
       <v-icon name="hi-dots-vertical" class="w-7 h-7" />
-    </button>
+    </BaseButton>
     <div
       v-if="isMenuOpen"
       class="absolute right-0 top-full min-w-[150px] rounded-xl shadow-sm bg-white overflow-hidden z-10 transition-all duration-300"
@@ -13,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import BaseButton from '@/components/ui/BaseButton.vue';
+
 interface IProps {
   isMenuOpen: boolean;
 }

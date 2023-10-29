@@ -1,13 +1,8 @@
 <template>
   <div class="fixed right-6 bottom-6 flex flex-col items-center z-40">
-    <button
-      class="rounded-full bg-white border p-3 md:p-5 shadow-sm shadow-gray-200 hover:rotate-45 hover:shadow-lg transition-all duration-300"
-      type="button"
-      title="Update weather data"
-      @click="updateCityData"
-    >
+    <BaseButton title="Update weather data" @click="updateCityData">
       <v-icon name="hi-refresh" :class="classObject" />
-    </button>
+    </BaseButton>
 
     <Transition name="slide-down">
       <span
@@ -24,6 +19,7 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useCommonStore, useWeatherStore } from '@/stores';
+import BaseButton from '@/components/ui/BaseButton.vue';
 
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
