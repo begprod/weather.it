@@ -33,4 +33,12 @@ describe('BaseSearchSuggestionItem', () => {
     expect(wrapper.html()).toContain('Tokyo');
     expect(wrapper.html()).toContain('Japan');
   });
+
+  it('should emit click event', async () => {
+    const button = wrapper.find('.flex.items-center');
+
+    await button.trigger('click');
+
+    expect(wrapper.emitted()).toHaveProperty('click');
+  });
 });

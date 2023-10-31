@@ -37,4 +37,12 @@ describe('BaseButton', () => {
   it('correctly set slot', async () => {
     expect(wrapper.html()).toContain('Some content');
   });
+
+  it('should emit click event', async () => {
+    const button = wrapper.find('button');
+
+    await button.trigger('click');
+
+    expect(wrapper.emitted()).toHaveProperty('click');
+  });
 });

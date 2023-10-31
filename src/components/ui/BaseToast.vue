@@ -5,7 +5,7 @@
         v-if="isVisible"
         class="flex w-full sm:w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm shadow-gray-200 duration-300 hover:shadow-lg"
         :class="classObject"
-        @click="clickHandler"
+        @click="onClick"
       >
         <div
           v-if="props.type === 'success'"
@@ -35,10 +35,11 @@ interface IProps {
   type?: string;
   message: string;
   isVisible: boolean;
-  clickHandler: () => void;
 }
 
 const props = defineProps<IProps>();
+
+const emit = defineEmits(['click']);
 
 const classObject = computed(() => {
   switch (props.type) {
@@ -50,4 +51,8 @@ const classObject = computed(() => {
       return 'text-gray-500';
   }
 });
+
+const onClick = () => {
+  emit('click');
+};
 </script>

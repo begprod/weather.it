@@ -1,6 +1,6 @@
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
 import { MdDoneallOutlined, MdNotinterestedOutlined } from 'oh-vue-icons/icons';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import BaseToast from '@/components/ui/BaseToast.vue';
 
@@ -11,7 +11,6 @@ describe('BaseToast', () => {
     props: {
       message: 'message',
       isVisible: false,
-      clickHandler: vi.fn(),
     },
     global: {
       components: {
@@ -59,20 +58,11 @@ describe('BaseToast', () => {
     expect(wrapper.html()).toContain('Default message');
   });
 
-  it('correct render click handler', async () => {
-    const clickHandler = vi.fn();
+  it('should emit click event', async () => {
+    const toast = wrapper.find('.flex.w-full');
 
-    await wrapper.setProps({
-      type: 'success',
-      message: 'Success message',
-      isVisible: true,
-      clickHandler,
-    });
+    await toast.trigger('click');
 
-    const element = wrapper.find('.flex');
-
-    await element.trigger('click');
-
-    expect(clickHandler).toHaveBeenCalled();
+    expect(wrapper.emitted()).toHaveProperty('click');
   });
 });

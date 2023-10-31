@@ -9,12 +9,7 @@
       <BaseButtonUpdate v-if="cities.length" />
     </Transition>
 
-    <BaseToast
-      :type="status"
-      :message="message"
-      :is-visible="toastIsVisible"
-      :click-handler="closeToast"
-    />
+    <BaseToast :type="status" :message="message" :is-visible="toastIsVisible" @click="closeToast" />
 
     <BaseGithubCorner url="https://github.com/begprod/weather.it" />
   </main>

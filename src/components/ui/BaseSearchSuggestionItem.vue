@@ -1,5 +1,5 @@
 <template>
-  <li class="flex items-center">
+  <li class="flex items-center" @click="onClick">
     <div
       class="group flex items-center w-full p-2 bg-gray-100 hover:bg-gray-200 transition-all duration-300 overflow-hidden cursor-pointer"
     >
@@ -28,4 +28,10 @@ interface IProps {
 }
 
 defineProps<IProps>();
+
+const emit = defineEmits(['click']);
+
+const onClick = () => {
+  emit('click');
+};
 </script>
