@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.3.6
+
+### Refactor
+
+- emits
+
+## 1.3.5
+
+### Refactor
+
+- `BaseButton` component
+
+## 1.3.4
+
+### Other
+
+- add sentry error tracking
+
+## 1.3.3
+
+### Other
+
+- add opengraph meta tags
+
 ## 1.3.2
 
 ### Bugfixes
