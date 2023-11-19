@@ -1,2 +1,2 @@
-export { useCommonStore } from './common';
-export { useWeatherStore } from './weather';
+export { useCommonStore } from './common/common';
+export { useWeatherStore } from './weather/weather';
