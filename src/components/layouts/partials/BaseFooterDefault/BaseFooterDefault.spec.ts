@@ -11,7 +11,7 @@ describe('BaseFooterDefault', () => {
     },
   });
 
-  it('correct app version', async () => {
+  it('should render app version', async () => {
     expect(wrapper.html()).toContain(`v${version}`);
   });
 });

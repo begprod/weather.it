@@ -11,25 +11,25 @@ describe('common store', () => {
   const { status, message, toastIsVisible } = storeToRefs(commonStore);
   const { setStatus, setMessage, showToast, closeToast } = commonStore;
 
-  it('correct set status', async () => {
+  it('should set status', async () => {
     setStatus('loading');
 
     expect(status.value).toBe('loading');
   });
 
-  it('correct set message', async () => {
+  it('should set message', async () => {
     setMessage('message');
 
     expect(message.value).toBe('message');
   });
 
-  it('correct set toast visibility', async () => {
+  it('should set toast visibility', async () => {
     showToast();
 
     expect(toastIsVisible.value).toBe(true);
   });
 
-  it('correct set close toast', async () => {
+  it('should set close toast', async () => {
     closeToast();
 
     expect(status.value).toBe('init');

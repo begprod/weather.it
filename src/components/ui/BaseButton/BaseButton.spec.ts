@@ -12,11 +12,11 @@ describe('BaseButton', () => {
     },
   });
 
-  it('correctly set title', async () => {
+  it('should set title', async () => {
     expect(wrapper.html()).toContain('test title');
   });
 
-  it('correctly set type props', async () => {
+  it('should set type props', async () => {
     expect(wrapper.html()).toContain('button');
 
     await wrapper.setProps({ type: 'submit' });
@@ -24,7 +24,7 @@ describe('BaseButton', () => {
     expect(wrapper.html()).toContain('submit');
   });
 
-  it('correctly set view props', async () => {
+  it('should set view props', async () => {
     expect(wrapper.html()).toContain(
       'bg-white border rounded-full p-3 md:p-5 shadow-sm shadow-gray-200 hover:rotate-45 hover:shadow-lg transition-all duration-300',
     );
@@ -34,7 +34,7 @@ describe('BaseButton', () => {
     expect(wrapper.html()).toContain('bg-transparent border-none');
   });
 
-  it('correctly set slot', async () => {
+  it('should set slot', async () => {
     expect(wrapper.html()).toContain('Some content');
   });
 

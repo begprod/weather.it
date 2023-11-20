@@ -21,7 +21,7 @@ describe('weather store', () => {
     lat: -0.1257,
   };
 
-  it('correct get city data', async () => {
+  it('should get city data', async () => {
     await getCityData(mockSearchSuggestItem);
 
     expect(ids.value).toEqual(['123']);
@@ -29,7 +29,7 @@ describe('weather store', () => {
     expect(Object.keys(images.value).length).toEqual(1);
   });
 
-  it('correct update city data', async () => {
+  it('should update city data', async () => {
     await updateCityData();
 
     expect(ids.value).toEqual(['123']);
@@ -38,7 +38,7 @@ describe('weather store', () => {
     expect(lastUpdateDate.value).not.toEqual(null);
   });
 
-  it('correct remove city data', () => {
+  it('should remove city data', () => {
     deleteCity(mockSearchSuggestItem.id);
 
     expect(ids.value).toEqual([]);

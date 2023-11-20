@@ -5,7 +5,7 @@ import BaseWeatherIconDoodle from '@/components/BaseWeatherIconDoodle/BaseWeathe
 describe('BaseWeatherIconDoodle', () => {
   const wrapper = mount(BaseWeatherIconDoodle);
 
-  it('correct icons render', async () => {
+  it('should render icons', async () => {
     expect(wrapper.html()).toContain('weather-icon_clear');
     expect(wrapper.html()).toContain('weather-icon_clouds');
     expect(wrapper.html()).toContain('weather-icon_snow');

@@ -8,7 +8,7 @@ describe('BaseFooterDefault', () => {
     setActivePinia(createPinia());
   });
 
-  it('correct render', async () => {
+  it('should render', async () => {
     const wrapper = mount(BaseLayoutDefault, {
       global: {
         components: {

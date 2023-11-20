@@ -5,7 +5,7 @@ import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton/BaseCardC
 describe('BaseCardCitySkeleton', () => {
   const wrapper = mount(BaseCardCitySkeleton);
 
-  it('correct render', async () => {
+  it('should render', async () => {
     expect(wrapper.html()).toContain(
       'relative flex flex-col w-full h-full p-5 bg-white rounded-[20px] shadow-md overflow-hidden isolate md:p-7 lg:p-10',
     );

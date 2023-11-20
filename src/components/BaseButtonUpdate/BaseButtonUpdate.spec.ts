@@ -31,7 +31,7 @@ describe('BaseButtonUpdate', () => {
   const { lastUpdateDate } = storeToRefs(weatherStore);
   const { updateCityData } = weatherStore;
 
-  it('correct call update function on click', async () => {
+  it('should call update function on click', async () => {
     const button = wrapper.find('button');
 
     await button.trigger('click');
@@ -39,7 +39,7 @@ describe('BaseButtonUpdate', () => {
     expect(updateCityData).toHaveBeenCalled();
   });
 
-  it('correct render updated date, if date set in store', async () => {
+  it('should render updated date, if date set in store', async () => {
     lastUpdateDate.value = '07.07.07, 07:07';
 
     await nextTick();
@@ -47,7 +47,7 @@ describe('BaseButtonUpdate', () => {
     expect(wrapper.html()).toContain('07.07.07, 07:07');
   });
 
-  it('correct does not render update date, if date not set in store', async () => {
+  it('should does not render update date, if date not set in store', async () => {
     lastUpdateDate.value = '';
 
     await nextTick();
@@ -57,7 +57,7 @@ describe('BaseButtonUpdate', () => {
     expect(span.exists()).toBe(false);
   });
 
-  it('correct set class animate-spin to icon, if update in progress', async () => {
+  it('should set class animate-spin to icon, if update in progress', async () => {
     status.value = 'updating';
 
     await nextTick();

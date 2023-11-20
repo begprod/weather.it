@@ -10,7 +10,7 @@ describe('BaseWeatherIcon', () => {
     },
   });
 
-  it('correct icons class names', async () => {
+  it('should set icons class names', async () => {
     await wrapper.setProps({ type: WeatherType.Clear });
     expect(wrapper.classes()).toContain('weather-icon_clear');
 

@@ -64,7 +64,7 @@ describe('BaseCardCity', () => {
   const weatherStore = useWeatherStore();
   const { deleteCity } = weatherStore;
 
-  it('correct render data from props', async () => {
+  it('should render data from props', async () => {
     await wrapper.setProps({
       ...propsData,
     });
@@ -74,7 +74,7 @@ describe('BaseCardCity', () => {
     expect(wrapper.html()).toContain('clear sky');
   });
 
-  it('correct call function on delete button click', async () => {
+  it('should call function on delete button click', async () => {
     const dropdownMenu = wrapper.findComponent(BaseDropdownMenu);
 
     await dropdownMenu.find('button').trigger('click');
@@ -84,7 +84,7 @@ describe('BaseCardCity', () => {
     expect(deleteCity).toHaveBeenCalled();
   });
 
-  it('correct css class which depends of air quality', async () => {
+  it('should set css class which depends of air quality', async () => {
     await wrapper.setProps({
       city: {
         ...propsData,
@@ -158,7 +158,7 @@ describe('BaseCardCity', () => {
     expect(wrapper.html()).toContain('fill-gray-400');
   });
 
-  it('correct background image', async () => {
+  it('should set background image', async () => {
     await wrapper.setProps({
       ...propsData,
       image: 'https://loremflickr.com/500/500?random=1',
@@ -167,7 +167,7 @@ describe('BaseCardCity', () => {
     expect(wrapper.html()).toContain('https://loremflickr.com/500/500?random=1');
   });
 
-  it('correct show skeleton if props isLoading true', async () => {
+  it('should show skeleton if props isLoading true', async () => {
     await wrapper.setProps({
       ...propsData,
       isLoading: true,
@@ -176,7 +176,7 @@ describe('BaseCardCity', () => {
     expect(wrapper.findComponent(BaseCardCitySkeleton).exists()).toBe(true);
   });
 
-  it('correct show skeleton if props isLoading false', async () => {
+  it('should show skeleton if props isLoading false', async () => {
     await wrapper.setProps({
       ...propsData,
       isLoading: false,
@@ -185,7 +185,7 @@ describe('BaseCardCity', () => {
     expect(wrapper.findComponent(BaseCardCitySkeleton).exists()).toBe(false);
   });
 
-  it('correct contain BaseButton component', () => {
+  it('should contain BaseButton component', () => {
     expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
   });
 });

@@ -23,7 +23,7 @@ describe('BaseSuggestionsList', () => {
     },
   });
 
-  it('correct showing when isItemVisible is true', async () => {
+  it('should showing when isItemVisible is true', async () => {
     await wrapper.setProps({
       isItemsListVisible: true,
       isLoading: false,
@@ -35,7 +35,7 @@ describe('BaseSuggestionsList', () => {
     );
   });
 
-  it('correct showing when isLoading is true', async () => {
+  it('should showing when isLoading is true', async () => {
     await wrapper.setProps({
       isItemsListVisible: false,
       isLoading: true,
@@ -47,7 +47,7 @@ describe('BaseSuggestionsList', () => {
     );
   });
 
-  it('correct showing when isEmpty is true', async () => {
+  it('should showing when isEmpty is true', async () => {
     await wrapper.setProps({
       isItemsListVisible: false,
       isLoading: false,
@@ -59,7 +59,7 @@ describe('BaseSuggestionsList', () => {
     );
   });
 
-  it('correct show loader', async () => {
+  it('should show loader', async () => {
     await wrapper.setProps({
       isItemsListVisible: false,
       isLoading: true,
@@ -71,7 +71,7 @@ describe('BaseSuggestionsList', () => {
     expect(wrapper.html()).toContain('ov-icon');
   });
 
-  it('correct show empty message', async () => {
+  it('should show empty message', async () => {
     await wrapper.setProps({
       isItemsListVisible: false,
       isLoading: false,
@@ -81,7 +81,7 @@ describe('BaseSuggestionsList', () => {
     expect(wrapper.html()).toContain('City not found');
   });
 
-  it('correct render slot', async () => {
+  it('should render slot', async () => {
     await wrapper.setProps({
       isItemsListVisible: true,
       isLoading: false,

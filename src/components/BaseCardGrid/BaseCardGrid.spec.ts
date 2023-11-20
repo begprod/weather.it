@@ -54,11 +54,11 @@ describe('BaseCardGrid', () => {
     },
   ];
 
-  it('correct render BaseCardCity data from store', async () => {
+  it('should render BaseCardCity data from store', async () => {
     expect(wrapper.findComponent(BaseCardCity).exists()).toBe(true);
   });
 
-  it('correct render BaseCardCitySkeleton data from store', async () => {
+  it('should render BaseCardCitySkeleton data from store', async () => {
     status.value = 'loading';
     await wrapper.vm.$nextTick();
     expect(wrapper.findComponent(BaseCardCitySkeleton).exists()).toBe(true);
