@@ -19,11 +19,11 @@ describe('BaseToast', () => {
     },
   });
 
-  it('should render', async () => {
+  it('should contain correct css classes', async () => {
     expect(wrapper.html()).toContain('fixed bottom-6 left-1/2 -translate-x-1/2 w-[272px] z-50');
   });
 
-  it('should render success toast type', async () => {
+  it('should contain success toast type css classes', async () => {
     await wrapper.setProps({
       type: 'success',
       message: 'Success message',
@@ -35,7 +35,7 @@ describe('BaseToast', () => {
     expect(wrapper.html()).toContain('Success message');
   });
 
-  it('should render error toast type', async () => {
+  it('should contain error toast type css classes', async () => {
     await wrapper.setProps({
       type: 'error',
       message: 'Error message',
@@ -47,7 +47,7 @@ describe('BaseToast', () => {
     expect(wrapper.html()).toContain('Error message');
   });
 
-  it('should render default toast type', async () => {
+  it('should contain default toast type css classes', async () => {
     await wrapper.setProps({
       type: 'default',
       message: 'Default message',

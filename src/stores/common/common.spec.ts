@@ -23,13 +23,13 @@ describe('common store', () => {
     expect(message.value).toBe('message');
   });
 
-  it('should set toast visibility', async () => {
+  it('should set toast visibility true', async () => {
     showToast();
 
     expect(toastIsVisible.value).toBe(true);
   });
 
-  it('should set close toast', async () => {
+  it('should set toast visibility false', async () => {
     closeToast();
 
     expect(status.value).toBe('init');

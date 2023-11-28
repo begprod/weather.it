@@ -29,7 +29,7 @@ describe('BaseSearchInput', () => {
     expect(wrapper.findComponent(OhVueIcon).exists()).toBe(true);
   });
 
-  it('should render data from props', async () => {
+  it('should contain data from props', async () => {
     expect(wrapper.html()).toContain('some-id');
     expect(wrapper.html()).toContain('Search');
     expect(wrapper.find('input').attributes('type')).toBe('text');

@@ -26,7 +26,11 @@ describe('BaseDropdownMenu', () => {
     },
   });
 
-  it('should render slot when menu is closed', async () => {
+  it('should contain BaseButton component', async () => {
+    expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
+  });
+
+  it('shouldn\'t render slot when menu is closed', async () => {
     expect(wrapper.html()).not.toContain('Some content');
   });
 
@@ -42,15 +46,11 @@ describe('BaseDropdownMenu', () => {
     expect(wrapper.emitted()).toHaveProperty('toggleMenu');
   });
 
-  it('should emit close event on directive click outside', async () => {
+  it('should emit close event on outside click directive', async () => {
     await wrapper.setProps({ isMenuOpen: true });
 
     document.body.click();
 
     expect(wrapper.emitted()).toHaveProperty('closeMenu');
-  });
-
-  it('should contain BaseButton component', async () => {
-    expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
   });
 });

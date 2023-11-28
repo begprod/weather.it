@@ -9,13 +9,13 @@ describe('BaseGithubCorner', () => {
     },
   });
 
-  it('should render', async () => {
+  it('should contain correct css classes', async () => {
     expect(wrapper.html()).toContain('github-corner');
     expect(wrapper.html()).toContain('octo-arm');
     expect(wrapper.html()).toContain('octo-body');
   });
 
-  it('should set props', async () => {
+  it('should set url', async () => {
     expect(wrapper.html()).toContain('/url/');
   });
 });

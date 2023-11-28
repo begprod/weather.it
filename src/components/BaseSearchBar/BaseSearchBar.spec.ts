@@ -39,11 +39,11 @@ describe('BaseSearchBar', () => {
     },
   });
 
-  it('should render doodle', async () => {
+  it('should contain BaseWeatherIconDoodle component', async () => {
     expect(wrapper.findComponent(BaseWeatherIconDoodle).exists()).toBe(true);
   });
 
-  it('should render input', async () => {
+  it('should contain BaseSearchInput component', async () => {
     expect(wrapper.findComponent(BaseSearchInput).exists()).toBe(true);
   });
 });

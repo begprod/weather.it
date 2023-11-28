@@ -31,6 +31,10 @@ describe('BaseButtonUpdate', () => {
   const { lastUpdateDate } = storeToRefs(weatherStore);
   const { updateCityData } = weatherStore;
 
+  it('should have BaseButton component', () => {
+    expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
+  });
+
   it('should call update function on click', async () => {
     const button = wrapper.find('button');
 
@@ -47,7 +51,7 @@ describe('BaseButtonUpdate', () => {
     expect(wrapper.html()).toContain('07.07.07, 07:07');
   });
 
-  it('should does not render update date, if date not set in store', async () => {
+  it('should does\'t render update date, if date not set in store', async () => {
     lastUpdateDate.value = '';
 
     await nextTick();
@@ -65,9 +69,5 @@ describe('BaseButtonUpdate', () => {
     const svg = wrapper.find('svg');
 
     expect(svg.classes()).toContain('animate-spin');
-  });
-
-  it('should contain BaseButton component', () => {
-    expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
   });
 });

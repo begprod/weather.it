@@ -64,6 +64,10 @@ describe('BaseCardCity', () => {
   const weatherStore = useWeatherStore();
   const { deleteCity } = weatherStore;
 
+  it('should contain BaseButton component', () => {
+    expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
+  });
+
   it('should render data from props', async () => {
     await wrapper.setProps({
       ...propsData,
@@ -74,7 +78,7 @@ describe('BaseCardCity', () => {
     expect(wrapper.html()).toContain('clear sky');
   });
 
-  it('should call function on delete button click', async () => {
+  it('should call function on click delete button', async () => {
     const dropdownMenu = wrapper.findComponent(BaseDropdownMenu);
 
     await dropdownMenu.find('button').trigger('click');
@@ -84,7 +88,7 @@ describe('BaseCardCity', () => {
     expect(deleteCity).toHaveBeenCalled();
   });
 
-  it('should set css class which depends of air quality', async () => {
+  it('should set css classes which depends of air quality', async () => {
     await wrapper.setProps({
       city: {
         ...propsData,
@@ -176,16 +180,12 @@ describe('BaseCardCity', () => {
     expect(wrapper.findComponent(BaseCardCitySkeleton).exists()).toBe(true);
   });
 
-  it('should show skeleton if props isLoading false', async () => {
+  it('shouldn\'t show skeleton if props isLoading false', async () => {
     await wrapper.setProps({
       ...propsData,
       isLoading: false,
     });
 
     expect(wrapper.findComponent(BaseCardCitySkeleton).exists()).toBe(false);
-  });
-
-  it('should contain BaseButton component', () => {
-    expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
   });
 });

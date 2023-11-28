@@ -19,12 +19,13 @@ describe('BaseSearchSuggestionItem', () => {
     },
   });
 
-  it('should render', async () => {
+  it('should contain icon', async () => {
     expect(wrapper.html()).toContain('svg');
     expect(wrapper.html()).toContain('ov-icon');
+    expect(wrapper.findComponent(OhVueIcon).exists()).toBe(true);
   });
 
-  it('should render data from props', async () => {
+  it('should contain data from props', async () => {
     await wrapper.setProps({
       name: 'Tokyo',
       country: 'Japan',

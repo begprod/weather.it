@@ -29,7 +29,7 @@ describe('weather store', () => {
     expect(Object.keys(images.value).length).toEqual(1);
   });
 
-  it('should update city data', async () => {
+  it('should update city data and set last update date', async () => {
     await updateCityData();
 
     expect(ids.value).toEqual(['123']);

@@ -23,7 +23,7 @@ describe('BaseSuggestionsList', () => {
     },
   });
 
-  it('should showing when isItemVisible is true', async () => {
+  it('should be visible when isItemVisible is true', async () => {
     await wrapper.setProps({
       isItemsListVisible: true,
       isLoading: false,
@@ -35,7 +35,7 @@ describe('BaseSuggestionsList', () => {
     );
   });
 
-  it('should showing when isLoading is true', async () => {
+  it('should be visible when isLoading is true', async () => {
     await wrapper.setProps({
       isItemsListVisible: false,
       isLoading: true,
@@ -47,7 +47,7 @@ describe('BaseSuggestionsList', () => {
     );
   });
 
-  it('should showing when isEmpty is true', async () => {
+  it('should be visible when isEmpty is true', async () => {
     await wrapper.setProps({
       isItemsListVisible: false,
       isLoading: false,
