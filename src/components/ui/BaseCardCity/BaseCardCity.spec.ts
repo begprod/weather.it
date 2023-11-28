@@ -180,7 +180,7 @@ describe('BaseCardCity', () => {
     expect(wrapper.findComponent(BaseCardCitySkeleton).exists()).toBe(true);
   });
 
-  it('shouldn\'t show skeleton if props isLoading false', async () => {
+  it("shouldn't show skeleton if props isLoading false", async () => {
     await wrapper.setProps({
       ...propsData,
       isLoading: false,

@@ -30,7 +30,7 @@ describe('BaseDropdownMenu', () => {
     expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
   });
 
-  it('shouldn\'t render slot when menu is closed', async () => {
+  it("shouldn't render slot when menu is closed", async () => {
     expect(wrapper.html()).not.toContain('Some content');
   });
 

@@ -54,13 +54,27 @@ describe('BaseCardGrid', () => {
     },
   ];
 
-  it('should render BaseCardCity data from store', async () => {
+  it('should contain BaseCardCity component', async () => {
     expect(wrapper.findComponent(BaseCardCity).exists()).toBe(true);
   });
 
-  it('should render BaseCardCitySkeleton data from store', async () => {
+  it("should contain BaseCardCitySkeleton component if state is 'loading'", async () => {
     status.value = 'loading';
+
     await wrapper.vm.$nextTick();
+
     expect(wrapper.findComponent(BaseCardCitySkeleton).exists()).toBe(true);
+  });
+
+  it('should render data from store', async () => {
+    status.value = 'success';
+
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.html()).toContain('Tokyo');
+    expect(wrapper.html()).toContain('Japan');
+    expect(wrapper.html()).toContain('20');
+    expect(wrapper.html()).toContain('25');
+    expect(wrapper.html()).toContain('clear sky');
   });
 });
