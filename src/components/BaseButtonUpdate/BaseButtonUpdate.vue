@@ -30,7 +30,7 @@ const { updateCityData } = weatherStore;
 
 const classObject = computed(() => {
   return {
-    'animate-spin': status.value === 'updating',
+    'animate-spin animation-duration-2000': status.value === 'updating',
   };
 });
 </script>

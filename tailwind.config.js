@@ -5,14 +5,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'body': ['Comfortaa', 'sans-serif']
-      }
-    }
+        body: ['Comfortaa', 'sans-serif'],
+      },
+    },
   },
   variants: {
     extend: {
-      display: ['group-hover']
-    }
+      display: ['group-hover'],
+    },
   },
   plugins: [
     function ({ addUtilities }) {
@@ -26,10 +26,12 @@ module.exports = {
             'grid-auto-rows': '400px',
           },
         },
+        '.animation-duration-2000': {
+          animationDuration: '2000ms',
+        },
       };
 
       addUtilities(newUtilities, ['responsive', 'hover']);
-    }
-  ]
+    },
+  ],
 };
-

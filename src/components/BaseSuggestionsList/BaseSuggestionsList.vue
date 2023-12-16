@@ -16,7 +16,9 @@
 
     <Transition name="fade">
       <div v-if="isLoading" class="absolute w-full h-full select-none overflow-hidden">
-        <div class="animate-spin flex items-center justify-center h-[48px]">
+        <div
+          class="animate-spin spin-slow flex items-center justify-center h-[48px] animation-duration-2000"
+        >
           <v-icon name="ri-loader-line" class="w-6 h-6 opacity-30" />
         </div>
       </div>
