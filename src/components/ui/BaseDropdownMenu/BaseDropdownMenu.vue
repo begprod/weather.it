@@ -1,5 +1,5 @@
 <template>
-  <div class="relative" v-click-outside="closeMenu">
+  <div class="relative" v-click-outside="closeMenu" @keydown.esc="closeMenu">
     <BaseButton view="transparent" title="Open menu" @click="toggleMenu">
       <v-icon name="hi-dots-vertical" class="w-7 h-7" />
     </BaseButton>
