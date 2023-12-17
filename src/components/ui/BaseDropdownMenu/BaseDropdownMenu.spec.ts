@@ -30,7 +30,7 @@ describe('BaseDropdownMenu', () => {
     expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
   });
 
-  it("shouldn't render slot when menu is closed", async () => {
+  it('should not render slot when menu is closed', async () => {
     expect(wrapper.html()).not.toContain('Some content');
   });
 
@@ -50,6 +50,14 @@ describe('BaseDropdownMenu', () => {
     await wrapper.setProps({ isMenuOpen: true });
 
     document.body.click();
+
+    expect(wrapper.emitted()).toHaveProperty('closeMenu');
+  });
+
+  it('should emit escape event on escape keydown', async () => {
+    await wrapper.setProps({ isMenuOpen: true });
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 
     expect(wrapper.emitted()).toHaveProperty('closeMenu');
   });
