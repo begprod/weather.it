@@ -58,7 +58,7 @@ describe('BaseCardGrid', () => {
     expect(wrapper.findComponent(BaseCardCity).exists()).toBe(true);
   });
 
-  it("should contain BaseCardCitySkeleton component if state is 'loading'", async () => {
+  it('should contain BaseCardCitySkeleton component if state is loading', async () => {
     status.value = 'loading';
 
     await wrapper.vm.$nextTick();

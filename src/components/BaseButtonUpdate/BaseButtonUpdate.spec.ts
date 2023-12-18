@@ -51,7 +51,7 @@ describe('BaseButtonUpdate', () => {
     expect(wrapper.html()).toContain('07.07.07, 07:07');
   });
 
-  it("should does't render update date, if date not set in store", async () => {
+  it('should does not render update date, if date not set in store', async () => {
     lastUpdateDate.value = '';
 
     await nextTick();
