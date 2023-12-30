@@ -4,7 +4,8 @@
   >
     <div class="relative z-30 select-none">
       <div class="flex items-baseline">
-        <v-icon name="fa-map-marker-alt" class="w-4 h-4 shrink-0 mr-1 lg:w-6 lg:h-6" />
+        <MapPinIcon class="w-4 h-4 shrink-0 mr-1 lg:w-6 lg:h-6" />
+
         <div class="flex flex-col max-w-[80%]">
           <span class="text-xl lg:text-2xl max-w-full truncate">{{ city.name }}</span>
           <span class="text-xs">{{ city.country }}</span>
@@ -12,26 +13,23 @@
       </div>
       <div class="flex items-start mt-3 text-5xl font-bold md:mt-5 md:mb-2 md:text-7xl">
         {{ city.weather.current }}
-        <v-icon name="ri-celsius-line" class="w-7 h-7" />
+        <sub class="-top-1 text-lg font-normal">&#8451;</sub>
       </div>
       <div class="flex text-base md:text-lg">
         feels like:
         <div class="flex items-start ml-1">
           {{ city.weather.feels_like }}
-          <v-icon name="ri-celsius-line" class="w-3 h-3" />
+          <sub class="top-2 text-[10px] font-normal">&#8451;</sub>
         </div>
       </div>
       <div class="flex text-base md:text-lg">
         air:
         <div class="flex items-center ml-1">
-          <v-icon
-            name="fa-circle"
-            class="w-4 h-4 shrink-0 mr-1 md:w-6 md:h-6"
-            :class="airQuality"
-          />
+          <div class="rounded-full w-4 h-4 shrink-0 mr-1" :class="airQuality"></div>
         </div>
       </div>
       <div class="text-base md:text-lg md:mb-2">{{ city.weather.description }}</div>
+
       <BaseWeatherIcon class="mt-3" :type="city.weather.main.toLowerCase()" />
     </div>
 
@@ -47,7 +45,7 @@
         title="Delete city"
         @click="deleteCity(city.id)"
       >
-        <v-icon name="co-trash" class="w-6 h-6 mr-2"></v-icon>
+        <XMarkIcon class="w-5 h-5 mr-1" />
         Delete city
       </BaseButton>
     </BaseDropdownMenu>
@@ -72,6 +70,7 @@
 import type { ICityWeather } from '@/types';
 import { ref, computed } from 'vue';
 import { useWeatherStore } from '@/stores';
+import { MapPinIcon, XMarkIcon } from '@heroicons/vue/24/solid';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton/BaseCardCitySkeleton.vue';
 import BaseWeatherIcon from '@/components/ui/BaseWeatherIcon/BaseWeatherIcon.vue';
@@ -101,17 +100,17 @@ const closeMenu = () => {
 const airQuality = computed(() => {
   switch (props.city.weather.air_quality) {
     case 1:
-      return 'fill-green-500';
+      return 'bg-green-500';
     case 2:
-      return 'fill-green-300';
+      return 'bg-green-300';
     case 3:
-      return 'fill-yellow-300';
+      return 'bg-yellow-300';
     case 4:
-      return 'fill-orange-400';
+      return 'bg-orange-400';
     case 5:
-      return 'fill-red-500';
+      return 'bg-red-500';
     default:
-      return 'fill-gray-400';
+      return 'bg-gray-400';
   }
 });
 </script>

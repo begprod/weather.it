@@ -1,7 +1,7 @@
 <template>
   <div class="relative" v-click-outside="closeMenu" @keydown.esc="closeMenu">
     <BaseButton view="transparent" title="Open menu" @click="toggleMenu">
-      <v-icon name="hi-dots-vertical" class="w-7 h-7" />
+      <EllipsisVerticalIcon class="w-6 h-6" />
     </BaseButton>
     <div
       v-if="isMenuOpen"
@@ -13,6 +13,7 @@
 </template>
 
 <script setup lang="ts">
+import { EllipsisVerticalIcon } from '@heroicons/vue/24/solid';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 
 interface IProps {

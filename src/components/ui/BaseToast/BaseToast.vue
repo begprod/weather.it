@@ -11,13 +11,13 @@
           v-if="props.type === 'success'"
           class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-green-200 rounded-lg"
         >
-          <v-icon name="md-doneall-outlined" />
+          <HandThumbUpIcon class="w-5 h-5" />
         </div>
         <div
           v-if="props.type === 'error'"
           class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-red-200 rounded-lg"
         >
-          <v-icon name="md-notinterested-outlined" />
+          <ExclamationTriangleIcon class="w-5 h-5" />
         </div>
 
         <div class="flex flex-col items-start ml-3">
@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import { HandThumbUpIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/solid';
 import { computed } from 'vue';
 
 interface IProps {

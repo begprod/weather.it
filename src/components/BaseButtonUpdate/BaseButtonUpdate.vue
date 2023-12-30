@@ -1,13 +1,13 @@
 <template>
   <div class="fixed right-6 bottom-6 flex flex-col items-center z-40">
     <BaseButton title="Update weather data" @click="updateCityData">
-      <v-icon name="hi-refresh" :class="classObject" />
+      <ArrowPathIcon class="w-5 h-5" :class="classObject" />
     </BaseButton>
 
     <Transition name="slide-down">
       <span
         v-if="lastUpdateDate"
-        class="mt-1 md:mt-3 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white"
+        class="mt-2 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white"
       >
         {{ lastUpdateDate }}
       </span>
@@ -19,6 +19,7 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useCommonStore, useWeatherStore } from '@/stores';
+import { ArrowPathIcon } from '@heroicons/vue/24/solid';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 
 const commonStore = useCommonStore();

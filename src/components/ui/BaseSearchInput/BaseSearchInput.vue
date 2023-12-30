@@ -21,21 +21,22 @@
         {{ placeholder }}
       </span>
       <div
-        class="hidden lg:flex items-center ml-4 p-1 text-base border border-slate-500 rounded-md opacity-40"
+        class="hidden sm:flex items-center ml-4 p-1 text-sm border border-slate-500 rounded-md opacity-50"
       >
-        <v-icon name="md-keyboardcommandkey-round" class="w-4 h-4 mr-1" /> + k
+        cmd/ctrl + k
       </div>
     </div>
     <div
       class="absolute hidden sm:flex inset-y-0 right-0 items-center pr-5 pointer-events-none z-20"
     >
-      <v-icon name="io-search" class="w-8 h-8 opacity-30" />
+      <MagnifyingGlassIcon class="w-6 h-6 opacity-60" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue';
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 
 interface IProps {
   id: string;

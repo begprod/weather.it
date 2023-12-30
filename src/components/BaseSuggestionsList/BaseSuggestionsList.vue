@@ -6,7 +6,8 @@
     <Transition name="fade">
       <div v-if="isEmpty" class="absolute w-full h-full select-none">
         <div class="flex items-center justify-center h-[48px]">
-          <v-icon name="md-locationoff-twotone" class="w-6 h-6 mr-3 opacity-30" />
+          <SignalSlashIcon class="w-6 h-6 mr-2 opacity-90" />
+
           <div class="text-xl overflow-hidden">
             <p class="text-xl">City not found</p>
           </div>
@@ -19,7 +20,7 @@
         <div
           class="animate-spin spin-slow flex items-center justify-center h-[48px] animation-duration-2000"
         >
-          <v-icon name="ri-loader-line" class="w-6 h-6 opacity-30" />
+          <ArrowPathIcon class="w-6 h-6 opacity-50" />
         </div>
       </div>
     </Transition>
@@ -36,6 +37,8 @@
 </template>
 
 <script setup lang="ts">
+import { ArrowPathIcon, SignalSlashIcon } from '@heroicons/vue/24/solid';
+
 interface IProps {
   isItemsListVisible: boolean;
   isLoading: boolean;

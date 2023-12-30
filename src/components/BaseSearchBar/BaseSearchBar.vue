@@ -6,7 +6,7 @@
       id="city_search"
       type="text"
       label="Search"
-      placeholder="Start typing the name of the city"
+      placeholder="Start typing the city name"
       autoComplete="off"
       v-model="searchQuery"
       :required="true"
