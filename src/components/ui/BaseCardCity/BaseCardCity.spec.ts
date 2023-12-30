@@ -1,23 +1,14 @@
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import {
-  CoTrash,
-  FaCircle,
-  FaMapMarkerAlt,
-  HiDotsVertical,
-  RiCelsiusLine,
-} from 'oh-vue-icons/icons';
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import { useWeatherStore } from '@/stores';
+import { MapPinIcon, XMarkIcon } from '@heroicons/vue/24/solid';
 import { clickOutside } from '@/directives/clickOutsideDirective';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 import BaseWeatherIcon from '@/components/ui/BaseWeatherIcon/BaseWeatherIcon.vue';
 import BaseCardCity from '@/components/ui/BaseCardCity/BaseCardCity.vue';
 import BaseDropdownMenu from '@/components/ui/BaseDropdownMenu/BaseDropdownMenu.vue';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton/BaseCardCitySkeleton.vue';
-
-addIcons(CoTrash, FaCircle, FaMapMarkerAlt, HiDotsVertical, RiCelsiusLine);
 
 describe('BaseCardCity', () => {
   const propsData = {
@@ -49,7 +40,8 @@ describe('BaseCardCity', () => {
         'click-outside': clickOutside,
       },
       components: {
-        'v-icon': OhVueIcon,
+        MapPinIcon,
+        XMarkIcon,
         BaseWeatherIcon,
         BaseDropdownMenu,
       },
@@ -99,7 +91,7 @@ describe('BaseCardCity', () => {
       },
     });
 
-    expect(wrapper.html()).toContain('fill-green-500');
+    expect(wrapper.html()).toContain('bg-green-500');
 
     await wrapper.setProps({
       city: {
@@ -111,7 +103,7 @@ describe('BaseCardCity', () => {
       },
     });
 
-    expect(wrapper.html()).toContain('fill-green-300');
+    expect(wrapper.html()).toContain('bg-green-300');
 
     await wrapper.setProps({
       city: {
@@ -123,7 +115,7 @@ describe('BaseCardCity', () => {
       },
     });
 
-    expect(wrapper.html()).toContain('fill-yellow-300');
+    expect(wrapper.html()).toContain('bg-yellow-300');
 
     await wrapper.setProps({
       city: {
@@ -135,7 +127,7 @@ describe('BaseCardCity', () => {
       },
     });
 
-    expect(wrapper.html()).toContain('fill-orange-400');
+    expect(wrapper.html()).toContain('bg-orange-400');
 
     await wrapper.setProps({
       city: {
@@ -147,7 +139,7 @@ describe('BaseCardCity', () => {
       },
     });
 
-    expect(wrapper.html()).toContain('fill-red-500');
+    expect(wrapper.html()).toContain('bg-red-500');
 
     await wrapper.setProps({
       city: {
@@ -159,7 +151,7 @@ describe('BaseCardCity', () => {
       },
     });
 
-    expect(wrapper.html()).toContain('fill-gray-400');
+    expect(wrapper.html()).toContain('bg-gray-400');
   });
 
   it('should set background image', async () => {
@@ -187,5 +179,10 @@ describe('BaseCardCity', () => {
     });
 
     expect(wrapper.findComponent(BaseCardCitySkeleton).exists()).toBe(false);
+  });
+
+  it('should contain icons components', () => {
+    expect(wrapper.findComponent(MapPinIcon).exists()).toBe(true);
+    expect(wrapper.findComponent(XMarkIcon).exists()).toBe(true);
   });
 });

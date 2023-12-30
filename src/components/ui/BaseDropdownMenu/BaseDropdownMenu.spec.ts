@@ -1,12 +1,9 @@
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { HiDotsVertical } from 'oh-vue-icons/icons';
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { EllipsisVerticalIcon } from '@heroicons/vue/24/solid';
 import { clickOutside } from '@/directives/clickOutsideDirective';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 import BaseDropdownMenu from '@/components/ui/BaseDropdownMenu/BaseDropdownMenu.vue';
-
-addIcons(HiDotsVertical);
 
 describe('BaseDropdownMenu', () => {
   const wrapper = mount(BaseDropdownMenu, {
@@ -18,7 +15,8 @@ describe('BaseDropdownMenu', () => {
         'click-outside': clickOutside,
       },
       components: {
-        'v-icon': OhVueIcon,
+        EllipsisVerticalIcon,
+        BaseButton,
       },
     },
     slots: {
@@ -60,5 +58,9 @@ describe('BaseDropdownMenu', () => {
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
 
     expect(wrapper.emitted()).toHaveProperty('closeMenu');
+  });
+
+  it('should contain icon component', async () => {
+    expect(wrapper.findComponent(EllipsisVerticalIcon).exists()).toBe(true);
   });
 });

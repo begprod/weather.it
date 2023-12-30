@@ -1,6 +1,4 @@
 import { storeToRefs } from 'pinia';
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { FaCircle, FaMapMarkerAlt, HiDotsVertical, RiCelsiusLine } from 'oh-vue-icons/icons';
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
@@ -10,8 +8,6 @@ import BaseCardGrid from '@/components/BaseCardGrid/BaseCardGrid.vue';
 import BaseCardCity from '@/components/ui/BaseCardCity/BaseCardCity.vue';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton/BaseCardCitySkeleton.vue';
 
-addIcons(FaCircle, FaMapMarkerAlt, HiDotsVertical, RiCelsiusLine);
-
 describe('BaseCardGrid', () => {
   const wrapper = mount(BaseCardGrid, {
     global: {
@@ -19,7 +15,6 @@ describe('BaseCardGrid', () => {
         'click-outside': clickOutside,
       },
       components: {
-        'v-icon': OhVueIcon,
         BaseCardCity,
         BaseCardCitySkeleton,
       },

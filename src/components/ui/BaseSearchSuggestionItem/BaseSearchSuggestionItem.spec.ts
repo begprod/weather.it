@@ -1,10 +1,7 @@
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { FaMapPin, LaGlobeAsiaSolid } from 'oh-vue-icons/icons';
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { MapPinIcon, GlobeAsiaAustraliaIcon } from '@heroicons/vue/24/solid';
 import BaseSearchSuggestionItem from '@/components/ui/BaseSearchSuggestionItem/BaseSearchSuggestionItem.vue';
-
-addIcons(FaMapPin, LaGlobeAsiaSolid);
 
 describe('BaseSearchSuggestionItem', () => {
   const wrapper = mount(BaseSearchSuggestionItem, {
@@ -14,15 +11,10 @@ describe('BaseSearchSuggestionItem', () => {
     },
     global: {
       components: {
-        'v-icon': OhVueIcon,
+        MapPinIcon,
+        GlobeAsiaAustraliaIcon,
       },
     },
-  });
-
-  it('should contain icon', async () => {
-    expect(wrapper.html()).toContain('svg');
-    expect(wrapper.html()).toContain('ov-icon');
-    expect(wrapper.findComponent(OhVueIcon).exists()).toBe(true);
   });
 
   it('should contain data from props', async () => {
@@ -41,5 +33,10 @@ describe('BaseSearchSuggestionItem', () => {
     await button.trigger('click');
 
     expect(wrapper.emitted()).toHaveProperty('click');
+  });
+
+  it('should contain icons components', async () => {
+    expect(wrapper.findComponent(MapPinIcon).exists()).toBe(true);
+    expect(wrapper.findComponent(GlobeAsiaAustraliaIcon).exists()).toBe(true);
   });
 });

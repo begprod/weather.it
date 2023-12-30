@@ -1,10 +1,7 @@
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { MdDoneallOutlined, MdNotinterestedOutlined } from 'oh-vue-icons/icons';
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { HandThumbUpIcon, ExclamationTriangleIcon } from '@heroicons/vue/24/solid';
 import BaseToast from '@/components/ui/BaseToast/BaseToast.vue';
-
-addIcons(MdDoneallOutlined, MdNotinterestedOutlined);
 
 describe('BaseToast', () => {
   const wrapper = mount(BaseToast, {
@@ -14,7 +11,8 @@ describe('BaseToast', () => {
     },
     global: {
       components: {
-        'v-icon': OhVueIcon,
+        HandThumbUpIcon,
+        ExclamationTriangleIcon,
       },
     },
   });
@@ -33,6 +31,7 @@ describe('BaseToast', () => {
     expect(wrapper.html()).toContain('svg');
     expect(wrapper.html()).toContain('text-green-500');
     expect(wrapper.html()).toContain('Success message');
+    expect(wrapper.findComponent(HandThumbUpIcon).exists()).toBe(true);
   });
 
   it('should contain error toast type css classes', async () => {
@@ -45,6 +44,7 @@ describe('BaseToast', () => {
     expect(wrapper.html()).toContain('svg');
     expect(wrapper.html()).toContain('text-red-500');
     expect(wrapper.html()).toContain('Error message');
+    expect(wrapper.findComponent(ExclamationTriangleIcon).exists()).toBe(true);
   });
 
   it('should contain default toast type css classes', async () => {

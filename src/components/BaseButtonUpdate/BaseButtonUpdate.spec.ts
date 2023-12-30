@@ -1,15 +1,12 @@
 import { nextTick } from 'vue';
 import { storeToRefs } from 'pinia';
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { HiRefresh } from 'oh-vue-icons/icons';
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
+import { ArrowPathIcon } from '@heroicons/vue/24/solid';
 import { useCommonStore, useWeatherStore } from '@/stores';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 import BaseButtonUpdate from '@/components/BaseButtonUpdate/BaseButtonUpdate.vue';
-
-addIcons(HiRefresh);
 
 describe('BaseButtonUpdate', () => {
   const wrapper = mount(BaseButtonUpdate, {
@@ -20,7 +17,8 @@ describe('BaseButtonUpdate', () => {
         }),
       ],
       components: {
-        'v-icon': OhVueIcon,
+        ArrowPathIcon,
+        BaseButton,
       },
     },
   });
@@ -69,5 +67,9 @@ describe('BaseButtonUpdate', () => {
     const svg = wrapper.find('svg');
 
     expect(svg.classes()).toContain('animate-spin');
+  });
+
+  it('should contain icon component', () => {
+    expect(wrapper.findComponent(ArrowPathIcon).exists()).toBe(true);
   });
 });

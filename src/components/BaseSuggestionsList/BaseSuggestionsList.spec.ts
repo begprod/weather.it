@@ -1,10 +1,7 @@
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { MdLocationoffTwotone, RiLoaderLine } from 'oh-vue-icons/icons';
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { ArrowPathIcon, SignalSlashIcon } from '@heroicons/vue/24/solid';
 import BaseSuggestionsList from '@/components/BaseSuggestionsList/BaseSuggestionsList.vue';
-
-addIcons(MdLocationoffTwotone, RiLoaderLine);
 
 describe('BaseSuggestionsList', () => {
   const wrapper = mount(BaseSuggestionsList, {
@@ -12,11 +9,6 @@ describe('BaseSuggestionsList', () => {
       isItemsListVisible: false,
       isLoading: false,
       isEmpty: false,
-    },
-    global: {
-      components: {
-        'v-icon': OhVueIcon,
-      },
     },
     slots: {
       default: '<div>Some content</div>',
@@ -68,7 +60,7 @@ describe('BaseSuggestionsList', () => {
 
     expect(wrapper.html()).toContain('animate-spin');
     expect(wrapper.html()).toContain('svg');
-    expect(wrapper.html()).toContain('ov-icon');
+    expect(wrapper.findComponent(ArrowPathIcon).exists()).toBe(true);
   });
 
   it('should show empty message', async () => {
@@ -79,6 +71,7 @@ describe('BaseSuggestionsList', () => {
     });
 
     expect(wrapper.html()).toContain('City not found');
+    expect(wrapper.findComponent(SignalSlashIcon).exists()).toBe(true);
   });
 
   it('should render slot', async () => {

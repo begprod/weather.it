@@ -13,7 +13,6 @@ describe('BaseFooterDefault', () => {
   const wrapper = mount(BaseLayoutDefault, {
     global: {
       components: {
-        'v-icon': {},
         BaseFooterDefault,
         BaseGithubCorner,
         BaseToast,

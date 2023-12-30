@@ -1,10 +1,7 @@
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { IoSearch, MdKeyboardcommandkeyRound } from 'oh-vue-icons/icons';
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
 import BaseSearchInput from '@/components/ui/BaseSearchInput/BaseSearchInput.vue';
-
-addIcons(IoSearch, MdKeyboardcommandkeyRound);
 
 describe('BaseSearchInput', () => {
   const wrapper = mount(BaseSearchInput, {
@@ -17,7 +14,7 @@ describe('BaseSearchInput', () => {
     },
     global: {
       components: {
-        'v-icon': OhVueIcon,
+        MagnifyingGlassIcon,
       },
     },
     attachTo: document.body,
@@ -26,7 +23,7 @@ describe('BaseSearchInput', () => {
   it('should render input, placeholder, icons', async () => {
     expect(wrapper.find('.input').exists()).toBe(true);
     expect(wrapper.find('.placeholder').exists()).toBe(true);
-    expect(wrapper.findComponent(OhVueIcon).exists()).toBe(true);
+    expect(wrapper.findComponent(MagnifyingGlassIcon).exists()).toBe(true);
   });
 
   it('should contain data from props', async () => {
