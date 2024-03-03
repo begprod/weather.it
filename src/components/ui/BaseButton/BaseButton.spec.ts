@@ -19,7 +19,7 @@ describe('BaseButton', () => {
   it('should contain type', async () => {
     expect(wrapper.html()).toContain('button');
 
-    await wrapper.setProps({ type: 'submit' });
+    await wrapper.setProps({ buttonType: 'submit' });
 
     expect(wrapper.html()).toContain('submit');
   });
