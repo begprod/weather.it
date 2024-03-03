@@ -12,6 +12,7 @@ export const clickOutside = {
 
     document.addEventListener('click', handleClickOutside);
   },
+  // @ts-ignore
   unmounted(el: HTMLElement, binding: DirectiveBinding) {
     document.removeEventListener('click', binding.value);
   },

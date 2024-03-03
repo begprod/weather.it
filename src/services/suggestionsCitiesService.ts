@@ -7,6 +7,7 @@ export function suggestionsCitiesService(name: string = ''): Promise<Array<ISear
   }
 
   const url = `/autocomplete?text=${name}&type=city&limit=5&lang=en&apiKey=${
+    // @ts-ignore
     import.meta.env.VITE_GEOAPIFY_API_KEY
   }`;
 

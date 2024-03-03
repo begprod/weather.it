@@ -7,11 +7,15 @@ export function weatherService(
   const { id, name, country, country_code, lat, lon } = suggestCityData;
   const countryCode = country_code.toUpperCase();
   const weatherDataUrl = `/weather?q=${name},${countryCode}&appid=${
+    // @ts-ignore
     import.meta.env.VITE_WEATHER_API_KEY
   }&units=metric`;
   const airQualityUrl = `/air_pollution?lat=${suggestCityData.lat}&lon=${
     suggestCityData.lon
-  }&appid=${import.meta.env.VITE_WEATHER_API_KEY}`;
+  }&appid=${
+    // @ts-ignore
+    import.meta.env.VITE_WEATHER_API_KEY
+  }`;
   const getWeather = async () => await weatherApi.get(weatherDataUrl);
   const getAirQuality = async () => await weatherApi.get(airQualityUrl);
   const requests = [getWeather(), getAirQuality()];
