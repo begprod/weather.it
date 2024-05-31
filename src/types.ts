@@ -1,4 +1,5 @@
 import type { RemovableRef } from '@vueuse/core';
+import { mount } from '@vue/test-utils';
 
 export interface ICommonState {
   status: 'init' | 'loading' | 'updating' | 'success' | 'error';
@@ -57,6 +58,9 @@ export interface ISearchSuggestItem {
   lon: number;
   lat: number;
 }
+
+const mountComponent = <T>(component: T) => mount(component);
+export type ComponentWrapperType<T> = ReturnType<typeof mountComponent<T>>;
 
 /* eslint-disable */
 export enum WeatherType {

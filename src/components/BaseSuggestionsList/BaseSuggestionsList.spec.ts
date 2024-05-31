@@ -1,86 +1,66 @@
-import { describe, it, expect } from 'vitest';
+import type { ComponentWrapperType } from '@/types';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mount } from '@vue/test-utils';
-import { ArrowPathIcon, SignalSlashIcon } from '@heroicons/vue/24/solid';
 import BaseSuggestionsList from '@/components/BaseSuggestionsList/BaseSuggestionsList.vue';
 
 describe('BaseSuggestionsList', () => {
-  const wrapper = mount(BaseSuggestionsList, {
-    props: {
-      isItemsListVisible: false,
-      isLoading: false,
-      isEmpty: false,
-    },
-    slots: {
-      default: '<div>Some content</div>',
-    },
+  let wrapper: ComponentWrapperType<typeof BaseSuggestionsList>;
+
+  const createComponent = () => {
+    wrapper = mount(BaseSuggestionsList, {
+      props: {
+        isItemsListVisible: false,
+        isLoading: false,
+        isEmpty: false,
+      },
+      slots: {
+        default: '<div>Some content</div>',
+      },
+    });
+  };
+
+  beforeEach(() => {
+    createComponent();
   });
 
-  it('should be visible when isItemVisible is true', async () => {
+  afterEach(() => {
+    wrapper.unmount();
+  });
+
+  it('should render slot content', async () => {
     await wrapper.setProps({
       isItemsListVisible: true,
       isLoading: false,
       isEmpty: false,
     });
 
-    expect(wrapper.html()).toContain(
-      'absolute left-0 top-full w-full min-h-[48px] bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-y-auto',
-    );
+    const itemsListSlot = wrapper.find('[data-testid="items-list-slot"]');
+
+    expect(itemsListSlot.exists()).toBe(true);
+    expect(itemsListSlot.text()).toBe('Some content');
   });
 
-  it('should be visible when isLoading is true', async () => {
+  it('should show loader when isLoading is true', async () => {
     await wrapper.setProps({
       isItemsListVisible: false,
       isLoading: true,
       isEmpty: false,
     });
 
-    expect(wrapper.html()).toContain(
-      'absolute left-0 top-full w-full min-h-[48px] bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-y-auto',
-    );
+    const loader = wrapper.find('[data-testid="loader"]');
+
+    expect(loader.exists()).toBe(true);
   });
 
-  it('should be visible when isEmpty is true', async () => {
+  it('should show empty message when isEmpty is true', async () => {
     await wrapper.setProps({
       isItemsListVisible: false,
       isLoading: false,
       isEmpty: true,
     });
 
-    expect(wrapper.html()).toContain(
-      'absolute left-0 top-full w-full min-h-[48px] bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-y-auto',
-    );
-  });
+    const emptyMessage = wrapper.find('[data-testid="empty-message"]');
 
-  it('should show loader', async () => {
-    await wrapper.setProps({
-      isItemsListVisible: false,
-      isLoading: true,
-      isEmpty: false,
-    });
-
-    expect(wrapper.html()).toContain('animate-spin');
-    expect(wrapper.html()).toContain('svg');
-    expect(wrapper.findComponent(ArrowPathIcon).exists()).toBe(true);
-  });
-
-  it('should show empty message', async () => {
-    await wrapper.setProps({
-      isItemsListVisible: false,
-      isLoading: false,
-      isEmpty: true,
-    });
-
-    expect(wrapper.html()).toContain('City not found');
-    expect(wrapper.findComponent(SignalSlashIcon).exists()).toBe(true);
-  });
-
-  it('should render slot', async () => {
-    await wrapper.setProps({
-      isItemsListVisible: true,
-      isLoading: false,
-      isEmpty: false,
-    });
-
-    expect(wrapper.html()).toContain('Some content');
+    expect(emptyMessage.exists()).toBe(true);
   });
 });

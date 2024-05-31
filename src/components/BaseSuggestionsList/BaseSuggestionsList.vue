@@ -4,7 +4,7 @@
     class="absolute left-0 top-full w-full min-h-[48px] bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-y-auto"
   >
     <Transition name="fade">
-      <div v-if="isEmpty" class="absolute w-full h-full select-none">
+      <div v-if="isEmpty" class="absolute w-full h-full select-none" data-testid="empty-message">
         <div class="flex items-center justify-center h-[48px]">
           <SignalSlashIcon class="w-6 h-6 mr-2 opacity-90" />
 
@@ -16,7 +16,11 @@
     </Transition>
 
     <Transition name="fade">
-      <div v-if="isLoading" class="absolute w-full h-full select-none overflow-hidden">
+      <div
+        v-if="isLoading"
+        class="absolute w-full h-full select-none overflow-hidden"
+        data-testid="loader"
+      >
         <div
           class="animate-spin spin-slow flex items-center justify-center h-[48px] animation-duration-2000"
         >
@@ -29,6 +33,7 @@
       <div
         v-if="!isLoading && !isEmpty && isItemsListVisible"
         class="flex flex-col w-full h-auto max-h-96"
+        data-testid="items-list-slot"
       >
         <slot />
       </div>
