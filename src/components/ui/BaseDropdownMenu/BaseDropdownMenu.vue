@@ -1,6 +1,11 @@
 <template>
   <div class="relative" v-click-outside="closeMenu" @keydown.esc="closeMenu">
-    <BaseButton view="transparent" title="Open menu" @click="toggleMenu">
+    <BaseButton
+      view="transparent"
+      title="Open menu"
+      @click="toggleMenu"
+      data-test-id="dropdown-menu-button"
+    >
       <EllipsisVerticalIcon class="w-6 h-6" />
     </BaseButton>
     <div

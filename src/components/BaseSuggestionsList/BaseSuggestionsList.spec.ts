@@ -34,7 +34,7 @@ describe('BaseSuggestionsList', () => {
       isEmpty: false,
     });
 
-    const itemsListSlot = wrapper.find('[data-testid="items-list-slot"]');
+    const itemsListSlot = wrapper.find('[data-test-id="items-list-slot"]');
 
     expect(itemsListSlot.exists()).toBe(true);
     expect(itemsListSlot.text()).toBe('Some content');
@@ -47,7 +47,7 @@ describe('BaseSuggestionsList', () => {
       isEmpty: false,
     });
 
-    const loader = wrapper.find('[data-testid="loader"]');
+    const loader = wrapper.find('[data-test-id="loader"]');
 
     expect(loader.exists()).toBe(true);
   });
@@ -59,7 +59,7 @@ describe('BaseSuggestionsList', () => {
       isEmpty: true,
     });
 
-    const emptyMessage = wrapper.find('[data-testid="empty-message"]');
+    const emptyMessage = wrapper.find('[data-test-id="empty-message"]');
 
     expect(emptyMessage.exists()).toBe(true);
   });

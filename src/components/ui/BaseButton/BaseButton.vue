@@ -1,5 +1,11 @@
 <template>
-  <button :class="classObject" :type="buttonType" :title="title" @click="onClick">
+  <button
+    :class="classObject"
+    :type="buttonType"
+    :title="title"
+    @click="onClick"
+    :data-test-id="dataTestId"
+  >
     <slot />
   </button>
 </template>
@@ -11,6 +17,7 @@ interface IProps {
   buttonType?: 'button' | 'submit' | 'reset';
   title: string;
   view?: 'rounded' | 'transparent';
+  dataTestId?: string;
 }
 
 const props = withDefaults(defineProps<IProps>(), {

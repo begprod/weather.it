@@ -1,6 +1,7 @@
 <template>
   <div
     class="relative flex flex-col w-full h-full p-5 bg-white rounded-[20px] shadow-md overflow-hidden isolate md:p-7 lg:p-10"
+    data-test-id="skeleton-card-city"
   >
     <div class="relative z-30">
       <div class="flex flex-col w-full mt-2 mb-2 animate-pulse md:mb-4">

@@ -6,6 +6,7 @@ describe('BaseButton', () => {
   const wrapper = mount(BaseButton, {
     props: {
       title: 'test title',
+      dataTestId: 'test-button',
     },
     slots: {
       default: '<div>Some content</div>',
@@ -40,6 +41,12 @@ describe('BaseButton', () => {
 
   it('should contain slot content', async () => {
     expect(wrapper.html()).toContain('Some content');
+  });
+
+  it('should contain data-test-id attribute', async () => {
+    const wrapperAttrs = wrapper.attributes();
+
+    expect(wrapperAttrs).toHaveProperty('data-test-id', 'test-button');
   });
 
   it('should emit click event', async () => {
