@@ -7,28 +7,35 @@
         <MapPinIcon class="w-4 h-4 shrink-0 mr-1 lg:w-6 lg:h-6" />
 
         <div class="flex flex-col max-w-[80%]">
-          <span class="text-xl lg:text-2xl max-w-full truncate">{{ city.name }}</span>
-          <span class="text-xs">{{ city.country }}</span>
+          <span class="text-xl lg:text-2xl max-w-full truncate" data-test-id="city-name">{{
+            city.name
+          }}</span>
+          <span class="text-xs" data-test-id="city-country">{{ city.country }}</span>
         </div>
       </div>
-      <div class="flex items-start mt-3 text-5xl font-bold md:mt-5 md:mb-2 md:text-7xl">
+      <div
+        class="flex items-start mt-3 text-5xl font-bold md:mt-5 md:mb-2 md:text-7xl"
+        data-test-id="weather-current"
+      >
         {{ city.weather.current }}
         <sub class="-top-1 text-lg font-normal">&#8451;</sub>
       </div>
       <div class="flex text-base md:text-lg">
         feels like:
-        <div class="flex items-start ml-1">
+        <div class="flex items-start ml-1" data-test-id="weather-feels-like">
           {{ city.weather.feels_like }}
           <sub class="top-2 text-[10px] font-normal">&#8451;</sub>
         </div>
       </div>
-      <div class="flex text-base md:text-lg">
+      <div class="flex text-base md:text-lg" data-test-id="city-air">
         air:
         <div class="flex items-center ml-1">
           <div class="rounded-full w-4 h-4 shrink-0 mr-1" :class="airQuality"></div>
         </div>
       </div>
-      <div class="text-base md:text-lg md:mb-2">{{ city.weather.description }}</div>
+      <div class="text-base md:text-lg md:mb-2" data-test-id="weather-description">
+        {{ city.weather.description }}
+      </div>
 
       <BaseWeatherIcon class="mt-3" :type="city.weather.main.toLowerCase()" />
     </div>
@@ -44,6 +51,7 @@
         view="transparent"
         title="Delete city"
         @click="deleteCity(city.id)"
+        data-test-id="delete-city-button"
       >
         <XMarkIcon class="w-5 h-5 mr-1" />
         Delete city
@@ -53,6 +61,7 @@
     <div
       class="absolute top-0 left-0 right-0 z-10 w-full h-full bg-cover bg-center"
       :style="{ backgroundImage: `url(${image})` }"
+      data-test-id="city-image"
     />
 
     <Transition name="fade">
