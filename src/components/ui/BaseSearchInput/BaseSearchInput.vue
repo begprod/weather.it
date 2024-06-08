@@ -13,9 +13,11 @@
       :value="modelValue"
       :autofocus="autofocus"
       @input="onUpdateValue"
+      data-test-id="search-input"
     />
     <div
       class="placeholder absolute top-2/4 left-5 right-5 -translate-y-2/4 flex items-center text-lg md:text-xl text-gray-900 opacity-40 transition-opacity duration-300 select-none pointer-events-none"
+      data-test-id="search-input-placeholder"
     >
       <span class="whitespace-nowrap overflow-hidden overflow-ellipsis">
         {{ placeholder }}

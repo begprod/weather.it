@@ -20,17 +20,26 @@ describe('BaseSearchInput', () => {
     attachTo: document.body,
   });
 
-  it('should render input, placeholder, icons', async () => {
-    expect(wrapper.find('.input').exists()).toBe(true);
-    expect(wrapper.find('.placeholder').exists()).toBe(true);
+  it('should contain input, placeholder, icons', () => {
+    const inputElement = wrapper.find('[data-test-id="search-input"]');
+    const inputPlaceholder = wrapper.find('[data-test-id="search-input-placeholder"]');
+
+    expect(inputElement.exists()).toBe(true);
+    expect(inputPlaceholder.exists()).toBe(true);
     expect(wrapper.findComponent(MagnifyingGlassIcon).exists()).toBe(true);
   });
 
-  it('should contain data from props', async () => {
-    expect(wrapper.html()).toContain('some-id');
-    expect(wrapper.html()).toContain('Search');
-    expect(wrapper.find('input').attributes('type')).toBe('text');
-    expect(wrapper.find('.placeholder span').text()).toBe('Search');
+  it('should contain data from props on input', () => {
+    const inputElement = wrapper.find('input');
+
+    expect(inputElement.attributes('id')).toBe('some-id');
+    expect(inputElement.attributes('type')).toBe('text');
+  });
+
+  it('should contain placeholder from props', () => {
+    const inputPlaceholder = wrapper.find('[data-test-id="search-input-placeholder"]');
+
+    expect(inputPlaceholder.html()).toContain('Search');
   });
 
   it('should focus on input with cmd/ctrl + k shortcut', async () => {
