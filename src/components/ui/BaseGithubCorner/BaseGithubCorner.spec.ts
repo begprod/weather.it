@@ -9,13 +9,17 @@ describe('BaseGithubCorner', () => {
     },
   });
 
-  it('should contain correct css classes', async () => {
-    expect(wrapper.html()).toContain('github-corner');
-    expect(wrapper.html()).toContain('octo-arm');
-    expect(wrapper.html()).toContain('octo-body');
+  it('should contain correct elements', async () => {
+    const githubCorner = wrapper.find('[data-test-id="github-corner"]');
+    const octoArm = wrapper.find('[data-test-id="octo-arm"]');
+    const octoBody = wrapper.find('[data-test-id="octo-body"]');
+
+    expect(githubCorner.exists()).toBe(true);
+    expect(octoArm.exists()).toBe(true);
+    expect(octoBody.exists()).toBe(true);
   });
 
-  it('should set url', async () => {
+  it('should contain url from props', async () => {
     expect(wrapper.html()).toContain('/url/');
   });
 });
