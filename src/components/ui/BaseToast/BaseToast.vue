@@ -6,22 +6,25 @@
         class="flex w-full sm:w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm shadow-gray-200 duration-300 hover:shadow-lg"
         :class="classObject"
         @click="onClick"
+        data-test-id="toast"
       >
         <div
           v-if="props.type === 'success'"
           class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-green-200 rounded-lg"
+          data-test-id="toast-success-icon"
         >
           <HandThumbUpIcon class="w-5 h-5" />
         </div>
         <div
           v-if="props.type === 'error'"
           class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-red-200 rounded-lg"
+          data-test-id="toast-error-icon"
         >
           <ExclamationTriangleIcon class="w-5 h-5" />
         </div>
 
         <div class="flex flex-col items-start ml-3">
-          <div class="text-sm font-normal">{{ message }}</div>
+          <div class="text-sm font-normal" data-test-id="toast-message">{{ message }}</div>
         </div>
       </div>
     </Transition>
