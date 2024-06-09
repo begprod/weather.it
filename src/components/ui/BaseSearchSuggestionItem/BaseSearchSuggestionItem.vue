@@ -1,5 +1,5 @@
 <template>
-  <li class="flex items-center" @click="onClick">
+  <li class="flex items-center" @click="onClick" data-test-id="suggestion-item">
     <div
       class="group flex items-center w-full p-2 bg-gray-100 hover:bg-gray-200 transition-all duration-300 overflow-hidden cursor-pointer"
     >
@@ -10,8 +10,8 @@
         />
       </div>
       <div class="text-xl overflow-hidden">
-        <p class="truncate">{{ name }}</p>
-        <p class="text-sm truncate">{{ country }}</p>
+        <p class="truncate" data-test-id="suggestion-city-name">{{ name }}</p>
+        <p class="text-sm truncate" data-test-id="suggestion-city-country">{{ country }}</p>
       </div>
     </div>
   </li>

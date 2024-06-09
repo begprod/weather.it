@@ -18,19 +18,22 @@ describe('BaseSearchSuggestionItem', () => {
   });
 
   it('should contain data from props', async () => {
+    const name = wrapper.find('[data-test-id="suggestion-city-name"]');
+    const country = wrapper.find('[data-test-id="suggestion-city-country"]');
+
     await wrapper.setProps({
       name: 'Tokyo',
       country: 'Japan',
     });
 
-    expect(wrapper.html()).toContain('Tokyo');
-    expect(wrapper.html()).toContain('Japan');
+    expect(name.html()).toContain('Tokyo');
+    expect(country.html()).toContain('Japan');
   });
 
   it('should emit click event', async () => {
-    const button = wrapper.find('.flex.items-center');
+    const suggestionItem = wrapper.find('[data-test-id="suggestion-item"]');
 
-    await button.trigger('click');
+    await suggestionItem.trigger('click');
 
     expect(wrapper.emitted()).toHaveProperty('click');
   });
