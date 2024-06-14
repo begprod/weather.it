@@ -41,7 +41,7 @@
     </div>
 
     <BaseDropdownMenu
-      class="!absolute top-5 right-5 lg:top-10 lg:right-8 z-30 transition-all duration-300 ease-in-out"
+      class="lg:opacity-0 lg:group-hover:opacity-100 !absolute top-5 right-5 lg:top-10 lg:right-8 z-30"
       :isMenuOpen="isMenuOpen"
       @toggleMenu="toggleMenu"
       @closeMenu="closeMenu"
@@ -54,7 +54,7 @@
         data-test-id="delete-city-button"
       >
         <XMarkIcon class="w-5 h-5 mr-1" />
-        Delete city
+        Remove city
       </BaseButton>
     </BaseDropdownMenu>
     <div class="absolute top-0 left-0 right-0 z-20 w-full h-full bg-gray-700 opacity-50" />
