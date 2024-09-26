@@ -52,11 +52,6 @@
     "vitest": "^1.2.2",
     "vue-tsc": "^1.8.25"
   },
-  "overrides": {
-    "vite-plugin-pwa": {
-      "rollup": "^4.22.4"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
