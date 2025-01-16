@@ -3,9 +3,10 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import { useWeatherStore } from '@/stores';
-import { MapPinIcon, XMarkIcon } from '@heroicons/vue/24/solid';
+import { MapPin, SquareX } from 'lucide-vue-next';
 import { clickOutside } from '@/directives/clickOutsideDirective';
 import BaseCardCity from '@/components/ui/BaseCardCity/BaseCardCity.vue';
+import { nextTick } from 'vue';
 
 describe('BaseCardCity', () => {
   let wrapper: ComponentWrapperType<typeof BaseCardCity>;
@@ -35,6 +36,10 @@ describe('BaseCardCity', () => {
       global: {
         directives: {
           'click-outside': clickOutside,
+        },
+        components: {
+          MapPin,
+          SquareX,
         },
         plugins: [
           createTestingPinia({
@@ -272,8 +277,12 @@ describe('BaseCardCity', () => {
     expect(skeleton.exists()).toBe(false);
   });
 
-  it('should contain icons components', () => {
-    expect(wrapper.findComponent(MapPinIcon).exists()).toBe(true);
-    expect(wrapper.findComponent(XMarkIcon).exists()).toBe(true);
+  it('should contain icons components', async () => {
+    wrapper.vm.toggleMenu();
+
+    await nextTick();
+
+    expect(wrapper.findComponent(MapPin).exists()).toBe(true);
+    expect(wrapper.findComponent(SquareX).exists()).toBe(true);
   });
 });

@@ -6,7 +6,7 @@
     <Transition name="fade">
       <div v-if="isEmpty" class="absolute w-full h-full select-none" data-test-id="empty-message">
         <div class="flex items-center justify-center h-[48px]">
-          <SignalSlashIcon class="w-6 h-6 mr-2 opacity-90" />
+          <MapPinOff class="w-6 h-6 mr-2 opacity-90" />
 
           <div class="text-xl overflow-hidden">
             <p class="text-xl">City not found</p>
@@ -24,7 +24,7 @@
         <div
           class="animate-spin spin-slow flex items-center justify-center h-[48px] animation-duration-2000"
         >
-          <ArrowPathIcon class="w-6 h-6 opacity-50" />
+          <RefreshCcw class="w-6 h-6 opacity-50" />
         </div>
       </div>
     </Transition>
@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowPathIcon, SignalSlashIcon } from '@heroicons/vue/24/solid';
+import { MapPinOff, RefreshCcw } from 'lucide-vue-next';
 
 interface IProps {
   isItemsListVisible: boolean;

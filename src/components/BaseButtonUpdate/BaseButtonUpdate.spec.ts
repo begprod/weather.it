@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia';
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
-import { ArrowPathIcon } from '@heroicons/vue/24/solid';
+import { RefreshCcw } from 'lucide-vue-next';
 import { useCommonStore, useWeatherStore } from '@/stores';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 import BaseButtonUpdate from '@/components/BaseButtonUpdate/BaseButtonUpdate.vue';
@@ -17,7 +17,7 @@ describe('BaseButtonUpdate', () => {
         }),
       ],
       components: {
-        ArrowPathIcon,
+        RefreshCcw,
         BaseButton,
       },
     },
@@ -70,6 +70,6 @@ describe('BaseButtonUpdate', () => {
   });
 
   it('should contain icon component', () => {
-    expect(wrapper.findComponent(ArrowPathIcon).exists()).toBe(true);
+    expect(wrapper.findComponent(RefreshCcw).exists()).toBe(true);
   });
 });

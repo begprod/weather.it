@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-import { EllipsisVerticalIcon } from '@heroicons/vue/24/solid';
+import { EllipsisVertical } from 'lucide-vue-next';
 import { clickOutside } from '@/directives/clickOutsideDirective';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 import BaseDropdownMenu from '@/components/ui/BaseDropdownMenu/BaseDropdownMenu.vue';
@@ -15,7 +15,7 @@ describe('BaseDropdownMenu', () => {
         'click-outside': clickOutside,
       },
       components: {
-        EllipsisVerticalIcon,
+        EllipsisVertical,
         BaseButton,
       },
     },
@@ -61,6 +61,6 @@ describe('BaseDropdownMenu', () => {
   });
 
   it('should contain icon component', async () => {
-    expect(wrapper.findComponent(EllipsisVerticalIcon).exists()).toBe(true);
+    expect(wrapper.findComponent(EllipsisVertical).exists()).toBe(true);
   });
 });

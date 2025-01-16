@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-import { MapPinIcon, GlobeAsiaAustraliaIcon } from '@heroicons/vue/24/solid';
+import { MapPin, Earth } from 'lucide-vue-next';
 import BaseSearchSuggestionItem from '@/components/ui/BaseSearchSuggestionItem/BaseSearchSuggestionItem.vue';
 
 describe('BaseSearchSuggestionItem', () => {
@@ -11,8 +11,8 @@ describe('BaseSearchSuggestionItem', () => {
     },
     global: {
       components: {
-        MapPinIcon,
-        GlobeAsiaAustraliaIcon,
+        MapPin,
+        Earth,
       },
     },
   });
@@ -39,7 +39,7 @@ describe('BaseSearchSuggestionItem', () => {
   });
 
   it('should contain icons components', async () => {
-    expect(wrapper.findComponent(MapPinIcon).exists()).toBe(true);
-    expect(wrapper.findComponent(GlobeAsiaAustraliaIcon).exists()).toBe(true);
+    expect(wrapper.findComponent(MapPin).exists()).toBe(true);
+    expect(wrapper.findComponent(Earth).exists()).toBe(true);
   });
 });

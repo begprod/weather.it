@@ -1,7 +1,7 @@
 <template>
   <div class="fixed right-6 bottom-6 flex flex-col items-center z-40">
     <BaseButton title="Update weather data" @click="updateCityData">
-      <ArrowPathIcon class="w-5 h-5" :class="classObject" />
+      <RefreshCcw class="w-5 h-5" :class="classObject" />
     </BaseButton>
 
     <Transition name="slide-down">
@@ -19,7 +19,7 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useCommonStore, useWeatherStore } from '@/stores';
-import { ArrowPathIcon } from '@heroicons/vue/24/solid';
+import { RefreshCcw } from 'lucide-vue-next';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 
 const commonStore = useCommonStore();

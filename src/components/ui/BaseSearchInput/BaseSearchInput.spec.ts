@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
+import { Search } from 'lucide-vue-next';
 import BaseSearchInput from '@/components/ui/BaseSearchInput/BaseSearchInput.vue';
 
 describe('BaseSearchInput', () => {
@@ -14,7 +14,7 @@ describe('BaseSearchInput', () => {
     },
     global: {
       components: {
-        MagnifyingGlassIcon,
+        Search,
       },
     },
     attachTo: document.body,
@@ -26,7 +26,7 @@ describe('BaseSearchInput', () => {
 
     expect(inputElement.exists()).toBe(true);
     expect(inputPlaceholder.exists()).toBe(true);
-    expect(wrapper.findComponent(MagnifyingGlassIcon).exists()).toBe(true);
+    expect(wrapper.findComponent(Search).exists()).toBe(true);
   });
 
   it('should contain data from props on input', () => {

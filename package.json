@@ -1,6 +1,6 @@
 {
   "name": "weather.it",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "Another weather app with fancy design",
   "repository": "https://github.com/begprod/weather.it",
   "homepage": "https://weatherit.site/",
@@ -21,9 +21,9 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@heroicons/vue": "^2.1.1",
     "@vueuse/core": "^10.7.2",
     "axios": "^1.7.4",
+    "lucide-vue-next": "^0.471.0",
     "pinia": "^2.1.7",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"

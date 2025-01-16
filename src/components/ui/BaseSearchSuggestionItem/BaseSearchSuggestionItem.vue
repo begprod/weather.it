@@ -4,8 +4,10 @@
       class="group flex items-center w-full p-2 bg-gray-100 hover:bg-gray-200 transition-all duration-300 overflow-hidden cursor-pointer"
     >
       <div class="flex flex-col items-center justify-center mr-2 opacity-40 overflow-hidden">
-        <MapPinIcon class="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
-        <GlobeAsiaAustraliaIcon
+        <MapPin
+          class="w-5 h-5 fill-red-50 group-hover:translate-y-1 transition-transform duration-300"
+        />
+        <Earth
           class="w-5 h-5 translate-y-5 group-hover:-translate-y-1 group-hover:opacity-100 transition-transform duration-300"
         />
       </div>
@@ -18,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { MapPinIcon, GlobeAsiaAustraliaIcon } from '@heroicons/vue/24/solid';
+import { MapPin, Earth } from 'lucide-vue-next';
 
 interface IProps {
   name: string;

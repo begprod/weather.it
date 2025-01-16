@@ -10,7 +10,7 @@
       @click="toggleMenu"
       data-test-id="dropdown-menu-button"
     >
-      <EllipsisVerticalIcon class="w-8 h-8" />
+      <EllipsisVertical class="w-7 h-7" />
     </BaseButton>
     <div
       v-if="isMenuOpen"
@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { EllipsisVerticalIcon } from '@heroicons/vue/24/solid';
+import { EllipsisVertical } from 'lucide-vue-next';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 
 interface IProps {

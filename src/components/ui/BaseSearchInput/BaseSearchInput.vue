@@ -31,14 +31,14 @@
     <div
       class="absolute hidden sm:flex inset-y-0 right-0 items-center pr-5 pointer-events-none z-20"
     >
-      <MagnifyingGlassIcon class="w-6 h-6 opacity-60" />
+      <Search class="w-6 h-6 opacity-60" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue';
-import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid';
+import { Search } from 'lucide-vue-next';
 
 interface IProps {
   id: string;

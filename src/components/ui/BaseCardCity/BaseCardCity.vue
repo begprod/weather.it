@@ -4,12 +4,12 @@
   >
     <div class="relative z-30 select-none">
       <div class="flex items-baseline">
-        <MapPinIcon class="w-4 h-4 shrink-0 mr-1 lg:w-6 lg:h-6" />
+        <MapPin class="w-4 h-4 shrink-0 mr-1 lg:w-6 lg:h-6" />
 
         <div class="flex flex-col max-w-[80%]">
-          <span class="text-xl lg:text-2xl max-w-full truncate" data-test-id="city-name">{{
-            city.name
-          }}</span>
+          <span class="text-xl lg:text-2xl max-w-full truncate" data-test-id="city-name">
+            {{ city.name }}
+          </span>
           <span class="text-xs" data-test-id="city-country">{{ city.country }}</span>
         </div>
       </div>
@@ -53,8 +53,8 @@
         @click="deleteCity(city.id)"
         data-test-id="delete-city-button"
       >
-        <XMarkIcon class="w-5 h-5 mr-1" />
         Remove city
+        <SquareX class="w-5 h-5 ml-1" />
       </BaseButton>
     </BaseDropdownMenu>
     <div class="absolute top-0 left-0 right-0 z-20 w-full h-full bg-gray-700 opacity-50" />
@@ -79,7 +79,7 @@
 import type { ICityWeather } from '@/types';
 import { ref, computed } from 'vue';
 import { useWeatherStore } from '@/stores';
-import { MapPinIcon, XMarkIcon } from '@heroicons/vue/24/solid';
+import { MapPin, SquareX } from 'lucide-vue-next';
 import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
 import BaseCardCitySkeleton from '@/components/ui/BaseCardCitySkeleton/BaseCardCitySkeleton.vue';
 import BaseWeatherIcon from '@/components/ui/BaseWeatherIcon/BaseWeatherIcon.vue';
@@ -121,5 +121,9 @@ const airQuality = computed(() => {
     default:
       return 'bg-gray-400';
   }
+});
+
+defineExpose({
+  toggleMenu,
 });
 </script>
