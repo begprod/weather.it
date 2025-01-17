@@ -12,6 +12,8 @@ describe('BaseFooterDefault', () => {
   });
 
   it('should render app version', async () => {
-    expect(wrapper.html()).toContain(`v${version}`);
+    const appVersionEl = wrapper.find('[data-test-id="app-version"]');
+
+    expect(appVersionEl.html()).toContain(`v${version}`);
   });
 });
