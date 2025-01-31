@@ -1,11 +1,11 @@
 <template>
-  <div class="relative">
-    <BaseWeatherIconDoodle />
+  <BaseWeatherIconDoodle />
 
+  <div class="relative">
     <BaseSearchInput
       id="city_search"
       type="text"
-      label="Search"
+      label="Weather search, start typing city name"
       placeholder="Start typing the city name"
       autoComplete="off"
       v-model="searchQuery"
@@ -15,16 +15,9 @@
     <BaseSuggestionsList
       :isEmpty="!isSearching && citiesSuggestions.length === 0 && searchQuery.length !== 0"
       :isLoading="isSearching && searchQuery.length !== 0"
-      :isItemsListVisible="citiesSuggestions.length > 0 && searchQuery.length !== 0 && !isSearching"
-    >
-      <BaseSearchSuggestionItem
-        v-for="item in citiesSuggestions"
-        :key="item.id"
-        :name="item.name"
-        :country="item.country"
-        @click="getCityWeather(item)"
-      />
-    </BaseSuggestionsList>
+      :list-items="citiesSuggestions"
+      @item-click="getCityWeather"
+    />
   </div>
 </template>
 
@@ -36,7 +29,7 @@ import { watchDebounced } from '@vueuse/core';
 import { useCommonStore, useWeatherStore } from '@/stores';
 import { suggestionsCitiesService } from '@/services';
 import BaseSearchInput from '@/components/ui/BaseSearchInput/BaseSearchInput.vue';
-import BaseSearchSuggestionItem from '@/components/ui/BaseSearchSuggestionItem/BaseSearchSuggestionItem.vue';
+// import BaseSearchSuggestionItem from '@/components/ui/BaseSearchSuggestionItem/BaseSearchSuggestionItem.vue';
 import BaseWeatherIconDoodle from '@/components/BaseWeatherIconDoodle/BaseWeatherIconDoodle.vue';
 import BaseSuggestionsList from '@/components/BaseSuggestionsList/BaseSuggestionsList.vue';
 
@@ -87,11 +80,11 @@ watchDebounced(
   { debounce: 1100, maxWait: 5000 },
 );
 
-function getCityWeather(suggestionItem: ISearchSuggestItem) {
+const getCityWeather = (suggestionItem: ISearchSuggestItem) => {
   isSearching.value = false;
   searchQuery.value = '';
   citiesSuggestions.value = [];
 
   getCityData(suggestionItem);
-}
+};
 </script>

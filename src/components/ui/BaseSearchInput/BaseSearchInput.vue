@@ -1,8 +1,8 @@
 <template>
-  <label :for="id" class="sr-only mb-2 text-sm dark:text-white">
-    {{ label }}
-  </label>
   <div class="relative">
+    <label :for="id" class="sr-only mb-2 text-sm dark:text-white">
+      {{ label }}
+    </label>
     <input
       ref="input"
       class="input block w-full pt-3 pr-5 pb-3 pl-5 text-xl text-gray-900 border-none shadow-sm shadow-gray-200 rounded-xl bg-white transition-shadow duration-300 hover:shadow-lg focus:shadow-2xl focus:outline-none appearance-none"
