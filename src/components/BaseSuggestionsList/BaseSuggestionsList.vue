@@ -33,11 +33,7 @@
       </Transition>
 
       <Transition name="slide-up">
-        <ul
-          v-if="!isLoading && !isEmpty"
-          class="flex flex-col w-full h-auto max-h-96"
-          data-test-id="items-list-slot"
-        >
+        <ul v-if="!isLoading && !isEmpty" class="flex flex-col w-full h-auto max-h-96">
           <li
             v-for="(item, index) in listItems"
             ref="listItemsRef"

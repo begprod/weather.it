@@ -6,9 +6,9 @@
   >
     <BaseButton
       view="transparent"
-      title="Open menu"
-      @click="toggleMenu"
+      :title="isMenuOpen ? 'Menu is open' : 'Menu is closed'"
       data-test-id="dropdown-menu-button"
+      @click="toggleMenu"
     >
       <EllipsisVertical class="w-7 h-7" />
     </BaseButton>

@@ -1,6 +1,8 @@
 <template>
   <div
-    class="group relative p-5 text-white overflow-hidden rounded-[20px] shadow-md isolate md:p-7 lg:p-10"
+    :title="`${city.country}, ${city.name}, ${city.weather.current}°C, Feels like: ${city.weather.feels_like}°C, ${city.weather.description}`"
+    class="city-card group relative p-5 text-white overflow-hidden rounded-[20px] shadow-md isolate md:p-7 lg:p-10 focus:border-none focus:outline-2 focus:outline-orange-500"
+    tabindex="0"
   >
     <div class="relative z-30 select-none">
       <div class="flex items-baseline">
@@ -41,7 +43,7 @@
     </div>
 
     <BaseDropdownMenu
-      class="lg:opacity-0 lg:group-hover:opacity-100 !absolute top-5 right-5 lg:top-10 lg:right-8 z-30"
+      class="!absolute top-5 right-5 lg:top-10 lg:right-8 z-30"
       :isMenuOpen="isMenuOpen"
       @toggleMenu="toggleMenu"
       @closeMenu="closeMenu"
@@ -49,9 +51,9 @@
       <BaseButton
         class="w-full flex items-center justify-center p-2 text-red-600 hover:bg-slate-200 transition-all duration-300 ease-in-out"
         view="transparent"
-        title="Delete city"
-        @click="deleteCity(city.id)"
+        :title="`Remove ${city.name} city`"
         data-test-id="delete-city-button"
+        @click="deleteCity(city.id)"
       >
         Remove city
         <SquareX class="w-5 h-5 ml-1" />

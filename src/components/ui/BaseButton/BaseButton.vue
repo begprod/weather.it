@@ -1,5 +1,6 @@
 <template>
   <button
+    class="focus:border-none focus:outline-2 focus:outline-orange-500"
     :class="classObject"
     :type="buttonType"
     :title="title"

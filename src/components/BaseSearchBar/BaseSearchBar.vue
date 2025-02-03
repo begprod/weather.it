@@ -29,7 +29,6 @@ import { watchDebounced } from '@vueuse/core';
 import { useCommonStore, useWeatherStore } from '@/stores';
 import { suggestionsCitiesService } from '@/services';
 import BaseSearchInput from '@/components/ui/BaseSearchInput/BaseSearchInput.vue';
-// import BaseSearchSuggestionItem from '@/components/ui/BaseSearchSuggestionItem/BaseSearchSuggestionItem.vue';
 import BaseWeatherIconDoodle from '@/components/BaseWeatherIconDoodle/BaseWeatherIconDoodle.vue';
 import BaseSuggestionsList from '@/components/BaseSuggestionsList/BaseSuggestionsList.vue';
 
@@ -80,11 +79,18 @@ watchDebounced(
   { debounce: 1100, maxWait: 5000 },
 );
 
-const getCityWeather = (suggestionItem: ISearchSuggestItem) => {
+const getCityWeather = async (suggestionItem: ISearchSuggestItem) => {
   isSearching.value = false;
   searchQuery.value = '';
   citiesSuggestions.value = [];
 
-  getCityData(suggestionItem);
+  await getCityData(suggestionItem);
+
+  // eslint-disable-next-line no-undef
+  const cityCards: NodeListOf<HTMLElement> = document.querySelectorAll('.city-card');
+
+  if (cityCards.length > 0) {
+    cityCards[cityCards.length - 1].focus();
+  }
 };
 </script>

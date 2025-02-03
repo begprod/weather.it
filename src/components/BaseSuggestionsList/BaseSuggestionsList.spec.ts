@@ -3,13 +3,49 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import BaseSuggestionsList from '@/components/BaseSuggestionsList/BaseSuggestionsList.vue';
 
+// TODO:
+// 1 should render list items when listItems is not empty
+// 2 should render loader when isLoading is true, amd not render list items, and not render empty message
+// 3 should render empty message when isEmpty is true, and not render list items, and not render loader
+
 describe('BaseSuggestionsList', () => {
   let wrapper: ComponentWrapperType<typeof BaseSuggestionsList>;
 
   const createComponent = () => {
     wrapper = mount(BaseSuggestionsList, {
       props: {
-        isItemsListVisible: false,
+        listItems: [
+          {
+            id: '1',
+            name: 'Tokyo',
+            country: 'Japan',
+            country_code: 'JP',
+            lon: 139.6917,
+            lat: 35.6895,
+            weather: {
+              current: 20,
+              feels_like: 25,
+              air_quality: 1 || null,
+              main: 'Clear',
+              description: 'clear sky',
+            },
+          },
+          {
+            id: '2',
+            name: 'Moscow',
+            country: 'Russia',
+            country_code: 'RU',
+            lon: 139.6917,
+            lat: 35.6895,
+            weather: {
+              current: 20,
+              feels_like: 25,
+              air_quality: 1 || null,
+              main: 'Clear',
+              description: 'clear sky',
+            },
+          },
+        ],
         isLoading: false,
         isEmpty: false,
       },
@@ -27,40 +63,42 @@ describe('BaseSuggestionsList', () => {
     wrapper.unmount();
   });
 
-  it('should render slot content', async () => {
+  it('should render list items', async () => {
     await wrapper.setProps({
-      isItemsListVisible: true,
       isLoading: false,
       isEmpty: false,
     });
 
-    const itemsListSlot = wrapper.find('[data-test-id="items-list-slot"]');
+    const listItems = wrapper.findAll('[data-test-id="suggestion-item"]');
 
-    expect(itemsListSlot.exists()).toBe(true);
-    expect(itemsListSlot.text()).toBe('Some content');
+    expect(listItems.length).toBe(2);
+    expect(listItems[0].html()).toContain('Tokyo');
+    expect(listItems[1].html()).toContain('Moscow');
   });
 
-  it('should show loader when isLoading is true', async () => {
+  it('should render loader when isLoading is true', async () => {
     await wrapper.setProps({
-      isItemsListVisible: false,
       isLoading: true,
       isEmpty: false,
     });
 
     const loader = wrapper.find('[data-test-id="loader"]');
+    const emptyMessage = wrapper.find('[data-test-id="empty-message"]');
 
     expect(loader.exists()).toBe(true);
+    expect(emptyMessage.exists()).toBe(false);
   });
 
-  it('should show empty message when isEmpty is true', async () => {
+  it('should render empty message when isEmpty is true', async () => {
     await wrapper.setProps({
-      isItemsListVisible: false,
       isLoading: false,
       isEmpty: true,
     });
 
     const emptyMessage = wrapper.find('[data-test-id="empty-message"]');
+    const loader = wrapper.find('[data-test-id="loader"]');
 
     expect(emptyMessage.exists()).toBe(true);
+    expect(loader.exists()).toBe(false);
   });
 });

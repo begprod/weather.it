@@ -4,7 +4,7 @@
   >
     <p>
       Crafted with <span class="text-red-500">❤</span> by
-      <a href="https://github.com/begprod" class="text-blue-600">Andrej Aratov</a>
+      <a href="https://github.com/begprod" class="text-blue-600" tabindex="-1">Andrej Aratov</a>
     </p>
     <p>
       <a
@@ -12,6 +12,7 @@
         href="https://github.com/begprod/weather.it#install-application-on-your-device"
         target="_blank"
         rel="noreferrer"
+        tabindex="-1"
       >
         Install app on device instructions
         <span class="inline-block ml-2 -rotate-12 origin-center">→</span>
