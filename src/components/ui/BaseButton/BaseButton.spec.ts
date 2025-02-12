@@ -30,13 +30,11 @@ describe('BaseButton', () => {
   });
 
   it('should set transparent view', async () => {
-    expect(wrapper.html()).toContain(
-      'bg-white border rounded-full p-3 md:p-5 shadow-sm shadow-gray-200 hover:rotate-45 hover:shadow-lg transition-all duration-300',
-    );
+    expect(wrapper.html()).toContain('button');
 
     await wrapper.setProps({ view: 'transparent' });
 
-    expect(wrapper.html()).toContain('bg-transparent border-none');
+    expect(wrapper.html()).toContain('button button_transparent');
   });
 
   it('should contain slot content', async () => {
