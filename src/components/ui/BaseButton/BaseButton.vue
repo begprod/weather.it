@@ -42,7 +42,7 @@ const onClick = () => {
 
 <style scoped>
 .button {
-  padding: 1.25rem;
+  padding: clamp(0.75rem, 3.65vw, 1.25rem);
   border: 1px solid var(--gray);
   background-color: var(--white);
   box-shadow: 0 5px 15px 0 var(--gray);
@@ -64,14 +64,9 @@ const onClick = () => {
 }
 
 .button_transparent {
+  padding: clamp(0.5rem, 1.56vw, 0.75rem);
   border: none;
   box-shadow: none;
   background-color: transparent;
-}
-
-@media screen and (max-width: 768px) {
-  .button {
-    padding: 0.75rem;
-  }
 }
 </style>

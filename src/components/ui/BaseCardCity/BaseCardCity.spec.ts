@@ -72,7 +72,7 @@ describe('BaseCardCity', () => {
 
   it('should call function on click delete button', async () => {
     const { deleteCity } = weatherStore;
-    const dropdownMenuButton = wrapper.find('[data-test-id="dropdown-menu-button"]');
+    const dropdownMenuButton = wrapper.find('[data-test-id="dropdown-menu-trigger"]');
 
     await dropdownMenuButton.trigger('click');
 

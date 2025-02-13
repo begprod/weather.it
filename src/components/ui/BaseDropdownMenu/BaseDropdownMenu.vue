@@ -1,23 +1,18 @@
 <template>
-  <div
-    class="relative transition-all duration-300 ease-in-out"
-    v-click-outside="closeMenu"
-    @keydown.esc="closeMenu"
-  >
+  <div class="drop-down" v-click-outside="closeMenu" @keydown.esc="closeMenu">
     <BaseButton
       view="transparent"
       :title="isMenuOpen ? 'Menu is open' : 'Menu is closed'"
-      data-test-id="dropdown-menu-button"
+      data-test-id="dropdown-menu-trigger"
       @click="toggleMenu"
     >
-      <EllipsisVertical class="w-7 h-7" />
+      <EllipsisVertical class="drop-down__icon" />
     </BaseButton>
-    <div
-      v-if="isMenuOpen"
-      class="absolute right-0 top-full min-w-[150px] rounded-xl shadow-sm bg-white overflow-hidden z-10 transition-all duration-300"
-    >
-      <slot></slot>
-    </div>
+    <Transition name="slide-down">
+      <div v-if="isMenuOpen" class="drop-down__menu">
+        <slot></slot>
+      </div>
+    </Transition>
   </div>
 </template>
 
@@ -41,3 +36,26 @@ const closeMenu = () => {
   emits('closeMenu');
 };
 </script>
+
+<style scoped>
+.drop-down-menu {
+  position: relative;
+  border: 1px solid red;
+  transition: 0.3s ease-in-out;
+}
+
+.drop-down__icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.drop-down__menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 150px;
+  border-radius: 0.75rem;
+  background-color: var(--white);
+  box-shadow: 0 0 0 0 var(--gray);
+}
+</style>
