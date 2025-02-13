@@ -40,35 +40,37 @@ const onClick = () => {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .button {
   padding: 1.25rem;
   border: 1px solid var(--gray);
   background-color: var(--white);
-  box-shadow: 0px 0px 0px 0px var(--gray);
+  box-shadow: 0 5px 15px 0 var(--gray);
+}
+
+.button_rounded {
+  border-radius: 100%;
   transition: 0.3s ease-in-out;
   transition-property: transform, box-shadow;
 
   &:hover {
     transform: rotate(45deg);
-    box-shadow: 0px 0px 0px 0px var(--gray);
+    box-shadow: 0 0 0 0 var(--gray);
   }
 
   &:focus {
-    border: none;
-    outline: 2px solid var(--gray);
+    box-shadow: 0 5px 15px 0 var(--gray);
   }
+}
 
-  &_rounded {
-    border-radius: 100%;
-  }
+.button_transparent {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
 
-  &_transparent {
-    border: none;
-    background-color: transparent;
-  }
-
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  .button {
     padding: 0.75rem;
   }
 }
