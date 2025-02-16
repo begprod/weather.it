@@ -3,10 +3,10 @@
     <BaseButton
       view="transparent"
       :title="isMenuOpen ? 'Menu is open' : 'Menu is closed'"
-      data-test-id="dropdown-menu-trigger"
       @click="toggleMenu"
+      data-test-id="dropdown-menu-trigger"
     >
-      <EllipsisVertical class="drop-down__icon" />
+      <EllipsisVertical class="icon icon_lg" />
     </BaseButton>
     <Transition name="slide-down">
       <div v-if="isMenuOpen" class="drop-down__menu">
@@ -42,11 +42,6 @@ const closeMenu = () => {
   position: relative;
   border: 1px solid red;
   transition: 0.3s ease-in-out;
-}
-
-.drop-down__icon {
-  width: 1.75rem;
-  height: 1.75rem;
 }
 
 .drop-down__menu {
