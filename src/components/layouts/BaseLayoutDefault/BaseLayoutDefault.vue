@@ -34,11 +34,15 @@ const { closeToast } = commonStore;
 </script>
 
 <style scoped>
+.layout {
+  padding: 8rem 1.5rem 0 1.5rem;
+}
+
 .layout__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8rem 1.5rem 0 1.5rem;
+  min-height: 100dvh;
 }
 </style>

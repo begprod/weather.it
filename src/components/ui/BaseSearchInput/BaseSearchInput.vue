@@ -1,11 +1,8 @@
 <template>
-  <div class="relative">
-    <label :for="id" class="sr-only mb-2 text-sm dark:text-white">
-      {{ label }}
-    </label>
+  <div class="search-input">
     <input
       ref="input"
-      class="input block w-full pt-3 pr-5 pb-3 pl-5 text-xl text-gray-900 border-none shadow-sm shadow-gray-200 rounded-xl bg-white transition-shadow duration-300 hover:shadow-lg focus:shadow-2xl focus:outline-none appearance-none"
+      class="search-input__field"
       :id="id"
       :type="type"
       :required="required"
@@ -15,24 +12,12 @@
       @input="onUpdateValue"
       data-test-id="search-input"
     />
-    <div
-      class="placeholder absolute top-2/4 left-5 right-5 -translate-y-2/4 flex items-center text-lg md:text-xl text-gray-900 opacity-40 transition-opacity duration-300 select-none pointer-events-none"
-      data-test-id="search-input-placeholder"
-    >
-      <span class="whitespace-nowrap overflow-hidden overflow-ellipsis">
-        {{ placeholder }}
-      </span>
-      <div
-        class="hidden sm:flex items-center ml-4 p-1 text-sm border border-slate-500 rounded-md opacity-50"
-      >
-        cmd/ctrl + k
-      </div>
+    <div class="search-input__placeholder" data-test-id="search-input-placeholder">
+      <span class="search-input__placeholder-text">{{ placeholder }}</span>
+      <div class="search-input__key-tip">cmd/ctrl + k</div>
     </div>
-    <div
-      class="absolute hidden sm:flex inset-y-0 right-0 items-center pr-5 pointer-events-none z-20"
-    >
-      <Search class="w-6 h-6 opacity-60" />
-    </div>
+
+    <Search class="search-input__search-icon icon icon_lg" />
   </div>
 </template>
 
@@ -72,12 +57,93 @@ const onUpdateValue = (event: Event) => {
 };
 </script>
 
-<style scoped lang="scss">
-.input {
+<style scoped>
+.search-input {
+  position: relative;
+  container-type: inline-size;
+
+  @container (max-width: 499px) {
+    .search-input__key-tip {
+      display: none;
+    }
+  }
+
+  @container (max-width: 375px) {
+    .search-input__search-icon {
+      display: none;
+    }
+  }
+}
+
+.search-input__field {
+  padding: 0.75rem 4rem 0.75rem 1.25rem;
+  width: 100%;
+  font-size: var(--typo-size-xl);
+  line-height: 1.5;
+  color: var(--gray-900);
+  background-color: var(--white);
+  border-radius: 0.75rem;
+  border: none;
+  appearance: none;
+  box-shadow: 0 1px 2px 0 var(--gray-200);
+  transition: 0.3s ease-in-out;
+  transition-property: box-shadow;
+
+  &:hover {
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  &:focus {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    outline: none;
+  }
+
   &:valid {
-    ~ .placeholder {
+    ~ .search-input__placeholder {
       opacity: 0;
     }
   }
+}
+
+.search-input__placeholder {
+  position: absolute;
+  top: 50%;
+  left: 1.25rem;
+  display: flex;
+  align-items: center;
+  max-width: 85%;
+  font-size: var(--typo-size-xl);
+  color: var(--gray-900);
+  transform: translateY(-50%);
+  user-select: none;
+  pointer-events: none;
+  transition: 0.3s ease-in-out;
+  transition-property: opacity;
+  opacity: 0.4;
+}
+
+.search-input__placeholder-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-input__key-tip {
+  margin-left: 1rem;
+  padding: 0.25rem;
+  font-size: var(--typo-size-sm);
+  border: 1px solid var(--slate-500);
+  border-radius: 0.375rem;
+  opacity: 0.4;
+}
+
+.search-input__search-icon {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  opacity: 0.4;
+  transform: translateY(-50%);
 }
 </style>
