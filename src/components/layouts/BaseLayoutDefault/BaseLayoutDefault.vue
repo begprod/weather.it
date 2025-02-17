@@ -34,10 +34,6 @@ const { closeToast } = commonStore;
 </script>
 
 <style scoped>
-.layout {
-  border: 1px solid red;
-}
-
 .layout__inner {
   display: flex;
   flex-direction: column;
