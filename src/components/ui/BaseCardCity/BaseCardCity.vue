@@ -16,14 +16,14 @@
       <div class="card-city__info">
         <div class="card-city__degrees card-city__degrees_lg">
           <span>{{ city.weather.current }}</span>
-          <span>&#8451;</span>
+          <span>&deg;</span>
         </div>
       </div>
       <div class="card-city__info">
         <span>feels like:</span>
         <div class="card-city__degrees">
           <span>{{ city.weather.feels_like }}</span>
-          <span>&#8451;</span>
+          <span>&deg;</span>
         </div>
       </div>
       <div class="card-city__info">

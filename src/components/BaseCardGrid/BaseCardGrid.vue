@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="grid-auto-rows-cards w-full max-w-screen-2xl m-auto grid grid-cols-1 gap-4 mt-16 lg:mt-20 lg:grid-cols-2 lg:gap-8 xl:grid-cols-3 xl:gap-8"
-  >
+  <div class="card-grid">
     <TransitionGroup name="fade">
       <BaseCardCity
         v-for="city in cities"
@@ -28,3 +26,27 @@ const weatherStore = useWeatherStore();
 const { status } = storeToRefs(commonStore);
 const { cities, images } = storeToRefs(weatherStore);
 </script>
+
+<style scoped>
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  width: 100%;
+  gap: 1rem;
+  max-width: 1536px;
+  margin-top: clamp(3rem, 9.77vw, 6.25rem);
+}
+
+@media screen and (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+</style>
