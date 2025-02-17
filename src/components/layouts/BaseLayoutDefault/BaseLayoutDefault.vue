@@ -1,6 +1,6 @@
 <template>
-  <main class="font-body overflow-hidden">
-    <div class="min-h-screen flex flex-col items-center justify-center pt-32 pr-6 pl-6">
+  <main class="layout font-body">
+    <div class="layout__inner">
       <slot />
       <BaseFooterDefault :version="version" />
     </div>
@@ -32,3 +32,17 @@ const { status, message, toastIsVisible } = storeToRefs(commonStore);
 const { cities } = storeToRefs(weatherStore);
 const { closeToast } = commonStore;
 </script>
+
+<style scoped>
+.layout {
+  border: 1px solid red;
+}
+
+.layout__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 1.5rem 0 1.5rem;
+}
+</style>

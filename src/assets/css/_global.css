@@ -2,6 +2,10 @@ html {
   font-size: 16px;
 }
 
+.font-body {
+  font-family: 'Comfortaa', 'sans-serif';
+}
+
 .icon {
   flex-shrink: 0;
 }
