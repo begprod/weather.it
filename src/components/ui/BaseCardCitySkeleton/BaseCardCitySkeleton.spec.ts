@@ -6,18 +6,10 @@ describe('BaseCardCitySkeleton', () => {
   const wrapper = mount(BaseCardCitySkeleton);
 
   it('should contain correct css classes', async () => {
-    expect(wrapper.html()).toContain(
-      'relative flex flex-col w-full h-full p-5 bg-white rounded-[20px] shadow-md overflow-hidden isolate md:p-7 lg:p-10',
-    );
-    expect(wrapper.html()).toContain('relative z-30');
-    expect(wrapper.html()).toContain(
-      'w-[60px] h-[60px] bg-gray-300 rounded-[20px] md:w-[75px] md:h-[75px]',
-    );
-    expect(wrapper.html()).toContain(
-      'absolute top-0 left-0 right-0 z-20 w-full h-full bg-gray-600 opacity-50',
-    );
-    expect(wrapper.html()).toContain(
-      'absolute top-0 left-0 right-0 z-10 w-full h-full bg-cover bg-center',
-    );
+    expect(wrapper.html()).toContain('skeleton-card__inner');
+    expect(wrapper.html()).toContain('skeleton-card__column animate-pulse');
+    expect(wrapper.html()).toContain('skeleton-card__line skeleton-card__line_md');
+    expect(wrapper.html()).toContain('skeleton-card__line skeleton-card__line_sm');
+    expect(wrapper.html()).toContain('skeleton-card__line_square');
   });
 });

@@ -68,7 +68,7 @@
     />
 
     <Transition name="fade">
-      <div v-if="isLoading" class="card-city__skeleton z-30">
+      <div v-if="isLoading" class="card-city__skeleton">
         <BaseCardCitySkeleton />
       </div>
     </Transition>
@@ -133,7 +133,7 @@ defineExpose({
   position: relative;
   padding: clamp(1.25rem, 3.13vw, 2.5rem);
   color: var(--white);
-  border-radius: 20px;
+  border-radius: 1.25rem;
   box-shadow: 0 5px 15px 0 var(--gray);
   overflow: hidden;
 
