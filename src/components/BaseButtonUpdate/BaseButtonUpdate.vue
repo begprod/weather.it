@@ -1,14 +1,11 @@
 <template>
-  <div class="fixed right-6 bottom-6 flex flex-col items-center z-40">
+  <div class="button-update">
     <BaseButton title="Update weather data" @click="updateCityData">
-      <RefreshCcw class="w-5 h-5" :class="classObject" />
+      <RefreshCcw class="icon icon_md" :class="classObject" />
     </BaseButton>
 
     <Transition name="slide-down">
-      <span
-        v-if="lastUpdateDate"
-        class="mt-2 p-[2px] rounded-[3px] text-[10px] md:text-xs text-gray-500 bg-white"
-      >
+      <span v-if="lastUpdateDate" class="button-update__date">
         {{ lastUpdateDate }}
       </span>
     </Transition>
@@ -31,7 +28,29 @@ const { updateCityData } = weatherStore;
 
 const classObject = computed(() => {
   return {
-    'animate-spin animation-duration-2000': status.value === 'updating',
+    'animate-spin': status.value === 'updating',
   };
 });
 </script>
+
+<style scoped>
+.button-update {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 40;
+}
+
+.button-update__date {
+  margin-top: 0.5rem;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: clamp(var(--typo-size-2xs), 1.56vw, var(--typo-size-xs));
+  line-height: 1;
+  color: var(--gray-500);
+  background-color: var(--white);
+}
+</style>

@@ -21,7 +21,8 @@ export const useCommonStore = defineStore('common', {
 
       const updateTimer = () => {
         clearTimeout(this.currentToastTimerId);
-        timeLeft = 5000;
+
+        timeLeft = 5;
 
         this.currentToastTimerId = window.setInterval(() => {
           timeLeft -= 1;
