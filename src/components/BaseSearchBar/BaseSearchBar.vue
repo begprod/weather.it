@@ -1,7 +1,7 @@
 <template>
   <BaseWeatherIconDoodle />
 
-  <div class="relative">
+  <div class="search-bar">
     <BaseSearchInput
       id="city_search"
       type="text"
@@ -94,3 +94,9 @@ const getCityWeather = async (suggestionItem: ISearchSuggestItem) => {
   }
 };
 </script>
+
+<style scoped>
+.search-bar {
+  position: relative;
+}
+</style>
