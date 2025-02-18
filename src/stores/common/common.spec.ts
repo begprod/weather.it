@@ -8,7 +8,7 @@ describe('common store', () => {
   setActivePinia(pinia);
 
   const commonStore = useCommonStore();
-  const { status, message, toastIsVisible } = storeToRefs(commonStore);
+  const { status, message, isToastVisible } = storeToRefs(commonStore);
   const { setStatus, setMessage, showToast, closeToast } = commonStore;
 
   it('should set status', async () => {
@@ -26,7 +26,7 @@ describe('common store', () => {
   it('should set toast visibility true', async () => {
     showToast();
 
-    expect(toastIsVisible.value).toBe(true);
+    expect(isToastVisible.value).toBe(true);
   });
 
   it('should set toast visibility false', async () => {
@@ -34,6 +34,6 @@ describe('common store', () => {
 
     expect(status.value).toBe('init');
     expect(message.value).toBe('');
-    expect(toastIsVisible.value).toBe(false);
+    expect(isToastVisible.value).toBe(false);
   });
 });

@@ -4,8 +4,8 @@ import { mount } from '@vue/test-utils';
 export interface ICommonState {
   status: 'init' | 'loading' | 'updating' | 'success' | 'error';
   message: string;
-  toastIsVisible: boolean;
   currentToastTimerId: number;
+  isToastVisible: boolean;
 }
 
 export interface IWeatherState {

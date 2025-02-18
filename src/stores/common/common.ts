@@ -5,8 +5,8 @@ export const useCommonStore = defineStore('common', {
   state: (): ICommonState => ({
     status: 'init',
     message: '',
-    toastIsVisible: false,
     currentToastTimerId: 0,
+    isToastVisible: false,
   }),
 
   actions: {
@@ -21,7 +21,7 @@ export const useCommonStore = defineStore('common', {
 
       const updateTimer = () => {
         clearTimeout(this.currentToastTimerId);
-        timeLeft = 5;
+        timeLeft = 5000;
 
         this.currentToastTimerId = window.setInterval(() => {
           timeLeft -= 1;
@@ -33,18 +33,18 @@ export const useCommonStore = defineStore('common', {
         }, 1000);
       };
 
-      if (this.toastIsVisible) {
+      if (this.isToastVisible) {
         updateTimer();
       }
 
-      this.toastIsVisible = true;
+      this.isToastVisible = true;
 
       updateTimer();
     },
     closeToast() {
       clearTimeout(this.currentToastTimerId);
 
-      this.toastIsVisible = false;
+      this.isToastVisible = false;
       this.status = 'init';
       this.message = '';
     },
