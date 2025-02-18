@@ -57,7 +57,6 @@ const onClick = () => {
   border-radius: 0.5rem;
   background-color: var(--white);
   box-shadow: 0 1px 2px 0 var(--gray-200);
-  border: 1px solid red;
   transition: all 0.3s ease-in-out;
   z-index: 50;
 
