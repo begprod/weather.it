@@ -2,12 +2,13 @@ import { storeToRefs } from 'pinia';
 import { createTestingPinia } from '@pinia/testing';
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
-import { useWeatherStore } from '@/stores';
+import { useCommonStore, useWeatherStore } from '@/stores';
 import BaseLayoutDefault from '@/components/layouts/BaseLayoutDefault/BaseLayoutDefault.vue';
 import BaseFooterDefault from '@/components/layouts/partials/BaseFooterDefault/BaseFooterDefault.vue';
 import BaseGithubCorner from '@/components/ui/BaseGithubCorner/BaseGithubCorner.vue';
 import BaseToast from '@/components/ui/BaseToast/BaseToast.vue';
 import BaseButtonUpdate from '@/components/BaseButtonUpdate/BaseButtonUpdate.vue';
+import { nextTick } from 'vue';
 
 describe('BaseFooterDefault', () => {
   const wrapper = mount(BaseLayoutDefault, {
@@ -26,8 +27,10 @@ describe('BaseFooterDefault', () => {
     },
   });
 
+  const commonStore = useCommonStore();
   const weatherStore = useWeatherStore();
   const { cities } = storeToRefs(weatherStore);
+  const { isToastVisible } = storeToRefs(commonStore);
 
   cities.value = [
     {
@@ -48,6 +51,10 @@ describe('BaseFooterDefault', () => {
   ];
 
   it('should contain components', async () => {
+    isToastVisible.value = true;
+
+    await nextTick();
+
     expect(wrapper.findComponent(BaseFooterDefault).exists()).toBe(true);
     expect(wrapper.findComponent(BaseGithubCorner).exists()).toBe(true);
     expect(wrapper.findComponent(BaseToast).exists()).toBe(true);

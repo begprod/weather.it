@@ -2,6 +2,7 @@
   <main class="layout font-body">
     <div class="layout__inner">
       <slot />
+
       <BaseFooterDefault :version="version" />
     </div>
 
@@ -9,7 +10,9 @@
       <BaseButtonUpdate v-if="cities.length" />
     </Transition>
 
-    <BaseToast :type="status" :message="message" :is-visible="toastIsVisible" @click="closeToast" />
+    <Transition name="slide-up">
+      <BaseToast v-if="isToastVisible" :type="status" :message="message" @click="closeToast" />
+    </Transition>
 
     <BaseGithubCorner url="https://github.com/begprod/weather.it" />
   </main>
@@ -24,11 +27,10 @@ import BaseFooterDefault from '@/components/layouts/partials/BaseFooterDefault/B
 import BaseGithubCorner from '@/components/ui/BaseGithubCorner/BaseGithubCorner.vue';
 import BaseToast from '@/components/ui/BaseToast/BaseToast.vue';
 import BaseButtonUpdate from '@/components/BaseButtonUpdate/BaseButtonUpdate.vue';
-
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
 
-const { status, message, toastIsVisible } = storeToRefs(commonStore);
+const { status, message, isToastVisible } = storeToRefs(commonStore);
 const { cities } = storeToRefs(weatherStore);
 const { closeToast } = commonStore;
 </script>
@@ -36,6 +38,7 @@ const { closeToast } = commonStore;
 <style scoped>
 .layout {
   padding: 8rem 1.5rem 0 1.5rem;
+  overflow: hidden;
 }
 
 .layout__inner {
