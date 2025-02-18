@@ -50,7 +50,7 @@ const onClick = () => {
   padding: clamp(0.75rem, 3.65vw, 1.25rem);
   border: 1px solid var(--gray);
   background-color: var(--white);
-  box-shadow: 0 5px 15px 0 var(--gray);
+  box-shadow: 0 1px 2px 0 var(--gray-200);
 }
 
 .button_view_rounded {
@@ -64,7 +64,7 @@ const onClick = () => {
   }
 
   &:focus {
-    box-shadow: 0 5px 15px 0 var(--gray);
+    box-shadow: 0 1px 2px 0 var(--gray-200);
   }
 }
 
