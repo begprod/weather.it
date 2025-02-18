@@ -3,6 +3,7 @@
   --gray: #d3d3d3;
   --gray-900: #111827;
   --gray-600: #4b5563;
+  --gray-500: #6b7280;
   --gray-400: #a5aab0;
   --gray-300: #d1d5db;
   --gray-200: #e5e7eb;
@@ -10,9 +11,11 @@
   --slate-500: #64748b;
   --green-500: #22c55e;
   --green-300: #86efac;
+  --green-200: #bbf7d0;
   --yellow-300: #fde047;
   --orange-400: #fb923c;
   --red-600: #dc2626;
   --red-500: #ef4444;
+  --red-200: #fecaca;
   --blue-600: #2563eb;
 }
