@@ -1,33 +1,16 @@
 <template>
-  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[272px] z-50">
-    <Transition name="slide-up">
-      <div
-        v-if="isVisible"
-        class="flex w-full sm:w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm shadow-gray-200 duration-300 hover:shadow-lg"
-        :class="classObject"
-        @click="onClick"
-        data-test-id="toast"
-      >
-        <div
-          v-if="props.type === 'success'"
-          class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-green-200 rounded-lg"
-          data-test-id="toast-success-icon"
-        >
-          <ThumbsUp class="w-5 h-5" />
-        </div>
-        <div
-          v-if="props.type === 'error'"
-          class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-red-200 rounded-lg"
-          data-test-id="toast-error-icon"
-        >
-          <TriangleAlert class="w-5 h-5" />
-        </div>
-
-        <div class="flex flex-col items-start ml-3">
-          <div class="text-sm font-normal" data-test-id="toast-message">{{ message }}</div>
-        </div>
+  <div class="toast" :class="classObject" @click="onClick" data-test-id="toast">
+    <div class="toast__inner">
+      <div v-if="props.type === 'success'" class="toast__icon" data-test-id="toast-success-icon">
+        <ThumbsUp class="icon icon_md" />
       </div>
-    </Transition>
+
+      <div v-if="props.type === 'error'" class="toast__icon" data-test-id="toast-error-icon">
+        <TriangleAlert class="icon icon_md" />
+      </div>
+
+      <div class="toast__message" data-test-id="toast-message">{{ message }}</div>
+    </div>
   </div>
 </template>
 
@@ -36,9 +19,8 @@ import { ThumbsUp, TriangleAlert } from 'lucide-vue-next';
 import { computed } from 'vue';
 
 interface IProps {
-  type?: string;
+  type?: 'init' | 'loading' | 'updating' | 'success' | 'error';
   message: string;
-  isVisible: boolean;
 }
 
 const props = defineProps<IProps>();
@@ -48,11 +30,11 @@ const emit = defineEmits(['click']);
 const classObject = computed(() => {
   switch (props.type) {
     case 'success':
-      return 'text-green-500';
+      return 'toast_success';
     case 'error':
-      return 'text-red-500';
+      return 'toast_error';
     default:
-      return 'text-gray-500';
+      return 'toast_default';
   }
 });
 
@@ -60,3 +42,67 @@ const onClick = () => {
   emit('click');
 };
 </script>
+
+<style scoped>
+.toast {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 2rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 16rem;
+  color: var(--gray-500);
+  border-radius: 0.5rem;
+  background-color: var(--white);
+  box-shadow: 0 1px 2px 0 var(--gray-200);
+  border: 1px solid red;
+  transition: all 0.3s ease-in-out;
+  z-index: 50;
+
+  &:hover {
+    box-shadow: 0 0 0 0 var(--gray);
+  }
+}
+
+.toast_success {
+  color: var(--green-500);
+
+  .toast__icon {
+    background-color: var(--green-200);
+  }
+}
+
+.toast_error {
+  color: var(--red-500);
+
+  .toast__icon {
+    background-color: var(--red-200);
+  }
+}
+
+.toast_default {
+  color: var(--gray-500);
+}
+
+.toast__inner {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.toast__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+}
+
+.toast__message {
+  font-size: var(--typo-size-sm);
+  word-break: break-word;
+}
+</style>
