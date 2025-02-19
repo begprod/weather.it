@@ -1,44 +1,33 @@
 <template>
   <Transition name="slide-down">
     <div
-      v-if="isEmpty || isLoading || listItems.length"
-      class="absolute left-0 top-full w-full h-full bg-gray-100 rounded-xl z-50 shadow-sm shadow-gray-200 overflow-y-hidden"
-      :style="{ height: `${listItemHeight}px`, minHeight: '48px' }"
-      data-test-id="suggestions-list"
+      v-if="isLoading || isEmpty || listItems.length"
+      class="suggestions"
+      :style="{ height: `${listItemHeight}px`, minHeight: '50px' }"
+      data-test-id="suggestions"
     >
       <Transition name="fade">
-        <div v-if="isEmpty" class="absolute w-full h-full select-none" data-test-id="empty-message">
-          <div class="flex items-center justify-center h-[48px]">
-            <MapPinOff class="w-6 h-6 mr-2 opacity-90" />
-
-            <div class="text-xl overflow-hidden">
-              <p class="text-xl">City not found</p>
-            </div>
-          </div>
+        <div v-if="isEmpty" class="suggestion-list__message" data-test-id="empty-message">
+          <MapPinOff class="icon icon_lg" />
+          <span>City not found</span>
         </div>
       </Transition>
 
       <Transition name="fade">
-        <div
-          v-if="isLoading"
-          class="absolute w-full h-full min-h-[48px] select-none overflow-hidden"
-          data-test-id="loader"
-        >
-          <div
-            class="animate-spin spin-slow flex items-center justify-center h-[48px] animation-duration-2000"
-          >
-            <RefreshCcw class="w-6 h-6 opacity-50" />
+        <div v-if="isLoading" class="suggestion-list__message" data-test-id="loader">
+          <div class="animate-spin">
+            <RefreshCcw class="icon icon_lg" />
           </div>
         </div>
       </Transition>
 
       <Transition name="slide-up">
-        <ul v-if="!isLoading && !isEmpty" class="flex flex-col w-full h-auto max-h-96">
+        <ul v-if="!isLoading && !isEmpty" class="suggestions__list">
           <li
             v-for="(item, index) in listItems"
-            ref="listItemsRef"
             :key="item.id"
-            class="flex items-center bg-gray-100 hover:bg-slate-200 focus:bg-slate-300 focus:outline-none"
+            ref="listItemsRef"
+            class="suggestion-list__item"
             tabindex="0"
             @click="onItemClickHandler(item)"
             @keydown.down.prevent="nextListItem(index)"
@@ -46,25 +35,18 @@
             @keydown.enter.prevent="onItemClickHandler(item)"
             data-test-id="suggestion-item"
           >
-            <div
-              class="group flex items-center w-full p-2 transition-all duration-300 overflow-hidden cursor-pointer"
-            >
-              <div
-                class="flex flex-col items-center justify-center mr-2 opacity-40 overflow-hidden"
-              >
-                <MapPin
-                  class="w-5 h-5 fill-red-50 group-hover:translate-y-1 transition-transform duration-300"
-                />
-                <Earth
-                  class="w-5 h-5 translate-y-5 group-hover:-translate-y-1 group-hover:opacity-100 transition-transform duration-300"
-                />
-              </div>
-              <div class="text-xl overflow-hidden">
-                <p class="truncate" data-test-id="suggestion-city-name">{{ item.name }}</p>
-                <p class="text-sm truncate" data-test-id="suggestion-city-country">
-                  {{ item.country }}
-                </p>
-              </div>
+            <div class="suggestion-list__icons">
+              <MapPin class="icon icon_md" />
+              <Earth class="icon icon_md" />
+            </div>
+
+            <div class="suggestion-list__description">
+              <p class="suggestion-list__city-name" data-test-id="suggestion-city-name">
+                {{ item.name }}
+              </p>
+              <p class="suggestion-list__country-name" data-test-id="suggestion-city-country">
+                {{ item.country }}
+              </p>
             </div>
           </li>
         </ul>
@@ -118,3 +100,123 @@ const previousListItem = (index: number) => {
   listItemsRef.value?.[index - 1]?.focus();
 };
 </script>
+
+<style scoped>
+.suggestions {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--gray-100);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px 0 var(--gray-200);
+  overflow-y: hidden;
+  z-index: 50;
+}
+
+.suggestions__list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.suggestion-list__message {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: var(--typo-size-xl);
+  overflow: hidden;
+  user-select: none;
+}
+
+.suggestion-list__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--gray-100);
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  transition-property: background-color;
+  overflow: hidden;
+
+  &:hover {
+    background-color: var(--slate-200);
+
+    .suggestion-list__icons {
+      svg {
+        &:nth-child(1) {
+          transform: translateY(4px);
+        }
+
+        &:nth-child(2) {
+          transform: translateY(0px);
+        }
+      }
+    }
+  }
+
+  &:focus {
+    background-color: var(--slate-300);
+    outline: none;
+
+    .suggestion-list__icons {
+      svg {
+        &:nth-child(1) {
+          transform: translateY(4px);
+        }
+
+        &:nth-child(2) {
+          transform: translateY(0px);
+        }
+      }
+    }
+  }
+}
+
+.suggestion-list__icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+  padding-left: 0.5rem;
+  opacity: 0.4;
+
+  svg {
+    transition: 0.3s ease-in-out;
+    transition-property: transform;
+
+    &:nth-child(1) {
+      transform: translateY(-5px);
+    }
+
+    &:nth-child(2) {
+      transform: translateY(40px);
+    }
+  }
+}
+
+.suggestion-list__description {
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  font-size: var(--typo-size-xl);
+  overflow: hidden;
+}
+
+.suggestion-list__city-name {
+  font-size: var(--typo-size-xl);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion-list__country-name {
+  font-size: var(--typo-size-sm);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
