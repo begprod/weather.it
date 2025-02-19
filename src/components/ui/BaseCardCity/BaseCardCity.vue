@@ -6,7 +6,7 @@
   >
     <div class="card-city__content">
       <div class="card-city__city">
-        <MapPin class="icon icon_lg" />
+        <MapPin class="icon icon_xl" />
 
         <div class="card-city__city-info">
           <span class="card-city__name" data-test-id="city-name">{{ city.name }}</span>
