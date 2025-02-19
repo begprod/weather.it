@@ -38,7 +38,7 @@
         {{ city.weather.description }}
       </div>
 
-      <BaseWeatherIcon class="card-city__weather-icon" :type="city.weather.main.toLowerCase()" />
+      <BaseWeatherIcon class="card-city__weather-icon" :type="city.weather.main" />
     </div>
 
     <BaseDropdownMenu

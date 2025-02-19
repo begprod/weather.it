@@ -1,9 +1,9 @@
 <template>
   <div class="weather-doodle">
-    <BaseWeatherIcon type="clear" />
-    <BaseWeatherIcon type="clouds" />
-    <BaseWeatherIcon type="snow" />
-    <BaseWeatherIcon type="mist" />
+    <BaseWeatherIcon type="Clear" />
+    <BaseWeatherIcon type="Clouds" />
+    <BaseWeatherIcon type="Snow" />
+    <BaseWeatherIcon type="Mist" />
   </div>
 </template>
 

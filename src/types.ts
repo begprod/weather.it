@@ -26,7 +26,7 @@ export interface ICityWeather {
     current: number;
     feels_like: number;
     air_quality: number | null;
-    main: string;
+    main: keyof typeof WeatherType;
     description: string;
   };
 }

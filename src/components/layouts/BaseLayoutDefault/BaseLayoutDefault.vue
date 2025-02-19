@@ -27,6 +27,7 @@ import BaseFooterDefault from '@/components/layouts/partials/BaseFooterDefault/B
 import BaseGithubCorner from '@/components/ui/BaseGithubCorner/BaseGithubCorner.vue';
 import BaseToast from '@/components/ui/BaseToast/BaseToast.vue';
 import BaseButtonUpdate from '@/components/BaseButtonUpdate/BaseButtonUpdate.vue';
+
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
 
