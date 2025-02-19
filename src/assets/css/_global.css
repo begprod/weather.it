@@ -21,6 +21,11 @@ html {
 }
 
 .icon_lg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon_xl {
   width: 1.75rem;
   height: 1.75rem;
 }
