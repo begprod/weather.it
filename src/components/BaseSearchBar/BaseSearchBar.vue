@@ -87,7 +87,7 @@ const getCityWeather = async (suggestionItem: ISearchSuggestItem) => {
   await getCityData(suggestionItem);
 
   // eslint-disable-next-line no-undef
-  const cityCards: NodeListOf<HTMLElement> = document.querySelectorAll('.city-card');
+  const cityCards: NodeListOf<HTMLElement> = document.querySelectorAll('.card-city');
 
   if (cityCards.length > 0) {
     cityCards[cityCards.length - 1].focus();
