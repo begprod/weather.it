@@ -15,9 +15,7 @@
 
       <Transition name="fade">
         <div v-if="isLoading" class="suggestion-list__message" data-test-id="loader">
-          <div class="animate-spin">
-            <RefreshCcw class="icon icon_lg" />
-          </div>
+          <RefreshCcw class="animate-spin icon icon_lg" />
         </div>
       </Transition>
 
