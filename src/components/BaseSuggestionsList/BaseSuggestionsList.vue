@@ -41,12 +41,12 @@
             </div>
 
             <div class="suggestion-list__description">
-              <p class="suggestion-list__city-name" data-test-id="suggestion-city-name">
+              <span class="suggestion-list__city-name" data-test-id="suggestion-city-name">
                 {{ item.name }}
-              </p>
-              <p class="suggestion-list__country-name" data-test-id="suggestion-city-country">
+              </span>
+              <span class="suggestion-list__country-name" data-test-id="suggestion-city-country">
                 {{ item.country }}
-              </p>
+              </span>
             </div>
           </li>
         </ul>
@@ -118,6 +118,8 @@ const previousListItem = (index: number) => {
 .suggestions__list {
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -203,6 +205,9 @@ const previousListItem = (index: number) => {
 }
 
 .suggestion-list__description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   padding: 0.5rem 0.5rem 0.5rem 0;
   font-size: var(--typo-size-xl);
   overflow: hidden;
