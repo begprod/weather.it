@@ -70,8 +70,8 @@ const classObject = computed(() => {
   --gray-dark: #3f3f3f;
 
   position: relative;
-  width: 75px;
-  height: 75px;
+  width: clamp(3.75rem, 9.77vw, 4.69rem);
+  height: clamp(3.75rem, 9.77vw, 4.69rem);
   border-radius: 20px;
 
   &::after {
@@ -632,13 +632,6 @@ const classObject = computed(() => {
       right: 76%;
       animation-delay: 9s;
     }
-  }
-}
-
-@media (max-width: 768px) {
-  .weather-icon {
-    width: 60px;
-    height: 60px;
   }
 }
 </style>
