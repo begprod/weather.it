@@ -41,6 +41,10 @@ defineProps<IProps>();
   padding-bottom: clamp(4rem, 6.25vw, 8rem);
   font-size: var(--typo-size-sm);
   color: var(--gray-600);
+
+  p {
+    margin: 0;
+  }
 }
 
 .footer__link {
