@@ -1,8 +1,7 @@
 <template>
   <BaseLayoutDefault>
-    <div class="w-full md:w-[500px]">
-      <BaseSearchBar />
-    </div>
+    <BaseSearchBar />
+
     <BaseCardGrid />
   </BaseLayoutDefault>
 </template>

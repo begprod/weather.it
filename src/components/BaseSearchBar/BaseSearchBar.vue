@@ -1,23 +1,25 @@
 <template>
-  <BaseWeatherIconDoodle />
+  <div class="search-wrapper">
+    <BaseWeatherIconDoodle />
 
-  <div class="search-bar">
-    <BaseSearchInput
-      id="city_search"
-      type="text"
-      label="Weather search, start typing city name"
-      placeholder="Start typing the city name"
-      autoComplete="off"
-      v-model="searchQuery"
-      :required="true"
-    />
+    <div class="search-bar">
+      <BaseSearchInput
+        id="city_search"
+        type="text"
+        label="Weather search, start typing city name"
+        placeholder="Start typing the city name"
+        autoComplete="off"
+        v-model="searchQuery"
+        :required="true"
+      />
 
-    <BaseSuggestionsList
-      :isEmpty="!isSearching && citiesSuggestions.length === 0 && searchQuery.length !== 0"
-      :isLoading="isSearching && searchQuery.length !== 0"
-      :list-items="citiesSuggestions"
-      @item-click="getCityWeather"
-    />
+      <BaseSuggestionsList
+        :isEmpty="!isSearching && citiesSuggestions.length === 0 && searchQuery.length !== 0"
+        :isLoading="isSearching && searchQuery.length !== 0"
+        :list-items="citiesSuggestions"
+        @item-click="getCityWeather"
+      />
+    </div>
   </div>
 </template>
 
@@ -96,7 +98,17 @@ const getCityWeather = async (suggestionItem: ISearchSuggestItem) => {
 </script>
 
 <style scoped>
+.search-wrapper {
+  width: 500px;
+}
+
 .search-bar {
   position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .search-wrapper {
+    width: 100%;
+  }
 }
 </style>
