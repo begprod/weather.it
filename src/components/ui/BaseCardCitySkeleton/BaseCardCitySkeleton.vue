@@ -29,7 +29,7 @@
   height: 100%;
   padding: clamp(1.25rem, 3.13vw, 2.5rem);
   background: var(--gray-400);
-  background-color: #a5aab0;
+  background-color: var(--gray-400);
   border-radius: 1.25rem;
   overflow: hidden;
 }
@@ -44,7 +44,7 @@
   display: flex;
   width: 100%;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.5rem, 2.08vw, 1rem);
 }
 
 .skeleton-card__column {
@@ -58,7 +58,7 @@
 
 .skeleton-card__line_md {
   width: 50%;
-  height: 1.25rem;
+  height: clamp(1rem, 1.95vw, 1.25rem);
 }
 
 .skeleton-card__line_sm {
@@ -67,8 +67,8 @@
 }
 
 .skeleton-card__line_square {
-  width: 4.75rem;
-  height: 4.75rem;
+  width: clamp(3.75rem, 7.32vw, 4.69rem);
+  height: clamp(3.75rem, 7.32vw, 4.69rem);
   border-radius: 0.75rem;
   background-color: var(--gray-300);
 }
