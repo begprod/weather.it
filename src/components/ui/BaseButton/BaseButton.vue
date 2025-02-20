@@ -48,9 +48,11 @@ const onClick = () => {
   align-items: center;
   gap: 0.5rem;
   padding: clamp(0.75rem, 3.65vw, 1.25rem);
+  color: inherit;
   border: 1px solid var(--gray);
   background-color: var(--white);
   box-shadow: 0 1px 2px 0 var(--gray-200);
+  cursor: pointer;
 }
 
 .button_view_rounded {
