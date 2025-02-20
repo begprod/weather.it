@@ -209,6 +209,8 @@ defineExpose({
   position: absolute;
   top: clamp(1.25rem, 3.13vw, 2.5rem);
   right: clamp(1.25rem, 3.13vw, 2.5rem);
+  margin-top: -0.6rem;
+  margin-right: -0.8rem;
   z-index: 30;
 }
 
