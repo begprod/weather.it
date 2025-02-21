@@ -1,9 +1,9 @@
 <template>
-  <div class="flex justify-between mb-10 text-center text-5xl weather-doodle">
-    <BaseWeatherIcon type="clear" />
-    <BaseWeatherIcon type="clouds" />
-    <BaseWeatherIcon type="snow" />
-    <BaseWeatherIcon type="mist" />
+  <div class="weather-doodle">
+    <BaseWeatherIcon type="Clear" />
+    <BaseWeatherIcon type="Clouds" />
+    <BaseWeatherIcon type="Snow" />
+    <BaseWeatherIcon type="Mist" />
   </div>
 </template>
 
@@ -11,27 +11,34 @@
 import BaseWeatherIcon from '@/components/ui/BaseWeatherIcon/BaseWeatherIcon.vue';
 </script>
 
-<style lang="scss">
-@use 'sass:math';
-
+<style scoped>
 .weather-doodle {
-  @for $i from 1 through 4 {
-    .weather-icon:nth-child(#{$i}) {
-      animation: floating 3s ease-in-out infinite;
-      animation-delay: math.random(10) * 1s;
-    }
-  }
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
 }
 
-@keyframes floating {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0);
+.weather-doodle {
+  .weather-icon {
+    &:nth-child(1) {
+      animation: floating 3s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+
+    &:nth-child(2) {
+      animation: floating 3s ease-in-out infinite;
+      animation-delay: 3s;
+    }
+
+    &:nth-child(3) {
+      animation: floating 3s ease-in-out infinite;
+      animation-delay: 5s;
+    }
+
+    &:nth-child(4) {
+      animation: floating 3s ease-in-out infinite;
+      animation-delay: 7s;
+    }
   }
 }
 </style>

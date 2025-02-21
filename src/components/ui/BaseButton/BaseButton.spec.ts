@@ -19,24 +19,30 @@ describe('BaseButton', () => {
     expect(wrapperAttrs).toHaveProperty('title', 'test title');
   });
 
-  it('should contain type attribute', async () => {
+  it('should set type attribute', async () => {
     expect(wrapper.html()).toContain('button');
 
-    await wrapper.setProps({ buttonType: 'submit' });
+    await wrapper.setProps({ type: 'submit' });
 
     const wrapperAttrs = wrapper.attributes();
 
     expect(wrapperAttrs).toHaveProperty('type', 'submit');
   });
 
-  it('should set transparent view', async () => {
-    expect(wrapper.html()).toContain(
-      'bg-white border rounded-full p-3 md:p-5 shadow-sm shadow-gray-200 hover:rotate-45 hover:shadow-lg transition-all duration-300',
-    );
+  it('should set view', async () => {
+    expect(wrapper.html()).toContain('button');
 
     await wrapper.setProps({ view: 'transparent' });
 
-    expect(wrapper.html()).toContain('bg-transparent border-none');
+    expect(wrapper.html()).toContain('button button_view_transparent');
+  });
+
+  it('should set text type', async () => {
+    expect(wrapper.html()).toContain('button');
+
+    await wrapper.setProps({ text: 'alert' });
+
+    expect(wrapper.html()).toContain('button button_view_transparent button_text_alert');
   });
 
   it('should contain slot content', async () => {

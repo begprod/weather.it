@@ -3,11 +3,6 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import BaseSuggestionsList from '@/components/BaseSuggestionsList/BaseSuggestionsList.vue';
 
-// TODO:
-// 1 should render list items when listItems is not empty
-// 2 should render loader when isLoading is true, amd not render list items, and not render empty message
-// 3 should render empty message when isEmpty is true, and not render list items, and not render loader
-
 describe('BaseSuggestionsList', () => {
   let wrapper: ComponentWrapperType<typeof BaseSuggestionsList>;
 

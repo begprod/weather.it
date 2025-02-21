@@ -1,7 +1,8 @@
 <template>
-  <main class="font-body overflow-hidden">
-    <div class="min-h-screen flex flex-col items-center justify-center pt-32 pr-6 pl-6">
+  <main class="layout font-body">
+    <div class="layout__inner">
       <slot />
+
       <BaseFooterDefault :version="version" />
     </div>
 
@@ -9,7 +10,9 @@
       <BaseButtonUpdate v-if="cities.length" />
     </Transition>
 
-    <BaseToast :type="status" :message="message" :is-visible="toastIsVisible" @click="closeToast" />
+    <Transition name="slide-up">
+      <BaseToast v-if="isToastVisible" :type="status" :message="message" @click="closeToast" />
+    </Transition>
 
     <BaseGithubCorner url="https://github.com/begprod/weather.it" />
   </main>
@@ -28,7 +31,22 @@ import BaseButtonUpdate from '@/components/BaseButtonUpdate/BaseButtonUpdate.vue
 const commonStore = useCommonStore();
 const weatherStore = useWeatherStore();
 
-const { status, message, toastIsVisible } = storeToRefs(commonStore);
+const { status, message, isToastVisible } = storeToRefs(commonStore);
 const { cities } = storeToRefs(weatherStore);
 const { closeToast } = commonStore;
 </script>
+
+<style scoped>
+.layout {
+  padding: 8rem 1.5rem 0 1.5rem;
+  overflow: hidden;
+}
+
+.layout__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+}
+</style>

@@ -1,21 +1,19 @@
 <template>
-  <footer
-    class="flex flex-col items-center justify-center gap-2 pt-16 pb-24 md:pt-32 md:pb-16 text-sm text-gray-500"
-  >
+  <footer class="footer">
     <p>
-      Crafted with <span class="text-red-500">❤</span> by
-      <a href="https://github.com/begprod" class="text-blue-600" tabindex="-1">Andrej Aratov</a>
+      Crafted with <span class="footer__heart">❤</span> by
+      <a href="https://github.com/begprod" class="link" tabindex="-1">Andrej Aratov</a>
     </p>
     <p>
       <a
-        class="text-blue-600"
+        class="link footer__link"
         href="https://github.com/begprod/weather.it#install-application-on-your-device"
         target="_blank"
         rel="noreferrer"
         tabindex="-1"
       >
-        Install app on device instructions
-        <span class="inline-block ml-2 -rotate-12 origin-center">→</span>
+        <span>Install app on device instructions</span>
+        <ExternalLink class="icon icon_base" />
       </a>
     </p>
     <p data-test-id="app-version">v{{ version }}</p>
@@ -23,9 +21,39 @@
 </template>
 
 <script setup lang="ts">
+import { ExternalLink } from 'lucide-vue-next';
+
 interface IProps {
   version: string;
 }
 
 defineProps<IProps>();
 </script>
+
+<style scoped>
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: clamp(4rem, 6.25vw, 8rem);
+  padding-bottom: clamp(4rem, 6.25vw, 8rem);
+  font-size: var(--typo-size-sm);
+  color: var(--gray-600);
+
+  p {
+    margin: 0;
+  }
+}
+
+.footer__link {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.footer__heart {
+  color: var(--red-500);
+}
+</style>

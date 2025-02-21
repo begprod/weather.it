@@ -1,0 +1,39 @@
+html {
+  font-size: 16px;
+}
+
+.font-body {
+  font-family: 'Comfortaa', 'sans-serif';
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.icon_base {
+  width: 1rem;
+  height: 1rem;
+}
+
+.icon_md {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon_lg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.icon_xl {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.icon_rounded {
+  border-radius: 100%;
+}
+
+.link {
+  color: var(--blue-600);
+}

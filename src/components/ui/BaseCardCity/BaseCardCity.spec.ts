@@ -72,11 +72,11 @@ describe('BaseCardCity', () => {
 
   it('should call function on click delete button', async () => {
     const { deleteCity } = weatherStore;
-    const dropdownMenuButton = wrapper.find('[data-test-id="dropdown-menu-button"]');
+    const dropdownMenuButton = wrapper.find('[data-test-id="dropdown-menu-trigger"]');
 
     await dropdownMenuButton.trigger('click');
 
-    const deleteButton = wrapper.find('[data-test-id="delete-city-button"]');
+    const deleteButton = wrapper.find('[data-test-id="remove-city-button"]');
 
     await deleteButton.trigger('click');
 
@@ -106,7 +106,7 @@ describe('BaseCardCity', () => {
       isLoading: false,
     });
 
-    expect(cityAirQuality.html()).toContain('bg-green-500');
+    expect(cityAirQuality.html()).toContain('air-quality_type_1');
 
     await wrapper.setProps({
       city: {
@@ -128,7 +128,7 @@ describe('BaseCardCity', () => {
       isLoading: false,
     });
 
-    expect(cityAirQuality.html()).toContain('bg-green-300');
+    expect(cityAirQuality.html()).toContain('air-quality_type_2');
 
     await wrapper.setProps({
       city: {
@@ -150,7 +150,7 @@ describe('BaseCardCity', () => {
       isLoading: false,
     });
 
-    expect(cityAirQuality.html()).toContain('bg-yellow-300');
+    expect(cityAirQuality.html()).toContain('air-quality_type_3');
 
     await wrapper.setProps({
       city: {
@@ -172,7 +172,7 @@ describe('BaseCardCity', () => {
       isLoading: false,
     });
 
-    expect(cityAirQuality.html()).toContain('bg-orange-400');
+    expect(cityAirQuality.html()).toContain('air-quality_type_4');
 
     await wrapper.setProps({
       city: {
@@ -194,7 +194,7 @@ describe('BaseCardCity', () => {
       isLoading: false,
     });
 
-    expect(cityAirQuality.html()).toContain('bg-red-500');
+    expect(cityAirQuality.html()).toContain('air-quality_type_5');
 
     await wrapper.setProps({
       city: {
@@ -216,7 +216,7 @@ describe('BaseCardCity', () => {
       isLoading: false,
     });
 
-    expect(cityAirQuality.html()).toContain('bg-gray-400');
+    expect(cityAirQuality.html()).toContain('air-quality_type_default');
   });
 
   it('should set background image', async () => {

@@ -11,7 +11,6 @@ describe('BaseToast', () => {
     wrapper = mount(BaseToast, {
       props: {
         message: 'message',
-        isVisible: false,
       },
       global: {
         components: {
@@ -34,7 +33,6 @@ describe('BaseToast', () => {
     await wrapper.setProps({
       type: 'success',
       message: 'Success message',
-      isVisible: true,
     });
 
     const toast = wrapper.find('[data-test-id="toast"]');
@@ -43,7 +41,7 @@ describe('BaseToast', () => {
     const toastMessage = wrapper.find('[data-test-id="toast-message"]');
 
     expect(toast.exists()).toBe(true);
-    expect(toast.attributes('class')).toContain('text-green-500');
+    expect(toast.attributes('class')).toContain('toast_success');
     expect(toastSuccessIcon.exists()).toBe(true);
     expect(toastErrorIcon.exists()).toBe(false);
     expect(toastMessage.exists()).toBe(true);
@@ -53,7 +51,6 @@ describe('BaseToast', () => {
     await wrapper.setProps({
       type: 'error',
       message: 'Error message',
-      isVisible: true,
     });
 
     const toast = wrapper.find('[data-test-id="toast"]');
@@ -62,7 +59,7 @@ describe('BaseToast', () => {
     const toastMessage = wrapper.find('[data-test-id="toast-message"]');
 
     expect(toast.exists()).toBe(true);
-    expect(toast.attributes('class')).toContain('text-red-500');
+    expect(toast.attributes('class')).toContain('toast_error');
     expect(toastSuccessIcon.exists()).toBe(false);
     expect(toastErrorIcon.exists()).toBe(true);
     expect(toastMessage.exists()).toBe(true);
@@ -70,9 +67,8 @@ describe('BaseToast', () => {
 
   it('should contain default toast type css classes', async () => {
     await wrapper.setProps({
-      type: 'default',
+      type: 'init',
       message: 'Default message',
-      isVisible: true,
     });
 
     const toast = wrapper.find('[data-test-id="toast"]');
@@ -81,17 +77,13 @@ describe('BaseToast', () => {
     const toastMessage = wrapper.find('[data-test-id="toast-message"]');
 
     expect(toast.exists()).toBe(true);
-    expect(toast.attributes('class')).toContain('text-gray-500');
+    expect(toast.attributes('class')).toContain('toast_default');
     expect(toastSuccessIcon.exists()).toBe(false);
     expect(toastErrorIcon.exists()).toBe(false);
     expect(toastMessage.exists()).toBe(true);
   });
 
   it('should emit click event', async () => {
-    await wrapper.setProps({
-      isVisible: true,
-    });
-
     const toast = wrapper.find('[data-test-id="toast"]');
 
     await toast.trigger('click');
