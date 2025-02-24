@@ -33,7 +33,7 @@ interface IProps {
 defineProps<IProps>();
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .github-corner {
   position: absolute;
   top: 0;
