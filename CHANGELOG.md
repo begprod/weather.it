@@ -1,5 +1,51 @@
 # Changelog
 
+## 1.8.0
+
+### Other
+
+- migrate from tailwind to pure css
+
+## 1.7.0
+
+### Feature
+
+- add keyboard support in the list of city suggestion items
+
+## 1.6.1
+
+### Refactor
+
+- migrate icon library from heroicons to lucide icons
+
+### Other
+
+- update pwa plugin version
+- add missing package
+
+## 1.5.2
+
+### Refactor
+
+- migrate icon library from oh-vue-icons to heroicons
+
+### Other
+
+- update footer
+- update tests
+
+## 1.4.0
+
+### Features
+
+- close card menu on esc
+
+### Other
+
+- add metatags
+- update file structure
+- update tests
+
 ## 1.3.6
 
 ### Refactor
