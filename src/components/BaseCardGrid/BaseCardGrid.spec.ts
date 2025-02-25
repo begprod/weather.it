@@ -20,7 +20,7 @@ describe('BaseCardGrid', () => {
       },
       plugins: [
         createTestingPinia({
-          createSpy: vi.fn(),
+          createSpy: vi.fn,
         }),
       ],
     },

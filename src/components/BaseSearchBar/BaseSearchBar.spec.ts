@@ -10,7 +10,7 @@ describe('BaseSearchBar', () => {
     global: {
       plugins: [
         createTestingPinia({
-          createSpy: vi.fn(),
+          createSpy: vi.fn,
         }),
       ],
       components: {

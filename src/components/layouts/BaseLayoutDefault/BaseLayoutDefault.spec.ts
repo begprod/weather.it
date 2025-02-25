@@ -21,7 +21,7 @@ describe('BaseFooterDefault', () => {
       },
       plugins: [
         createTestingPinia({
-          createSpy: vi.fn(),
+          createSpy: vi.fn,
         }),
       ],
     },

@@ -1,6 +1,6 @@
 {
   "name": "weather.it",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "Another weather app with fancy design",
   "repository": "https://github.com/begprod/weather.it",
   "homepage": "https://weatherit.site/",
@@ -43,11 +43,11 @@
     "gh-pages": "^5.0.0",
     "jsdom": "^24.0.0",
     "prettier": "^3.1.1",
-    "typescript": "^5.2.2",
+    "typescript": "^5.7.3",
     "vite": "^5.4.14",
     "vite-plugin-pwa": "^0.20.5",
     "vitest": "^1.6.1",
-    "vue-tsc": "^1.8.25"
+    "vue-tsc": "^2.2.4"
   },
   "browserslist": {
     "production": [
