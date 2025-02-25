@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.8.1
+
+### Fix
+
+- vue-tsc errors
+
+### Other
+
+- update vue-tsc, typescipt versions
+
 ## 1.8.0
 
 ### Other
