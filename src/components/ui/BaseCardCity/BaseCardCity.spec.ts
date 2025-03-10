@@ -22,6 +22,7 @@ describe('BaseCardCity', () => {
           country_code: 'JP',
           lon: 139.6917,
           lat: 35.6895,
+          localTime: '10:30',
           weather: {
             current: 20,
             feels_like: 25,
@@ -62,11 +63,11 @@ describe('BaseCardCity', () => {
 
   it('should render data from props', async () => {
     const cityName = wrapper.find('[data-test-id="city-name"]');
-    const cityCountry = wrapper.find('[data-test-id="city-country"]');
+    const cityCountryAndLocalTime = wrapper.find('[data-test-id="city-country-local-time"]');
     const weatherDescription = wrapper.find('[data-test-id="weather-description"]');
 
     expect(cityName.text()).toBe('Tokyo');
-    expect(cityCountry.text()).toBe('Japan');
+    expect(cityCountryAndLocalTime.text()).toBe('Japan, 10:30');
     expect(weatherDescription.text()).toBe('clear sky');
   });
 
@@ -94,6 +95,7 @@ describe('BaseCardCity', () => {
         country_code: 'JP',
         lon: 139.6917,
         lat: 35.6895,
+        localTime: '10:30',
         weather: {
           current: 20,
           feels_like: 25,
@@ -116,6 +118,7 @@ describe('BaseCardCity', () => {
         country_code: 'JP',
         lon: 139.6917,
         lat: 35.6895,
+        localTime: '10:30',
         weather: {
           current: 20,
           feels_like: 25,
@@ -138,6 +141,7 @@ describe('BaseCardCity', () => {
         country_code: 'JP',
         lon: 139.6917,
         lat: 35.6895,
+        localTime: '10:30',
         weather: {
           current: 20,
           feels_like: 25,
@@ -160,6 +164,7 @@ describe('BaseCardCity', () => {
         country_code: 'JP',
         lon: 139.6917,
         lat: 35.6895,
+        localTime: '10:30',
         weather: {
           current: 20,
           feels_like: 25,
@@ -182,6 +187,7 @@ describe('BaseCardCity', () => {
         country_code: 'JP',
         lon: 139.6917,
         lat: 35.6895,
+        localTime: '10:30',
         weather: {
           current: 20,
           feels_like: 25,
@@ -204,6 +210,7 @@ describe('BaseCardCity', () => {
         country_code: 'JP',
         lon: 139.6917,
         lat: 35.6895,
+        localTime: '10:30',
         weather: {
           current: 20,
           feels_like: 25,
@@ -234,6 +241,7 @@ describe('BaseCardCity', () => {
         country_code: 'JP',
         lon: 139.6917,
         lat: 35.6895,
+        localTime: '10:30',
         weather: {
           current: 20,
           feels_like: 25,
@@ -260,6 +268,7 @@ describe('BaseCardCity', () => {
         country_code: 'JP',
         lon: 139.6917,
         lat: 35.6895,
+        localTime: '10:30',
         weather: {
           current: 20,
           feels_like: 25,

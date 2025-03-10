@@ -22,6 +22,7 @@ export interface ICityWeather {
   country_code: string;
   lon: number;
   lat: number;
+  localTime: string;
   weather: {
     current: number;
     feels_like: number;

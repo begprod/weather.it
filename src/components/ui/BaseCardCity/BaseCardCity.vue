@@ -10,7 +10,10 @@
 
         <div class="card-city__city-info">
           <span class="card-city__name" data-test-id="city-name">{{ city.name }}</span>
-          <span data-test-id="city-country">{{ city.country }}</span>
+          <span data-test-id="city-country-local-time">
+            {{ city.country }}, {{ city.localTime }}
+          </span>
+          <span></span>
         </div>
       </div>
       <div class="card-city__info">

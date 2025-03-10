@@ -40,6 +40,7 @@ describe('BaseFooterDefault', () => {
       country_code: 'JP',
       lon: 139.6917,
       lat: 35.6895,
+      localTime: '10:30',
       weather: {
         current: 20,
         feels_like: 25,

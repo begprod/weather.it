@@ -1,7 +1,8 @@
 import { weatherApi } from './apiSettings';
 import type { ICityWeather, ISearchSuggestItem } from '@/types';
+import { getTimeInTimezone } from '@/helpers';
 
-export function weatherService(
+export async function weatherService(
   suggestCityData: ISearchSuggestItem | ICityWeather,
 ): Promise<ICityWeather> {
   const { id, name, country, country_code, lat, lon } = suggestCityData;
@@ -37,6 +38,7 @@ export function weatherService(
       lat,
       lon,
       name: results[0].value.data.name,
+      localTime: getTimeInTimezone(results[0].value.data.timezone),
       weather: {
         current: results[0].value.data.main.temp.toFixed(0),
         feels_like: results[0].value.data.main.feels_like.toFixed(0),
