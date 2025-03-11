@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.9.0
+
+### Features
+
+- Local time of the city
+
 ## 1.8.1
 
 ### Fix
@@ -18,7 +24,7 @@
 
 ## 1.7.0
 
-### Feature
+### Features
 
 - add keyboard support in the list of city suggestion items
 

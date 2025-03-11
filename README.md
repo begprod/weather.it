@@ -11,10 +11,10 @@ Another weather app with fancy design
 
 ## Features
 
-- City search
-- Save selected cities to local storage
+- Search cities
 - Photos of selected cities
 - Air quality
+- Local time of the city
 
 <table>
   <tr>
@@ -61,6 +61,10 @@ Follow the steps below to install the app on your device:
 ## For developers
 
 ### Recommended IDE Setup
+
+[Zed](https://zed.dev/) – will automatically setup the project
+
+#### Alternative
 
 [VSCode](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
