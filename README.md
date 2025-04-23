@@ -2,8 +2,6 @@
 
 Another weather app with fancy design
 
-[https://weatherit.site/](https://weatherit.site/)
-
 ![Version](https://img.shields.io/github/package-json/v/begprod/weather.it)
 ![Last Commit](https://img.shields.io/github/last-commit/begprod/weather.it)
 ![Issues](https://img.shields.io/github/issues/begprod/weather.it)
@@ -33,7 +31,7 @@ Another weather app with fancy design
 
 ### iOS
 
-Open the following link on your iPhone or iPad: [https://weatherit.site/](https://weatherit.site/)
+Open the following link on your iPhone or iPad: [https://begprod.github.io/weather.it/](https://begprod.github.io/weather.it/)
 
 Follow the steps below to install the app on your device:
 
@@ -52,7 +50,7 @@ Follow the steps below to install the app on your device:
 
 ### Android
 
-Open the following link on your Android device: [https://weatherit.site/](https://weatherit.site/)
+Open the following link on your Android device: [https://begprod.github.io/weather.it/](https://begprod.github.io/weather.it/)
 
 Follow the steps below to install the app on your device:
 
