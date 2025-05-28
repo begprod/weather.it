@@ -31,9 +31,9 @@ export const useWeatherStore = defineStore('weather', {
         setStatus('success');
         setMessage(`${weatherData.name} (${weatherData.country}) successfully added.`);
         showToast();
-      } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
         const message =
-          // @ts-ignore
           error.message === '404'
             ? `Weather data for ${city.name} (${city.country}) not found.`
             : 'Something went wrong with the weather service or the image service. Please try again later.';
