@@ -34,6 +34,7 @@ export interface ICityWeather {
 
 export interface ISearchDataResponse {
   data: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     features: Array<any>;
   };
 }

@@ -2,7 +2,6 @@ import { imageApi } from './apiSettings';
 import { generateRandomNumber } from '@/helpers';
 
 export async function imagesService(query: string): Promise<string> {
-  // @ts-ignore
   const url = `/?query=${query}&client_id=${import.meta.env.VITE_UNSPLASH_API_ACCESS_KEY}`;
 
   return imageApi

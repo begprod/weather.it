@@ -19,7 +19,6 @@
 </template>
 
 <script setup lang="ts">
-// @ts-ignore
 import { version } from '../../../../package.json';
 import { storeToRefs } from 'pinia';
 import { useCommonStore, useWeatherStore } from '@/stores';

@@ -1,4 +1,3 @@
-// @ts-ignore
 import { version } from '../../../../../package.json';
 import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
