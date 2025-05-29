@@ -12,7 +12,7 @@ export const clickOutside = {
 
     document.addEventListener('click', handleClickOutside);
   },
-  unmounted(el: HTMLElement, binding: DirectiveBinding) {
+  unmounted(_el: HTMLElement, binding: DirectiveBinding) {
     document.removeEventListener('click', binding.value);
   },
 };
