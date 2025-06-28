@@ -17,7 +17,7 @@ import { computed } from 'vue';
 interface IProps {
   title: string;
   type?: 'button' | 'submit' | 'reset';
-  view?: 'rounded' | 'transparent';
+  view?: 'primary' | 'rounded' | 'transparent';
   text?: 'alert';
   dataTestId?: string;
 }
@@ -31,6 +31,7 @@ const emit = defineEmits(['click']);
 
 const classObject = computed(() => {
   return {
+    button_view_primary: props.view === 'primary',
     button_view_rounded: props.view === 'rounded',
     button_view_transparent: props.view === 'transparent',
     button_text_alert: props.text === 'alert',
@@ -53,6 +54,10 @@ const onClick = () => {
   background-color: var(--white);
   box-shadow: 0 1px 2px 0 var(--gray-200);
   cursor: pointer;
+}
+
+.button_view_primary {
+  border-radius: 1rem;
 }
 
 .button_view_rounded {
