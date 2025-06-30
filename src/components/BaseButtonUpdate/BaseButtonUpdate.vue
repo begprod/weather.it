@@ -35,13 +35,9 @@ const classObject = computed(() => {
 
 <style scoped>
 .button-update {
-  position: fixed;
-  right: 1.5rem;
-  bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 40;
 }
 
 .button-update__date {
