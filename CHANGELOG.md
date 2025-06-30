@@ -1,5 +1,11 @@
 # Changelog
 
+# 1.10.0
+
+### Other
+
+- add update app button
+
 ## 1.9.0
 
 ### Features
