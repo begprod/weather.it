@@ -1,1 +1,0 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/weather.it/sw.js', { scope: '/weather.it/' })})}
