@@ -1,3 +1,4 @@
+import { nextTick } from 'vue';
 import { storeToRefs } from 'pinia';
 import { createTestingPinia } from '@pinia/testing';
 import { describe, it, expect, vi } from 'vitest';
@@ -8,7 +9,18 @@ import BaseFooterDefault from '@/components/layouts/partials/BaseFooterDefault/B
 import BaseGithubCorner from '@/components/ui/BaseGithubCorner/BaseGithubCorner.vue';
 import BaseToast from '@/components/ui/BaseToast/BaseToast.vue';
 import BaseButtonUpdate from '@/components/BaseButtonUpdate/BaseButtonUpdate.vue';
-import { nextTick } from 'vue';
+import BaseButton from '@/components/ui/BaseButton/BaseButton.vue';
+
+const updateServiceWorkerMock = vi.fn();
+
+vi.mock('virtual:pwa-register/vue', () => {
+  return {
+    useRegisterSW: () => ({
+      needRefresh: true,
+      updateServiceWorker: updateServiceWorkerMock,
+    }),
+  };
+});
 
 describe('BaseFooterDefault', () => {
   const wrapper = mount(BaseLayoutDefault, {
@@ -59,6 +71,17 @@ describe('BaseFooterDefault', () => {
     expect(wrapper.findComponent(BaseFooterDefault).exists()).toBe(true);
     expect(wrapper.findComponent(BaseGithubCorner).exists()).toBe(true);
     expect(wrapper.findComponent(BaseToast).exists()).toBe(true);
+    expect(wrapper.findComponent(BaseButton).exists()).toBe(true);
     expect(wrapper.findComponent(BaseButtonUpdate).exists()).toBe(true);
+  });
+
+  it('should show update app button if needRefresh is true', async () => {
+    const updateButton = wrapper.get('button[title="update application"]');
+
+    expect(updateButton.text()).toContain('Update ready');
+
+    await updateButton.trigger('click');
+
+    expect(updateServiceWorkerMock).toHaveBeenCalledWith(true);
   });
 });
