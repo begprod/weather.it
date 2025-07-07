@@ -50,9 +50,9 @@ const onClick = () => {
   gap: 0.5rem;
   padding: clamp(0.75rem, 3.65vw, 1.25rem);
   color: inherit;
-  border: 1px solid var(--gray);
-  background-color: var(--white);
-  box-shadow: 0 1px 2px 0 var(--gray-200);
+  border: none;
+  background-color: var(--color-bg-surface);
+  box-shadow: 0 1px 2px 0 var(--color-bg-shadow);
   cursor: pointer;
 }
 
@@ -67,11 +67,10 @@ const onClick = () => {
 
   &:hover {
     transform: rotate(45deg);
-    box-shadow: 0 0 0 0 var(--gray);
   }
 
   &:focus {
-    box-shadow: 0 1px 2px 0 var(--gray-200);
+    box-shadow: 0 1px 2px 0 var(--color-bg-shadow);
   }
 }
 
@@ -83,6 +82,6 @@ const onClick = () => {
 }
 
 .button_text_alert {
-  color: var(--red-600);
+  color: var(--color-typo-alert);
 }
 </style>

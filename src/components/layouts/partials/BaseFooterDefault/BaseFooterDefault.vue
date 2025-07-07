@@ -40,7 +40,7 @@ defineProps<IProps>();
   padding-top: clamp(4rem, 6.25vw, 8rem);
   padding-bottom: clamp(4rem, 6.25vw, 8rem);
   font-size: var(--typo-size-sm);
-  color: var(--gray-600);
+  color: var(--color-typo-primary);
 
   p {
     margin: 0;
@@ -54,6 +54,6 @@ defineProps<IProps>();
 }
 
 .footer__heart {
-  color: var(--red-500);
+  color: var(--color-typo-alert);
 }
 </style>

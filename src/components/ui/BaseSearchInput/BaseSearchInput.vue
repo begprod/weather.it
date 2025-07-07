@@ -80,12 +80,12 @@ const onUpdateValue = (event: Event) => {
   width: 100%;
   font-size: var(--typo-size-xl);
   line-height: 1.5;
-  color: var(--gray-900);
-  background-color: var(--white);
+  color: var(--color-typo-primary);
+  background-color: var(--color-bg-surface);
   border-radius: 0.75rem;
   border: none;
   appearance: none;
-  box-shadow: 0 1px 2px 0 var(--gray-200);
+  box-shadow: 0 1px 2px 0 var(--color-bg-shadow);
   transition: 0.3s ease-in-out;
   transition-property: box-shadow;
 
@@ -115,7 +115,7 @@ const onUpdateValue = (event: Event) => {
   align-items: center;
   max-width: 85%;
   font-size: var(--typo-size-xl);
-  color: var(--gray-900);
+  color: var(--color-typo-primary);
   transform: translateY(-50%);
   user-select: none;
   pointer-events: none;
@@ -134,7 +134,7 @@ const onUpdateValue = (event: Event) => {
   margin-left: 1rem;
   padding: 0.25rem;
   font-size: var(--typo-size-sm);
-  border: 1px solid var(--slate-500);
+  border: 1px solid var(--color-bg-border);
   border-radius: 0.375rem;
   opacity: 0.4;
 }

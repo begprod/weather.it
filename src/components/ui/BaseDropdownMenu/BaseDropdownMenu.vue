@@ -40,7 +40,6 @@ const closeMenu = () => {
 <style scoped>
 .drop-down-menu {
   position: relative;
-  border: 1px solid red;
   transition: 0.3s ease-in-out;
 }
 
@@ -50,7 +49,6 @@ const closeMenu = () => {
   right: 0;
   min-width: 150px;
   border-radius: 0.75rem;
-  background-color: var(--white);
-  box-shadow: 0 0 0 0 var(--gray);
+  background-color: var(--color-bg-surface);
 }
 </style>

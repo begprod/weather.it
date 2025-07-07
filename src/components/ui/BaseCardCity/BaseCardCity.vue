@@ -133,9 +133,13 @@ defineExpose({
 
 <style scoped>
 .card-city {
+  --green-500: #22c55e;
+  --green-300: #86efac;
+  --yellow-300: #fde047;
+
   position: relative;
   padding: clamp(1.25rem, 3.13vw, 2.5rem);
-  color: var(--white);
+  color: var(--color-typo-secondary);
   border-radius: 1.25rem;
   box-shadow: 0 5px 15px 0 var(--gray);
   overflow: hidden;
@@ -243,13 +247,12 @@ defineExpose({
   right: 0;
   left: 0;
   bottom: 0;
-  background: var(--slate-700);
-  opacity: 0.5;
+  background: var(--color-bg-paranja);
   z-index: 20;
 }
 
 .air-quality_type_default {
-  background-color: var(--gray);
+  background-color: var(--color-bg-surface-accent-dark);
 }
 
 .air-quality_type_1 {
@@ -265,10 +268,10 @@ defineExpose({
 }
 
 .air-quality_type_4 {
-  background-color: var(--orange-400);
+  background-color: var(--color-typo-warning);
 }
 
 .air-quality_type_5 {
-  background-color: var(--red-500);
+  background-color: var(--color-bg-alert);
 }
 </style>

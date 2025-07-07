@@ -53,36 +53,32 @@ const onClick = () => {
   padding: 1rem;
   width: 100%;
   max-width: 16rem;
-  color: var(--gray-500);
+  color: var(--color-typo-primary);
   border-radius: 0.5rem;
-  background-color: var(--white);
-  box-shadow: 0 1px 2px 0 var(--gray-200);
+  background-color: var(--color-bg-surface);
+  box-shadow: 0 1px 2px 0 var(--color-bg-shadow);
   transition: all 0.3s ease-in-out;
   z-index: 50;
-
-  &:hover {
-    box-shadow: 0 0 0 0 var(--gray);
-  }
 }
 
 .toast_success {
-  color: var(--green-500);
+  color: var(--color-bg-success);
 
   .toast__icon {
-    background-color: var(--green-200);
+    border: 1px solid var(--color-bg-success);
   }
 }
 
 .toast_error {
-  color: var(--red-500);
+  color: var(--color-bg-alert);
 
   .toast__icon {
-    background-color: var(--red-200);
+    border: 1px solid var(--color-bg-alert);
   }
 }
 
 .toast_default {
-  color: var(--gray-500);
+  color: var(--color-typo-primary);
 }
 
 .toast__inner {
