@@ -47,7 +47,7 @@ const closeMenu = () => {
   position: absolute;
   top: 100%;
   right: 0;
-  min-width: 150px;
+  max-width: 150px;
   border-radius: 0.75rem;
   background-color: var(--color-bg-surface);
 }

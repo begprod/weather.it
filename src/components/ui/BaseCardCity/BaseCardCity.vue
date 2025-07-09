@@ -141,11 +141,11 @@ defineExpose({
   padding: clamp(1.25rem, 3.13vw, 2.5rem);
   color: var(--color-typo-secondary);
   border-radius: 1.25rem;
-  box-shadow: 0 5px 15px 0 var(--gray);
+  box-shadow: 0 5px 15px 0 var(--color-bg-shadow);
   overflow: hidden;
 
   &:focus {
-    outline: 1px solid var(--gray);
+    outline: 1px solid var(--color-bg-shadow);
   }
 }
 
@@ -268,7 +268,7 @@ defineExpose({
 }
 
 .air-quality_type_4 {
-  background-color: var(--color-typo-warning);
+  background-color: var(--color-bg-warning);
 }
 
 .air-quality_type_5 {

@@ -81,7 +81,7 @@ const onUpdateValue = (event: Event) => {
   font-size: var(--typo-size-xl);
   line-height: 1.5;
   color: var(--color-typo-primary);
-  background-color: var(--color-bg-surface);
+  background-color: var(--color-bg-surface-accent);
   border-radius: 0.75rem;
   border: none;
   appearance: none;

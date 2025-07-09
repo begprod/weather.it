@@ -50,6 +50,7 @@ const onClick = () => {
   gap: 0.5rem;
   padding: clamp(0.75rem, 3.65vw, 1.25rem);
   color: inherit;
+  white-space: nowrap;
   border: none;
   background-color: var(--color-bg-surface);
   box-shadow: 0 1px 2px 0 var(--color-bg-shadow);

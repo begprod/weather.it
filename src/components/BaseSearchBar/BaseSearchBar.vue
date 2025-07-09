@@ -104,6 +104,7 @@ const getCityWeather = async (suggestionItem: ISearchSuggestItem) => {
 
 .search-bar {
   position: relative;
+  color: var(--color-typo-primary);
 }
 
 @media screen and (max-width: 768px) {

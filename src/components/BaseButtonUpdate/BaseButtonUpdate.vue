@@ -38,6 +38,7 @@ const classObject = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--color-typo-primary);
 }
 
 .button-update__date {
