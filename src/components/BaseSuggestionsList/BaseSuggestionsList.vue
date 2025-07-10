@@ -106,9 +106,9 @@ const previousListItem = (index: number) => {
   top: 100%;
   width: 100%;
   height: 100%;
-  background-color: var(--gray-100);
+  background-color: var(--color-bg-surface-accent);
   border-radius: 0.75rem;
-  box-shadow: 0 1px 2px 0 var(--gray-200);
+  box-shadow: 0 1px 2px 0 var(--color-bg-shadow);
   overflow-y: hidden;
   z-index: 50;
 }
@@ -138,7 +138,7 @@ const previousListItem = (index: number) => {
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: var(--gray-100);
+  background-color: var(--color-bg-surface-accent);
   cursor: pointer;
   transition: 0.3s ease-in-out;
   transition-property: background-color;
@@ -161,7 +161,7 @@ const previousListItem = (index: number) => {
   }
 
   &:focus {
-    background-color: var(--slate-300);
+    background-color: var(--color-bg-surface-accent-dark);
     outline: none;
 
     .suggestion-list__icons {

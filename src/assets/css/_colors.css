@@ -1,24 +1,35 @@
 :root {
-  --white: #ffffff;
-  --gray: #d3d3d3;
-  --gray-900: #111827;
-  --gray-600: #4b5563;
-  --gray-500: #6b7280;
-  --gray-400: #a5aab0;
-  --gray-300: #d1d5db;
-  --gray-200: #e5e7eb;
-  --gray-100: #f3f4f6;
-  --slate-700: #334155;
-  --slate-500: #64748b;
-  --slate-300: #cbd5e1;
-  --slate-200: #e2e8f0;
-  --green-500: #22c55e;
-  --green-300: #86efac;
-  --green-200: #bbf7d0;
-  --yellow-300: #fde047;
-  --orange-400: #fb923c;
-  --red-600: #dc2626;
-  --red-500: #ef4444;
-  --red-200: #fecaca;
-  --blue-600: #2563eb;
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-accent: #f3f4f6;
+  --color-bg-surface-accent-dark: #cbd5e1;
+  --color-bg-alert: #dc2626;
+  --color-bg-warning: #fb923c;
+  --color-bg-success: #22c55e;
+  --color-bg-shadow: #e5e7eb;
+  --color-bg-paranja: #33415575;
+  --color-bg-border: #64748b;
+
+  --color-typo-primary: #6b7280;
+  --color-typo-secondary: #f3f4f6;
+  --color-typo-alert: #dc2626;
+  --color-typo-success: #22c55e;
+  --color-typo-link: #2563eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-surface: #222831;
+    --color-bg-surface-accent: #404258;
+    --color-bg-surface-accent-dark: #0a2647;
+    --color-bg-alert: #ff0000;
+    --color-bg-success: #03c4a1;
+    --color-bg-shadow: #030637;
+    --color-bg-border: #474e68;
+
+    --color-typo-primary: #f4f4f4;
+    --color-typo-secondary: #f4f4f4;
+    --color-typo-alert: #ff0000;
+    --color-typo-success: #03c4a1;
+    --color-typo-link: #3dc2ec;
+  }
 }

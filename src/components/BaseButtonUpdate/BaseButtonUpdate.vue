@@ -38,6 +38,7 @@ const classObject = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--color-typo-primary);
 }
 
 .button-update__date {
@@ -46,7 +47,7 @@ const classObject = computed(() => {
   border-radius: 4px;
   font-size: clamp(var(--typo-size-2xs), 1.56vw, var(--typo-size-xs));
   line-height: 1;
-  color: var(--gray-500);
-  background-color: var(--white);
+  color: var(--color-typo-primary);
+  background-color: var(--color-bg-surface);
 }
 </style>

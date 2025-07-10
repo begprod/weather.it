@@ -1,5 +1,6 @@
 html {
   font-size: 16px;
+  background-color: var(--color-bg-surface);
 }
 
 .font-body {
@@ -35,5 +36,5 @@ html {
 }
 
 .link {
-  color: var(--blue-600);
+  color: var(--color-typo-link);
 }
