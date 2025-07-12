@@ -49,7 +49,7 @@ const onClick = () => {
   align-items: center;
   gap: 0.5rem;
   padding: clamp(0.75rem, 3.65vw, 1.25rem);
-  color: inherit;
+  color: var(--color-typo-primary);
   white-space: nowrap;
   border: none;
   background-color: var(--color-bg-surface);
@@ -77,6 +77,7 @@ const onClick = () => {
 
 .button_view_transparent {
   padding: clamp(0.5rem, 1.56vw, 0.75rem);
+  color: var(--color-typo-secondary);
   border: none;
   box-shadow: none;
   background-color: transparent;
