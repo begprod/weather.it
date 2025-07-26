@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.11.2
+
+### Fix
+
+- dark theme button text color
+
+## 1.11.1
+
+### Fix
+
+- dark theme meta tag
+
 ## 1.11.0
 
 ### Features
