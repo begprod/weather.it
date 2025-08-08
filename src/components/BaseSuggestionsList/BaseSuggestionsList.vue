@@ -109,7 +109,7 @@ const previousListItem = (index: number) => {
   background-color: var(--color-bg-surface-accent);
   border-radius: 0.75rem;
   box-shadow: 0 1px 2px 0 var(--color-bg-shadow);
-  overflow-y: hidden;
+  overflow-y: auto;
   z-index: 50;
 }
 
@@ -145,7 +145,7 @@ const previousListItem = (index: number) => {
   overflow: hidden;
 
   &:hover {
-    background-color: var(--slate-200);
+    background-color: var(--color-bg-surface-accent-dark);
 
     .suggestion-list__icons {
       svg {
